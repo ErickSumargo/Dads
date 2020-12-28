@@ -24,7 +24,6 @@ ext {
 
         // google
         autoservice         : "1.0-rc7",
-        gson                : "2.8.6",
 
         // javax
         inject              : "1",
@@ -36,7 +35,6 @@ ext {
         // square
         javapoet            : "1.13.0",
         leakcanary          : "2.5",
-        okhttp              : "4.9.0",
-        retrofit            : "2.9.0"
+        okhttp              : "4.9.0"
     ]
 }

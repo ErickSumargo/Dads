@@ -1,0 +1,4 @@
+fragment DadJokeFragment on DadJoke {
+    id
+    joke
+}

@@ -47,11 +47,11 @@ android {
 }
 
 def deps = [
+    "graphql",
     "hilt",
     "leakcanary",
     "navigation",
-    "okhttp",
-    "retrofit"
+    "okhttp"
 ]
 
 deps.forEach { dep ->

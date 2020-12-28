@@ -10,6 +10,18 @@ plugins.forEach { plugin ->
     apply plugin: plugin
 }
 
+android {
+    buildTypes {
+        debug {
+            buildConfigField "String", "JWT", DADS_JWT
+        }
+
+        release {
+            buildConfigField "String", "JWT", DADS_JWT
+        }
+    }
+}
+
 apollo {
     generateKotlinModels.set(true)
 }
@@ -17,10 +29,8 @@ apollo {
 def deps = [
     "coroutines",
     "graphql",
-    "gson",
     "hilt",
-    "okhttp",
-    "retrofit"
+    "okhttp"
 ]
 
 deps.forEach { dep ->

@@ -7,8 +7,6 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
 import okhttp3.OkHttpClient
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 /**
@@ -22,27 +20,7 @@ internal object ApiClientModule {
     @Provides
     @Singleton
     @BaseUrlQualifier
-    internal fun provideBaseUrl(): String = ""
-
-    @Provides
-    @Singleton
-    internal fun provideGsonConverterFactory(): GsonConverterFactory {
-        return GsonConverterFactory.create()
-    }
-
-    @Provides
-    @Singleton
-    internal fun provideRetrofit(
-        @BaseUrlQualifier url: String,
-        okHttpClient: OkHttpClient,
-        gsonConverterFactory: GsonConverterFactory
-    ): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl(url)
-            .client(okHttpClient)
-            .addConverterFactory(gsonConverterFactory)
-            .build()
-    }
+    internal fun provideBaseUrl(): String = "http://10.0.2.2:4000"
 
     @Provides
     @Singleton

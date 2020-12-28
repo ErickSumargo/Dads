@@ -1,6 +1,6 @@
 package com.bael.dads.lib.domain.repository
 
-import com.bael.dads.lib.api.service.SampleService
+import com.bael.dads.lib.api.service.DadsService
 import com.bael.dads.lib.database.SampleDatabase
 import com.bael.dads.lib.domain.mapper.facade.SampleMapper
 import com.bael.dads.lib.domain.model.Response
@@ -12,7 +12,7 @@ import javax.inject.Inject
  */
 
 internal class DefaultSampleRepository @Inject constructor(
-    private val api: SampleService,
+    private val api: DadsService,
     private val database: SampleDatabase,
     private val mapper: SampleMapper
 ) : SampleRepository {
