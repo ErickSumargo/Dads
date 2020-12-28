@@ -17,7 +17,7 @@ internal class AuthInterceptor @Inject constructor() : Interceptor {
     override fun intercept(chain: Chain): Response {
         val request = chain.request()
             .newBuilder()
-            .header("Authorization", "Bearer JWT")
+            .header("Authorization", "Bearer $JWT")
         return chain.proceed(request.build())
     }
 }
