@@ -17,6 +17,7 @@ ext {
         hilt_jetpack        : "1.0.0-alpha02",
         lifecycle           : "2.2.0",
         navigation          : "2.3.0",
+        room                : "2.2.5",
 
         // apollo
         graphql             : "2.4.5",

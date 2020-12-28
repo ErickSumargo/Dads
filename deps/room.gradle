@@ -1,0 +1,6 @@
+dependencies {
+    implementation "androidx.room:room-runtime:$deps.room"
+    implementation "androidx.room:room-ktx:$deps.room"
+
+    kapt "androidx.room:room-compiler:$deps.room"
+}

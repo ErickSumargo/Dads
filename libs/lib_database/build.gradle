@@ -1,0 +1,34 @@
+apply from: "$rootDir/libs/lib.gradle"
+
+def plugins = [
+    "kotlin-kapt",
+    "dagger.hilt.android.plugin"
+]
+
+plugins.forEach { plugin ->
+    apply plugin: plugin
+}
+
+android {
+    defaultConfig {
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += [
+                    "room.schemaLocation"   : "$projectDir/schemas".toString(),
+                    "room.incremental"      : "true",
+                    "room.expandProjection" : "true"
+                ]
+            }
+        }
+    }
+}
+
+def deps = [
+    "coroutines",
+    "hilt",
+    "room"
+]
+
+deps.forEach { dep ->
+    apply from: "$rootDir/deps/${dep}.gradle"
+}
