@@ -1,4 +1,4 @@
-package com.bael.dads.feature.sample.screen.sample
+package com.bael.dads.feature.home.screen.feed
 
 import com.bael.dads.lib.presentation.state.BaseState
 

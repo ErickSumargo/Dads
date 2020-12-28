@@ -59,7 +59,7 @@ deps.forEach { dep ->
 }
 
 def modules = [
-    "feature_sample",
+    "feature_home",
     "lib_api",
     "lib_data",
     "lib_database",

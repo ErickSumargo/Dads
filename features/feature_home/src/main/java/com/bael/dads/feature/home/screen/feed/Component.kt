@@ -1,4 +1,4 @@
-package com.bael.dads.feature.sample.screen.sample
+package com.bael.dads.feature.home.screen.feed
 
 import com.bael.dads.annotation.Render
 import com.bael.dads.lib.presentation.ui.BaseComponent
@@ -8,9 +8,4 @@ import com.bael.dads.lib.presentation.ui.BaseComponent
  */
 
 @Render(State::class)
-interface Component : BaseComponent {
-
-    fun renderVersion(version: Int)
-
-    fun renderIncrementer()
-}
+interface Component : BaseComponent
