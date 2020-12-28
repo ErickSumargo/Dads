@@ -1,7 +1,8 @@
 rootProject.name = "Bael"
 
 def modules = [
-    "app"
+    "app",
+    "lib_presentation"
 ]
 
 modules.forEach { module ->

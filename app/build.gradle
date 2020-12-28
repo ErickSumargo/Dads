@@ -51,3 +51,13 @@ def deps = [
 deps.forEach { dep ->
     apply from: "$rootDir/deps/${dep}.gradle"
 }
+
+def modules = [
+    "lib_presentation"
+]
+
+dependencies {
+    modules.forEach { module ->
+        implementation project(":$module")
+    }
+}

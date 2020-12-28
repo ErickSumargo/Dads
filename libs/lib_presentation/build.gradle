@@ -1,0 +1,26 @@
+apply from: "$rootDir/libs/lib.gradle"
+
+def plugins = [
+    "kotlin-kapt",
+    "dagger.hilt.android.plugin"
+]
+
+plugins.forEach { plugin ->
+    apply plugin: plugin
+}
+
+android {
+    buildFeatures {
+        viewBinding = true
+    }
+}
+
+def deps = [
+    "coroutines",
+    "hilt",
+    "lifecycle"
+]
+
+deps.forEach { dep ->
+    apply from: "$rootDir/deps/${dep}.gradle"
+}
