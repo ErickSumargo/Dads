@@ -16,11 +16,18 @@ ext {
         lifecycle           : "2.2.0",
         navigation          : "2.3.0",
 
+        // google
+        autoservice         : "1.0-rc7",
+
+        // javax
+        inject              : "1",
+
         // kotlin
         coroutines          : "1.4.2",
         kotlin              : "1.4.0",
 
         // square
+        javapoet            : "1.13.0",
         leakcanary          : "2.5"
     ]
 }

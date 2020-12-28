@@ -3,6 +3,7 @@ rootProject.name = "Bael"
 def modules = [
     "app",
     "annotation",
+    "processor",
     "lib_presentation"
 ]
 

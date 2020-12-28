@@ -1,0 +1,19 @@
+def plugins = [
+    "kotlin",
+    "kotlin-kapt"
+]
+
+plugins.forEach { plugin ->
+    apply plugin: plugin
+}
+
+def deps = [
+    "annotation",
+    "autoservice",
+    "inject",
+    "javapoet"
+]
+
+deps.forEach { dep ->
+    apply from: "$rootDir/deps/${dep}.gradle"
+}
