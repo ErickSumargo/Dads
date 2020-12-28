@@ -1,0 +1,7 @@
+def plugins = [
+    "kotlin"
+]
+
+plugins.forEach { plugin ->
+    apply plugin: plugin
+}
