@@ -1,0 +1,11 @@
+query DadJokes($page: Int!, $limit: Int) {
+    dadJokes(
+        page: $page
+        limit: $limit
+    ) {
+        jokes {
+            ...DadJokeFragment
+        }
+        page
+    }
+}

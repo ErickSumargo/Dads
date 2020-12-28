@@ -2,7 +2,6 @@ package com.bael.dads.lib.domain.mapper.data
 
 import com.bael.dads.lib.data.mapper.Mapper
 import javax.inject.Inject
-import com.bael.dads.lib.api.model.Sample as SampleRemote
 import com.bael.dads.lib.database.entity.Sample as SampleDB
 
 /**

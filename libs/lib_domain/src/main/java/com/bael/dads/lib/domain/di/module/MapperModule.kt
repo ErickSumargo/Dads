@@ -9,7 +9,6 @@ import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
 import javax.inject.Singleton
-import com.bael.dads.lib.api.model.Sample as SampleRemote
 import com.bael.dads.lib.database.entity.Sample as SampleDB
 
 /**

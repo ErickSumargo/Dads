@@ -1,7 +1,7 @@
 package com.bael.dads.lib.api.di.module
 
-import com.bael.dads.lib.api.service.SampleService
-import com.bael.dads.lib.api.service.retrofit.SampleRetrofitService
+import com.bael.dads.lib.api.service.DadsService
+import com.bael.dads.lib.api.service.apollo.DadsApolloService
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -18,7 +18,5 @@ internal abstract class ServiceModule {
 
     @Binds
     @Singleton
-    internal abstract fun bindSampleService(
-        service: SampleRetrofitService
-    ): SampleService
+    internal abstract fun bindDadsService(service: DadsApolloService): DadsService
 }

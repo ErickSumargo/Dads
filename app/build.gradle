@@ -50,8 +50,7 @@ def deps = [
     "hilt",
     "leakcanary",
     "navigation",
-    "okhttp",
-    "retrofit"
+    "okhttp"
 ]
 
 deps.forEach { dep ->

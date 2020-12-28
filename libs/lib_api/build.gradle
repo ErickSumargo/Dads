@@ -17,10 +17,8 @@ apollo {
 def deps = [
     "coroutines",
     "graphql",
-    "gson",
     "hilt",
-    "okhttp",
-    "retrofit"
+    "okhttp"
 ]
 
 deps.forEach { dep ->
