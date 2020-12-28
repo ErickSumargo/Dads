@@ -4,7 +4,7 @@ def modules = [
     "app",
     "annotation",
     "processor",
-    "feature_sample",
+    "feature_home",
     "lib_api",
     "lib_data",
     "lib_database",

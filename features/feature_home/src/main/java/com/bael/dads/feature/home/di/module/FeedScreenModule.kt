@@ -1,9 +1,9 @@
-package com.bael.dads.feature.sample.di.module
+package com.bael.dads.feature.home.di.module
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.bael.dads.feature.sample.screen.sample.State
-import com.bael.dads.feature.sample.screen.sample.ViewModel
+import com.bael.dads.feature.home.screen.feed.State
+import com.bael.dads.feature.home.screen.feed.ViewModel
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,10 +18,10 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 @Module
 @InstallIn(value = [ApplicationComponent::class, FragmentComponent::class])
 @ExperimentalCoroutinesApi
-object SampleScreenModule {
+object FeedScreenModule {
 
     @Provides
-    fun provideState(): State = State(version = 1)
+    fun provideState(): State = State()
 
     @Provides
     fun Fragment.provideViewModel(): Lazy<ViewModel> = viewModels()
