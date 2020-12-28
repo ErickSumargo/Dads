@@ -1,0 +1,32 @@
+apply from: "$rootDir/features/feature.gradle"
+
+def plugins = [
+    "kotlin-kapt",
+    "dagger.hilt.android.plugin"
+]
+
+plugins.forEach { plugin ->
+    apply plugin: plugin
+}
+
+def deps = [
+    "annotation",
+    "constraintlayout",
+    "fragment",
+    "hilt",
+    "processor"
+]
+
+deps.forEach { dep ->
+    apply from: "$rootDir/deps/${dep}.gradle"
+}
+
+def modules = [
+    "lib_presentation"
+]
+
+dependencies {
+    modules.forEach { module ->
+        implementation project(":$module")
+    }
+}

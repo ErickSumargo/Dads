@@ -1,0 +1,3 @@
+dependencies {
+    implementation "androidx.constraintlayout:constraintlayout:$deps.constraintlayout"
+}
