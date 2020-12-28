@@ -1,10 +1,10 @@
-package com.bael.feature.sample.screen.sample
+package com.bael.dads.feature.sample.screen.sample
 
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.SavedStateHandle
-import com.bael.lib.domain.interactor.SampleInteractor
-import com.bael.lib.presentation.ext.reduce
-import com.bael.lib.presentation.viewmodel.BaseViewModel
+import com.bael.dads.lib.domain.interactor.SampleInteractor
+import com.bael.dads.lib.presentation.ext.reduce
+import com.bael.dads.lib.presentation.viewmodel.BaseViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import androidx.hilt.Assisted as HiltAssisted
 

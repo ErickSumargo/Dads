@@ -1,10 +1,10 @@
-package com.bael.feature.sample.screen.sample
+package com.bael.dads.feature.sample.screen.sample
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.bael.feature.sample.databinding.SampleLayoutBinding
-import com.bael.feature.sample.databinding.SampleLayoutBinding.inflate
-import com.bael.lib.presentation.ui.BaseFragment
+import com.bael.dads.feature.sample.databinding.SampleLayoutBinding
+import com.bael.dads.feature.sample.databinding.SampleLayoutBinding.inflate
+import com.bael.dads.lib.presentation.ui.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 

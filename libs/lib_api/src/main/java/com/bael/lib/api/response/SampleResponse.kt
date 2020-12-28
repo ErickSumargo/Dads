@@ -1,6 +1,6 @@
-package com.bael.lib.api.response
+package com.bael.dads.lib.api.response
 
-import com.bael.lib.api.model.Sample
+import com.bael.dads.lib.api.model.Sample
 import com.google.gson.annotations.SerializedName
 
 /**

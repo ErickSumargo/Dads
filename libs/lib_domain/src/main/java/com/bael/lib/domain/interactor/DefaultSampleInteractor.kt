@@ -1,7 +1,7 @@
-package com.bael.lib.domain.interactor
+package com.bael.dads.lib.domain.interactor
 
-import com.bael.lib.domain.model.Response
-import com.bael.lib.domain.repository.SampleRepository
+import com.bael.dads.lib.domain.model.Response
+import com.bael.dads.lib.domain.repository.SampleRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

@@ -1,6 +1,6 @@
-package com.bael.lib.api.service
+package com.bael.dads.lib.api.service
 
-import com.bael.lib.api.response.SampleResponse
+import com.bael.dads.lib.api.response.SampleResponse
 
 /**
  * Created by ErickSumargo on 01/01/21.

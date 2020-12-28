@@ -1,7 +1,7 @@
-package com.bael.lib.domain.di.module
+package com.bael.dads.lib.domain.di.module
 
-import com.bael.lib.domain.interactor.DefaultSampleInteractor
-import com.bael.lib.domain.interactor.SampleInteractor
+import com.bael.dads.lib.domain.interactor.DefaultSampleInteractor
+import com.bael.dads.lib.domain.interactor.SampleInteractor
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

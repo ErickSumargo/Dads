@@ -1,6 +1,6 @@
-package com.bael.lib.api.service.retrofit
+package com.bael.dads.lib.api.service.retrofit
 
-import com.bael.lib.api.response.SampleResponse
+import com.bael.dads.lib.api.response.SampleResponse
 import retrofit2.Response
 import retrofit2.http.GET
 

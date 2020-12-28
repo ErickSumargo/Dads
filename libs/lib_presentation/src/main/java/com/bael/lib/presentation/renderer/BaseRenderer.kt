@@ -1,10 +1,10 @@
 @file:Suppress("UNCHECKED_CAST")
 
-package com.bael.lib.presentation.renderer
+package com.bael.dads.lib.presentation.renderer
 
 import androidx.lifecycle.lifecycleScope
-import com.bael.lib.presentation.ui.BaseComponent
-import com.bael.lib.presentation.viewmodel.BaseViewModel
+import com.bael.dads.lib.presentation.ui.BaseComponent
+import com.bael.dads.lib.presentation.viewmodel.BaseViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.scan

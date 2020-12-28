@@ -1,7 +1,7 @@
-package com.bael.lib.domain.di.module
+package com.bael.dads.lib.domain.di.module
 
-import com.bael.lib.domain.repository.DefaultSampleRepository
-import com.bael.lib.domain.repository.SampleRepository
+import com.bael.dads.lib.domain.repository.DefaultSampleRepository
+import com.bael.dads.lib.domain.repository.SampleRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

@@ -1,10 +1,10 @@
-package com.bael.lib.database.di.module
+package com.bael.dads.lib.database.di.module
 
 import android.content.Context
 import androidx.room.Room.databaseBuilder
-import com.bael.lib.database.SampleDatabase
-import com.bael.lib.database.SampleRoomDatabase
-import com.bael.lib.database.di.qualifier.DatabaseNameQualifier
+import com.bael.dads.lib.database.SampleDatabase
+import com.bael.dads.lib.database.SampleRoomDatabase
+import com.bael.dads.lib.database.di.qualifier.DatabaseNameQualifier
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -1,4 +1,4 @@
-package com.bael.lib.api.di.qualifier
+package com.bael.dads.lib.api.di.qualifier
 
 import javax.inject.Qualifier
 import kotlin.annotation.AnnotationRetention.BINARY

@@ -1,9 +1,9 @@
-package com.bael.lib.domain.repository
+package com.bael.dads.lib.domain.repository
 
-import com.bael.lib.api.service.SampleService
-import com.bael.lib.database.SampleDatabase
-import com.bael.lib.domain.mapper.facade.SampleMapper
-import com.bael.lib.domain.model.Response
+import com.bael.dads.lib.api.service.SampleService
+import com.bael.dads.lib.database.SampleDatabase
+import com.bael.dads.lib.domain.mapper.facade.SampleMapper
+import com.bael.dads.lib.domain.model.Response
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

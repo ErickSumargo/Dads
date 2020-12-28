@@ -1,8 +1,8 @@
-package com.bael.activity
+package com.bael.dads.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.bael.databinding.ActivityMainBinding
+import com.bael.dads.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 /**

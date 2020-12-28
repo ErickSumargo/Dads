@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/sampleScreen"
-        android:name="com.bael.feature.sample.screen.sample.UI"
+        android:name="com.bael.dads.feature.sample.screen.sample.UI"
         tools:layout="@layout/sample_layout" />
 
 </navigation>

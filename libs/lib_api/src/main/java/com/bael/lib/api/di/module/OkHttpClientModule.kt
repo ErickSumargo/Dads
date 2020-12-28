@@ -1,8 +1,8 @@
-package com.bael.lib.api.di.module
+package com.bael.dads.lib.api.di.module
 
-import com.bael.lib.api.interceptor.AuthInterceptor
-import com.bael.lib.api.interceptor.ContentTypeInterceptor
-import com.bael.lib.api.interceptor.NetworkInterceptor
+import com.bael.dads.lib.api.interceptor.AuthInterceptor
+import com.bael.dads.lib.api.interceptor.ContentTypeInterceptor
+import com.bael.dads.lib.api.interceptor.NetworkInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

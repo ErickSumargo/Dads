@@ -1,7 +1,7 @@
-package com.bael.lib.api.di.module
+package com.bael.dads.lib.api.di.module
 
-import com.bael.lib.api.service.SampleService
-import com.bael.lib.api.service.retrofit.SampleRetrofitService
+import com.bael.dads.lib.api.service.SampleService
+import com.bael.dads.lib.api.service.retrofit.SampleRetrofitService
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

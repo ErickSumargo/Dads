@@ -1,4 +1,4 @@
-package com.bael.annotation
+package com.bael.dads.annotation
 
 import kotlin.annotation.AnnotationRetention.SOURCE
 import kotlin.annotation.AnnotationTarget.CLASS

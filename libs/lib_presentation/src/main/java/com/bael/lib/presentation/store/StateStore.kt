@@ -1,4 +1,4 @@
-package com.bael.lib.presentation.store
+package com.bael.dads.lib.presentation.store
 
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow

@@ -1,9 +1,9 @@
-package com.bael.lib.presentation.viewmodel
+package com.bael.dads.lib.presentation.viewmodel
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import com.bael.lib.presentation.store.StateStore
-import com.bael.lib.presentation.store.Store
+import com.bael.dads.lib.presentation.store.StateStore
+import com.bael.dads.lib.presentation.store.Store
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.onEach

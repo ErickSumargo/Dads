@@ -1,9 +1,9 @@
-package com.bael.lib.domain.mapper.data
+package com.bael.dads.lib.domain.mapper.data
 
-import com.bael.lib.data.mapper.Mapper
+import com.bael.dads.lib.data.mapper.Mapper
 import javax.inject.Inject
-import com.bael.lib.api.model.Sample as SampleRemote
-import com.bael.lib.database.entity.Sample as SampleDB
+import com.bael.dads.lib.api.model.Sample as SampleRemote
+import com.bael.dads.lib.database.entity.Sample as SampleDB
 
 /**
  * Created by ErickSumargo on 01/01/21.
