@@ -1,0 +1,4 @@
+dependencies {
+    implementation "com.squareup.retrofit2:retrofit:$deps.retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$deps.retrofit"
+}

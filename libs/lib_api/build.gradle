@@ -1,0 +1,38 @@
+apply from: "$rootDir/libs/lib.gradle"
+
+def plugins = [
+    "kotlin-kapt",
+    "dagger.hilt.android.plugin",
+    "com.apollographql.apollo",
+]
+
+plugins.forEach { plugin ->
+    apply plugin: plugin
+}
+
+apollo {
+    generateKotlinModels.set(true)
+}
+
+def deps = [
+    "coroutines",
+    "graphql",
+    "gson",
+    "hilt",
+    "okhttp",
+    "retrofit"
+]
+
+deps.forEach { dep ->
+    apply from: "$rootDir/deps/${dep}.gradle"
+}
+
+def modules = [
+    "lib_data"
+]
+
+dependencies {
+    modules.forEach { module ->
+        implementation project(":$module")
+    }
+}

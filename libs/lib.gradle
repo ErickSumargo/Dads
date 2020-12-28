@@ -17,4 +17,10 @@ android {
 
         consumerProguardFiles 'proguard-rules.pro'
     }
+
+    kotlinOptions {
+        freeCompilerArgs = ["-Xallow-result-return-type"]
+
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
 }

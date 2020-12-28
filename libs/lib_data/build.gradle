@@ -9,12 +9,6 @@ plugins.forEach { plugin ->
     apply plugin: plugin
 }
 
-android {
-    kotlinOptions {
-        freeCompilerArgs = ["-Xallow-result-return-type"]
-    }
-}
-
 def deps = [
     "hilt"
 ]
