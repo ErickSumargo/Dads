@@ -21,7 +21,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 object FeedScreenModule {
 
     @Provides
-    fun provideState(): State = State(version = 1)
+    fun provideState(): State = State()
 
     @Provides
     fun Fragment.provideViewModel(): Lazy<ViewModel> = viewModels()
