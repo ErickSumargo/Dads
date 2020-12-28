@@ -1,0 +1,15 @@
+rootProject.name = "Bael"
+
+def modules = [
+    "app"
+]
+
+modules.forEach { module ->
+    include ":$module"
+
+    if (module.contains("feature")) {
+        project(":$module").projectDir = new File("features/$module")
+    } else if (module.contains("lib")) {
+        project(":$module").projectDir = new File("libs/$module")
+    }
+}

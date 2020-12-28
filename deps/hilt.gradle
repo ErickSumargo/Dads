@@ -1,0 +1,7 @@
+dependencies {
+    implementation "com.google.dagger:hilt-android:$deps.hilt"
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$deps.hilt_jetpack"
+
+    kapt "com.google.dagger:hilt-android-compiler:$deps.hilt"
+    kapt "androidx.hilt:hilt-compiler:$deps.hilt_jetpack"
+}

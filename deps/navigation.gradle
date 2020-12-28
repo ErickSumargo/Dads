@@ -1,0 +1,4 @@
+dependencies {
+    implementation "androidx.navigation:navigation-fragment-ktx:$deps.navigation"
+    implementation "androidx.navigation:navigation-ui-ktx:$deps.navigation"
+}

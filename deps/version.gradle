@@ -1,0 +1,24 @@
+ext {
+    sdk = [
+        build               : "29.0.3",
+        code                : 1,
+        compile             : 29,
+        gradle              : "4.0.0",
+        min                 : "23",
+        target              : 29,
+        version             : "1.0"
+    ]
+
+    deps = [
+        // androidx
+        hilt                : "2.28.3-alpha",
+        hilt_jetpack        : "1.0.0-alpha02",
+        navigation          : "2.3.0",
+
+        // kotlin
+        kotlin              : "1.4.0",
+
+        // square
+        leakcanary          : "2.5"
+    ]
+}

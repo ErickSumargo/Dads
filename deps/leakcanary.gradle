@@ -1,0 +1,3 @@
+dependencies {
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:$deps.leakcanary"
+}

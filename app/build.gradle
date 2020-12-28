@@ -1,0 +1,53 @@
+def plugins = [
+    "com.android.application",
+    "kotlin-android",
+    "kotlin-android-extensions",
+    "kotlin-kapt",
+    "dagger.hilt.android.plugin"
+]
+
+plugins.forEach { plugin ->
+    apply plugin: plugin
+}
+
+android {
+    compileSdkVersion sdk.compile
+
+    defaultConfig {
+        applicationId "com.bael"
+        minSdkVersion sdk.min
+        targetSdkVersion sdk.target
+        versionCode sdk.code
+        versionName sdk.version
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            testCoverageEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    buildFeatures {
+        viewBinding = true
+    }
+}
+
+def deps = [
+    "hilt",
+    "leakcanary",
+    "navigation"
+]
+
+deps.forEach { dep ->
+    apply from: "$rootDir/deps/${dep}.gradle"
+}
