@@ -1,4 +1,4 @@
-package com.bael.lib.database.entity
+package com.bael.dads.lib.database.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

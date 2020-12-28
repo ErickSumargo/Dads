@@ -1,7 +1,7 @@
-package com.bael.feature.sample.screen.sample
+package com.bael.dads.feature.sample.screen.sample
 
-import com.bael.annotation.Render
-import com.bael.lib.presentation.ui.BaseComponent
+import com.bael.dads.annotation.Render
+import com.bael.dads.lib.presentation.ui.BaseComponent
 
 /**
  * Created by ErickSumargo on 01/01/21.

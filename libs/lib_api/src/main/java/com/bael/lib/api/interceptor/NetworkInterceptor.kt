@@ -1,7 +1,7 @@
-package com.bael.lib.api.interceptor
+package com.bael.dads.lib.api.interceptor
 
-import com.bael.lib.api.network.Network
-import com.bael.lib.data.exception.NoNetworkException
+import com.bael.dads.lib.api.network.Network
+import com.bael.dads.lib.data.exception.NoNetworkException
 import okhttp3.Interceptor
 import okhttp3.Interceptor.Chain
 import okhttp3.Response

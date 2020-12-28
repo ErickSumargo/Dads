@@ -1,4 +1,4 @@
-package com.bael
+package com.bael.dads
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

@@ -1,9 +1,9 @@
-package com.bael.processor.generator.render
+package com.bael.dads.processor.generator.render
 
-import com.bael.annotation.Render
-import com.bael.processor.generator.BaseGenerator
-import com.bael.processor.generator.render.file.ComponentRendererFile
-import com.bael.processor.generator.render.file.RendererFile
+import com.bael.dads.annotation.Render
+import com.bael.dads.processor.generator.BaseGenerator
+import com.bael.dads.processor.generator.render.file.ComponentRendererFile
+import com.bael.dads.processor.generator.render.file.RendererFile
 import com.google.auto.service.AutoService
 import com.squareup.javapoet.ClassName
 import com.squareup.javapoet.JavaFile
@@ -53,12 +53,12 @@ internal class RenderGenerator : BaseGenerator(annotation = Render::class) {
         )
 
         rendererFactoryClass = ClassName.get(
-            "com.bael.lib.presentation.renderer",
+            "com.bael.dads.lib.presentation.renderer",
             "RendererFactory"
         )
 
         baseRendererClass = ClassName.get(
-            "com.bael.lib.presentation.renderer",
+            "com.bael.dads.lib.presentation.renderer",
             "BaseRenderer"
         )
 

@@ -1,6 +1,6 @@
-package com.bael.lib.domain.interactor
+package com.bael.dads.lib.domain.interactor
 
-import com.bael.lib.domain.model.Response
+import com.bael.dads.lib.domain.model.Response
 import kotlinx.coroutines.flow.Flow
 
 /**

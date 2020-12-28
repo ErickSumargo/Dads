@@ -1,4 +1,4 @@
-package com.bael.lib.api.model
+package com.bael.dads.lib.api.model
 
 import com.google.gson.annotations.SerializedName
 

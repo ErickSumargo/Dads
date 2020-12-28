@@ -1,4 +1,4 @@
-package com.bael.processor.generator.util
+package com.bael.dads.processor.generator.util
 
 import com.squareup.javapoet.CodeBlock
 import com.squareup.javapoet.MethodSpec

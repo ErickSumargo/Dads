@@ -1,6 +1,6 @@
-package com.bael.lib.database
+package com.bael.dads.lib.database
 
-import com.bael.lib.database.dao.SampleDao
+import com.bael.dads.lib.database.dao.SampleDao
 
 /**
  * Created by ErickSumargo on 01/01/21.

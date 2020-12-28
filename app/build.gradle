@@ -14,7 +14,7 @@ android {
     compileSdkVersion sdk.compile
 
     defaultConfig {
-        applicationId "com.bael"
+        applicationId "com.bael.dads"
         minSdkVersion sdk.min
         targetSdkVersion sdk.target
         versionCode sdk.code

@@ -1,4 +1,4 @@
-package com.bael.processor.logger
+package com.bael.dads.processor.logger
 
 import javax.annotation.processing.Messager
 import javax.tools.Diagnostic.Kind.ERROR

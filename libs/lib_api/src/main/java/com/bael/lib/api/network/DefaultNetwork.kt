@@ -1,6 +1,6 @@
 @file:Suppress("DEPRECATION", "RECEIVER_NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 
-package com.bael.lib.api.network
+package com.bael.dads.lib.api.network
 
 import android.content.Context
 import android.content.Context.CONNECTIVITY_SERVICE

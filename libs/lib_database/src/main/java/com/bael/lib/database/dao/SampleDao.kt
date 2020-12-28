@@ -1,4 +1,4 @@
-package com.bael.lib.database.dao
+package com.bael.dads.lib.database.dao
 
 import androidx.room.Dao
 

@@ -1,6 +1,6 @@
 @file:Suppress("UNCHECKED_CAST")
 
-package com.bael.lib.api.service.apollo
+package com.bael.dads.lib.api.service.apollo
 
 import com.apollographql.apollo.ApolloClient
 import com.apollographql.apollo.api.Operation.Data

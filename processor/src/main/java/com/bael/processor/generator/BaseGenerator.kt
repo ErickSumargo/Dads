@@ -1,6 +1,6 @@
-package com.bael.processor.generator
+package com.bael.dads.processor.generator
 
-import com.bael.processor.logger.Logger
+import com.bael.dads.processor.logger.Logger
 import com.squareup.javapoet.JavaFile
 import javax.annotation.processing.AbstractProcessor
 import javax.annotation.processing.Filer

@@ -1,7 +1,7 @@
-package com.bael.lib.api.di.module
+package com.bael.dads.lib.api.di.module
 
 import com.apollographql.apollo.ApolloClient
-import com.bael.lib.api.di.qualifier.BaseUrlQualifier
+import com.bael.dads.lib.api.di.qualifier.BaseUrlQualifier
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

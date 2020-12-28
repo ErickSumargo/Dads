@@ -1,6 +1,6 @@
-package com.bael.processor.generator.render.file
+package com.bael.dads.processor.generator.render.file
 
-import com.bael.processor.ext.varName
+import com.bael.dads.processor.ext.varName
 import com.squareup.javapoet.ClassName
 import com.squareup.javapoet.CodeBlock
 import com.squareup.javapoet.FieldSpec

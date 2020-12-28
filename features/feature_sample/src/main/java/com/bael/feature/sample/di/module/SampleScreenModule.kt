@@ -1,9 +1,9 @@
-package com.bael.feature.sample.di.module
+package com.bael.dads.feature.sample.di.module
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.bael.feature.sample.screen.sample.State
-import com.bael.feature.sample.screen.sample.ViewModel
+import com.bael.dads.feature.sample.screen.sample.State
+import com.bael.dads.feature.sample.screen.sample.ViewModel
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

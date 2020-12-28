@@ -1,7 +1,7 @@
-package com.bael.lib.api.di.module
+package com.bael.dads.lib.api.di.module
 
-import com.bael.lib.api.network.DefaultNetwork
-import com.bael.lib.api.network.Network
+import com.bael.dads.lib.api.network.DefaultNetwork
+import com.bael.dads.lib.api.network.Network
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
