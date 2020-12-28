@@ -9,4 +9,4 @@ import com.bael.lib.database.entity.Sample
  */
 
 @Database(entities = [Sample::class], version = 1)
-internal abstract class BaelRoomDatabase : RoomDatabase(), BaelDatabase
+internal abstract class SampleRoomDatabase : RoomDatabase(), SampleDatabase

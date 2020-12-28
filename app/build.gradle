@@ -40,12 +40,18 @@ android {
     buildFeatures {
         viewBinding = true
     }
+
+    compileOptions {
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
 }
 
 def deps = [
     "hilt",
     "leakcanary",
-    "navigation"
+    "navigation",
+    "okhttp",
+    "retrofit"
 ]
 
 deps.forEach { dep ->
@@ -54,6 +60,10 @@ deps.forEach { dep ->
 
 def modules = [
     "feature_sample",
+    "lib_api",
+    "lib_data",
+    "lib_database",
+    "lib_domain",
     "lib_presentation"
 ]
 

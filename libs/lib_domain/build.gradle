@@ -1,4 +1,4 @@
-apply from: "$rootDir/features/feature.gradle"
+apply from: "$rootDir/libs/lib.gradle"
 
 def plugins = [
     "kotlin-kapt",
@@ -10,11 +10,8 @@ plugins.forEach { plugin ->
 }
 
 def deps = [
-    "annotation",
-    "constraintlayout",
-    "fragment",
-    "hilt",
-    "processor"
+    "coroutines",
+    "hilt"
 ]
 
 deps.forEach { dep ->
@@ -22,8 +19,9 @@ deps.forEach { dep ->
 }
 
 def modules = [
-    "lib_domain",
-    "lib_presentation"
+    "lib_api",
+    "lib_data",
+    "lib_database"
 ]
 
 dependencies {

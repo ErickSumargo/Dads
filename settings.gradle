@@ -8,6 +8,7 @@ def modules = [
     "lib_api",
     "lib_data",
     "lib_database",
+    "lib_domain",
     "lib_presentation"
 ]
 
