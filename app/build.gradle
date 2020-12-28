@@ -47,6 +47,7 @@ android {
 }
 
 def deps = [
+    "graphql",
     "hilt",
     "leakcanary",
     "navigation",
