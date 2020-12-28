@@ -10,6 +10,18 @@ plugins.forEach { plugin ->
     apply plugin: plugin
 }
 
+android {
+    buildTypes {
+        debug {
+            buildConfigField "String", "JWT", DADS_JWT
+        }
+
+        release {
+            buildConfigField "String", "JWT", DADS_JWT
+        }
+    }
+}
+
 apollo {
     generateKotlinModels.set(true)
 }
