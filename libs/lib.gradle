@@ -1,0 +1,20 @@
+def plugins = [
+    "com.android.library",
+    "kotlin-android",
+    "kotlin-android-extensions"
+]
+
+plugins.forEach { plugin ->
+    apply plugin: plugin
+}
+
+android {
+    compileSdkVersion sdk.compile
+
+    defaultConfig {
+        minSdkVersion sdk.min
+        targetSdkVersion sdk.target
+
+        consumerProguardFiles 'proguard-rules.pro'
+    }
+}
