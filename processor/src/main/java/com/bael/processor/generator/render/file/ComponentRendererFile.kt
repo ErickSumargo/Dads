@@ -191,7 +191,9 @@ internal class ComponentRendererFile(
     ): CodeBlock {
         return CodeBlock.builder()
             .beginControlFlow("else").apply {
-                components.forEach { component ->
+                components.forEach next@{ component ->
+                    if (component.parameters.isEmpty()) return@next
+
                     beginControlFlow(
                         "if (\$N)",
                         generateStateDiffCheck(component.parameters)
