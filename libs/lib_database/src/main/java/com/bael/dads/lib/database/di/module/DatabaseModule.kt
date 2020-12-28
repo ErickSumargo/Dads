@@ -2,8 +2,8 @@ package com.bael.dads.lib.database.di.module
 
 import android.content.Context
 import androidx.room.Room.databaseBuilder
-import com.bael.dads.lib.database.SampleDatabase
-import com.bael.dads.lib.database.SampleRoomDatabase
+import com.bael.dads.lib.database.DadsDatabase
+import com.bael.dads.lib.database.DadsRoomDatabase
 import com.bael.dads.lib.database.di.qualifier.DatabaseNameQualifier
 import dagger.Module
 import dagger.Provides
@@ -23,14 +23,14 @@ internal object DatabaseModule {
     @Provides
     @Singleton
     @DatabaseNameQualifier
-    internal fun provideDatabaseName(): String = "sample"
+    internal fun provideDatabaseName(): String = "dads"
 
     @Provides
     @Singleton
     internal fun provideDatabase(
         @ApplicationContext context: Context,
         @DatabaseNameQualifier databaseName: String
-    ): SampleDatabase {
-        return databaseBuilder(context, SampleRoomDatabase::class.java, databaseName).build()
+    ): DadsDatabase {
+        return databaseBuilder(context, DadsRoomDatabase::class.java, databaseName).build()
     }
 }

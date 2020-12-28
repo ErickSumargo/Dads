@@ -3,7 +3,6 @@ package com.bael.dads.lib.domain.mapper.data
 import com.bael.dads.lib.data.mapper.Mapper
 import com.bael.dads.lib.domain.model.Sample
 import javax.inject.Inject
-import com.bael.dads.lib.database.entity.Sample as SampleDB
 
 /**
  * Created by ErickSumargo on 01/01/21.
