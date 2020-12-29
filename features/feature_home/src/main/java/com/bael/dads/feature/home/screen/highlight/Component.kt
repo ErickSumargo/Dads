@@ -1,4 +1,4 @@
-package com.bael.dads.feature.home.screen.feed
+package com.bael.dads.feature.home.screen.highlight
 
 import com.bael.dads.annotation.Render
 import com.bael.dads.lib.presentation.ui.BaseComponent

@@ -1,12 +1,12 @@
 package com.bael.dads.lib.domain.di.module
 
-import com.bael.dads.lib.api.model.DadJoke
 import com.bael.dads.lib.api.response.DadJokesResponse
 import com.bael.dads.lib.data.mapper.Mapper
 import com.bael.dads.lib.database.entity.RemoteMeta
 import com.bael.dads.lib.domain.mapper.data.DadJokeDBMapper
 import com.bael.dads.lib.domain.mapper.data.DadJokeRemoteMapper
 import com.bael.dads.lib.domain.mapper.data.RemoteMetaMapper
+import com.bael.dads.lib.domain.model.DadJoke
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
