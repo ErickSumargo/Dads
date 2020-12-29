@@ -1,7 +1,7 @@
 package com.bael.dads.lib.domain.di.module
 
-import com.bael.dads.lib.domain.repository.DefaultSampleRepository
-import com.bael.dads.lib.domain.repository.SampleRepository
+import com.bael.dads.lib.domain.repository.DadsRepository
+import com.bael.dads.lib.domain.repository.DefaultDadsRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -20,7 +20,7 @@ internal abstract class RepositoryModule {
 
     @Binds
     @Singleton
-    internal abstract fun bindSampleRepository(
-        repository: DefaultSampleRepository
-    ): SampleRepository
+    internal abstract fun bindDadsRepository(
+        repository: DefaultDadsRepository
+    ): DadsRepository
 }

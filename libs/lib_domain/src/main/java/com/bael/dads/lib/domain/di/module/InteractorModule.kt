@@ -1,7 +1,7 @@
 package com.bael.dads.lib.domain.di.module
 
-import com.bael.dads.lib.domain.interactor.DefaultSampleInteractor
-import com.bael.dads.lib.domain.interactor.SampleInteractor
+import com.bael.dads.lib.domain.interactor.DefaultLoadHighlightsInteractor
+import com.bael.dads.lib.domain.interactor.LoadHighlightsInteractor
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -18,7 +18,7 @@ internal abstract class InteractorModule {
 
     @Binds
     @Singleton
-    internal abstract fun bindSampleInteractor(
-        interactor: DefaultSampleInteractor
-    ): SampleInteractor
+    internal abstract fun bindLoadHighlightsInteractor(
+        interactor: DefaultLoadHighlightsInteractor
+    ): LoadHighlightsInteractor
 }

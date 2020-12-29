@@ -7,7 +7,10 @@ import kotlinx.coroutines.flow.Flow
  * Created by ErickSumargo on 01/01/21.
  */
 
-interface SampleInteractor {
+interface LoadHighlightsInteractor {
 
-    suspend operator fun invoke(): Flow<Response>
+    suspend operator fun invoke(
+        seen: Boolean,
+        limit: Int
+    ): Flow<Response>
 }
