@@ -1,9 +1,9 @@
-package com.bael.dads.feature.home.screen.feed
+package com.bael.dads.feature.home.screen.highlight
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.bael.dads.feature.home.databinding.FeedLayoutBinding
-import com.bael.dads.feature.home.databinding.FeedLayoutBinding.inflate
+import com.bael.dads.feature.home.databinding.HighlightLayoutBinding
+import com.bael.dads.feature.home.databinding.HighlightLayoutBinding.inflate
 import com.bael.dads.lib.presentation.ui.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -15,11 +15,11 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 @AndroidEntryPoint
 @ExperimentalCoroutinesApi
 class UI :
-    BaseFragment<FeedLayoutBinding, Component, ViewModel, Renderer>(),
+    BaseFragment<HighlightLayoutBinding, Component, ViewModel, Renderer>(),
     Component {
 
     override fun bindView(
         inflater: LayoutInflater,
         container: ViewGroup?
-    ): FeedLayoutBinding = inflate(inflater, container, false)
+    ): HighlightLayoutBinding = inflate(inflater, container, false)
 }

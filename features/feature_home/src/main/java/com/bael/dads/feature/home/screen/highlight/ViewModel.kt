@@ -1,4 +1,4 @@
-package com.bael.dads.feature.home.screen.feed
+package com.bael.dads.feature.home.screen.highlight
 
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.SavedStateHandle
