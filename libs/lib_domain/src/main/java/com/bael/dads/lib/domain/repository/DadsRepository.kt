@@ -7,7 +7,10 @@ import kotlinx.coroutines.flow.Flow
  * Created by ErickSumargo on 01/01/21.
  */
 
-internal interface SampleRepository {
+interface DadsRepository {
 
-    suspend fun loadSamples(): Flow<Response>
+    suspend fun loadHighlights(
+        seen: Boolean,
+        limit: Int
+    ): Flow<Response>
 }
