@@ -19,7 +19,7 @@ internal class DadJokesResponseClientMapper @Inject constructor(
     override fun map(data: DadJokesQueryData): DadJokesResponse {
         return DadJokesResponse(
             dadJokes = dadJokesMapper.map(data.dadJokes.jokes),
-            page = data.dadJokes.page
+            cursor = data.dadJokes.cursor
         )
     }
 }

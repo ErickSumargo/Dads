@@ -1,11 +1,11 @@
-query DadJokes($page: Int!, $limit: Int) {
+query DadJokes($cursor: String, $limit: Int) {
     dadJokes(
-        page: $page
+        cursor: $cursor
         limit: $limit
     ) {
         jokes {
             ...DadJokeFragment
         }
-        page
+        cursor
     }
 }

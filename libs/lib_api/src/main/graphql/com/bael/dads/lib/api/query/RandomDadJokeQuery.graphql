@@ -1,5 +1,0 @@
-query RandomDadJoke {
-    randomDadJoke {
-        ...DadJokeFragment
-    }
-}
