@@ -20,12 +20,12 @@ internal class DadsApolloService @Inject constructor(
     DadsService {
 
     override suspend fun fetchDadJokes(
-        page: Int,
+        cursor: String?,
         limit: Int
     ): Result<DadJokesResponse> {
         return query(
             script = DadJokesQuery(
-                page = page,
+                cursor = fromNullable(cursor),
                 limit = fromNullable(limit)
             )
         ).let(mapper::map)

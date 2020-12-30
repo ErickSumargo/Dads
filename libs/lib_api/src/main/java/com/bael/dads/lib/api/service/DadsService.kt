@@ -9,7 +9,7 @@ import com.bael.dads.lib.api.response.DadJokesResponse
 interface DadsService {
 
     suspend fun fetchDadJokes(
-        page: Int,
+        cursor: String?,
         limit: Int
     ): Result<DadJokesResponse>
 }

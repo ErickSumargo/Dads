@@ -13,6 +13,6 @@ data class RemoteMeta(
     @PrimaryKey
     @ColumnInfo(name = "id")
     val id: Int = 1,
-    @ColumnInfo(name = "page")
-    val page: Int
+    @ColumnInfo(name = "cursor")
+    val cursor: String?
 )

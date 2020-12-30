@@ -6,5 +6,6 @@ package com.bael.dads.lib.api.model
 
 data class DadJoke(
     val id: String,
-    val joke: String
+    val setup: String,
+    val punchline: String
 )

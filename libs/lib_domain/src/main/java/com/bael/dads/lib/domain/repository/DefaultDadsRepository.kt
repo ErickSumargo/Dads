@@ -60,7 +60,7 @@ internal class DefaultDadsRepository @Inject constructor(
             val meta = database.remoteMeta.loadRemoteMeta()
 
             api.fetchDadJokes(
-                page = (meta?.page ?: 0) + 1,
+                cursor = meta?.cursor,
                 limit = 20
             ).fold(
                 onSuccess = { response ->

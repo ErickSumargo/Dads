@@ -8,5 +8,5 @@ import com.bael.dads.lib.api.model.DadJoke
 
 data class DadJokesResponse(
     val dadJokes: List<DadJoke>,
-    val page: Int
+    val cursor: String?
 )

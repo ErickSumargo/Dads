@@ -17,7 +17,7 @@ interface DadJokeDao {
     @Query("SELECT * FROM dad_joke WHERE NOT seen LIMIT :limit")
     fun loadHighlights(limit: Int): Flow<List<DadJoke>>
 
-    @Query("SELECT * FROM dad_joke WHERE id > :cursor AND joke LIKE '%' || :term || '%' AND seen ORDER BY id DESC LIMIT :limit")
+    @Query("SELECT * FROM dad_joke WHERE id > :cursor AND setup LIKE '%' || :term || '%' AND seen ORDER BY id DESC LIMIT :limit")
     fun loadHistories(term: String, cursor: Int, limit: Int): Flow<List<DadJoke>>
 
     @Insert(onConflict = REPLACE)

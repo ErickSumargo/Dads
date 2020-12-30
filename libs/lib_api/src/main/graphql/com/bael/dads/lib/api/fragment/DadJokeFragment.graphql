@@ -1,4 +1,5 @@
 fragment DadJokeFragment on DadJoke {
     id
-    joke
+    setup
+    punchline
 }

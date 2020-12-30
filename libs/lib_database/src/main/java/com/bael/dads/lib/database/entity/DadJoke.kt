@@ -15,8 +15,10 @@ data class DadJoke(
     val id: Int = 0,
     @ColumnInfo(name = "joke_id")
     val jokeId: String,
-    @ColumnInfo(name = "joke")
-    val joke: String,
+    @ColumnInfo(name = "setup")
+    val setup: String,
+    @ColumnInfo(name = "punchline")
+    val punchline: String,
     @ColumnInfo(name = "seen")
     val seen: Boolean = false
 )

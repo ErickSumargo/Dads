@@ -12,6 +12,6 @@ import javax.inject.Inject
 internal class RemoteMetaMapper @Inject constructor() : Mapper<DadJokesResponse, RemoteMeta> {
 
     override fun map(data: DadJokesResponse): RemoteMeta {
-        return RemoteMeta(page = data.page)
+        return RemoteMeta(cursor = data.cursor)
     }
 }

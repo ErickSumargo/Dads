@@ -12,9 +12,12 @@ import com.bael.dads.lib.api.query.DadJokesQuery.Joke as DadJokeClient
 internal class DadJokeClientMapper @Inject constructor() : Mapper<DadJokeClient, DadJoke> {
 
     override fun map(data: DadJokeClient): DadJoke {
-        return DadJoke(
-            id = data.fragments.dadJokeFragment.id,
-            joke = data.fragments.dadJokeFragment.joke
-        )
+        return data.fragments.dadJokeFragment.let { fragment ->
+            DadJoke(
+                id = fragment.id,
+                setup = fragment.setup,
+                punchline = fragment.punchline
+            )
+        }
     }
 }

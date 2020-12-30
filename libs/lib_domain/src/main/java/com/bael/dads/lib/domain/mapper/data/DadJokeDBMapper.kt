@@ -14,7 +14,8 @@ internal class DadJokeDBMapper @Inject constructor() : Mapper<DadJokeDB, DadJoke
     override fun map(data: DadJokeDB): DadJoke {
         return DadJoke(
             id = data.id,
-            joke = data.joke
+            setup = data.setup,
+            punchline = data.punchline
         )
     }
 }
