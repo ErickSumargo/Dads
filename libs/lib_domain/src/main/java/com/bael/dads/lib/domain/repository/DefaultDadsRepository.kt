@@ -1,13 +1,13 @@
 package com.bael.dads.lib.domain.repository
 
 import com.bael.dads.lib.api.service.DadsService
+import com.bael.dads.lib.data.response.Response
+import com.bael.dads.lib.data.response.Response.Error
+import com.bael.dads.lib.data.response.Response.Loading
+import com.bael.dads.lib.data.response.Response.Success
 import com.bael.dads.lib.database.DadsDatabase
 import com.bael.dads.lib.domain.mapper.facade.DadsMapper
 import com.bael.dads.lib.domain.model.DadJoke
-import com.bael.dads.lib.domain.model.Response
-import com.bael.dads.lib.domain.model.Response.Error
-import com.bael.dads.lib.domain.model.Response.Loading
-import com.bael.dads.lib.domain.model.Response.Success
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch

@@ -1,4 +1,4 @@
-package com.bael.dads.lib.domain.model
+package com.bael.dads.lib.data.response
 
 /**
  * Created by ErickSumargo on 01/01/21.
