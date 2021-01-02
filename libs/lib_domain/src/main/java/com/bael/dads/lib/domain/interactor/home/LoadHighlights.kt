@@ -1,4 +1,4 @@
-package com.bael.dads.lib.domain.repository
+package com.bael.dads.lib.domain.interactor.home
 
 import com.bael.dads.lib.data.response.Response
 import kotlinx.coroutines.flow.Flow
@@ -7,7 +7,4 @@ import kotlinx.coroutines.flow.Flow
  * Created by ErickSumargo on 01/01/21.
  */
 
-interface DadsRepository {
-
-    suspend fun loadHighlights(limit: Int): Flow<Response>
-}
+typealias LoadHighlights = suspend (limit: Int) -> Flow<Response>

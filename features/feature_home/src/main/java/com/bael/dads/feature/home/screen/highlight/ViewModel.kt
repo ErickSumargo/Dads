@@ -2,6 +2,7 @@ package com.bael.dads.feature.home.screen.highlight
 
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.SavedStateHandle
+import com.bael.dads.lib.domain.interactor.home.LoadHighlights
 import com.bael.dads.lib.presentation.viewmodel.BaseViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import androidx.hilt.Assisted as HiltAssisted
@@ -13,5 +14,6 @@ import androidx.hilt.Assisted as HiltAssisted
 @ExperimentalCoroutinesApi
 class ViewModel @ViewModelInject constructor(
     initState: State,
-    @HiltAssisted savedStateHandle: SavedStateHandle
+    @HiltAssisted savedStateHandle: SavedStateHandle,
+    private val loadHighlights: LoadHighlights
 ) : BaseViewModel<State>(initState, savedStateHandle)
