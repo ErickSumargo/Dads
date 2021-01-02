@@ -30,10 +30,7 @@ internal class DefaultDadsRepository @Inject constructor(
     private val mapper: DadsMapper
 ) : DadsRepository {
 
-    override suspend fun loadHighlights(
-        seen: Boolean,
-        limit: Int
-    ): Flow<Response> {
+    override suspend fun loadHighlights(limit: Int): Flow<Response> {
         return database.dadJoke
             .loadHighlights(limit)
             .map { highlights ->

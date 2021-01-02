@@ -1,11 +1,12 @@
 package com.bael.dads.lib.domain.di.module
 
-import com.bael.dads.lib.domain.interactor.DefaultLoadHighlightsInteractor
-import com.bael.dads.lib.domain.interactor.LoadHighlightsInteractor
-import dagger.Binds
+import com.bael.dads.lib.domain.interactor.home.LoadHighlights
+import com.bael.dads.lib.domain.repository.DefaultDadsRepository
 import dagger.Module
+import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import javax.inject.Singleton
 
 /**
@@ -14,11 +15,16 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(ApplicationComponent::class)
-internal abstract class InteractorModule {
+@ExperimentalCoroutinesApi
+internal object InteractorModule {
 
-    @Binds
+    @Provides
     @Singleton
-    internal abstract fun bindLoadHighlightsInteractor(
-        interactor: DefaultLoadHighlightsInteractor
-    ): LoadHighlightsInteractor
+    internal fun provideLoadHighlights(
+        repository: DefaultDadsRepository
+    ): LoadHighlights {
+        return { limit ->
+            repository.loadHighlights(limit)
+        }
+    }
 }
