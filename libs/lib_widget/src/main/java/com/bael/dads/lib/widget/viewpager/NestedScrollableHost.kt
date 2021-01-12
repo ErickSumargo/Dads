@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.bael.dads.lib.widget.viewpager.transformer
+package com.bael.dads.lib.widget.viewpager
 
 import android.content.Context
 import android.util.AttributeSet
@@ -35,7 +35,7 @@ import kotlin.math.sign
  * This solution has limitations when using multiple levels of nested scrollable elements
  * (e.g. a horizontal RecyclerView in a vertical RecyclerView in a horizontal ViewPager2).
  */
-open class NestedScrollableHost : FrameLayout {
+class NestedScrollableHost : FrameLayout {
     constructor(context: Context) : super(context)
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
 

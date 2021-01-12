@@ -26,6 +26,7 @@ ext {
 
         // google
         autoservice         : "1.0-rc7",
+        material            : "1.2.1",
 
         // javax
         inject              : "1",

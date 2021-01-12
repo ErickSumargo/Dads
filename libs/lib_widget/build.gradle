@@ -8,10 +8,21 @@ android {
 
 def deps = [
     "constraintlayout",
+    "material",
     "recyclerview",
     "viewpager2"
 ]
 
 deps.forEach { dep ->
     apply from: "$rootDir/deps/${dep}.gradle"
+}
+
+def modules = [
+    "lib_asset"
+]
+
+dependencies {
+    modules.forEach { module ->
+        implementation project(":$module")
+    }
 }
