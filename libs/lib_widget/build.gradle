@@ -1,0 +1,17 @@
+apply from: "$rootDir/libs/lib.gradle"
+
+android {
+    buildFeatures {
+        viewBinding = true
+    }
+}
+
+def deps = [
+    "constraintlayout",
+    "recyclerview",
+    "viewpager2"
+]
+
+deps.forEach { dep ->
+    apply from: "$rootDir/deps/${dep}.gradle"
+}
