@@ -1,8 +1,6 @@
 package com.bael.dads.feature.home.screen.highlight
 
-import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import com.bael.dads.feature.home.databinding.HighlightLayoutBinding
 import com.bael.dads.feature.home.databinding.HighlightLayoutBinding.inflate
@@ -24,8 +22,4 @@ class UI :
         inflater: LayoutInflater,
         container: ViewGroup?
     ): HighlightLayoutBinding = inflate(inflater, container, false)
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-    }
 }
