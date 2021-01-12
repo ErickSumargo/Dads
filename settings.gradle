@@ -5,6 +5,7 @@ def modules = [
     "annotation",
     "processor",
     "feature_home",
+    "lib_asset",
     "lib_api",
     "lib_data",
     "lib_database",
