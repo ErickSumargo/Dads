@@ -15,8 +15,8 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 @AndroidEntryPoint
 @ExperimentalCoroutinesApi
 class UI :
-    BaseFragment<HighlightLayoutBinding, Component, ViewModel, Renderer>(),
-    Component {
+    BaseFragment<HighlightLayoutBinding, Renderer, ViewModel, Renderer>(),
+    Renderer {
 
     override fun bindView(
         inflater: LayoutInflater,

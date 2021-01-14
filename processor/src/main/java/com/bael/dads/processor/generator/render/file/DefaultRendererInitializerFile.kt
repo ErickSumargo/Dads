@@ -19,12 +19,12 @@ import javax.lang.model.element.Modifier.PUBLIC
  * Created by ErickSumargo on 01/01/21.
  */
 
-internal class RendererFile(
+internal class DefaultRendererInitializerFile(
     private val packageName: String,
-    private val componentClass: ClassName,
+    private val rendererClass: ClassName,
     private val viewModelClass: ClassName,
-    private val rendererFactoryClass: ClassName,
-    private val componentRendererClass: ClassName
+    private val rendererInitializerClass: ClassName,
+    private val rendererExecutorClass: ClassName
 ) {
 
     fun generate(): JavaFile {
@@ -41,7 +41,7 @@ internal class RendererFile(
 
         val initMethod = generateInitMethod()
 
-        return TypeSpec.classBuilder("Renderer")
+        return TypeSpec.classBuilder("DefaultRendererInitializer")
             .addModifiers(PUBLIC, FINAL)
             .addMethod(constructor)
             .addSuperinterface(superInterface)
@@ -59,22 +59,22 @@ internal class RendererFile(
 
     private fun generateSuperInterface(): ParameterizedTypeName {
         return ParameterizedTypeName.get(
-            rendererFactoryClass,
-            componentClass,
+            rendererInitializerClass,
+            rendererClass,
             viewModelClass
         )
     }
 
     private fun generateInstanceField(): FieldSpec {
         return FieldSpec.builder(
-            componentRendererClass,
+            rendererExecutorClass,
             INSTANCE_NAME,
             PRIVATE
         ).build()
     }
 
     private fun generateInitMethod(): MethodSpec {
-        val componentParameter = ParameterSpec.builder(componentClass, componentClass.varName)
+        val rendererParameter = ParameterSpec.builder(rendererClass, rendererClass.varName)
             .addAnnotation(NotNull::class.java)
             .build()
 
@@ -86,8 +86,8 @@ internal class RendererFile(
             .addStatement(
                 "this.\$1N = new \$2N(\$3N, \$4N)",
                 INSTANCE_NAME,
-                componentRendererClass.simpleName(),
-                componentParameter.name,
+                rendererExecutorClass.simpleName(),
+                rendererParameter.name,
                 viewModelParameter.name
             )
             .addStatement(
@@ -99,7 +99,7 @@ internal class RendererFile(
         return MethodSpec.methodBuilder("init")
             .addAnnotation(Override::class.java)
             .addModifiers(PUBLIC)
-            .addParameter(componentParameter)
+            .addParameter(rendererParameter)
             .addParameter(viewModelParameter)
             .addCode(statement)
             .build()
