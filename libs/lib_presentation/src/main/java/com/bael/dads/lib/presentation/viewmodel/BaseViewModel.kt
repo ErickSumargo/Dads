@@ -17,13 +17,17 @@ abstract class BaseViewModel<S>(
     initState: S,
     private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
-    private val key: String get() = javaClass.name
+    private val key: String
+        get() = javaClass.name
 
-    private val store: Store<S> = StateStore(initState = restoreState() ?: initState)
+    private val store: Store<S> = StateStore(
+        initState = restoreState() ?: initState
+    )
 
     internal val stateFlow: Flow<S> = store.stateFlow.onEach(::saveState)
 
-    protected val state: S get() = store.stateFlow.value
+    protected val state: S
+        get() = store.stateFlow.value
 
     private fun restoreState(): S? {
         return savedStateHandle.get(key)

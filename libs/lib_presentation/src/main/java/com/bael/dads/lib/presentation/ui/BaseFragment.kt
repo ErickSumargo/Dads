@@ -8,41 +8,51 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
+import com.bael.dads.lib.presentation.ext.invoke
 import com.bael.dads.lib.presentation.renderer.RendererInitializer
+import com.bael.dads.lib.presentation.viewmodel.BaseViewModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import javax.inject.Inject
 
 /**
  * Created by ErickSumargo on 01/01/21.
  */
 
-abstract class BaseFragment<VB : ViewBinding, C, VM, R : RendererInitializer<C, VM>> : Fragment() {
+@ExperimentalCoroutinesApi
+abstract class BaseFragment<VB : ViewBinding, R, VM : BaseViewModel<*>> : Fragment() {
     @Inject
-    internal lateinit var renderer: R
+    internal lateinit var rendererInitializer: RendererInitializer<R, VM>
 
     @Inject
-    internal lateinit var viewModelDeferred: @JvmSuppressWildcards Lazy<VM>
+    protected lateinit var viewModel: @JvmSuppressWildcards Lazy<VM>
 
     private var _viewBinding: VB? = null
 
-    protected val viewBinding: VB get() = _viewBinding!!
-
-    protected val viewModel: VM by lazy { viewModelDeferred.value }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        renderer.init(renderer = this as C, viewModel)
-    }
+    protected val viewBinding: VB
+        get() = _viewBinding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        initRenderer()
+
         _viewBinding = bindView(inflater, container)
         return _viewBinding?.root
     }
 
-    abstract fun bindView(inflater: LayoutInflater, container: ViewGroup?): VB
+    private fun initRenderer() {
+        rendererInitializer.init(
+            renderer = this as R,
+            viewModel = viewModel()
+        )
+    }
+
+    abstract fun bindView(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ): VB
 
     override fun onDestroyView() {
         _viewBinding = null
