@@ -15,5 +15,5 @@ import androidx.hilt.Assisted as HiltAssisted
 class ViewModel @ViewModelInject constructor(
     initState: State,
     @HiltAssisted savedStateHandle: SavedStateHandle,
-    private val loadHighlights: LoadHighlights
+    private val loadHighlights: @JvmSuppressWildcards LoadHighlights
 ) : BaseViewModel<State>(initState, savedStateHandle)

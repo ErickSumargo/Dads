@@ -9,11 +9,16 @@ plugins.forEach { plugin ->
     apply plugin: plugin
 }
 
+kapt {
+    correctErrorTypes = true
+}
+
 def deps = [
     "annotation",
     "constraintlayout",
     "fragment",
     "hilt",
+    "navigation",
     "processor"
 ]
 

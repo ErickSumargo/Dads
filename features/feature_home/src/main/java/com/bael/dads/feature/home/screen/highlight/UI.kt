@@ -15,11 +15,13 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 @AndroidEntryPoint
 @ExperimentalCoroutinesApi
 class UI :
-    BaseFragment<HighlightLayoutBinding, Renderer, ViewModel, Renderer>(),
+    BaseFragment<HighlightLayoutBinding, Renderer, ViewModel>(),
     Renderer {
 
     override fun bindView(
         inflater: LayoutInflater,
         container: ViewGroup?
-    ): HighlightLayoutBinding = inflate(inflater, container, false)
+    ): HighlightLayoutBinding {
+        return inflate(inflater, container, false)
+    }
 }

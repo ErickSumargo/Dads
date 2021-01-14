@@ -20,6 +20,7 @@ internal object InteractorModule {
 
     @Provides
     @Singleton
+    @JvmSuppressWildcards
     internal fun provideLoadHighlights(
         repository: DefaultDadsRepository
     ): LoadHighlights {
