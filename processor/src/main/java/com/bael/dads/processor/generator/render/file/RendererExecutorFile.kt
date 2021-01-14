@@ -41,17 +41,17 @@ import kotlin.reflect.KProperty
  * Created by ErickSumargo on 01/01/21.
  */
 
-internal class ComponentRendererFile(
+internal class RendererExecutorFile(
     private val annotation: KClass<out Annotation>,
     private val annotationParameter: KProperty<*>,
     private val element: Element,
     private val packageName: String,
     private val types: Types,
     private val logger: Logger,
-    private val componentClass: ClassName,
+    private val rendererClass: ClassName,
     private val viewModelClass: ClassName,
     private val stateClass: ClassName,
-    private val baseRendererClass: ClassName
+    private val rendererDispatcherClass: ClassName
 ) {
 
     fun generate(): JavaFile {
@@ -62,7 +62,7 @@ internal class ComponentRendererFile(
     private fun generateClass(): TypeSpec {
         val superClass = generateSuperClass()
 
-        val componentField = generateComponentField()
+        val rendererField = generateRendererField()
 
         val viewModelField = generateViewModelField()
 
@@ -76,10 +76,10 @@ internal class ComponentRendererFile(
 
         val objectEqualsMethod = generateObjectEqualsMethod()
 
-        return TypeSpec.classBuilder("Component_Renderer")
+        return TypeSpec.classBuilder("RendererExecutor")
             .addModifiers(PUBLIC, FINAL)
             .superclass(superClass)
-            .addField(componentField)
+            .addField(rendererField)
             .addField(viewModelField)
             .addMethod(constructor)
             .addMethod(renderMethod)
@@ -91,13 +91,13 @@ internal class ComponentRendererFile(
 
     private fun generateSuperClass(): TypeName {
         return ParameterizedTypeName.get(
-            baseRendererClass,
+            rendererDispatcherClass,
             stateClass
         )
     }
 
-    private fun generateComponentField(): FieldSpec {
-        return FieldSpec.builder(componentClass, componentClass.varName)
+    private fun generateRendererField(): FieldSpec {
+        return FieldSpec.builder(rendererClass, rendererClass.varName)
             .addModifiers(PRIVATE, FINAL)
             .build()
     }
@@ -109,7 +109,7 @@ internal class ComponentRendererFile(
     }
 
     private fun generateConstructor(): MethodSpec {
-        val componentParameter = ParameterSpec.builder(componentClass, componentClass.varName)
+        val rendererParameter = ParameterSpec.builder(rendererClass, rendererClass.varName)
             .addAnnotation(NotNull::class.java)
             .build()
 
@@ -118,14 +118,14 @@ internal class ComponentRendererFile(
             .build()
 
         val statement = CodeBlock.builder()
-            .addStatement("super(\$1N, \$2N)", componentParameter.name, viewModelParameter.name)
-            .addStatement("this.\$1N = \$1N", componentParameter.name)
+            .addStatement("super(\$1N, \$2N)", rendererParameter.name, viewModelParameter.name)
+            .addStatement("this.\$1N = \$1N", rendererParameter.name)
             .addStatement("this.\$1N = \$1N", viewModelParameter.name)
             .build()
 
         return MethodSpec.constructorBuilder()
             .addModifiers(PUBLIC)
-            .addParameter(componentParameter)
+            .addParameter(rendererParameter)
             .addParameter(viewModelParameter)
             .addCode(statement)
             .build()
@@ -137,16 +137,16 @@ internal class ComponentRendererFile(
             ?.fields
             .orEmpty()
 
-        val components = (element as TypeElement).methods
+        val renderers = (element as TypeElement).methods
 
         val stateNullifiedStatement = generateStateNullifiedStatement(
             stateFields,
-            components
+            renderers
         )
 
         val stateDiffStatement = generateStateDiffStatement(
             stateFields,
-            components
+            renderers
         )
 
         val oldStateParameter = ParameterSpec.builder(stateClass, OLD_STATE_NAME)
@@ -169,13 +169,13 @@ internal class ComponentRendererFile(
 
     private fun generateStateNullifiedStatement(
         stateFields: Map<Name, TypeName>,
-        components: List<ExecutableElement>
+        renderers: List<ExecutableElement>
     ): CodeBlock {
         return CodeBlock.builder()
             .beginControlFlow("if (\$1N == null)", OLD_STATE_NAME).apply {
-                components.forEach { component ->
+                renderers.forEach { renderer ->
                     val statement = generateRenderStatement(
-                        component,
+                        renderer,
                         stateFields
                     )
                     addStatement(statement)
@@ -187,20 +187,20 @@ internal class ComponentRendererFile(
 
     private fun generateStateDiffStatement(
         stateFields: Map<Name, TypeName>,
-        components: List<ExecutableElement>
+        renderers: List<ExecutableElement>
     ): CodeBlock {
         return CodeBlock.builder()
             .beginControlFlow("else").apply {
-                components.forEach next@{ component ->
-                    if (component.parameters.isEmpty()) return@next
+                renderers.forEach next@{ renderer ->
+                    if (renderer.parameters.isEmpty()) return@next
 
                     beginControlFlow(
                         "if (\$N)",
-                        generateStateDiffCheck(component.parameters)
+                        generateStateDiffCheck(renderer.parameters)
                     )
 
                     val statement = generateRenderStatement(
-                        component,
+                        renderer,
                         stateFields
                     )
                     addStatement(statement)
@@ -229,13 +229,13 @@ internal class ComponentRendererFile(
     }
 
     private fun generateRenderStatement(
-        component: ExecutableElement,
+        renderer: ExecutableElement,
         stateFields: Map<Name, TypeName>,
     ): CodeBlock {
         return CodeBlock.of(
-            "component.\$1N(\$2N)",
-            component.simpleName,
-            component.parameters.joinToString { parameter ->
+            "renderer.\$1N(\$2N)",
+            renderer.simpleName,
+            renderer.parameters.joinToString { parameter ->
                 val name = parameter.simpleName
                 stateFields[name] ?: logger.error("Field $name not found in State")
 

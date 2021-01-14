@@ -8,14 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
-import com.bael.dads.lib.presentation.renderer.RendererFactory
+import com.bael.dads.lib.presentation.renderer.RendererInitializer
 import javax.inject.Inject
 
 /**
  * Created by ErickSumargo on 01/01/21.
  */
 
-abstract class BaseFragment<VB : ViewBinding, C, VM, R : RendererFactory<C, VM>> : Fragment() {
+abstract class BaseFragment<VB : ViewBinding, C, VM, R : RendererInitializer<C, VM>> : Fragment() {
     @Inject
     internal lateinit var renderer: R
 
@@ -30,7 +30,7 @@ abstract class BaseFragment<VB : ViewBinding, C, VM, R : RendererFactory<C, VM>>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        renderer.init(component = this as C, viewModel)
+        renderer.init(renderer = this as C, viewModel)
     }
 
     override fun onCreateView(
