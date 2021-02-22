@@ -1,0 +1,3 @@
+dependencies {
+    implementation "androidx.appcompat:appcompat:$deps.appcompat"
+}
