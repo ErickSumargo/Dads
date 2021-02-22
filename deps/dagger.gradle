@@ -1,0 +1,4 @@
+dependencies {
+    implementation "com.google.dagger:hilt-android:$deps.dagger"
+    kapt "com.google.dagger:hilt-android-compiler:$deps.dagger"
+}
