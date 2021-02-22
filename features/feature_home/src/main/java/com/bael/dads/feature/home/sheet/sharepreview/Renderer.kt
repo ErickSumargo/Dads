@@ -1,4 +1,4 @@
-package com.bael.dads.feature.home.screen.highlight
+package com.bael.dads.feature.home.sheet.sharepreview
 
 import com.bael.dads.annotation.Render
 import com.bael.dads.lib.presentation.renderer.BaseRenderer
@@ -8,4 +8,4 @@ import com.bael.dads.lib.presentation.renderer.BaseRenderer
  */
 
 @Render(State::class)
-interface Renderer : BaseRenderer
+internal interface Renderer : BaseRenderer

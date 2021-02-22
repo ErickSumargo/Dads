@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        app:constraintSetEnd="@id/end"
+        app:constraintSetStart="@id/start"
+        app:duration="100" />
+
+    <ConstraintSet android:id="@+id/start">
+
+        <Constraint android:id="@id/dislikeIcon">
+
+            <Layout
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Transform
+                android:scaleX="1"
+                android:scaleY="1"
+                android:translationZ="1dp" />
+
+        </Constraint>
+
+        <Constraint android:id="@id/likeIcon">
+
+            <Layout
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Transform
+                android:scaleX="0"
+                android:scaleY="0"
+                android:translationZ="0dp" />
+
+        </Constraint>
+
+    </ConstraintSet>
+
+    <ConstraintSet
+        android:id="@+id/end"
+        app:deriveConstraintsFrom="@id/start">
+
+        <Constraint android:id="@id/dislikeIcon">
+
+            <Transform
+                android:scaleX="0"
+                android:scaleY="0"
+                android:translationZ="0dp" />
+
+        </Constraint>
+
+        <Constraint android:id="@id/likeIcon">
+
+            <Transform
+                android:scaleX="1"
+                android:scaleY="1"
+                android:translationZ="1dp" />
+
+        </Constraint>
+
+    </ConstraintSet>
+
+</MotionScene>
