@@ -163,35 +163,35 @@ internal class DefaultDadsRepository @Inject constructor(
 
     private fun fetchDadJokes(cursor: DadJoke?, limit: Int): Flow<Response<List<DadJoke>>> {
         return flow<Response<List<DadJoke>>> {
-//            val meta = database.remoteMeta.loadRemoteMeta()
-//
-//            api.fetchDadJokes(
-//                cursor = meta?.cursor,
-//                limit = 10
-//            ).fold(
-//                onSuccess = { response ->
-//                    database.dadJoke.insertDadJokes(
-//                        dadJokes = mapper.dadJokesRemoteMapper.map(response.dadJokes)
-//                    )
-//
-//                    database.remoteMeta.insertRemoteMeta(
-//                        meta = mapper.remoteMetaMapper.map(response)
-//                    )
-//
-//                    loadDadJokeFeedDB(cursor, limit).let { dadJokes ->
-//                        if (dadJokes.isEmpty()) {
-//                            emit(Empty)
-//                        } else {
-//                            emit(Success(data = dadJokes))
-//                        }
-//                    }
-//                },
-//                onFailure = { error ->
-//                    emit(Error(error = error as Exception))
-//                }
-//            )
+            val meta = database.remoteMeta.loadRemoteMeta()
+
+            api.fetchDadJokes(
+                cursor = meta?.cursor,
+                limit = 10
+            ).fold(
+                onSuccess = { response ->
+                    database.dadJoke.insertDadJokes(
+                        dadJokes = mapper.dadJokesRemoteMapper.map(response.dadJokes)
+                    )
+
+                    database.remoteMeta.insertRemoteMeta(
+                        meta = mapper.remoteMetaMapper.map(response)
+                    )
+
+                    loadDadJokeFeedDB(cursor, limit).let { dadJokes ->
+                        if (dadJokes.isEmpty()) {
+                            emit(Empty)
+                        } else {
+                            emit(Success(data = dadJokes))
+                        }
+                    }
+                },
+                onFailure = { error ->
+                    emit(Error(error = error as Exception))
+                }
+            )
         }.catch { error ->
-//            emit(Error(error = error as Exception))
+            emit(Error(error = error as Exception))
         }
     }
 }
