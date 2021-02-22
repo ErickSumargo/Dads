@@ -25,7 +25,7 @@ android {
 
 def deps = [
     "coroutines",
-    "hilt",
+    "dagger",
     "room"
 ]
 

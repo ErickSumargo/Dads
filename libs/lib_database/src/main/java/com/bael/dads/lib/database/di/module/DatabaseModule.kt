@@ -8,8 +8,8 @@ import com.bael.dads.lib.database.di.qualifier.DatabaseNameQualifier
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ApplicationComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 /**
@@ -17,17 +17,17 @@ import javax.inject.Singleton
  */
 
 @Module
-@InstallIn(ApplicationComponent::class)
+@InstallIn(SingletonComponent::class)
 internal object DatabaseModule {
 
     @Provides
     @Singleton
     @DatabaseNameQualifier
-    internal fun provideDatabaseName(): String = "dads"
+    fun provideDatabaseName(): String = "dads"
 
     @Provides
     @Singleton
-    internal fun provideDatabase(
+    fun provideDatabase(
         @ApplicationContext context: Context,
         @DatabaseNameQualifier databaseName: String
     ): DadsDatabase {
