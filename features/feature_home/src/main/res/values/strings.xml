@@ -1,2 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources />
+<resources>
+    <string name="app_name">Dads</string>
+
+    <string name="logo">Logo</string>
+    <string name="query_hint">Find joke</string>
+    <string name="search">Search</string>
+    <string name="clear">Clear</string>
+    <string name="settings">Settings</string>
+
+    <string name="notification">Notification</string>
+    <string name="new_feed_reminder">New feed available reminder</string>
+    <string name="new_feed_notification">%1$s new feed recently added</string>
+    <string name="theme">Theme</string>
+    <string name="night_mode">Night mode</string>
+
+    <string name="feed">Feed</string>
+    <string name="seen">Seen</string>
+
+    <string name="like">Like</string>
+    <string name="dislike">Dislike</string>
+    <string name="share">Share</string>
+    <string name="preview">Preview</string>
+
+    <string name="new_feed_reminder_description">Wow you hit the end! We\'ll notify back as soon the latest avails. Stay tuned!</string>
+    <string name="no_data_description">Hmm no joke found. Different keyword perhaps?</string>
+
+    <string name="favorite_filter">Favorite filter</string>
+    <string name="favorite_filter_description">Filter favorite only</string>
+</resources>

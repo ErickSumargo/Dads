@@ -2,11 +2,22 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@id/highlightScreen">
+    android:id="@+id/navGraph"
+    app:startDestination="@id/homeScreen">
 
     <fragment
-        android:id="@+id/highlightScreen"
-        android:name="com.bael.dads.feature.home.screen.highlight.UI"
-        tools:layout="@layout/highlight_layout" />
+        android:id="@+id/homeScreen"
+        android:name="com.bael.dads.feature.home.screen.home.UI"
+        tools:layout="@layout/screen_home" />
+
+    <fragment
+        android:id="@+id/feedScreen"
+        android:name="com.bael.dads.feature.home.screen.feed.UI"
+        tools:layout="@layout/screen_feed" />
+
+    <fragment
+        android:id="@+id/seenScreen"
+        android:name="com.bael.dads.feature.home.screen.seen.UI"
+        tools:layout="@layout/screen_seen" />
 
 </navigation>

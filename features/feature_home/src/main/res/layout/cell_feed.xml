@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/contentLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layoutDescription="@xml/scene_feed"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/setupLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="?attr/colorOnSurface">
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fillViewport="true">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/setupContentLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="24dp">
+
+                    <TextView
+                        android:id="@+id/setupText"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="36sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.core.widget.NestedScrollView>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/punchlineLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="?attr/colorOnSurface">
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fillViewport="true">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/punchlineContentLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="24dp">
+
+                    <TextView
+                        android:id="@+id/punchlineText"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="8dp"
+                        android:gravity="center_vertical"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="36sp"
+                        app:layout_constraintBottom_toTopOf="@id/menuItemLayout"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <include
+                        android:id="@+id/menuItemLayout"
+                        layout="@layout/item_menu"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.core.widget.NestedScrollView>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.motion.widget.MotionLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

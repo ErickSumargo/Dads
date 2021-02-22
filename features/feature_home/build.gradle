@@ -16,10 +16,15 @@ kapt {
 def deps = [
     "annotation",
     "constraintlayout",
+    "dagger",
     "fragment",
     "hilt",
+    "lottie",
     "navigation",
-    "processor"
+    "processor",
+    "swiperefreshlayout",
+    "viewpager2",
+    "work"
 ]
 
 deps.forEach { dep ->
@@ -29,7 +34,9 @@ deps.forEach { dep ->
 def modules = [
     "lib_data",
     "lib_domain",
-    "lib_presentation"
+    "lib_preference",
+    "lib_presentation",
+    "lib_worker"
 ]
 
 dependencies {

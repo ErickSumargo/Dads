@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/logoIcon"
+        android:layout_width="45dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="16dp"
+        android:contentDescription="@string/logo"
+        android:src="@drawable/ic_logo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="?attr/colorControlNormal" />
+
+    <EditText
+        android:id="@+id/queryInput"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="16dp"
+        android:autofillHints="@null"
+        android:background="@null"
+        android:hint="@string/query_hint"
+        android:imeOptions="actionDone"
+        android:inputType="text"
+        android:singleLine="true"
+        android:textSize="18sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/clearIcon"
+        app:layout_constraintStart_toEndOf="@id/logoIcon"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/clearIcon"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginEnd="16dp"
+        android:contentDescription="@string/clear"
+        android:src="@drawable/ic_clear"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/settingsIcon"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="?attr/colorControlNormal" />
+
+    <ImageView
+        android:id="@+id/searchIcon"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginEnd="20dp"
+        android:contentDescription="@string/search"
+        android:src="@drawable/ic_search"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/settingsIcon"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="?attr/colorControlNormal" />
+
+    <ImageView
+        android:id="@+id/settingsIcon"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginEnd="20dp"
+        android:contentDescription="@string/settings"
+        android:src="@drawable/ic_settings"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="?attr/colorControlNormal" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
