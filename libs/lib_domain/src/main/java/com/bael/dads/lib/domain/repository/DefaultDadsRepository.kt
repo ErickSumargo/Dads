@@ -162,7 +162,7 @@ internal class DefaultDadsRepository @Inject constructor(
     }
 
     private fun fetchDadJokes(cursor: DadJoke?, limit: Int): Flow<Response<List<DadJoke>>> {
-        return flow<Response<List<DadJoke>>> {
+        return flow {
             val meta = database.remoteMeta.loadRemoteMeta()
 
             api.fetchDadJokes(
