@@ -11,7 +11,8 @@ def modules = [
     "lib_database",
     "lib_domain",
     "lib_presentation",
-    "lib_widget"
+    "lib_widget",
+    "lib_worker"
 ]
 
 modules.forEach { module ->
