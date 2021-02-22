@@ -3,6 +3,7 @@ package com.bael.dads.lib.database.entity
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.util.Date
 
 /**
  * Created by ErickSumargo on 01/01/21.
@@ -19,6 +20,12 @@ data class DadJoke(
     val setup: String,
     @ColumnInfo(name = "punchline")
     val punchline: String,
+    @ColumnInfo(name = "favored")
+    val favored: Boolean,
     @ColumnInfo(name = "seen")
-    val seen: Boolean = false
+    val seen: Boolean,
+    @ColumnInfo(name = "created_at")
+    val createdAt: Long,
+    @ColumnInfo(name = "updated_at")
+    val updatedAt: Long
 )

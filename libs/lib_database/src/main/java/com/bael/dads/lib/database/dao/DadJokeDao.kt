@@ -14,15 +14,30 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface DadJokeDao {
 
-    @Query("SELECT * FROM dad_joke WHERE NOT seen LIMIT :limit")
-    fun loadHighlights(limit: Int): Flow<List<DadJoke>>
-
-    @Query("SELECT * FROM dad_joke WHERE id > :cursor AND setup LIKE '%' || :term || '%' AND seen ORDER BY id DESC LIMIT :limit")
-    fun loadHistories(term: String, cursor: Int, limit: Int): Flow<List<DadJoke>>
-
     @Insert(onConflict = REPLACE)
     suspend fun insertDadJokes(dadJokes: List<DadJoke>)
 
-    @Query("UPDATE dad_joke SET seen = 1 WHERE id = :id")
-    suspend fun markDadJokeSeen(id: Int)
+    @Query("SELECT * FROM dad_joke WHERE id > :id AND NOT seen LIMIT :limit")
+    suspend fun loadDadJokeFeed(id: Int, limit: Int): List<DadJoke>
+
+    @Query("SELECT * FROM dad_joke WHERE id < :cursor AND setup LIKE '%' || :term || '%' AND seen ORDER BY id DESC LIMIT :limit")
+    suspend fun loadSeenDadJoke(term: String, cursor: Int, limit: Int): List<DadJoke>
+
+    @Query("SELECT * FROM dad_joke WHERE updated_at < :updatedAt AND setup LIKE '%' || :term || '%' AND favored ORDER BY updated_at DESC LIMIT :limit")
+    suspend fun loadFavoredDadJoke(term: String, updatedAt: Long, limit: Int): List<DadJoke>
+
+    @Query("SELECT * FROM dad_joke WHERE id = :id")
+    suspend fun loadDadJoke(id: Int): DadJoke?
+
+    @Query("SELECT * FROM dad_joke ORDER BY id DESC limit 1")
+    suspend fun loadLatestDadJoke(): DadJoke?
+
+    @Query("SELECT * FROM dad_joke WHERE id = :id")
+    fun observeDadJoke(id: Int): Flow<DadJoke>
+
+    @Query("UPDATE dad_joke SET seen = 1, updated_at = :updatedAt WHERE id = :id")
+    suspend fun setDadJokeSeen(id: Int, updatedAt: Long): Int
+
+    @Query("UPDATE dad_joke SET favored = :favored, updated_at = :updatedAt WHERE id = :id")
+    suspend fun favorDadJoke(id: Int, favored: Boolean, updatedAt: Long): Int
 }
