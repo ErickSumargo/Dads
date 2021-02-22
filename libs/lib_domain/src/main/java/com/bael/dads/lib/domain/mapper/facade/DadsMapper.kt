@@ -15,6 +15,6 @@ import com.bael.dads.lib.database.entity.DadJoke as DadJokeDB
 
 internal class DadsMapper @Inject constructor(
     val dadJokesRemoteMapper: ListMapper<DadJokeRemote, DadJokeDB>,
-    val dadJokesDBMapper: ListMapper<DadJokeDB, DadJoke>,
+    val dadJokeDBMapper: Mapper<DadJokeDB, DadJoke>,
     val remoteMetaMapper: Mapper<DadJokesResponse, RemoteMeta>
 )

@@ -1,4 +1,4 @@
-package com.bael.dads.lib.domain.di.module
+package com.bael.dads.lib.domain.di.module.mapper
 
 import com.bael.dads.lib.api.response.DadJokesResponse
 import com.bael.dads.lib.data.mapper.Mapper
@@ -10,7 +10,7 @@ import com.bael.dads.lib.domain.model.DadJoke
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 import com.bael.dads.lib.api.model.DadJoke as DadJokeRemote
 import com.bael.dads.lib.database.entity.DadJoke as DadJokeDB
@@ -20,24 +20,18 @@ import com.bael.dads.lib.database.entity.DadJoke as DadJokeDB
  */
 
 @Module
-@InstallIn(ApplicationComponent::class)
-internal abstract class MapperModule {
+@InstallIn(SingletonComponent::class)
+internal interface MapperModule {
 
     @Binds
     @Singleton
-    internal abstract fun bindDadJokeRemoteMapper(
-        mapper: DadJokeRemoteMapper
-    ): Mapper<DadJokeRemote, DadJokeDB>
+    fun bindDadJokeRemoteMapper(mapper: DadJokeRemoteMapper): Mapper<DadJokeRemote, DadJokeDB>
 
     @Binds
     @Singleton
-    internal abstract fun bindDadJokeDBMapper(
-        mapper: DadJokeDBMapper
-    ): Mapper<DadJokeDB, DadJoke>
+    fun bindDadJokeDBMapper(mapper: DadJokeDBMapper): Mapper<DadJokeDB, DadJoke>
 
     @Binds
     @Singleton
-    internal abstract fun bindRemoteMetaMapper(
-        mapper: RemoteMetaMapper
-    ): Mapper<DadJokesResponse, RemoteMeta>
+    fun bindRemoteMetaMapper(mapper: RemoteMetaMapper): Mapper<DadJokesResponse, RemoteMeta>
 }
