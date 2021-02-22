@@ -1,11 +1,11 @@
-package com.bael.dads.lib.api.di.module
+package com.bael.dads.lib.api.di.module.network
 
 import com.bael.dads.lib.api.network.DefaultNetwork
 import com.bael.dads.lib.api.network.Network
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 /**
@@ -13,10 +13,10 @@ import javax.inject.Singleton
  */
 
 @Module
-@InstallIn(ApplicationComponent::class)
-internal abstract class NetworkModule {
+@InstallIn(SingletonComponent::class)
+internal interface NetworkModule {
 
     @Binds
     @Singleton
-    internal abstract fun bindNetwork(network: DefaultNetwork): Network
+    fun bindNetwork(network: DefaultNetwork): Network
 }
