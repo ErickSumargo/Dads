@@ -11,21 +11,28 @@ ext {
 
     deps = [
         // androidx
+        appcompat           : "1.1.0",
         constraintlayout    : "2.1.0-alpha2",
         fragment            : "1.2.5",
-        hilt                : "2.28.3-alpha",
-        hilt_jetpack        : "1.0.0-alpha02",
+        hilt                : "1.0.0-alpha03",
         lifecycle           : "2.2.0",
         navigation          : "2.3.0",
         recyclerview        : "1.2.0-beta01",
         room                : "2.2.5",
+        startup             : "1.0.0",
+        swiperefreshlayout  : "1.2.0-alpha01",
         viewpager2          : "1.1.0-alpha01",
+        work                : "2.5.0",
+
+        // airbnb
+        lottie              : "3.6.0",
 
         // apollo
         graphql             : "2.4.5",
 
         // google
         autoservice         : "1.0-rc7",
+        dagger              : "2.31-alpha",
         material            : "1.2.1",
 
         // javax
@@ -33,7 +40,7 @@ ext {
 
         // kotlin
         coroutines          : "1.4.2",
-        kotlin              : "1.4.0",
+        kotlin              : "1.4.30",
 
         // square
         javapoet            : "1.13.0",
