@@ -7,5 +7,8 @@ import javax.lang.model.element.Name
  */
 
 fun Name.toGetter(): String {
-    return "get${toString().capitalize()}()"
+    return toString().let { name ->
+        if (name.take(2) == "is") "$name()"
+        else "get${name.capitalize()}()"
+    }
 }
