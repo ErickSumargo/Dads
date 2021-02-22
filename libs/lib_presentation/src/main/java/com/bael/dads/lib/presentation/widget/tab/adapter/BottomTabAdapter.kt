@@ -64,7 +64,7 @@ class BottomTabAdapter(
         return viewBinding.root
     }
 
-    private fun bindTabView(tab: Tab): BottomTabLayoutBinding {
+    private fun bindTabView(tab: Tab): ItemBottomTabBinding {
         return bind(tab.customView ?: tab.view)
     }
 
@@ -74,7 +74,7 @@ class BottomTabAdapter(
     }
 
     private fun renderTab(
-        viewBinding: BottomTabLayoutBinding,
+        viewBinding: ItemBottomTabBinding,
         data: BottomTab,
         isSelected: Boolean
     ) {

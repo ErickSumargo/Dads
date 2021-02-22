@@ -3,7 +3,7 @@ package com.bael.dads.lib.presentation.widget.recyclerview.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.bael.dads.lib.presentation.databinding.ResponseStateLayoutBinding.inflate
+import com.bael.dads.lib.presentation.databinding.ItemResponseStateBinding.inflate
 import com.bael.dads.lib.presentation.widget.recyclerview.adapter.cell.ResponseStateCell
 import com.bael.dads.lib.presentation.widget.recyclerview.adapter.data.ResponseState
 
