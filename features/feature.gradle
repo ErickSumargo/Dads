@@ -1,7 +1,6 @@
 def plugins = [
     "com.android.library",
-    "kotlin-android",
-    "kotlin-android-extensions"
+    "kotlin-android"
 ]
 
 plugins.forEach { plugin ->
@@ -22,7 +21,18 @@ android {
         viewBinding = true
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     kotlinOptions {
+        freeCompilerArgs = [
+            "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
+            "-Xopt-in=kotlinx.coroutines.FlowPreview",
+            "-Xopt-in=kotlinx.coroutines.InternalCoroutinesApi"
+        ]
+
         jvmTarget = JavaVersion.VERSION_1_8
     }
 }
