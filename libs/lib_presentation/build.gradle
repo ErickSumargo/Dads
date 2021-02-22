@@ -16,11 +16,28 @@ android {
 }
 
 def deps = [
+    "constraintlayout",
     "coroutines",
+    "dagger",
+    "fragment",
     "hilt",
-    "lifecycle"
+    "lifecycle",
+    "lottie",
+    "material",
+    "recyclerview",
+    "viewpager2"
 ]
 
 deps.forEach { dep ->
     apply from: "$rootDir/deps/${dep}.gradle"
+}
+
+def modules = [
+    "lib_data"
+]
+
+dependencies {
+    modules.forEach { module ->
+        implementation project(":$module")
+    }
 }
