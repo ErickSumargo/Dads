@@ -9,6 +9,7 @@ def modules = [
     "lib_data",
     "lib_database",
     "lib_domain",
+    "lib_preference",
     "lib_presentation",
     "lib_worker"
 ]
