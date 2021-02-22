@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="icon">Icon</string>
+
+    <string name="no_internet_description">Hmm, is your connection fine there?</string>
+    <string name="server_error_description">Oops! There\'s a temporary issue with the service. Would you please,</string>
+    <string name="try_again">Try again</string>
+</resources>

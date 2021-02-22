@@ -2,9 +2,8 @@ package com.bael.dads.lib.presentation.viewmodel
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import com.bael.dads.lib.presentation.store.StateStore
-import com.bael.dads.lib.presentation.store.Store
-import kotlinx.coroutines.ExperimentalCoroutinesApi
+import com.bael.dads.lib.presentation.state.StateStore
+import com.bael.dads.lib.presentation.state.Store
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.onEach
 
@@ -12,7 +11,6 @@ import kotlinx.coroutines.flow.onEach
  * Created by ErickSumargo on 01/01/21.
  */
 
-@ExperimentalCoroutinesApi
 abstract class BaseViewModel<S>(
     initState: S,
     private val savedStateHandle: SavedStateHandle
@@ -24,7 +22,8 @@ abstract class BaseViewModel<S>(
         initState = restoreState() ?: initState
     )
 
-    internal val stateFlow: Flow<S> = store.stateFlow.onEach(::saveState)
+    internal val stateFlow: Flow<S>
+        get() = store.stateFlow.onEach(::saveState)
 
     protected val state: S
         get() = store.stateFlow.value

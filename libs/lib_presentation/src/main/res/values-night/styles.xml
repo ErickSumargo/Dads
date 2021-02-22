@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Base sheet theme. -->
+    <style name="BottomSheetDialogTheme" parent="Theme.MaterialComponents.DayNight.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/BottomSheetTheme</item>
+
+        <!-- Base color -->
+        <item name="colorPrimary">@color/teal</item>
+        <item name="colorOnSurface">@color/darkLight</item>
+        <item name="colorOnBackground">@color/grayLight</item>
+        <item name="colorControlNormal">@color/white</item>
+
+        <!-- Window system -->
+        <item name="android:navigationBarColor">@color/dark</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowIsFloating">false</item>
+    </style>
+
+    <style name="BottomSheetTheme" parent="@style/Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/bg_sheet</item>
+        <item name="android:backgroundTint">@color/dark</item>
+    </style>
+
+</resources>
