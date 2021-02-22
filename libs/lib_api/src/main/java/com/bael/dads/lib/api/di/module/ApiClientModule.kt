@@ -20,7 +20,7 @@ internal object ApiClientModule {
     @Provides
     @Singleton
     @BaseUrlQualifier
-    fun provideBaseUrl(): String = "http://192.168.100.7:4000"
+    fun provideBaseUrl(): String = ""
 
     @Provides
     @Singleton
