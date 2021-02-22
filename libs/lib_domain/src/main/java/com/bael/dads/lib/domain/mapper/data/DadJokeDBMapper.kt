@@ -15,7 +15,10 @@ internal class DadJokeDBMapper @Inject constructor() : Mapper<DadJokeDB, DadJoke
         return DadJoke(
             id = data.id,
             setup = data.setup,
-            punchline = data.punchline
+            punchline = data.punchline,
+            favored = data.favored,
+            seen = data.seen,
+            updatedAt = data.updatedAt
         )
     }
 }
