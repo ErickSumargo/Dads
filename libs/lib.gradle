@@ -1,7 +1,6 @@
 def plugins = [
     "com.android.library",
-    "kotlin-android",
-    "kotlin-android-extensions"
+    "kotlin-android"
 ]
 
 plugins.forEach { plugin ->
@@ -18,8 +17,18 @@ android {
         consumerProguardFiles 'proguard-rules.pro'
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     kotlinOptions {
-        freeCompilerArgs = ["-Xallow-result-return-type"]
+        freeCompilerArgs = [
+            "-Xallow-result-return-type",
+            "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
+            "-Xopt-in=kotlinx.coroutines.FlowPreview",
+            "-Xopt-in=kotlinx.coroutines.InternalCoroutinesApi"
+        ]
 
         jvmTarget = JavaVersion.VERSION_1_8
     }
