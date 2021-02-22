@@ -19,12 +19,12 @@
 
             <include
                 android:id="@+id/loadingStateLayout"
-                layout="@layout/response_state_layout"
+                layout="@layout/item_response_state"
                 android:visibility="gone" />
 
             <include
                 android:id="@+id/emptyStateLayout"
-                layout="@layout/response_state_layout"
+                layout="@layout/item_response_state"
                 android:visibility="gone" />
 
             <androidx.recyclerview.widget.RecyclerView
