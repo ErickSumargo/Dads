@@ -1,5 +1,6 @@
 .gradle/
 .idea/
+app/google-services.json
 build/
 captures/
 
