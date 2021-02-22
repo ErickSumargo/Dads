@@ -29,6 +29,14 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
+
+        <meta-data
+            android:name="firebase_analytics_collection_enabled"
+            android:value="${analyticsEnabled}" />
+
+        <meta-data
+            android:name="firebase_crashlytics_collection_enabled"
+            android:value="${crashlyticsEnabled}" />
     </application>
 
 </manifest>

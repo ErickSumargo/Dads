@@ -1,5 +1,7 @@
 def plugins = [
     "com.android.application",
+    "com.google.gms.google-services",
+    "com.google.firebase.crashlytics",
     "kotlin-android",
     "kotlin-kapt",
     "dagger.hilt.android.plugin"
@@ -27,12 +29,22 @@ android {
             minifyEnabled false
             testCoverageEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            manifestPlaceholders = [
+                analyticsEnabled    : "false",
+                crashlyticsEnabled  : "false"
+            ]
         }
 
         release {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            manifestPlaceholders = [
+                analyticsEnabled    : "true",
+                crashlyticsEnabled  : "true"
+            ]
         }
     }
 
@@ -47,6 +59,7 @@ android {
 
 def deps = [
     "dagger",
+    "firebase",
     "graphql",
     "hilt",
     "leakcanary",

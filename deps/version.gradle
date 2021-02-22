@@ -30,9 +30,14 @@ ext {
         // apollo
         graphql             : "2.4.5",
 
+        // firebase
+        bom                 : "26.5.0",
+        crashlytics         : "2.5.0",
+
         // google
         autoservice         : "1.0-rc7",
         dagger              : "2.31-alpha",
+        gms                 : "4.3.5",
         material            : "1.2.1",
 
         // javax
