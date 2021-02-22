@@ -1,7 +1,6 @@
 def plugins = [
     "com.android.application",
     "kotlin-android",
-    "kotlin-android-extensions",
     "kotlin-kapt",
     "dagger.hilt.android.plugin"
 ]
@@ -47,11 +46,13 @@ android {
 }
 
 def deps = [
+    "dagger",
     "graphql",
     "hilt",
     "leakcanary",
     "navigation",
-    "okhttp"
+    "okhttp",
+    "work"
 ]
 
 deps.forEach { dep ->
@@ -64,7 +65,9 @@ def modules = [
     "lib_data",
     "lib_database",
     "lib_domain",
-    "lib_presentation"
+    "lib_preference",
+    "lib_presentation",
+    "lib_worker"
 ]
 
 dependencies {
