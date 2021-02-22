@@ -28,8 +28,8 @@ apollo {
 
 def deps = [
     "coroutines",
+    "dagger",
     "graphql",
-    "hilt",
     "okhttp"
 ]
 
