@@ -1,4 +1,4 @@
-package com.bael.dads.lib.api.di.module
+package com.bael.dads.lib.api.di.module.okhttp
 
 import com.bael.dads.lib.api.interceptor.AuthInterceptor
 import com.bael.dads.lib.api.interceptor.ContentTypeInterceptor
@@ -6,7 +6,7 @@ import com.bael.dads.lib.api.interceptor.NetworkInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import okhttp3.logging.HttpLoggingInterceptor.Level.BODY
@@ -17,18 +17,18 @@ import javax.inject.Singleton
  */
 
 @Module
-@InstallIn(ApplicationComponent::class)
+@InstallIn(SingletonComponent::class)
 internal object OkHttpClientModule {
 
     @Provides
     @Singleton
-    internal fun provideLoggingInterceptor(): HttpLoggingInterceptor {
+    fun provideLoggingInterceptor(): HttpLoggingInterceptor {
         return HttpLoggingInterceptor().apply { level = BODY }
     }
 
     @Provides
     @Singleton
-    internal fun provideOkHttpClient(
+    fun provideOkHttpClient(
         networkInterceptor: NetworkInterceptor,
         authInterceptor: AuthInterceptor,
         contentTypeInterceptor: ContentTypeInterceptor,

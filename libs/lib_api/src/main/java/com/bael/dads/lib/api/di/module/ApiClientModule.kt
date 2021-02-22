@@ -5,7 +5,7 @@ import com.bael.dads.lib.api.di.qualifier.BaseUrlQualifier
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import javax.inject.Singleton
 
@@ -14,17 +14,17 @@ import javax.inject.Singleton
  */
 
 @Module
-@InstallIn(ApplicationComponent::class)
+@InstallIn(SingletonComponent::class)
 internal object ApiClientModule {
 
     @Provides
     @Singleton
     @BaseUrlQualifier
-    internal fun provideBaseUrl(): String = "http://10.0.2.2:4000"
+    fun provideBaseUrl(): String = ""
 
     @Provides
     @Singleton
-    internal fun provideApollo(
+    fun provideApollo(
         @BaseUrlQualifier url: String,
         okHttpClient: OkHttpClient,
     ): ApolloClient {

@@ -1,11 +1,11 @@
-package com.bael.dads.lib.api.di.module
+package com.bael.dads.lib.api.di.module.service
 
 import com.bael.dads.lib.api.service.DadsService
 import com.bael.dads.lib.api.service.apollo.DadsApolloService
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 /**
@@ -13,10 +13,10 @@ import javax.inject.Singleton
  */
 
 @Module
-@InstallIn(ApplicationComponent::class)
-internal abstract class ServiceModule {
+@InstallIn(SingletonComponent::class)
+internal interface ServiceModule {
 
     @Binds
     @Singleton
-    internal abstract fun bindDadsService(service: DadsApolloService): DadsService
+    fun bindDadsService(service: DadsApolloService): DadsService
 }

@@ -8,8 +8,5 @@ import com.bael.dads.lib.api.response.DadJokesResponse
 
 interface DadsService {
 
-    suspend fun fetchDadJokes(
-        cursor: String?,
-        limit: Int
-    ): Result<DadJokesResponse>
+    suspend fun fetchDadJokes(cursor: String?, limit: Int): Result<DadJokesResponse>
 }
