@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?android:attr/selectableItemBackgroundBorderless"
-    app:layoutDescription="@xml/bottom_tab_motion">
+    app:layoutDescription="@xml/scene_bottom_tab">
 
     <ImageView
         android:id="@+id/imageIcon"
