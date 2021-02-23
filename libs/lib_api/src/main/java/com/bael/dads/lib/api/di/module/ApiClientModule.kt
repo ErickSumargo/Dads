@@ -20,7 +20,9 @@ internal object ApiClientModule {
     @Provides
     @Singleton
     @BaseUrlQualifier
-    fun provideBaseUrl(): String = ""
+    fun provideBaseUrl(): String {
+        return "https://dads-engine.herokuapp.com/"
+    }
 
     @Provides
     @Singleton

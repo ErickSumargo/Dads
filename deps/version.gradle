@@ -45,7 +45,7 @@ ext {
 
         // kotlin
         coroutines          : "1.4.2",
-        kotlin              : "1.4.30",
+        kotlin              : "1.4.0",
 
         // square
         javapoet            : "1.13.0",
