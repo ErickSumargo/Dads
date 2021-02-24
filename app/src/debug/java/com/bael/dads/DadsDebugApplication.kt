@@ -16,7 +16,6 @@ internal class DadsDebugApplication : DadsApplication() {
     override fun onCreate() {
         super.onCreate()
         setStrictMode()
-        listOf(1)[1]
     }
 
     private fun setStrictMode() {
