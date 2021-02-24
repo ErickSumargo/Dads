@@ -5,17 +5,15 @@ import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO
 import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES
 import androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode
 import com.bael.dads.preference.Preference
-import dagger.hilt.android.HiltAndroidApp
 import javax.inject.Inject
 
 /**
  * Created by ErickSumargo on 01/01/21.
  */
 
-@HiltAndroidApp
-internal class DadsApplication : Application() {
+abstract class DadsApplication : Application() {
     @Inject
-    lateinit var preference: Preference
+    internal lateinit var preference: Preference
 
     override fun onCreate() {
         super.onCreate()

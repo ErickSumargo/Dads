@@ -7,7 +7,7 @@ import javax.inject.Inject
  * Created by ErickSumargo on 01/01/21.
  */
 
-internal class Preference @Inject constructor(store: Store) : Store by store {
+class Preference @Inject constructor(store: Store) : Store by store {
     val isNightTheme: Boolean
         get() = read(
             key = NIGHT_THEME_PREFERENCE,
