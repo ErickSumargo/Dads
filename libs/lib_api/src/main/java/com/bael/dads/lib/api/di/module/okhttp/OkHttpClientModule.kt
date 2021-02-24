@@ -1,5 +1,6 @@
 package com.bael.dads.lib.api.di.module.okhttp
 
+import com.bael.dads.lib.api.BuildConfig.DEBUG
 import com.bael.dads.lib.api.interceptor.AuthInterceptor
 import com.bael.dads.lib.api.interceptor.ContentTypeInterceptor
 import com.bael.dads.lib.api.interceptor.NetworkInterceptor
@@ -10,6 +11,7 @@ import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import okhttp3.logging.HttpLoggingInterceptor.Level.BODY
+import okhttp3.logging.HttpLoggingInterceptor.Level.NONE
 import javax.inject.Singleton
 
 /**
@@ -23,7 +25,9 @@ internal object OkHttpClientModule {
     @Provides
     @Singleton
     fun provideLoggingInterceptor(): HttpLoggingInterceptor {
-        return HttpLoggingInterceptor().apply { level = BODY }
+        return HttpLoggingInterceptor().apply {
+            level = BODY.takeIf { DEBUG } ?: NONE
+        }
     }
 
     @Provides

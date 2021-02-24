@@ -26,25 +26,20 @@ android {
 
     buildTypes {
         debug {
+            applicationIdSuffix ".debug"
+            versionNameSuffix "-debug"
+
             minifyEnabled false
             testCoverageEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-
-            manifestPlaceholders = [
-                analyticsEnabled    : "false",
-                crashlyticsEnabled  : "false"
-            ]
         }
 
         release {
+            debuggable false
+
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-
-            manifestPlaceholders = [
-                analyticsEnabled    : "true",
-                crashlyticsEnabled  : "true"
-            ]
         }
     }
 
