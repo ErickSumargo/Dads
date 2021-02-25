@@ -36,7 +36,7 @@ internal class NewFeedReminderNotification(
     override fun createTemplate(templateBuilder: Builder): Notification {
         val intent = Intent(
             context,
-            forName("${context.packageName}.activity.MainActivity")
+            forName("com.bael.dads.activity.MainActivity")
         ).also { intent ->
             intent.flags = FLAG_ACTIVITY_CLEAR_TASK or FLAG_ACTIVITY_NEW_TASK
         }
