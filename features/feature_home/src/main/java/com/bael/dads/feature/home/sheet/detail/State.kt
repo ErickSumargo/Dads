@@ -1,5 +1,6 @@
 package com.bael.dads.feature.home.sheet.detail
 
+import com.bael.dads.lib.domain.model.DadJoke
 import com.bael.dads.lib.presentation.state.BaseState
 
 /**
@@ -7,5 +8,5 @@ import com.bael.dads.lib.presentation.state.BaseState
  */
 
 internal data class State(
-    val dadJokeFavored: Boolean
+    val dadJoke: DadJoke?
 ) : BaseState()

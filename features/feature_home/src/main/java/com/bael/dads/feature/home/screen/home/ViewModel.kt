@@ -1,12 +1,10 @@
 package com.bael.dads.feature.home.screen.home
 
 import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.viewModelScope
 import com.bael.dads.lib.presentation.ext.reduce
 import com.bael.dads.lib.presentation.viewmodel.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
@@ -22,10 +20,8 @@ internal class ViewModel @Inject constructor(
     override val queryFlow: MutableStateFlow<String> = MutableStateFlow(state.query)
 
     fun submitQuery(query: String) {
-        viewModelScope.launch {
-            queryFlow.value = query
-            intentQuery(query)
-        }
+        queryFlow.value = query
+        intentQuery(query)
     }
 
     private fun intentQuery(query: String) {

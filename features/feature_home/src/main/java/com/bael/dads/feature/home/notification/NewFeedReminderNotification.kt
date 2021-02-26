@@ -50,10 +50,10 @@ internal class NewFeedReminderNotification(
 
         return templateBuilder
             .setSmallIcon(R.drawable.ic_logo)
-            .setContentTitle(context.getString(R.string.app_name))
+            .setContentTitle(context.getString(R.string.new_feed_notification_title))
             .setContentText(
                 context.getString(
-                    R.string.new_feed_notification,
+                    R.string.new_feed_notification_description,
                     "${"+9".takeIf { dadJokes.size > 9 } ?: dadJokes.size}"
                 )
             )

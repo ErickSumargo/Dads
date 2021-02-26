@@ -1,6 +1,7 @@
 package com.bael.dads.feature.home.sheet.detail
 
 import com.bael.dads.annotation.Render
+import com.bael.dads.lib.domain.model.DadJoke
 import com.bael.dads.lib.presentation.renderer.BaseRenderer
 
 /**
@@ -10,5 +11,5 @@ import com.bael.dads.lib.presentation.renderer.BaseRenderer
 @Render(State::class)
 internal interface Renderer : BaseRenderer {
 
-    fun renderFavorMenu(dadJokeFavored: Boolean)
+    fun renderDetail(dadJoke: DadJoke?)
 }

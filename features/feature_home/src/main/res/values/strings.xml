@@ -10,7 +10,8 @@
 
     <string name="notification">Notification</string>
     <string name="new_feed_reminder">New feed available reminder</string>
-    <string name="new_feed_notification">%1$s new feed recently added</string>
+    <string name="new_feed_notification_title">New feed available</string>
+    <string name="new_feed_notification_description">%1$s new feed recently added</string>
     <string name="theme">Theme</string>
     <string name="night_mode">Night mode</string>
 

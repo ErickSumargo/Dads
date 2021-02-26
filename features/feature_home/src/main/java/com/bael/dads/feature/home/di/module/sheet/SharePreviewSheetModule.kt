@@ -31,7 +31,7 @@ internal interface SharePreviewSheetModule {
 
         @Provides
         fun provideState(): State {
-            return State()
+            return State(dadJoke = null)
         }
 
         @Provides
