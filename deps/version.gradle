@@ -39,9 +39,13 @@ ext {
         dagger              : "2.31-alpha",
         gms                 : "4.3.5",
         material            : "1.2.1",
+        truth               : "1.1.2",
 
         // javax
         inject              : "1",
+
+        // junit
+        jupiter             : "5.7.1",
 
         // kotlin
         coroutines          : "1.4.2",
@@ -50,6 +54,9 @@ ext {
         // square
         javapoet            : "1.13.0",
         leakcanary          : "2.5",
-        okhttp              : "4.9.0"
+        okhttp              : "4.9.0",
+
+        // other
+        android_junit5      : "1.7.1.1"
     ]
 }
