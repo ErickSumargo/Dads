@@ -31,7 +31,7 @@ internal interface DetailSheetModule {
 
         @Provides
         fun provideState(): State {
-            return State(dadJokeFavored = false)
+            return State(dadJoke = null)
         }
 
         @Provides

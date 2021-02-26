@@ -19,6 +19,7 @@ import androidx.core.content.FileProvider.getUriForFile
 import androidx.lifecycle.lifecycleScope
 import com.bael.dads.feature.home.databinding.SheetSharePreviewBinding
 import com.bael.dads.feature.home.databinding.SheetSharePreviewBinding.inflate
+import com.bael.dads.lib.data.ext.invoke
 import com.bael.dads.lib.domain.model.DadJoke
 import com.bael.dads.lib.presentation.ext.toRichText
 import com.bael.dads.lib.presentation.sheet.BaseSheet
@@ -38,10 +39,6 @@ import java.io.FileOutputStream
 internal class UI :
     BaseSheet<SheetSharePreviewBinding, Renderer, ViewModel>(),
     Renderer {
-    private val dadJoke: DadJoke? by lazy {
-        arguments?.getSerializable("dadJoke") as? DadJoke
-    }
-
     override val fullHeight: Boolean = false
 
     override fun createView(
@@ -52,28 +49,33 @@ internal class UI :
     }
 
     override suspend fun onViewLoaded() {
-        setupView()
+        viewModel().receiveDadJoke()
     }
 
-    private fun setupView() {
+    override fun renderPreview(dadJoke: DadJoke?) {
+        dadJoke ?: return
+
         viewBinding.setupText.also { view ->
-            view.text = dadJoke?.setup.toRichText()
+            view.text = dadJoke.setup.toRichText()
         }
 
         viewBinding.punchlineText.also { view ->
-            view.text = dadJoke?.punchline.toRichText()
+            view.text = dadJoke.punchline.toRichText()
         }
 
         viewBinding.shareText.also { view ->
             view.setOnClickListener {
-                shareDadJoke(view = viewBinding.contentLayout)
+                shareDadJoke(
+                    view = viewBinding.contentLayout,
+                    dadJoke = dadJoke
+                )
             }
         }
     }
 
-    private fun shareDadJoke(view: View) {
+    private fun shareDadJoke(view: View, dadJoke: DadJoke) {
         lifecycleScope.launch(context = IO) {
-            val uri = uriFromView(view)
+            val uri = uriFromViewData(view, dadJoke)
             val data = Intent().apply {
                 data = uri
                 action = ACTION_SEND
@@ -83,20 +85,20 @@ internal class UI :
                 putExtra(EXTRA_STREAM, uri)
             }
 
-            val intent = createChooser(data, null)
             withContext(context = Main) {
+                val intent = createChooser(data, null)
                 startActivityForResult(intent, SHARE_INTENT_REQUEST_CODE)
             }
         }
     }
 
-    private fun uriFromView(view: View): Uri {
+    private fun uriFromViewData(view: View, dadJoke: DadJoke): Uri {
         val bitmap = bitmapFromView(view)
 
         val folder = File(context?.cacheDir, "images")
         folder.mkdirs()
 
-        val file = File(folder, "image_${dadJoke?.id}.png")
+        val file = File(folder, "image_${dadJoke.id}.png")
         FileOutputStream(file).use { stream ->
             bitmap.compress(PNG, 100, stream)
             stream.flush()

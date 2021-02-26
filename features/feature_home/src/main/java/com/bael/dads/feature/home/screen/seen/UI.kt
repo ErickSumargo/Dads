@@ -245,9 +245,9 @@ internal class UI :
     private fun showDetailSheet(dadJoke: DadJoke) {
         DetailSheet().also { sheet ->
             sheet.arguments = bundleOf("dadJoke" to dadJoke)
-            sheet.onDismissListener = callback@{ _dadJoke, favored ->
-                if (dadJoke.favored == _dadJoke?.favored) return@callback
-                viewModel().favorDadJoke(dadJoke, favored)
+            sheet.onDismissListener = callback@{ _dadJoke ->
+                if (dadJoke == _dadJoke) return@callback
+                viewModel().favorDadJoke(dadJoke, favored = _dadJoke?.favored ?: false)
             }
 
             sheet.show(fragmentManager = activity?.supportFragmentManager)

@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.onEach
 
 abstract class BaseViewModel<S>(
     initState: S,
-    private val savedStateHandle: SavedStateHandle
+    protected val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
     private val key: String
         get() = javaClass.name

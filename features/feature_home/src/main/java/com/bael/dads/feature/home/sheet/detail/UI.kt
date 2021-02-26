@@ -21,11 +21,7 @@ import com.bael.dads.feature.home.sheet.sharepreview.UI as SharePreviewSheet
 internal class UI :
     BaseSheet<SheetDetailBinding, Renderer, ViewModel>(),
     Renderer {
-    private val dadJoke: DadJoke? by lazy {
-        arguments?.getSerializable("dadJoke") as? DadJoke
-    }
-
-    var onDismissListener: ((DadJoke?, Boolean) -> Unit)? = null
+    var onDismissListener: ((DadJoke?) -> Unit)? = null
 
     override val fullHeight: Boolean = true
 
@@ -37,29 +33,38 @@ internal class UI :
     }
 
     override suspend fun onViewLoaded() {
-        setupView()
-        viewModel().setDadJokeFavored(favored = dadJoke?.favored ?: false)
+        viewModel().receiveDadJoke()
     }
 
-    private fun setupView() {
+    override fun renderDetail(dadJoke: DadJoke?) {
+        dadJoke ?: return
+
         viewBinding.setupText.also { view ->
-            view.text = dadJoke?.setup.toRichText()
+            view.text = dadJoke.setup.toRichText()
         }
 
         viewBinding.punchlineText.also { view ->
-            view.text = dadJoke?.punchline.toRichText()
+            view.text = dadJoke.punchline.toRichText()
         }
 
         viewBinding.menuItemLayout.also { menuLayout ->
+            menuLayout.favoriteLayout.also { layout ->
+                if (!dadJoke.favored) {
+                    layout.transitionToStart()
+                } else {
+                    layout.transitionToEnd()
+                }
+            }
+
             menuLayout.dislikeIcon.also { icon ->
                 icon.setOnClickListener {
-                    viewModel().setDadJokeFavored(favored = true)
+                    viewModel().favorDadJoke(favored = true)
                 }
             }
 
             menuLayout.likeIcon.also { icon ->
                 icon.setOnClickListener {
-                    viewModel().setDadJokeFavored(favored = false)
+                    viewModel().favorDadJoke(favored = false)
                 }
             }
 
@@ -72,21 +77,7 @@ internal class UI :
         }
     }
 
-    override fun renderFavorMenu(dadJokeFavored: Boolean) {
-        viewBinding.menuItemLayout.also { menuLayout ->
-            menuLayout.favoriteLayout.also { layout ->
-                if (!dadJokeFavored) {
-                    layout.transitionToStart()
-                } else {
-                    layout.transitionToEnd()
-                }
-            }
-        }
-    }
-
-    private fun showSharePreviewSheet(dadJoke: DadJoke?) {
-        dadJoke ?: return
-
+    private fun showSharePreviewSheet(dadJoke: DadJoke) {
         SharePreviewSheet().also { sheet ->
             sheet.arguments = bundleOf("dadJoke" to dadJoke)
             sheet.show(fragmentManager = activity?.supportFragmentManager)
@@ -94,7 +85,7 @@ internal class UI :
     }
 
     override fun onDismiss(dialog: DialogInterface) {
-        onDismissListener?.invoke(dadJoke, viewModel().isDadJokeFavored())
+        onDismissListener?.invoke(viewModel().dadJoke)
         super.onDismiss(dialog)
     }
 }
