@@ -167,7 +167,7 @@ internal class DefaultDadsRepository @Inject constructor(
 
             api.fetchDadJokes(
                 cursor = meta?.cursor,
-                limit = 10
+                limit = 20
             ).fold(
                 onSuccess = { response ->
                     database.dadJoke.insertDadJokes(

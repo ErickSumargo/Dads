@@ -38,7 +38,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
                         android:textColor="?android:attr/textColorPrimary"
-                        android:textSize="36sp"
+                        android:textSize="32sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
 
@@ -63,7 +63,6 @@
                     android:id="@+id/punchlineContentLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="?attr/selectableItemBackground"
                     android:padding="24dp">
 
                     <TextView
@@ -73,7 +72,7 @@
                         android:layout_marginBottom="8dp"
                         android:gravity="center_vertical"
                         android:textColor="?android:attr/textColorPrimary"
-                        android:textSize="36sp"
+                        android:textSize="32sp"
                         app:layout_constraintBottom_toTopOf="@id/menuItemLayout"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
