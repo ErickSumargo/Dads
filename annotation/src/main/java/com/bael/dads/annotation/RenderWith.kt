@@ -11,4 +11,4 @@ import kotlin.reflect.KClass
 @Target(CLASS)
 @Retention(SOURCE)
 @MustBeDocumented
-annotation class Render(val state: KClass<*>)
+annotation class RenderWith(val state: KClass<*>)

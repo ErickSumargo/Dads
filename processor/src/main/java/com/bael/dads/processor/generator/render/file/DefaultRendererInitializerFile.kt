@@ -24,7 +24,7 @@ internal class DefaultRendererInitializerFile(
     private val rendererClass: ClassName,
     private val viewModelClass: ClassName,
     private val rendererInitializerClass: ClassName,
-    private val rendererExecutorClass: ClassName
+    private val renderExecutorClass: ClassName
 ) {
 
     fun generate(): JavaFile {
@@ -67,7 +67,7 @@ internal class DefaultRendererInitializerFile(
 
     private fun generateInstanceField(): FieldSpec {
         return FieldSpec.builder(
-            rendererExecutorClass,
+            renderExecutorClass,
             INSTANCE_NAME,
             PRIVATE
         ).build()
@@ -86,7 +86,7 @@ internal class DefaultRendererInitializerFile(
             .addStatement(
                 "this.\$1N = new \$2N(\$3N, \$4N)",
                 INSTANCE_NAME,
-                rendererExecutorClass.simpleName(),
+                renderExecutorClass.simpleName(),
                 rendererParameter.name,
                 viewModelParameter.name
             )
