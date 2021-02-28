@@ -1,9 +1,9 @@
 package com.bael.dads.processor.generator.render
 
-import com.bael.dads.annotation.Render
+import com.bael.dads.annotation.RenderWith
 import com.bael.dads.processor.generator.BaseGenerator
 import com.bael.dads.processor.generator.render.file.DefaultRendererInitializerFile
-import com.bael.dads.processor.generator.render.file.RendererExecutorFile
+import com.bael.dads.processor.generator.render.file.RenderExecutorFile
 import com.google.auto.service.AutoService
 import com.squareup.javapoet.ClassName
 import com.squareup.javapoet.JavaFile
@@ -15,7 +15,7 @@ import javax.lang.model.element.Element
  */
 
 @AutoService(Processor::class)
-internal class RenderGenerator : BaseGenerator(annotation = Render::class) {
+internal class RenderGenerator : BaseGenerator(annotation = RenderWith::class) {
     private lateinit var rendererClass: ClassName
 
     private lateinit var viewModelClass: ClassName
@@ -24,15 +24,15 @@ internal class RenderGenerator : BaseGenerator(annotation = Render::class) {
 
     private lateinit var rendererInitializerClass: ClassName
 
-    private lateinit var rendererDispatcherClass: ClassName
+    private lateinit var baseRenderExecutorClass: ClassName
 
-    private lateinit var rendererExecutorClass: ClassName
+    private lateinit var renderExecutorClass: ClassName
 
     override fun process(element: Element, packageName: String) {
         init(packageName)
         generate(
             generateDefaultRendererInitializerFile(element, packageName),
-            generateRendererExecutorFile(element, packageName)
+            generateRenderExecutorFile(element, packageName)
         )
     }
 
@@ -57,14 +57,14 @@ internal class RenderGenerator : BaseGenerator(annotation = Render::class) {
             "RendererInitializer"
         )
 
-        rendererDispatcherClass = ClassName.get(
+        baseRenderExecutorClass = ClassName.get(
             "com.bael.dads.lib.presentation.renderer",
-            "RendererDispatcher"
+            "BaseRenderExecutor"
         )
 
-        rendererExecutorClass = ClassName.get(
+        renderExecutorClass = ClassName.get(
             packageName,
-            "RendererExecutor"
+            "RenderExecutor"
         )
     }
 
@@ -77,17 +77,17 @@ internal class RenderGenerator : BaseGenerator(annotation = Render::class) {
             rendererClass,
             viewModelClass,
             rendererInitializerClass,
-            rendererExecutorClass
+            renderExecutorClass
         ).generate()
     }
 
-    private fun generateRendererExecutorFile(
+    private fun generateRenderExecutorFile(
         element: Element,
         packageName: String
     ): JavaFile {
-        return RendererExecutorFile(
+        return RenderExecutorFile(
             annotation,
-            annotationParameter = Render::state,
+            annotationParameter = RenderWith::state,
             element,
             packageName,
             types,
@@ -95,7 +95,7 @@ internal class RenderGenerator : BaseGenerator(annotation = Render::class) {
             rendererClass,
             viewModelClass,
             stateClass,
-            rendererDispatcherClass
+            baseRenderExecutorClass
         ).generate()
     }
 }

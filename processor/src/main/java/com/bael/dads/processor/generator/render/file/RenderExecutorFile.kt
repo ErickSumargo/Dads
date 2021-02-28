@@ -41,7 +41,7 @@ import kotlin.reflect.KProperty
  * Created by ErickSumargo on 01/01/21.
  */
 
-internal class RendererExecutorFile(
+internal class RenderExecutorFile(
     private val annotation: KClass<out Annotation>,
     private val annotationParameter: KProperty<*>,
     private val element: Element,
@@ -51,7 +51,7 @@ internal class RendererExecutorFile(
     private val rendererClass: ClassName,
     private val viewModelClass: ClassName,
     private val stateClass: ClassName,
-    private val rendererDispatcherClass: ClassName
+    private val baseRenderExecutorClass: ClassName
 ) {
 
     fun generate(): JavaFile {
@@ -76,7 +76,7 @@ internal class RendererExecutorFile(
 
         val objectEqualsMethod = generateObjectEqualsMethod()
 
-        return TypeSpec.classBuilder("RendererExecutor")
+        return TypeSpec.classBuilder("RenderExecutor")
             .addModifiers(PUBLIC, FINAL)
             .superclass(superClass)
             .addField(rendererField)
@@ -91,7 +91,7 @@ internal class RendererExecutorFile(
 
     private fun generateSuperClass(): TypeName {
         return ParameterizedTypeName.get(
-            rendererDispatcherClass,
+            baseRenderExecutorClass,
             stateClass
         )
     }

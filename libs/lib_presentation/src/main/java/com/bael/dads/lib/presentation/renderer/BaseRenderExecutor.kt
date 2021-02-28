@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.scan
  * Created by ErickSumargo on 01/01/21.
  */
 
-abstract class RendererDispatcher<S>(
+abstract class BaseRenderExecutor<S>(
     renderer: BaseRenderer,
     private val viewModel: BaseViewModel<S>
 ) : BaseRenderer by renderer {
