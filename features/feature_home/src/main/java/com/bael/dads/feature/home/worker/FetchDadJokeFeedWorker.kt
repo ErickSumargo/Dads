@@ -7,9 +7,8 @@ import androidx.work.WorkerParameters
 import com.bael.dads.feature.home.notification.NewFeedReminderNotification
 import com.bael.dads.feature.home.preference.Preference
 import com.bael.dads.lib.data.response.Response.Success
-import com.bael.dads.lib.domain.interactor.home.LoadDadJokeFeedInteractor
-import com.bael.dads.lib.domain.interactor.home.LoadDadJokeInteractor
 import com.bael.dads.lib.domain.model.DadJoke
+import com.bael.dads.lib.domain.repository.DadsRepository
 import com.bael.dads.lib.presentation.notification.NotificationPublisher
 import com.bael.dads.lib.worker.BaseWorker
 import dagger.assisted.Assisted
@@ -25,8 +24,7 @@ import kotlinx.coroutines.flow.filter
 internal class FetchDadJokeFeedWorker @AssistedInject constructor(
     @Assisted appContext: Context,
     @Assisted params: WorkerParameters,
-    private val loadDadJokeInteractor: LoadDadJokeInteractor,
-    private val loadDadJokeFeedInteractor: LoadDadJokeFeedInteractor,
+    private val repository: DadsRepository,
     private val preference: Preference,
     private val notificationPublisher: NotificationPublisher
 ) : BaseWorker(appContext, params) {
@@ -35,14 +33,14 @@ internal class FetchDadJokeFeedWorker @AssistedInject constructor(
         val id = inputData.getInt(INPUT_CURSOR_ID, 0)
         var cursor: DadJoke? = null
 
-        loadDadJokeInteractor(id)
+        repository.loadDadJoke(id)
             .filter { response ->
                 response is Success
             }.collect { response ->
                 cursor = (response as Success).data
             }
 
-        loadDadJokeFeedInteractor(cursor, limit = 10)
+        repository.loadDadJokeFeed(cursor, limit = 10)
             .filter { response ->
                 response is Success
             }.collect { response ->
