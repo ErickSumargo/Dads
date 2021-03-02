@@ -8,11 +8,8 @@ import com.bael.dads.lib.data.response.Response.Empty
 import com.bael.dads.lib.data.response.Response.Error
 import com.bael.dads.lib.data.response.Response.Loading
 import com.bael.dads.lib.data.response.Response.Success
-import com.bael.dads.lib.domain.interactor.home.FavorDadJokeInteractor
-import com.bael.dads.lib.domain.interactor.home.LoadFavoredDadJokeInteractor
-import com.bael.dads.lib.domain.interactor.home.LoadSeenDadJokeInteractor
-import com.bael.dads.lib.domain.interactor.home.ObserveDadJokeInteractor
 import com.bael.dads.lib.domain.model.DadJoke
+import com.bael.dads.lib.domain.repository.DadsRepository
 import com.bael.dads.lib.presentation.ext.reduce
 import com.bael.dads.lib.presentation.viewmodel.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -35,10 +32,7 @@ import javax.inject.Inject
 internal class ViewModel @Inject constructor(
     initState: State,
     savedStateHandle: SavedStateHandle,
-    private val loadSeenDadJokeInteractor: LoadSeenDadJokeInteractor,
-    private val loadFavoredDadJokeInteractor: LoadFavoredDadJokeInteractor,
-    private val observeDadJokeInteractor: ObserveDadJokeInteractor,
-    private val favorDadJokeInteractor: FavorDadJokeInteractor
+    private val repository: DadsRepository
 ) : BaseViewModel<State>(initState, savedStateHandle) {
     private var loadSeenDadJokeJob: Job? = null
 
@@ -50,9 +44,9 @@ internal class ViewModel @Inject constructor(
     ) {
         loadSeenDadJokeJob?.cancel()
         loadSeenDadJokeJob = if (!favoredOnly) {
-            loadSeenDadJokeInteractor(term, cursor, limit)
+            repository.loadSeenDadJoke(term, cursor, limit)
         } else {
-            loadFavoredDadJokeInteractor(term, cursor, limit)
+            repository.loadFavoredDadJoke(term, cursor, limit)
         }
             .flowOn(context = IO)
             .onEach { response ->
@@ -63,7 +57,7 @@ internal class ViewModel @Inject constructor(
     }
 
     suspend fun observeDadJoke(dadJoke: DadJoke) {
-        observeDadJokeInteractor(dadJoke)
+        repository.observeDadJoke(dadJoke)
             .flowOn(context = IO)
             .filter { response ->
                 response is Success
@@ -75,7 +69,7 @@ internal class ViewModel @Inject constructor(
     }
 
     fun favorDadJoke(dadJoke: DadJoke, favored: Boolean) {
-        favorDadJokeInteractor(dadJoke, favored)
+        repository.favorDadJoke(dadJoke, favored)
             .flowOn(context = IO)
             .launchIn(scope = viewModelScope)
     }
