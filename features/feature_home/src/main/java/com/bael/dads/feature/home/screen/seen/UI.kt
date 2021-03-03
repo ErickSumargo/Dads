@@ -50,15 +50,15 @@ internal class UI :
                 showDetailSheet(dadJoke)
             },
             onReachEndOfItemsListener = { dadJoke ->
-                viewModel().loadSeenDadJoke(
+                viewModel.loadSeenDadJoke(
                     term = homePresenter().queryFlow.value,
                     cursor = dadJoke,
                     limit = LOAD_SEEN_LIMIT,
-                    favoredOnly = viewModel().isFavoriteFilterActivated()
+                    favoredOnly = viewModel.isFavoriteFilterActivated()
                 )
             },
             onObserveItemListener = { dadJoke ->
-                viewModel().observeDadJoke(dadJoke)
+                viewModel.observeDadJoke(dadJoke)
             }
         )
     }
@@ -80,11 +80,11 @@ internal class UI :
             layout.setOnRefreshListener {
                 layout.isRefreshing = false
 
-                viewModel().loadSeenDadJoke(
+                viewModel.loadSeenDadJoke(
                     term = homePresenter().queryFlow.value,
                     cursor = null,
                     limit = LOAD_SEEN_LIMIT,
-                    favoredOnly = viewModel().isFavoriteFilterActivated()
+                    favoredOnly = viewModel.isFavoriteFilterActivated()
                 )
             }
         }
@@ -126,11 +126,11 @@ internal class UI :
         lifecycleScope.launchWhenResumed {
             homePresenter().queryFlow
                 .collect { query ->
-                    viewModel().loadSeenDadJoke(
+                    viewModel.loadSeenDadJoke(
                         term = query,
                         cursor = null,
                         limit = LOAD_SEEN_LIMIT,
-                        favoredOnly = viewModel().isFavoriteFilterActivated()
+                        favoredOnly = viewModel.isFavoriteFilterActivated()
                     )
                 }
         }
@@ -158,10 +158,10 @@ internal class UI :
             )
 
             button.setOnClickListener {
-                viewModel().toggleFavoriteFilter(
+                viewModel.toggleFavoriteFilter(
                     isActivated = !isFavoriteFilterActivated
                 )
-                viewModel().loadSeenDadJoke(
+                viewModel.loadSeenDadJoke(
                     term = homePresenter().queryFlow.value,
                     cursor = null,
                     limit = LOAD_SEEN_LIMIT,
@@ -247,7 +247,7 @@ internal class UI :
             sheet.arguments = bundleOf("dadJoke" to dadJoke)
             sheet.onDismissListener = callback@{ _dadJoke ->
                 if (dadJoke == _dadJoke) return@callback
-                viewModel().favorDadJoke(dadJoke, favored = _dadJoke?.favored ?: false)
+                viewModel.favorDadJoke(dadJoke, favored = _dadJoke?.favored ?: false)
             }
 
             sheet.show(fragmentManager = activity?.supportFragmentManager)

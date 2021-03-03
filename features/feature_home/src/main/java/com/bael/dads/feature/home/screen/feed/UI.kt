@@ -22,7 +22,6 @@ import com.bael.dads.feature.home.databinding.ScreenFeedBinding.inflate
 import com.bael.dads.feature.home.worker.FetchDadJokeFeedWorker
 import com.bael.dads.feature.home.worker.FetchDadJokeFeedWorker.Companion.INPUT_CURSOR_ID
 import com.bael.dads.lib.data.exception.NoNetworkException
-import com.bael.dads.lib.data.ext.invoke
 import com.bael.dads.lib.data.response.Response
 import com.bael.dads.lib.data.response.Response.Empty
 import com.bael.dads.lib.data.response.Response.Error
@@ -84,7 +83,7 @@ internal class UI :
             ),
             onClickActionListener = {
                 val cursor = feedAdapter.lastItem()
-                viewModel().loadDadJokeFeed(cursor, limit = LOAD_FEED_LIMIT)
+                viewModel.loadDadJokeFeed(cursor, limit = LOAD_FEED_LIMIT)
             }
         )
     }
@@ -101,7 +100,7 @@ internal class UI :
             ),
             onClickActionListener = {
                 val cursor = feedAdapter.lastItem()
-                viewModel().loadDadJokeFeed(cursor, limit = LOAD_FEED_LIMIT)
+                viewModel.loadDadJokeFeed(cursor, limit = LOAD_FEED_LIMIT)
             }
         )
     }
@@ -123,16 +122,16 @@ internal class UI :
             diffCallback = DadJokeDiffCallback(),
             lifecycleOwner = viewLifecycleOwner,
             onClickLikeListener = { dadJoke, favored ->
-                viewModel().favorDadJoke(dadJoke, favored)
+                viewModel.favorDadJoke(dadJoke, favored)
             },
             onClickShareListener = { dadJoke ->
                 shareDadJoke(dadJoke)
             },
             onReachEndOfItemsListener = { dadJoke ->
-                viewModel().loadDadJokeFeed(cursor = dadJoke, limit = LOAD_FEED_LIMIT)
+                viewModel.loadDadJokeFeed(cursor = dadJoke, limit = LOAD_FEED_LIMIT)
             },
             onObserveItemListener = { dadJoke ->
-                viewModel().observeDadJoke(dadJoke)
+                viewModel.observeDadJoke(dadJoke)
             }
         )
     }
@@ -143,7 +142,7 @@ internal class UI :
             dadJoke ?: return@OnPageSnapListener
 
             if (dadJoke.seen) return@OnPageSnapListener
-            viewModel().setDadJokeSeen(dadJoke)
+            viewModel.setDadJokeSeen(dadJoke)
         }
     }
 
@@ -157,7 +156,7 @@ internal class UI :
     override suspend fun onViewLoaded(savedInstanceState: Bundle?) {
         setupView()
         if (savedInstanceState == null) {
-            viewModel().loadDadJokeFeed(cursor = null, limit = LOAD_FEED_LIMIT)
+            viewModel.loadDadJokeFeed(cursor = null, limit = LOAD_FEED_LIMIT)
         }
     }
 

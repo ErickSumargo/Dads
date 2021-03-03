@@ -19,7 +19,6 @@ import androidx.core.content.FileProvider.getUriForFile
 import androidx.lifecycle.lifecycleScope
 import com.bael.dads.feature.home.databinding.SheetSharePreviewBinding
 import com.bael.dads.feature.home.databinding.SheetSharePreviewBinding.inflate
-import com.bael.dads.lib.data.ext.invoke
 import com.bael.dads.lib.domain.model.DadJoke
 import com.bael.dads.lib.presentation.ext.toRichText
 import com.bael.dads.lib.presentation.sheet.BaseSheet
@@ -49,7 +48,7 @@ internal class UI :
     }
 
     override suspend fun onViewLoaded() {
-        viewModel().receiveDadJoke()
+        viewModel.receiveDadJoke()
     }
 
     override fun renderPreview(dadJoke: DadJoke?) {

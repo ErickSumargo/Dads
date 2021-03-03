@@ -14,7 +14,6 @@ import android.widget.FrameLayout
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.lifecycleScope
 import androidx.viewbinding.ViewBinding
-import com.bael.dads.lib.data.ext.invoke
 import com.bael.dads.lib.presentation.ext.screenHeight
 import com.bael.dads.lib.presentation.renderer.RendererInitializer
 import com.bael.dads.lib.presentation.viewmodel.BaseViewModel
@@ -34,7 +33,7 @@ abstract class BaseSheet<VB : ViewBinding, R, VM : BaseViewModel<*>> : BottomShe
     internal lateinit var rendererInitializer: RendererInitializer<R, VM>
 
     @Inject
-    protected lateinit var viewModel: @JvmSuppressWildcards Lazy<VM>
+    internal lateinit var _viewModel: @JvmSuppressWildcards Lazy<VM>
 
     protected abstract val fullHeight: Boolean
 
@@ -45,6 +44,9 @@ abstract class BaseSheet<VB : ViewBinding, R, VM : BaseViewModel<*>> : BottomShe
 
     protected val viewBinding: VB
         get() = _viewBinding!!
+
+    protected val viewModel: VM
+        get() = _viewModel.value
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -60,7 +62,7 @@ abstract class BaseSheet<VB : ViewBinding, R, VM : BaseViewModel<*>> : BottomShe
     private fun initRenderer() {
         rendererInitializer.init(
             renderer = this as R,
-            viewModel = viewModel()
+            viewModel = viewModel
         )
     }
 

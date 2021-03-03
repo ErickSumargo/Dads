@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.bael.dads.feature.home.databinding.ScreenHomeBinding
 import com.bael.dads.feature.home.databinding.ScreenHomeBinding.inflate
-import com.bael.dads.lib.data.ext.invoke
 import com.bael.dads.lib.presentation.ext.hideSoftKeyboard
 import com.bael.dads.lib.presentation.ext.showSoftKeyboard
 import com.bael.dads.lib.presentation.fragment.BaseFragment
@@ -76,7 +75,7 @@ internal class UI :
                     awaitClose { input.removeTextChangedListener(onTextChangedListener) }
                 }
                     .debounce(timeoutMillis = 500L)
-                    .onEach(viewModel()::submitQuery)
+                    .onEach(viewModel::submitQuery)
                     .launchIn(scope = viewLifecycleOwner.lifecycleScope)
             }
 
