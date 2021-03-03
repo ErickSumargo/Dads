@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
 import com.bael.dads.lib.presentation.renderer.RendererInitializer
 import com.bael.dads.lib.presentation.viewmodel.BaseViewModel
+import com.bael.dads.lib.threading.Thread
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.snackbar.Snackbar.LENGTH_SHORT
 import javax.inject.Inject
@@ -27,6 +28,9 @@ abstract class BaseFragment<VB : ViewBinding, R, VM : BaseViewModel<*>> : Fragme
 
     @Inject
     internal lateinit var _viewModel: @JvmSuppressWildcards Lazy<VM>
+
+    @Inject
+    protected lateinit var thread: Thread
 
     private var _viewBinding: VB? = null
 

@@ -13,8 +13,6 @@ import com.bael.dads.lib.domain.repository.DadsRepository
 import com.bael.dads.lib.presentation.ext.reduce
 import com.bael.dads.lib.presentation.viewmodel.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers.Default
-import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.filter
@@ -48,29 +46,29 @@ internal class ViewModel @Inject constructor(
         } else {
             repository.loadFavoredDadJoke(term, cursor, limit)
         }
-            .flowOn(context = IO)
+            .flowOn(context = thread.io)
             .onEach { response ->
                 intentResponse(cursor, response)
             }
-            .flowOn(context = Default)
+            .flowOn(context = thread.default)
             .launchIn(scope = viewModelScope)
     }
 
     suspend fun observeDadJoke(dadJoke: DadJoke) {
         repository.observeDadJoke(dadJoke)
-            .flowOn(context = IO)
+            .flowOn(context = thread.io)
             .filter { response ->
                 response is Success
             }.map { response ->
                 (response as Success).data
             }.onEach(::intentUpdatedDadJoke)
-            .flowOn(context = Default)
+            .flowOn(context = thread.default)
             .collect()
     }
 
     fun favorDadJoke(dadJoke: DadJoke, favored: Boolean) {
         repository.favorDadJoke(dadJoke, favored)
-            .flowOn(context = IO)
+            .flowOn(context = thread.io)
             .launchIn(scope = viewModelScope)
     }
 

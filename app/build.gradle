@@ -76,6 +76,7 @@ def modules = [
     "lib_domain",
     "lib_preference",
     "lib_presentation",
+    "lib_threading",
     "lib_worker"
 ]
 

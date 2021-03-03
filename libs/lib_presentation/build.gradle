@@ -33,7 +33,8 @@ deps.forEach { dep ->
 }
 
 def modules = [
-    "lib_data"
+    "lib_data",
+    "lib_threading"
 ]
 
 dependencies {

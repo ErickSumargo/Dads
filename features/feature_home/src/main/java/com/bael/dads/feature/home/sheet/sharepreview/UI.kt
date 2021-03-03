@@ -23,8 +23,6 @@ import com.bael.dads.lib.domain.model.DadJoke
 import com.bael.dads.lib.presentation.ext.toRichText
 import com.bael.dads.lib.presentation.sheet.BaseSheet
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers.IO
-import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.File
@@ -73,7 +71,7 @@ internal class UI :
     }
 
     private fun shareDadJoke(view: View, dadJoke: DadJoke) {
-        lifecycleScope.launch(context = IO) {
+        lifecycleScope.launch(context = thread.io) {
             val uri = uriFromViewData(view, dadJoke)
             val data = Intent().apply {
                 data = uri
@@ -84,7 +82,7 @@ internal class UI :
                 putExtra(EXTRA_STREAM, uri)
             }
 
-            withContext(context = Main) {
+            withContext(context = thread.main) {
                 val intent = createChooser(data, null)
                 startActivityForResult(intent, SHARE_INTENT_REQUEST_CODE)
             }
