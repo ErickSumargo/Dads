@@ -17,6 +17,7 @@ import androidx.viewbinding.ViewBinding
 import com.bael.dads.lib.presentation.ext.screenHeight
 import com.bael.dads.lib.presentation.renderer.RendererInitializer
 import com.bael.dads.lib.presentation.viewmodel.BaseViewModel
+import com.bael.dads.lib.threading.Thread
 import com.google.android.material.bottomsheet.BottomSheetBehavior.from
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -34,6 +35,9 @@ abstract class BaseSheet<VB : ViewBinding, R, VM : BaseViewModel<*>> : BottomShe
 
     @Inject
     internal lateinit var _viewModel: @JvmSuppressWildcards Lazy<VM>
+
+    @Inject
+    protected lateinit var thread: Thread
 
     protected abstract val fullHeight: Boolean
 

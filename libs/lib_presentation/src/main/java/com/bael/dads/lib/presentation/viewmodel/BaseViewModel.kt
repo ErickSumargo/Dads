@@ -4,8 +4,10 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.bael.dads.lib.presentation.state.StateStore
 import com.bael.dads.lib.presentation.state.Store
+import com.bael.dads.lib.threading.Thread
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.onEach
+import javax.inject.Inject
 
 /**
  * Created by ErickSumargo on 01/01/21.
@@ -15,6 +17,9 @@ abstract class BaseViewModel<S>(
     initState: S,
     protected val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
+    @Inject
+    protected lateinit var thread: Thread
+
     private val key: String
         get() = javaClass.name
 
