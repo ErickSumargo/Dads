@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import com.bael.dads.feature.home.databinding.SheetDetailBinding
 import com.bael.dads.feature.home.databinding.SheetDetailBinding.inflate
-import com.bael.dads.lib.data.ext.invoke
 import com.bael.dads.lib.domain.model.DadJoke
 import com.bael.dads.lib.presentation.ext.toRichText
 import com.bael.dads.lib.presentation.sheet.BaseSheet
@@ -33,7 +32,7 @@ internal class UI :
     }
 
     override suspend fun onViewLoaded() {
-        viewModel().receiveDadJoke()
+        viewModel.receiveDadJoke()
     }
 
     override fun renderDetail(dadJoke: DadJoke?) {
@@ -58,13 +57,13 @@ internal class UI :
 
             menuLayout.dislikeIcon.also { icon ->
                 icon.setOnClickListener {
-                    viewModel().favorDadJoke(favored = true)
+                    viewModel.favorDadJoke(favored = true)
                 }
             }
 
             menuLayout.likeIcon.also { icon ->
                 icon.setOnClickListener {
-                    viewModel().favorDadJoke(favored = false)
+                    viewModel.favorDadJoke(favored = false)
                 }
             }
 
@@ -85,7 +84,7 @@ internal class UI :
     }
 
     override fun onDismiss(dialog: DialogInterface) {
-        onDismissListener?.invoke(viewModel().dadJoke)
+        onDismissListener?.invoke(viewModel.dadJoke)
         super.onDismiss(dialog)
     }
 }

@@ -11,7 +11,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
-import com.bael.dads.lib.data.ext.invoke
 import com.bael.dads.lib.presentation.renderer.RendererInitializer
 import com.bael.dads.lib.presentation.viewmodel.BaseViewModel
 import com.google.android.material.snackbar.Snackbar
@@ -27,12 +26,15 @@ abstract class BaseFragment<VB : ViewBinding, R, VM : BaseViewModel<*>> : Fragme
     internal lateinit var rendererInitializer: RendererInitializer<R, VM>
 
     @Inject
-    protected lateinit var viewModel: @JvmSuppressWildcards Lazy<VM>
+    internal lateinit var _viewModel: @JvmSuppressWildcards Lazy<VM>
 
     private var _viewBinding: VB? = null
 
     protected val viewBinding: VB
         get() = _viewBinding!!
+
+    protected val viewModel: VM
+        get() = _viewModel.value
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -48,7 +50,7 @@ abstract class BaseFragment<VB : ViewBinding, R, VM : BaseViewModel<*>> : Fragme
     private fun initRenderer() {
         rendererInitializer.init(
             renderer = this as R,
-            viewModel = viewModel()
+            viewModel = viewModel
         )
     }
 
