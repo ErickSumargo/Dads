@@ -5,15 +5,13 @@ import androidx.annotation.VisibleForTesting.NONE
 import com.bael.dads.lib.api.response.DadJokesResponse
 import com.bael.dads.lib.api.service.DadsService
 import javax.inject.Inject
-import javax.inject.Singleton
 
 /**
  * Created by ErickSumargo on 01/01/21.
  */
 
-@Singleton
 @VisibleForTesting(otherwise = NONE)
-class DadsFakeService @Inject constructor() :
+internal class DadsFakeService @Inject constructor() :
     BaseFakeService<DadJokesResponse>(),
     DadsService {
     override val defaultResponse: DadJokesResponse
