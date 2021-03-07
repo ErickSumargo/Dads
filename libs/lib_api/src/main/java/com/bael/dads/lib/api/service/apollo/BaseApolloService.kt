@@ -14,7 +14,7 @@ import javax.inject.Inject
  * Created by ErickSumargo on 01/01/21.
  */
 
-internal abstract class BaseApolloService(private val client: ApolloClient) {
+abstract class BaseApolloService(private val client: ApolloClient) {
     /**
      * Apollo being retarded by casting
      * custom exception thrown from interceptor(s) into it's.
