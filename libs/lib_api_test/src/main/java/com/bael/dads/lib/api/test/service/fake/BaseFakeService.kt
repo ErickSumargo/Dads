@@ -1,5 +1,6 @@
 package com.bael.dads.lib.api.test.service.fake
 
+import com.bael.dads.lib.api.test.service.DadsTestableService
 import com.bael.dads.lib.data.response.Response
 import com.bael.dads.lib.data.response.Response.Error
 import com.bael.dads.lib.data.response.Response.Success
@@ -10,7 +11,7 @@ import kotlin.Result.Companion.success
  * Created by ErickSumargo on 01/01/21.
  */
 
-abstract class BaseFakeService<T> {
+abstract class BaseFakeService<T> : DadsTestableService<T> {
     private var response: Response<T>? = null
 
     internal abstract val defaultResponse: T
@@ -24,11 +25,11 @@ abstract class BaseFakeService<T> {
             }
         }
 
-    fun submitResponse(response: Response<T>) {
+    override fun submitResponse(response: Response<T>) {
         this.response = response
     }
 
-    fun clear() {
+    override fun clear() {
         response = null
     }
 }

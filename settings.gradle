@@ -9,6 +9,7 @@ def modules = [
     "lib_api_test",
     "lib_data",
     "lib_database",
+    "lib_database_test",
     "lib_domain",
     "lib_instrumentation",
     "lib_preference",
