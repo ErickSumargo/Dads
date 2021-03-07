@@ -6,6 +6,7 @@ def modules = [
     "processor",
     "feature_home",
     "lib_api",
+    "lib_api_test",
     "lib_data",
     "lib_database",
     "lib_domain",

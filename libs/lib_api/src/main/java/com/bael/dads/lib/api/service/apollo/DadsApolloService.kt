@@ -13,7 +13,7 @@ import com.bael.dads.lib.api.query.DadJokesQuery.Data as DadJokesQueryData
  * Created by ErickSumargo on 01/01/21.
  */
 
-internal class DadsApolloService @Inject constructor(
+class DadsApolloService @Inject constructor(
     apollo: ApolloClient,
     private val mapper: ResultMapper<DadJokesQueryData, DadJokesResponse>
 ) : BaseApolloService(apollo),
