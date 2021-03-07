@@ -28,7 +28,7 @@ internal class DefaultNetwork @Inject constructor(@ApplicationContext context: C
         return networkInfo(networkType) == CONNECTED
     }
 
-    private fun networkInfo(type: Int): NetworkInfo.State {
-        return connectivityManager.getNetworkInfo(type).state
+    private fun networkInfo(type: Int): NetworkInfo.State? {
+        return connectivityManager.getNetworkInfo(type)?.state
     }
 }

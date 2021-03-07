@@ -15,7 +15,7 @@ android {
     compileSdkVersion sdk.compile
 
     defaultConfig {
-        applicationId "com.bael.dads"
+        applicationId rootProject.applicationId
         minSdkVersion sdk.min
         targetSdkVersion sdk.target
         versionCode sdk.code
@@ -50,6 +50,11 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    packagingOptions {
+        exclude "META-INF/AL2.0"
+        exclude "META-INF/LGPL2.1"
     }
 }
 

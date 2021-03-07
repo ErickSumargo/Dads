@@ -1,4 +1,0 @@
-dependencies {
-    testImplementation "org.junit.jupiter:junit-jupiter-api:$deps.jupiter"
-    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$deps.jupiter"
-}

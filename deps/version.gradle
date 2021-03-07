@@ -2,10 +2,10 @@ ext {
     sdk = [
         build               : "29.0.3",
         code                : 1,
-        compile             : 29,
+        compile             : 30,
         gradle              : "4.0.0",
         min                 : "23",
-        target              : 29,
+        target              : 30,
         version             : "1.0"
     ]
 
@@ -21,6 +21,7 @@ ext {
         room                : "2.2.5",
         startup             : "1.0.0",
         swiperefreshlayout  : "1.2.0-alpha01",
+        test                : "1.1.0",
         viewpager2          : "1.1.0-alpha01",
         work                : "2.5.0",
 
@@ -29,6 +30,9 @@ ext {
 
         // apollo
         graphql             : "2.4.5",
+
+        // cashapp
+        turbine             : "0.4.0",
 
         // firebase
         bom                 : "26.5.0",
@@ -44,9 +48,6 @@ ext {
         // javax
         inject              : "1",
 
-        // junit
-        jupiter             : "5.7.1",
-
         // kotlin
         coroutines          : "1.4.2",
         kotlin              : "1.4.0",
@@ -54,9 +55,6 @@ ext {
         // square
         javapoet            : "1.13.0",
         leakcanary          : "2.5",
-        okhttp              : "4.9.0",
-
-        // other
-        android_junit5      : "1.7.1.1"
+        okhttp              : "4.9.0"
     ]
 }
