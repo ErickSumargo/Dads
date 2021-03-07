@@ -32,4 +32,8 @@ android {
 
         jvmTarget = JavaVersion.VERSION_1_8
     }
+
+    lintOptions {
+        error("VisibleForTests")
+    }
 }

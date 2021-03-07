@@ -15,10 +15,13 @@ buildscript {
         classpath "com.google.dagger:hilt-android-gradle-plugin:$deps.dagger"
         classpath "com.google.firebase:firebase-crashlytics-gradle:$deps.crashlytics"
         classpath "com.apollographql.apollo:apollo-gradle-plugin:$deps.graphql"
-        classpath "de.mannodermaus.gradle.plugins:android-junit5:$deps.android_junit5"
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
+    }
+
+    ext {
+        applicationId = "com.bael.dads"
     }
 }
 
