@@ -5,6 +5,10 @@ import dagger.hilt.EntryPoint
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 
+/**
+ * Created by ErickSumargo on 01/01/21.
+ */
+
 @EntryPoint
 @InstallIn(SingletonComponent::class)
 internal interface EntryPoint {

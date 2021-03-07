@@ -2,7 +2,6 @@ package com.bael.dads.lib.worker.di.module
 
 import android.content.Context
 import androidx.work.WorkManager
-import androidx.work.WorkManager.getInstance
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,9 +19,7 @@ internal object WorkerModule {
 
     @Provides
     @Singleton
-    fun provideWorkManager(
-        @ApplicationContext context: Context
-    ): WorkManager {
-        return getInstance(context)
+    fun provideWorkManager(@ApplicationContext context: Context): WorkManager {
+        return WorkManager.getInstance(context)
     }
 }
