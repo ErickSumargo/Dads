@@ -6,7 +6,6 @@ import dagger.hilt.android.testing.HiltAndroidRule
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.test.TestCoroutineDispatcher
-import kotlinx.coroutines.test.runBlockingTest
 import kotlinx.coroutines.test.setMain
 import org.junit.After
 import org.junit.Before
@@ -48,12 +47,6 @@ abstract class BaseViewModelTest {
     }
 
     abstract fun setupBeforeEachTest()
-
-    protected inline fun testSuspend(crossinline block: suspend () -> Unit) {
-        testDispatcher.runBlockingTest {
-            block()
-        }
-    }
 
     @After
     internal fun afterEachTest() {

@@ -1,27 +1,8 @@
 apply from: "$rootDir/features/feature.gradle"
 
-def plugins = [
-    "kotlin-kapt",
-    "dagger.hilt.android.plugin"
-]
-
-plugins.forEach { plugin ->
-    apply plugin: plugin
-}
-
-kapt {
-    correctErrorTypes = true
-}
-
 def deps = [
-    "annotation",
     "constraintlayout",
-    "dagger",
-    "fragment",
-    "hilt",
     "lottie",
-    "navigation",
-    "processor",
     "swiperefreshlayout",
     "viewpager2",
     "work"
@@ -35,13 +16,23 @@ def modules = [
     "lib_data",
     "lib_domain",
     "lib_preference",
-    "lib_presentation",
-    "lib_threading",
     "lib_worker"
+]
+
+def testModules = [
+    "lib_api",
+    "lib_api_test",
+    "lib_database",
+    "lib_database_test"
 ]
 
 dependencies {
     modules.forEach { module ->
         implementation project(":$module")
+    }
+
+    testModules.forEach { module ->
+        testImplementation project(":$module")
+        androidTestImplementation project(":$module")
     }
 }

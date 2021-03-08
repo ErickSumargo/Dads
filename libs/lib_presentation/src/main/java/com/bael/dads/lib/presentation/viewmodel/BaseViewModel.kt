@@ -1,5 +1,8 @@
 package com.bael.dads.lib.presentation.viewmodel
 
+import androidx.annotation.VisibleForTesting
+import androidx.annotation.VisibleForTesting.NONE
+import androidx.annotation.VisibleForTesting.PROTECTED
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.bael.dads.lib.presentation.state.StateStore
@@ -18,7 +21,9 @@ abstract class BaseViewModel<S>(
     protected val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
     @Inject
-    protected lateinit var thread: Thread
+    lateinit var thread: Thread
+        @VisibleForTesting(otherwise = PROTECTED)
+        get
 
     private val key: String
         get() = javaClass.name
@@ -29,6 +34,10 @@ abstract class BaseViewModel<S>(
 
     internal val stateFlow: Flow<S>
         get() = store.stateFlow.onEach(::saveState)
+
+    val stateTestableFlow: Flow<S>
+        @VisibleForTesting(otherwise = NONE)
+        get() = stateFlow
 
     protected val state: S
         get() = store.stateFlow.value

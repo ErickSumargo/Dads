@@ -3,7 +3,7 @@ ext {
         build               : "29.0.3",
         code                : 1,
         compile             : 30,
-        gradle              : "4.0.0",
+        gradle              : "4.1.1",
         min                 : "23",
         target              : 30,
         version             : "1.0"
