@@ -10,11 +10,17 @@ plugins.forEach { plugin ->
 android {
     compileSdkVersion sdk.compile
 
+    buildTypes {
+        debug {
+            testCoverageEnabled true
+        }
+    }
+
     defaultConfig {
         minSdkVersion sdk.min
         targetSdkVersion sdk.target
 
-        consumerProguardFiles 'proguard-rules.pro'
+        consumerProguardFiles "proguard-rules.pro"
     }
 
     compileOptions {
