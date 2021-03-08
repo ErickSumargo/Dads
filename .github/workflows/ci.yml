@@ -1,0 +1,37 @@
+name: CI
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Initialize Firebase service
+        run: openssl enc -aes-256-cbc -md sha256 -d -in app/google-services.enc -out app/google-services.json -k "$FIREBASE_SECRET"
+        env:
+          FIREBASE_SECRET: ${{ secrets.FIREBASE_SECRET }}
+      - name: Build application
+        run: ./gradlew assembleDebug
+  test:
+    runs-on: macos-latest
+    needs: build
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Initialize Firebase service
+        run: openssl enc -aes-256-cbc -md sha256 -d -in app/google-services.enc -out app/google-services.json -k "$FIREBASE_SECRET"
+        env:
+          FIREBASE_SECRET: ${{ secrets.FIREBASE_SECRET }}
+      - name: Test application & generate code coverage report
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          script: ./gradlew jacocoTestReport
+      - name: Upload code coverage report
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
