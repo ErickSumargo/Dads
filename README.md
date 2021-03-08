@@ -94,14 +94,14 @@ Jokes are requested from proprietary GraphQL service, the [Dads-Engine](https://
         ```
         ./gradlew downloadApolloSchema --endpoint="https://dads-engine.herokuapp.com" --schema="libs/lib_api/src/main/graphql/com/bael/dads/lib/api/schema.json"
         ```
-* Replace `$JWT` placeholder in `AuthInterceptor.kt` with the shared key (see **Contributing** section 👇).
+* Set `DADS_JWT` key in `gradle.properties` file (either in your user home directory or in the project's root folder) with the shared key (see **Contributing** section 👇).
 * Have fun!
 
 ## Contributing
 [Let's get in touch](https://twitter.com/SumargoErick) if you're interested in contributing. Fork it, submit your PR.<br/>
-Also feel free to open new issue, feature request, or any kind of related [support ⭐](https://github.com/ErickSumargo/Dads/stargazers)️.
+Also feel free to open new issue, request features, or any kind of your support (join [**stargazers** ⭐](https://github.com/ErickSumargo/Dads/stargazers)️ | treat me [**pizza**](https://www.buymeacoffee.com/ErickSumargo) 😁).
 
-Those who wonder what's next, check out my planned Roadmap by [GitHub project board](https://github.com/ErickSumargo/Dads/projects/1). 
+Those wonder what's next, check out my planned Roadmap by [**GitHub project board**](https://github.com/ErickSumargo/Dads/projects/1). 
 
 ## Licenses
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FErickSumargo%2FDads.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FErickSumargo%2FDads?ref=badge_large)
