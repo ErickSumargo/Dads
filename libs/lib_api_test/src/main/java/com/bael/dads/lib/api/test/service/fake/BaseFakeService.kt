@@ -12,7 +12,7 @@ import kotlin.Result.Companion.success
  */
 
 internal abstract class BaseFakeService<T> : TestableService<T> {
-    protected var response: Response<T>? = null
+    internal var response: Response<T>? = null
 
     internal abstract val defaultResponse: T
 
