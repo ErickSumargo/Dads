@@ -99,7 +99,7 @@ Jokes are requested from proprietary GraphQL service, the [Dads-Engine](https://
 
 ## Contributing
 [Let's get in touch](https://twitter.com/SumargoErick) if you're interested in contributing. Fork it, submit your PR.<br/>
-Also feel free to open new issue, request features, or any kind of your support (join [**stargazers** ⭐](https://github.com/ErickSumargo/Dads/stargazers)️ | treat me [**pizza**](https://www.buymeacoffee.com/ErickSumargo) 😁).
+Also feel free to open new issue, request features, or any kind of your support (join [**stargazers** ⭐](https://github.com/ErickSumargo/Dads/stargazers)️ | treat me [**coffee**](https://www.buymeacoffee.com/ErickSumargo) 😁).
 
 Those wonder what's next, check out my planned Roadmap by [**GitHub project board**](https://github.com/ErickSumargo/Dads/projects/1). 
 
