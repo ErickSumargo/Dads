@@ -23,7 +23,9 @@ object DatabaseModule {
     @Provides
     @Singleton
     @DatabaseNameQualifier
-    fun provideDatabaseName(): String = "dads"
+    fun provideDatabaseName(): String {
+        return "dads.db"
+    }
 
     @Provides
     @Singleton
@@ -31,6 +33,7 @@ object DatabaseModule {
         @ApplicationContext context: Context,
         @DatabaseNameQualifier databaseName: String
     ): DadsDatabase {
-        return databaseBuilder(context, DadsRoomDatabase::class.java, databaseName).build()
+        return databaseBuilder(context, DadsRoomDatabase::class.java, databaseName)
+            .build()
     }
 }
