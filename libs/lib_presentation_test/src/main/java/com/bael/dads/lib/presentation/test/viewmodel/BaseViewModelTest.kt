@@ -6,6 +6,7 @@ import dagger.hilt.android.testing.HiltAndroidRule
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.test.TestCoroutineDispatcher
+import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
 import org.junit.After
 import org.junit.Before
@@ -50,6 +51,9 @@ abstract class BaseViewModelTest {
 
     @After
     internal fun afterEachTest() {
+        Dispatchers.resetMain()
+        testDispatcher.cleanupTestCoroutines()
+
         clearAfterEachTest()
     }
 
