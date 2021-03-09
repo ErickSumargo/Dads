@@ -73,10 +73,11 @@ Moreover, view components are rendered based on their related changed states onl
 [<img src="assets/architecture.png">]()
 
 ## Design Principles
-- [Elegant Objects (EO)](https://www.elegantobjects.org/),
-- [S.O.L.I.D](https://en.wikipedia.org/wiki/SOLID),
-- [The Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html),
+- [Elegant Objects (EO)](https://www.elegantobjects.org/).
+- [S.O.L.I.D](https://en.wikipedia.org/wiki/SOLID).
+- [The Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html).
 - Behavior-driven testing by focusing `ViewModel` as the sole-primary SUT (very recommended [read](https://dagger.dev/hilt/testing-philosophy.html) and [talk](https://www.youtube.com/watch?v=EZ05e7EMOLM)).
+- No Mocking framework.
 <br/>
 
 [<img align="left" width="100" height="100" src="assets/graphql.png">]()
