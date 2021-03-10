@@ -60,28 +60,10 @@ jobs:
         with:
           path: libs/lib_api/src/main/graphql/com/bael/dads/lib/api
           key: ${{ github.sha }}
-      - name: Cache JaCoCo report
-        uses: actions/cache@v2
-        with:
-          path: build/coverage-report
-          key: ${{ github.sha }}
       - name: Test application
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 29
           script: ./gradlew jacocoTestReport --stacktrace
-  report:
-    runs-on: macos-latest
-    needs: test
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-      - name: Cache JaCoCo report
-        uses: actions/cache@v2
-        with:
-          path: build/coverage-report
-          key: ${{ github.sha }}
       - name: Upload JaCoCo report
         uses: codecov/codecov-action@v1
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
