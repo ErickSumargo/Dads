@@ -6,15 +6,17 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO
 import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES
 import androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode
+import androidx.lifecycle.lifecycleScope
 import com.bael.dads.feature.home.R
 import com.bael.dads.feature.home.databinding.ItemGroupSettingsBinding
 import com.bael.dads.feature.home.databinding.ItemSettingBinding
 import com.bael.dads.feature.home.databinding.SheetSettingsBinding
 import com.bael.dads.feature.home.databinding.SheetSettingsBinding.inflate
-import com.bael.dads.feature.home.preference.Preference
+import com.bael.dads.lib.preference.Preference
 import com.bael.dads.lib.presentation.ext.readText
 import com.bael.dads.lib.presentation.sheet.BaseSheet
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
@@ -41,7 +43,7 @@ internal class UI :
         setupView()
     }
 
-    private fun setupView() {
+    private suspend fun setupView() {
         viewBinding.settingsContainer.also { container ->
             container.removeAllViews()
 
@@ -50,7 +52,7 @@ internal class UI :
         }
     }
 
-    private fun createNotificationGroup(): ViewGroup {
+    private suspend fun createNotificationGroup(): ViewGroup {
         return ItemGroupSettingsBinding
             .inflate(layoutInflater).also { viewBinding ->
                 viewBinding.groupText.also { view ->
@@ -63,7 +65,7 @@ internal class UI :
             }.root
     }
 
-    private fun createThemeGroup(): ViewGroup {
+    private suspend fun createThemeGroup(): ViewGroup {
         return ItemGroupSettingsBinding.inflate(layoutInflater).also { viewBinding ->
             viewBinding.groupText.also { view ->
                 view.text = readText(resId = R.string.theme)
@@ -75,36 +77,60 @@ internal class UI :
         }.root
     }
 
-    private fun createNewFeedReminderSetting(): View {
+    private suspend fun createNewFeedReminderSetting(): View {
         return ItemSettingBinding.inflate(layoutInflater).also { viewBinding ->
             viewBinding.descriptionText.also { view ->
                 view.text = readText(resId = R.string.new_feed_reminder)
             }
 
             viewBinding.toggleSwitch.also { switch ->
-                switch.isChecked = preference.isNewFeedReminderEnabled
+                switch.isChecked = preference.read(
+                    key = NEW_FEED_REMINDER_PREFERENCE,
+                    defaultValue = true
+                )
 
                 switch.setOnCheckedChangeListener { _, isChecked ->
-                    preference.isNewFeedReminderEnabled = isChecked
+                    onCheckedChangeNewFeedReminder(isChecked)
                 }
             }
         }.root
     }
 
-    private fun createNightModeSetting(): View {
+    private fun onCheckedChangeNewFeedReminder(isChecked: Boolean) {
+        lifecycleScope.launch {
+            preference.write(key = NEW_FEED_REMINDER_PREFERENCE, isChecked)
+        }
+    }
+
+    private suspend fun createNightModeSetting(): View {
         return ItemSettingBinding.inflate(layoutInflater).also { viewBinding ->
             viewBinding.descriptionText.also { view ->
                 view.text = readText(resId = R.string.night_mode)
             }
 
             viewBinding.toggleSwitch.also { switch ->
-                switch.isChecked = preference.isNightTheme
+                switch.isChecked = preference.read(
+                    key = NIGHT_THEME_PREFERENCE,
+                    defaultValue = false
+                )
 
                 switch.setOnCheckedChangeListener { _, isChecked ->
-                    preference.isNightTheme = isChecked
-                    setDefaultNightMode(MODE_NIGHT_YES.takeIf { isChecked } ?: MODE_NIGHT_NO)
+                    onCheckedChangeNightMode(isChecked)
                 }
             }
         }.root
+    }
+
+    private fun onCheckedChangeNightMode(isChecked: Boolean) {
+        lifecycleScope.launch {
+            preference.write(key = NIGHT_THEME_PREFERENCE, isChecked)
+            setDefaultNightMode(MODE_NIGHT_YES.takeIf { isChecked } ?: MODE_NIGHT_NO)
+        }
+    }
+
+    private companion object {
+        const val NEW_FEED_REMINDER_PREFERENCE: String = "new_feed_reminder"
+
+        const val NIGHT_THEME_PREFERENCE: String = "night_theme"
     }
 }

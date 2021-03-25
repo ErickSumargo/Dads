@@ -5,10 +5,10 @@ import androidx.hilt.work.HiltWorker
 import androidx.work.ListenableWorker.Result.retry
 import androidx.work.WorkerParameters
 import com.bael.dads.feature.home.notification.NewFeedReminderNotification
-import com.bael.dads.feature.home.preference.Preference
 import com.bael.dads.lib.data.response.Response.Success
 import com.bael.dads.lib.domain.model.DadJoke
 import com.bael.dads.lib.domain.repository.DadsRepository
+import com.bael.dads.lib.preference.Preference
 import com.bael.dads.lib.presentation.notification.NotificationPublisher
 import com.bael.dads.lib.worker.BaseWorker
 import dagger.assisted.Assisted
@@ -54,8 +54,12 @@ internal class FetchDadJokeFeedWorker @AssistedInject constructor(
         return retry()
     }
 
-    private fun pushNotification(context: Context, dadJokes: List<DadJoke>) {
-        if (!preference.isNewFeedReminderEnabled) return
+    private suspend fun pushNotification(context: Context, dadJokes: List<DadJoke>) {
+        val isNewFeedReminderEnabled = preference.read(
+            key = NEW_FEED_REMINDER_PREFERENCE,
+            defaultValue = true
+        )
+        if (!isNewFeedReminderEnabled) return
 
         val notification = NewFeedReminderNotification(context, dadJokes)
         notificationPublisher.publish(notification)
@@ -63,6 +67,9 @@ internal class FetchDadJokeFeedWorker @AssistedInject constructor(
 
     internal companion object {
         const val TAG: String = "FetchDadJokeFeedWorker"
+
         const val INPUT_CURSOR_ID: String = "cursor_id"
+
+        const val NEW_FEED_REMINDER_PREFERENCE: String = "new_feed_reminder"
     }
 }
