@@ -10,9 +10,20 @@ plugins.forEach { plugin ->
 }
 
 def deps = [
-    "dagger"
+    "dagger",
+    "datastore"
 ]
 
 deps.forEach { dep ->
     apply from: "$rootDir/deps/${dep}.gradle"
+}
+
+def modules = [
+    "lib_threading"
+]
+
+dependencies {
+    modules.forEach { module ->
+        implementation project(":$module")
+    }
 }

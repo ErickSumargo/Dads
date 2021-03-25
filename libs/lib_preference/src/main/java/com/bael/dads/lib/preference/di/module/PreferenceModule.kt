@@ -1,7 +1,7 @@
 package com.bael.dads.lib.preference.di.module
 
-import com.bael.dads.lib.preference.PreferenceStore
-import com.bael.dads.lib.preference.Store
+import com.bael.dads.lib.preference.DataStorePreference
+import com.bael.dads.lib.preference.Preference
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -18,5 +18,5 @@ internal interface PreferenceModule {
 
     @Binds
     @Singleton
-    fun bindPreferenceStore(preference: PreferenceStore): Store
+    fun bindPreferenceStore(preference: DataStorePreference): Preference
 }
