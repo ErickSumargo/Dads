@@ -33,7 +33,7 @@ android {
         targetSdkVersion sdk.target
 
         consumerProguardFiles "proguard-rules.pro"
-        testInstrumentationRunner "${rootProject.applicationId}.lib.instrumentation.runner.HiltTestRunner"
+        testInstrumentationRunner "${rootProject.applicationId}.lib.presentation.test.runner.HiltTestRunner"
     }
 
     buildFeatures {
@@ -90,7 +90,6 @@ def modules = [
 ]
 
 def testModules = [
-    "lib_instrumentation",
     "lib_presentation_test"
 ]
 
