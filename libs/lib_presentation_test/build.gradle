@@ -12,7 +12,8 @@ plugins.forEach { plugin ->
 def deps = [
     "coroutines",
     "dagger",
-    "fragment"
+    "fragment",
+    "test"
 ]
 
 deps.forEach { dep ->
