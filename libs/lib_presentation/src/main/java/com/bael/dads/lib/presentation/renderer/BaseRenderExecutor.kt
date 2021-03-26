@@ -2,9 +2,11 @@
 
 package com.bael.dads.lib.presentation.renderer
 
+import androidx.lifecycle.Lifecycle.State.RESUMED
+import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.bael.dads.lib.presentation.viewmodel.BaseViewModel
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.scan
 
 /**
@@ -17,9 +19,10 @@ abstract class BaseRenderExecutor<S>(
 ) : BaseRenderer by renderer {
 
     fun observeState() {
-        lifecycleScope.launchWhenResumed {
-            viewModel.stateFlow.scan(null as S, ::dispatch).collect()
-        }
+        viewModel.stateFlow
+            .flowWithLifecycle(lifecycle, minActiveState = RESUMED)
+            .scan(null as S, ::dispatch)
+            .launchIn(scope = lifecycleScope)
     }
 
     private fun dispatch(oldState: S?, newState: S): S {
