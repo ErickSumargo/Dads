@@ -16,7 +16,7 @@ ext {
         datastore           : "1.0.0-alpha08",
         fragment            : "1.2.5",
         hilt                : "1.0.0-alpha03",
-        lifecycle           : "2.2.0",
+        lifecycle           : "2.4.0-alpha01",
         navigation          : "2.3.0",
         recyclerview        : "1.2.0-beta01",
         room                : "2.2.5",
