@@ -19,7 +19,7 @@ jobs:
       - name: Cache Firebase setup
         uses: actions/cache@v2
         with:
-          path: app
+          path: app/google-services.json
           key: ${{ hashFiles('app/google-services.enc') }}
       - name: Cache GraphQL setup
         uses: actions/cache@v2
@@ -35,7 +35,7 @@ jobs:
       - name: Cache Firebase setup
         uses: actions/cache@v2
         with:
-          path: app
+          path: app/google-services.json
           key: ${{ hashFiles('app/google-services.enc') }}
       - name: Cache GraphQL setup
         uses: actions/cache@v2
@@ -53,7 +53,7 @@ jobs:
       - name: Cache Firebase setup
         uses: actions/cache@v2
         with:
-          path: app
+          path: app/google-services.json
           key: ${{ hashFiles('app/google-services.enc') }}
       - name: Cache GraphQL setup
         uses: actions/cache@v2
