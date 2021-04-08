@@ -1,4 +1,4 @@
-package com.bael.dads.lib.presentation.test.runner
+package com.bael.dads.lib.instrumentation.runner
 
 import android.app.Application
 import android.content.Context

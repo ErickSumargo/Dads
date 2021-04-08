@@ -13,6 +13,9 @@ dependencies {
     // dagger
     implementation "com.google.dagger:hilt-android-testing:$deps.dagger"
 
+    // espresso
+    implementation "androidx.test.espresso:espresso-core:$deps.espresso"
+
     // fragment
     implementation "androidx.fragment:fragment-ktx:$deps.fragment"
     implementation "androidx.fragment:fragment-testing:$deps.fragment"
@@ -22,6 +25,9 @@ dependencies {
 
     // material
     implementation "com.google.android.material:material:$deps.material"
+
+    // navigation
+    implementation "androidx.navigation:navigation-testing:$deps.navigation"
 }
 
 dependencies {

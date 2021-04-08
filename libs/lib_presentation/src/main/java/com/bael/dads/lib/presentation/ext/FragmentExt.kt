@@ -13,9 +13,9 @@ val Fragment.screenHeight: Int
     get() = activity?.resources?.displayMetrics?.heightPixels ?: 0
 
 fun Fragment.readDrawable(@DrawableRes resId: Int): Drawable {
-    return requireContext().drawable(resId)
+    return requireContext().readDrawable(resId)
 }
 
 fun Fragment.readText(@StringRes resId: Int): String {
-    return requireContext().getString(resId)
+    return requireContext().readText(resId)
 }

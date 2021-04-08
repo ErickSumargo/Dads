@@ -1,4 +1,4 @@
-package com.bael.dads.lib.presentation.test.activity
+package com.bael.dads.lib.instrumentation.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import dagger.hilt.android.AndroidEntryPoint

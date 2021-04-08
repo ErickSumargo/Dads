@@ -33,7 +33,7 @@ android {
         targetSdkVersion sdk.target
 
         consumerProguardFiles "proguard-rules.pro"
-        testInstrumentationRunner "${rootProject.applicationId}.lib.presentation.test.runner.HiltTestRunner"
+        testInstrumentationRunner "${rootProject.applicationId}.lib.instrumentation.runner.HiltTestRunner"
     }
 
     buildFeatures {
@@ -75,6 +75,7 @@ dependencies {
 
     // dagger
     implementation "com.google.dagger:hilt-android:$deps.dagger"
+    androidTestImplementation "com.google.dagger:hilt-android-testing:$deps.dagger"
 
     kapt "com.google.dagger:hilt-android-compiler:$deps.dagger"
     kaptAndroidTest "com.google.dagger:hilt-android-compiler:$deps.dagger"
@@ -104,5 +105,6 @@ dependencies {
     implementation project(":lib_presentation")
     implementation project(":lib_threading")
 
-    androidTestImplementation project(":lib_presentation_test")
+    androidTestImplementation project(":lib_instrumentation")
+    androidTestImplementation project(":lib_threading_test")
 }
