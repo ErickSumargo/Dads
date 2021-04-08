@@ -13,10 +13,10 @@ def domains = [
 def libs = [
     "lib_database",
     "lib_database_test",
+    "lib_instrumentation",
     "lib_preference",
     "lib_preference_test",
     "lib_presentation",
-    "lib_presentation_test",
     "lib_remote",
     "lib_remote_test",
     "lib_threading",

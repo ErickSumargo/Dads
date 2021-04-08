@@ -12,10 +12,7 @@ internal class FakeDadsService @Inject constructor() :
     FakeBaseService<DadJokesResponse>(),
     DadsService {
 
-    override suspend fun fetchDadJokes(
-        cursor: String?,
-        limit: Int
-    ): Result<DadJokesResponse> {
+    override suspend fun fetchDadJokes(cursor: String?, limit: Int): Result<DadJokesResponse> {
         return result
     }
 }

@@ -8,5 +8,5 @@ import com.bael.dads.domain.common.response.Response
 
 interface RemoteService<T> {
 
-    fun submitResponse(response: Response<T>)
+    fun submitResponses(vararg responses: Response<T>)
 }

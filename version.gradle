@@ -1,6 +1,5 @@
 ext {
     sdk = [
-        build               : "29.0.3",
         code                : 2,
         compile             : 30,
         gradle              : "4.1.1",
@@ -15,6 +14,7 @@ ext {
         arch                : "2.1.0",
         constraintlayout    : "2.1.0-alpha2",
         datastore           : "1.0.0-alpha08",
+        espresso            : "3.1.0",
         fragment            : "1.2.5",
         hilt                : "1.0.0-alpha03",
         instrumentation     : "1.1.0",
