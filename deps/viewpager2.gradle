@@ -1,3 +1,0 @@
-dependencies {
-    implementation "androidx.viewpager2:viewpager2:$deps.viewpager2"
-}

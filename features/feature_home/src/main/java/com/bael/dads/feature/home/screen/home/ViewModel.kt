@@ -15,9 +15,8 @@ import javax.inject.Inject
 internal class ViewModel @Inject constructor(
     initState: State,
     savedStateHandle: SavedStateHandle
-) : BaseViewModel<State, Event>(initState, savedStateHandle),
-    Presenter {
-    override val queryFlow: MutableStateFlow<String> = MutableStateFlow(state.query)
+) : BaseViewModel<State, Event>(initState, savedStateHandle) {
+    val queryFlow: MutableStateFlow<String> = MutableStateFlow(state.query)
 
     fun submitQuery(query: String) {
         queryFlow.value = query

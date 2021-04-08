@@ -62,49 +62,55 @@ android {
     }
 }
 
-def deps = [
-    "dagger",
-    "firebase",
-    "graphql",
-    "hilt",
-    "leakcanary",
-    "navigation",
-    "okhttp",
-    "work"
-]
+dependencies {
+    // dagger
+    implementation "com.google.dagger:hilt-android:$deps.dagger"
 
-deps.forEach { dep ->
-    apply from: "$rootDir/deps/${dep}.gradle"
+    kapt "com.google.dagger:hilt-android-compiler:$deps.dagger"
+
+    // firebase
+    implementation platform("com.google.firebase:firebase-bom:$deps.bom")
+
+    implementation "com.google.firebase:firebase-analytics-ktx"
+    implementation "com.google.firebase:firebase-crashlytics-ktx"
+
+    // graphql
+    implementation "com.apollographql.apollo:apollo-runtime:$deps.graphql"
+    implementation "com.apollographql.apollo:apollo-coroutines-support:$deps.graphql"
+
+    // hilt
+    implementation "androidx.hilt:hilt-navigation-fragment:$deps.hilt"
+    implementation "androidx.hilt:hilt-work:$deps.hilt"
+
+    kapt "androidx.hilt:hilt-compiler:$deps.hilt"
+
+    // leakcanary
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:$deps.leakcanary"
+
+    // navigation
+    implementation "androidx.navigation:navigation-fragment-ktx:$deps.navigation"
+    implementation "androidx.navigation:navigation-ui-ktx:$deps.navigation"
+
+    // okhttp
+    implementation "com.squareup.okhttp3:logging-interceptor:$deps.okhttp"
+
+    // work
+    implementation "androidx.work:work-runtime-ktx:$deps.work"
 }
 
-def features = [
-    "feature_home"
-]
-
-def domains = [
-    "domain_common",
-    "domain_home"
-]
-
-def libs = [
-    "lib_database",
-    "lib_preference",
-    "lib_presentation",
-    "lib_remote",
-    "lib_threading",
-    "lib_worker"
-]
-
 dependencies {
-    features.forEach { feature ->
-        implementation project(":$feature")
-    }
+    // features
+    implementation project(":feature_home")
 
-    domains.forEach { domain ->
-        implementation project(":$domain")
-    }
+    // domains
+    implementation project(":domain_common")
+    implementation project(":domain_home")
 
-    libs.forEach { lib ->
-        implementation project(":$lib")
-    }
+    // libs
+    implementation project(":lib_database")
+    implementation project(":lib_preference")
+    implementation project(":lib_presentation")
+    implementation project(":lib_remote")
+    implementation project(":lib_threading")
+    implementation project(":lib_worker")
 }

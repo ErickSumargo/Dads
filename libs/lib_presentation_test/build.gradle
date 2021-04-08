@@ -1,37 +1,31 @@
 apply from: "$rootDir/libs/lib.gradle"
 
-def plugins = [
-    "kotlin-kapt",
-    "dagger.hilt.android.plugin"
-]
+dependencies {
+    // appcompat
+    implementation "androidx.appcompat:appcompat:$deps.appcompat"
 
-plugins.forEach { plugin ->
-    apply plugin: plugin
+    // arch
+    implementation "androidx.arch.core:core-testing:$deps.arch"
+
+    // coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$deps.coroutines"
+
+    // dagger
+    implementation "com.google.dagger:hilt-android-testing:$deps.dagger"
+
+    // fragment
+    implementation "androidx.fragment:fragment-ktx:$deps.fragment"
+    implementation "androidx.fragment:fragment-testing:$deps.fragment"
+
+    // instrumentation
+    implementation "androidx.test:runner:$deps.instrumentation"
+
+    // material
+    implementation "com.google.android.material:material:$deps.material"
 }
-
-def deps = [
-    "appcompat",
-    "arch-testing",
-    "coroutines",
-    "coroutines-test",
-    "dagger",
-    "fragment",
-    "fragment-testing",
-    "instrumentation",
-    "material"
-]
-
-deps.forEach { dep ->
-    apply from: "$rootDir/deps/${dep}.gradle"
-}
-
-def libs = [
-    "lib_presentation",
-    "lib_threading"
-]
 
 dependencies {
-    libs.forEach { lib ->
-        implementation project(":$lib")
-    }
+    // libs
+    implementation project(":lib_presentation")
+    implementation project(":lib_threading")
 }

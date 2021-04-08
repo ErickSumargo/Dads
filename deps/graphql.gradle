@@ -1,4 +1,0 @@
-dependencies {
-    implementation "com.apollographql.apollo:apollo-runtime:$deps.graphql"
-    implementation "com.apollographql.apollo:apollo-coroutines-support:$deps.graphql"
-}

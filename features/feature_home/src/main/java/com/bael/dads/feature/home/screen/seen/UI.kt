@@ -21,7 +21,6 @@ import com.bael.dads.feature.home.adapter.SeenDadJokeAdapter
 import com.bael.dads.feature.home.adapter.diffcallback.DadJokeDiffCallback
 import com.bael.dads.feature.home.databinding.ScreenSeenBinding
 import com.bael.dads.feature.home.databinding.ScreenSeenBinding.inflate
-import com.bael.dads.feature.home.screen.home.Presenter
 import com.bael.dads.lib.presentation.ext.readDrawable
 import com.bael.dads.lib.presentation.ext.readText
 import com.bael.dads.lib.presentation.fragment.BaseFragment
@@ -29,6 +28,7 @@ import com.bael.dads.lib.presentation.widget.animation.empty
 import com.bael.dads.lib.presentation.widget.animation.loading
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
+import com.bael.dads.feature.home.screen.home.ViewModel as HomeViewModel
 import com.bael.dads.feature.home.sheet.detail.UI as DetailSheet
 
 /**
@@ -41,7 +41,7 @@ internal class UI :
     Renderer {
     override val viewModel: ViewModel by viewModels()
 
-    private val homePresenter: Presenter by hiltNavGraphViewModels(R.id.navGraph)
+    private val homeViewModel: HomeViewModel by hiltNavGraphViewModels(R.id.navGraph)
 
     private val adapter: SeenDadJokeAdapter by lazy {
         SeenDadJokeAdapter(
@@ -52,7 +52,7 @@ internal class UI :
             },
             onReachEndOfItemsListener = { dadJoke ->
                 viewModel.loadSeenDadJoke(
-                    term = homePresenter.queryFlow.value,
+                    term = homeViewModel.queryFlow.value,
                     cursor = dadJoke,
                     limit = LOAD_SEEN_LIMIT,
                     favoredOnly = viewModel.isFavoriteFilterActivated()
@@ -84,7 +84,7 @@ internal class UI :
                 layout.isRefreshing = false
 
                 viewModel.loadSeenDadJoke(
-                    term = homePresenter.queryFlow.value,
+                    term = homeViewModel.queryFlow.value,
                     cursor = null,
                     limit = LOAD_SEEN_LIMIT,
                     favoredOnly = viewModel.isFavoriteFilterActivated()
@@ -127,7 +127,7 @@ internal class UI :
 
     private fun observeSearchQuery() {
         lifecycleScope.launchWhenResumed {
-            homePresenter.queryFlow
+            homeViewModel.queryFlow
                 .collect { query ->
                     viewModel.loadSeenDadJoke(
                         term = query,
@@ -165,7 +165,7 @@ internal class UI :
                     isActivated = !isFavoriteFilterActivated
                 )
                 viewModel.loadSeenDadJoke(
-                    term = homePresenter.queryFlow.value,
+                    term = homeViewModel.queryFlow.value,
                     cursor = null,
                     limit = LOAD_SEEN_LIMIT,
                     favoredOnly = !isFavoriteFilterActivated

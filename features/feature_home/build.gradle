@@ -1,44 +1,34 @@
 apply from: "$rootDir/features/feature.gradle"
 
-def deps = [
-    "constraintlayout",
-    "lottie",
-    "swiperefreshlayout",
-    "viewpager2",
-    "work"
-]
+dependencies {
+    // constraintlayout
+    implementation "androidx.constraintlayout:constraintlayout:$deps.constraintlayout"
 
-deps.forEach { dep ->
-    apply from: "$rootDir/deps/${dep}.gradle"
+    // lottie
+    implementation "com.airbnb.android:lottie:$deps.lottie"
+
+    // swiperefreshlayout
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:$deps.swiperefreshlayout"
+
+    // viewpager2
+    implementation "androidx.viewpager2:viewpager2:$deps.viewpager2"
+
+    // work
+    implementation "androidx.work:work-runtime-ktx:$deps.work"
 }
 
-def domains = [
-    "domain_common",
-    "domain_home"
-]
-
-def libs = [
-    "lib_preference",
-    "lib_worker"
-]
-
-def testLibs = [
-    "lib_database",
-    "lib_database_test",
-    "lib_remote",
-    "lib_remote_test"
-]
-
 dependencies {
-    domains.forEach { domain ->
-        implementation project(":$domain")
-    }
+    // domains
+    implementation project(":domain_common")
+    implementation project(":domain_home")
 
-    libs.forEach { lib ->
-        implementation project(":$lib")
-    }
+    // libs
+    implementation project(":lib_preference")
+    implementation project(":lib_worker")
 
-    testLibs.forEach { testLib ->
-        androidTestImplementation project(":$testLib")
-    }
+    androidTestImplementation project(":lib_database")
+    androidTestImplementation project(":lib_database_test")
+
+    androidTestImplementation project(":lib_remote")
+    androidTestImplementation project(":lib_remote_test")
 }

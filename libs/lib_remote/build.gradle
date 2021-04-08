@@ -1,9 +1,7 @@
 apply from: "$rootDir/libs/lib.gradle"
 
 def plugins = [
-    "kotlin-kapt",
-    "dagger.hilt.android.plugin",
-    "com.apollographql.apollo",
+    "com.apollographql.apollo"
 ]
 
 plugins.forEach { plugin ->
@@ -26,23 +24,16 @@ apollo {
     generateKotlinModels.set(true)
 }
 
-def deps = [
-    "coroutines",
-    "dagger",
-    "graphql",
-    "okhttp"
-]
+dependencies {
+    // graphql
+    implementation "com.apollographql.apollo:apollo-runtime:$deps.graphql"
+    implementation "com.apollographql.apollo:apollo-coroutines-support:$deps.graphql"
 
-deps.forEach { dep ->
-    apply from: "$rootDir/deps/${dep}.gradle"
+    // okhttp
+    implementation "com.squareup.okhttp3:logging-interceptor:$deps.okhttp"
 }
 
-def domains = [
-    "domain_common"
-]
-
 dependencies {
-    domains.forEach { domain ->
-        implementation project(":$domain")
-    }
+    // domains
+    implementation project(":domain_common")
 }

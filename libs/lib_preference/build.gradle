@@ -1,29 +1,11 @@
 apply from: "$rootDir/libs/lib.gradle"
 
-def plugins = [
-    "kotlin-kapt",
-    "dagger.hilt.android.plugin"
-]
-
-plugins.forEach { plugin ->
-    apply plugin: plugin
+dependencies {
+    // datastore
+    implementation "androidx.datastore:datastore-preferences:$deps.datastore"
 }
-
-def deps = [
-    "dagger",
-    "datastore"
-]
-
-deps.forEach { dep ->
-    apply from: "$rootDir/deps/${dep}.gradle"
-}
-
-def libs = [
-    "lib_threading"
-]
 
 dependencies {
-    libs.forEach { lib ->
-        implementation project(":$lib")
-    }
+    // libs
+    implementation project(":lib_threading")
 }

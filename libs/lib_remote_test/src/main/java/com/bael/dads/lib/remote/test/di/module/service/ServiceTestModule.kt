@@ -32,9 +32,7 @@ internal interface ServiceTestModule {
     companion object {
 
         @Provides
-        fun provideDadsTestableService(
-            service: DadsService
-        ): RemoteService<DadJokesResponse> {
+        fun provideDadsService(service: DadsService): RemoteService<DadJokesResponse> {
             return service as RemoteService<DadJokesResponse>
         }
     }

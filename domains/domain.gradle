@@ -1,6 +1,8 @@
 def plugins = [
     "com.android.library",
-    "kotlin-android"
+    "kotlin-android",
+    "kotlin-kapt",
+    "dagger.hilt.android.plugin"
 ]
 
 plugins.forEach { plugin ->
@@ -42,4 +44,14 @@ android {
     lintOptions {
         error("VisibleForTests")
     }
+}
+
+dependencies {
+    // coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$deps.coroutines"
+
+    // dagger
+    implementation "com.google.dagger:hilt-android:$deps.dagger"
+
+    kapt "com.google.dagger:hilt-android-compiler:$deps.dagger"
 }

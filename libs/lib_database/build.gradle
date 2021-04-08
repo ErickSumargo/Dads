@@ -1,14 +1,5 @@
 apply from: "$rootDir/libs/lib.gradle"
 
-def plugins = [
-    "kotlin-kapt",
-    "dagger.hilt.android.plugin"
-]
-
-plugins.forEach { plugin ->
-    apply plugin: plugin
-}
-
 android {
     defaultConfig {
         javaCompileOptions {
@@ -23,12 +14,10 @@ android {
     }
 }
 
-def deps = [
-    "coroutines",
-    "dagger",
-    "room"
-]
+dependencies {
+    // room
+    implementation "androidx.room:room-runtime:$deps.room"
+    implementation "androidx.room:room-ktx:$deps.room"
 
-deps.forEach { dep ->
-    apply from: "$rootDir/deps/${dep}.gradle"
+    kapt "androidx.room:room-compiler:$deps.room"
 }

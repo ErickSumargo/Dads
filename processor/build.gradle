@@ -7,13 +7,18 @@ plugins.forEach { plugin ->
     apply plugin: plugin
 }
 
-def deps = [
-    "annotation",
-    "autoservice",
-    "inject",
-    "javapoet"
-]
+dependencies {
+    // annotation
+    implementation project(":annotation")
 
-deps.forEach { dep ->
-    apply from: "$rootDir/deps/${dep}.gradle"
+    // autoservice
+    implementation "com.google.auto.service:auto-service:$deps.autoservice"
+
+    kapt "com.google.auto.service:auto-service:$deps.autoservice"
+
+    // inject
+    implementation "javax.inject:javax.inject:$deps.inject"
+
+    // javapoet
+    implementation "com.squareup:javapoet:$deps.javapoet"
 }

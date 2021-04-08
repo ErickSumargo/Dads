@@ -1,30 +1,14 @@
 apply from: "$rootDir/libs/lib.gradle"
 
-def plugins = [
-    "kotlin-kapt",
-    "dagger.hilt.android.plugin"
-]
+dependencies {
+    // coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$deps.coroutines"
 
-plugins.forEach { plugin ->
-    apply plugin: plugin
+    // dagger
+    implementation "com.google.dagger:hilt-android-testing:$deps.dagger"
 }
-
-def deps = [
-    "coroutines",
-    "coroutines-test",
-    "dagger"
-]
-
-deps.forEach { dep ->
-    apply from: "$rootDir/deps/${dep}.gradle"
-}
-
-def libs = [
-    "lib_threading"
-]
 
 dependencies {
-    libs.forEach { lib ->
-        implementation project(":$lib")
-    }
+    // libs
+    implementation project(":lib_threading")
 }

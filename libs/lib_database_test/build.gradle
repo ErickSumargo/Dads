@@ -1,29 +1,17 @@
 apply from: "$rootDir/libs/lib.gradle"
 
-def plugins = [
-    "kotlin-kapt",
-    "dagger.hilt.android.plugin"
-]
+dependencies {
+    // dagger
+    implementation "com.google.dagger:hilt-android-testing:$deps.dagger"
 
-plugins.forEach { plugin ->
-    apply plugin: plugin
+    // room
+    implementation "androidx.room:room-runtime:$deps.room"
+    implementation "androidx.room:room-ktx:$deps.room"
+
+    kapt "androidx.room:room-compiler:$deps.room"
 }
-
-def deps = [
-    "dagger",
-    "room"
-]
-
-deps.forEach { dep ->
-    apply from: "$rootDir/deps/${dep}.gradle"
-}
-
-def libs = [
-    "lib_database"
-]
 
 dependencies {
-    libs.forEach { lib ->
-        implementation project(":$lib")
-    }
+    // libs
+    implementation project(":lib_database")
 }
