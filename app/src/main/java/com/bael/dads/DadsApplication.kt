@@ -5,9 +5,7 @@ import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO
 import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES
 import androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode
 import com.bael.dads.lib.preference.Preference
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
 /**
@@ -16,10 +14,7 @@ import javax.inject.Inject
 
 abstract class DadsApplication : Application() {
     @Inject
-    internal lateinit var preference: Preference
-
-    private val applicationScope: CoroutineScope
-        get() = MainScope()
+    lateinit var preference: Preference
 
     override fun onCreate() {
         super.onCreate()
@@ -27,7 +22,7 @@ abstract class DadsApplication : Application() {
     }
 
     private fun setTheme() {
-        applicationScope.launch {
+        runBlocking {
             val isNightTheme = preference.read(
                 key = NIGHT_THEME_PREFERENCE,
                 defaultValue = false

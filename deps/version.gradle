@@ -12,17 +12,18 @@ ext {
     deps = [
         // androidx
         appcompat           : "1.1.0",
+        arch                : "2.1.0",
         constraintlayout    : "2.1.0-alpha2",
         datastore           : "1.0.0-alpha08",
         fragment            : "1.2.5",
         hilt                : "1.0.0-alpha03",
+        instrumentation     : "1.1.0",
         lifecycle           : "2.4.0-alpha01",
         navigation          : "2.3.0",
         recyclerview        : "1.2.0-beta01",
         room                : "2.2.5",
         startup             : "1.0.0",
         swiperefreshlayout  : "1.2.0-alpha01",
-        test                : "1.1.0",
         viewpager2          : "1.1.0-alpha01",
         work                : "2.5.0",
 
@@ -31,9 +32,6 @@ ext {
 
         // apollo
         graphql             : "2.4.5",
-
-        // cashapp
-        turbine             : "0.4.0",
 
         // firebase
         bom                 : "26.5.0",

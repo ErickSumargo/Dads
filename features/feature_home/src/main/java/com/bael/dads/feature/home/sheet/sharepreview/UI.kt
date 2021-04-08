@@ -16,10 +16,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.FileProvider.getUriForFile
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.bael.dads.domain.home.model.DadJoke
 import com.bael.dads.feature.home.databinding.SheetSharePreviewBinding
 import com.bael.dads.feature.home.databinding.SheetSharePreviewBinding.inflate
-import com.bael.dads.lib.domain.model.DadJoke
 import com.bael.dads.lib.presentation.ext.toRichText
 import com.bael.dads.lib.presentation.sheet.BaseSheet
 import dagger.hilt.android.AndroidEntryPoint
@@ -34,9 +35,11 @@ import java.io.FileOutputStream
 
 @AndroidEntryPoint
 internal class UI :
-    BaseSheet<SheetSharePreviewBinding, Renderer, ViewModel>(),
+    BaseSheet<SheetSharePreviewBinding, Renderer, Event, ViewModel>(),
     Renderer {
     override val fullHeight: Boolean = false
+
+    override val viewModel: ViewModel by viewModels()
 
     override fun createView(
         inflater: LayoutInflater,
@@ -48,6 +51,8 @@ internal class UI :
     override suspend fun onViewLoaded() {
         viewModel.receiveDadJoke()
     }
+
+    override suspend fun action(event: Event) {}
 
     override fun renderPreview(dadJoke: DadJoke?) {
         dadJoke ?: return

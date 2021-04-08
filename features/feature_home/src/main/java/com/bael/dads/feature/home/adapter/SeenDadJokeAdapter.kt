@@ -6,7 +6,7 @@ import androidx.lifecycle.LifecycleOwner
 import com.bael.dads.feature.home.adapter.cell.SeenDadJokeCell
 import com.bael.dads.feature.home.adapter.diffcallback.DadJokeDiffCallback
 import com.bael.dads.feature.home.databinding.CellSeenBinding.inflate
-import com.bael.dads.lib.domain.model.DadJoke
+import com.bael.dads.domain.home.model.DadJoke
 import com.bael.dads.lib.presentation.widget.recyclerview.adapter.LiveListAdapter
 
 /**

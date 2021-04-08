@@ -10,4 +10,9 @@ import com.bael.dads.lib.database.entity.RemoteMeta
  */
 
 @Database(entities = [DadJoke::class, RemoteMeta::class], version = 1)
-abstract class DadsRoomDatabase : RoomDatabase(), DadsDatabase
+abstract class DadsRoomDatabase : RoomDatabase(), DadsDatabase {
+
+    override fun closeConnection() {
+        close()
+    }
+}

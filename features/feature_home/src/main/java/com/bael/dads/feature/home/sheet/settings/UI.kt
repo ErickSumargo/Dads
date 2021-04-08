@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO
 import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES
 import androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.bael.dads.feature.home.R
 import com.bael.dads.feature.home.databinding.ItemGroupSettingsBinding
@@ -25,12 +26,14 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 internal class UI :
-    BaseSheet<SheetSettingsBinding, Renderer, ViewModel>(),
+    BaseSheet<SheetSettingsBinding, Renderer, Event, ViewModel>(),
     Renderer {
     @Inject
     lateinit var preference: Preference
 
     override val fullHeight: Boolean = false
+
+    override val viewModel: ViewModel by viewModels()
 
     override fun createView(
         inflater: LayoutInflater,
@@ -42,6 +45,8 @@ internal class UI :
     override suspend fun onViewLoaded() {
         setupView()
     }
+
+    override suspend fun action(event: Event) {}
 
     private suspend fun setupView() {
         viewBinding.settingsContainer.also { container ->

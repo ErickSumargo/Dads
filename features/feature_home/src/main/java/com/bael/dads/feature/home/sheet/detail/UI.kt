@@ -4,9 +4,10 @@ import android.content.DialogInterface
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.fragment.app.viewModels
+import com.bael.dads.domain.home.model.DadJoke
 import com.bael.dads.feature.home.databinding.SheetDetailBinding
 import com.bael.dads.feature.home.databinding.SheetDetailBinding.inflate
-import com.bael.dads.lib.domain.model.DadJoke
 import com.bael.dads.lib.presentation.ext.toRichText
 import com.bael.dads.lib.presentation.sheet.BaseSheet
 import dagger.hilt.android.AndroidEntryPoint
@@ -18,11 +19,13 @@ import com.bael.dads.feature.home.sheet.sharepreview.UI as SharePreviewSheet
 
 @AndroidEntryPoint
 internal class UI :
-    BaseSheet<SheetDetailBinding, Renderer, ViewModel>(),
+    BaseSheet<SheetDetailBinding, Renderer, Event, ViewModel>(),
     Renderer {
     var onDismissListener: ((DadJoke?) -> Unit)? = null
 
     override val fullHeight: Boolean = true
+
+    override val viewModel: ViewModel by viewModels()
 
     override fun createView(
         inflater: LayoutInflater,
@@ -34,6 +37,8 @@ internal class UI :
     override suspend fun onViewLoaded() {
         viewModel.receiveDadJoke()
     }
+
+    override suspend fun action(event: Event) {}
 
     override fun renderDetail(dadJoke: DadJoke?) {
         dadJoke ?: return

@@ -1,14 +1,13 @@
 package com.bael.dads.lib.presentation.viewmodel
 
-import androidx.annotation.VisibleForTesting
-import androidx.annotation.VisibleForTesting.NONE
-import androidx.annotation.VisibleForTesting.PROTECTED
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import com.bael.dads.lib.presentation.event.EventStore
 import com.bael.dads.lib.presentation.state.StateStore
-import com.bael.dads.lib.presentation.state.Store
+import com.bael.dads.lib.presentation.store.Store
 import com.bael.dads.lib.threading.Thread
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
@@ -16,31 +15,30 @@ import javax.inject.Inject
  * Created by ErickSumargo on 01/01/21.
  */
 
-abstract class BaseViewModel<S>(
+abstract class BaseViewModel<S, E>(
     initState: S,
     protected val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
     @Inject
-    lateinit var thread: Thread
-        @VisibleForTesting(otherwise = PROTECTED)
-        get
+    protected lateinit var thread: Thread
 
     private val key: String
         get() = javaClass.name
 
-    private val store: Store<S> = StateStore(
+    private val stateStore: Store<S> = StateStore(
         initState = restoreState() ?: initState
     )
 
-    internal val stateFlow: Flow<S>
-        get() = store.stateFlow.onEach(::saveState)
+    private val eventStore: Store<E> = EventStore()
 
-    val stateTestableFlow: Flow<S>
-        @VisibleForTesting(otherwise = NONE)
-        get() = stateFlow
+    internal val stateFlow: Flow<S>
+        get() = stateStore.stateFlow.onEach(::saveState)
+
+    internal val eventFlow: Flow<E>
+        get() = eventStore.stateFlow.filter { event -> event != null }
 
     protected val state: S
-        get() = store.stateFlow.value
+        get() = stateStore.stateFlow.value
 
     private fun restoreState(): S? {
         return savedStateHandle.get(key)
@@ -50,7 +48,11 @@ abstract class BaseViewModel<S>(
         savedStateHandle.set(key, state)
     }
 
-    protected fun intent(sideEffect: S) {
-        store.process(sideEffect)
+    protected fun render(newState: S) {
+        stateStore.process(newState)
+    }
+
+    protected fun action(newEvent: E) {
+        eventStore.process(newEvent)
     }
 }

@@ -13,4 +13,4 @@ import javax.inject.Inject
 internal class ViewModel @Inject constructor(
     initState: State,
     savedStateHandle: SavedStateHandle
-) : BaseViewModel<State>(initState, savedStateHandle)
+) : BaseViewModel<State, Event>(initState, savedStateHandle)

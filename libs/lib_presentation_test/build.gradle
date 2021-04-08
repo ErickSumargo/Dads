@@ -10,22 +10,28 @@ plugins.forEach { plugin ->
 }
 
 def deps = [
+    "appcompat",
+    "arch-testing",
     "coroutines",
+    "coroutines-test",
     "dagger",
     "fragment",
-    "test"
+    "fragment-testing",
+    "instrumentation",
+    "material"
 ]
 
 deps.forEach { dep ->
     apply from: "$rootDir/deps/${dep}.gradle"
 }
 
-def modules = [
+def libs = [
+    "lib_presentation",
     "lib_threading"
 ]
 
 dependencies {
-    modules.forEach { module ->
-        implementation project(":$module")
+    libs.forEach { lib ->
+        implementation project(":$lib")
     }
 }

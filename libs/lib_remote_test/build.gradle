@@ -1,0 +1,36 @@
+apply from: "$rootDir/libs/lib.gradle"
+
+def plugins = [
+    "kotlin-kapt",
+    "dagger.hilt.android.plugin"
+]
+
+plugins.forEach { plugin ->
+    apply plugin: plugin
+}
+
+def deps = [
+    "dagger"
+]
+
+deps.forEach { dep ->
+    apply from: "$rootDir/deps/${dep}.gradle"
+}
+
+def domains = [
+    "domain_common"
+]
+
+def libs = [
+    "lib_remote"
+]
+
+dependencies {
+    domains.forEach { domain ->
+        implementation project(":$domain")
+    }
+
+    libs.forEach { lib ->
+        implementation project(":$lib")
+    }
+}

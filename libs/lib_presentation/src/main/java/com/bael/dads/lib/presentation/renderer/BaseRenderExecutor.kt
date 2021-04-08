@@ -15,7 +15,7 @@ import kotlinx.coroutines.flow.scan
 
 abstract class BaseRenderExecutor<S>(
     renderer: BaseRenderer,
-    private val viewModel: BaseViewModel<S>
+    private val viewModel: BaseViewModel<S, *>
 ) : BaseRenderer by renderer {
 
     fun observeState() {

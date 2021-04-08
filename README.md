@@ -18,8 +18,9 @@
 ## Stacks
 #### Foundation
 - [App Startup](https://developer.android.com/topic/libraries/app-startup) - Managing single [ContentProvider](https://developer.android.com/reference/android/content/ContentProvider) only at a time.
-- [Coroutines](https://developer.android.com/kotlin/coroutines) - Performing asynchronous code with sequential manner. 
+- [Coroutines](https://developer.android.com/kotlin/coroutines) - Performing asynchronous code with sequential manner.
 - [Dagger Hilt](https://developer.android.com/training/dependency-injection/hilt-android) - The DI framework w/ Jetpack integration.
+- [DataStore](https://developer.android.com/topic/libraries/architecture/datastore) - Preferences in nutshell but with steroid.
 - [Flow](https://developer.android.com/kotlin/flow) - Reactive streams based on coroutines, just like Rx. But simpler.
 - [Fragment](https://developer.android.com/guide/fragments) - The UI screen.
 - [JavaPoet](https://github.com/square/javapoet) - Personal diff-state engine printer.
@@ -52,7 +53,6 @@ Processor for `RenderWith` annotation. Diff-state engine generator for rendering
 #### Testing
 - [Hilt Testing](https://developer.android.com/training/dependency-injection/hilt-testing) - Swapping production dependencies with test doubles. 
 - [Truth](https://truth.dev) - Assertion framework in tests by Google.
-- [Turbine](https://github.com/cashapp/turbine) - Unlock complex requirement when asserting Kotlin flow.
 
 #### Health
 * [Firebase Crashlytics](https://firebase.google.com/docs/crashlytics) - Collecting crash report for production environment. 
@@ -74,10 +74,14 @@ Moreover, view components are rendered based on their related changed states onl
 
 ## Design Principles
 - [Elegant Objects (EO)](https://www.elegantobjects.org/).
-- [S.O.L.I.D](https://en.wikipedia.org/wiki/SOLID).
+- [O.L.I.D](https://en.wikipedia.org/wiki/SOLID), where's the [S?](https://www.yegor256.com/2017/12/19/srp-is-hoax.html)
 - [The Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html).
-- Behavior-driven testing by focusing `ViewModel` as the sole-primary SUT (very recommended [read](https://dagger.dev/hilt/testing-philosophy.html) and [talk](https://www.youtube.com/watch?v=EZ05e7EMOLM)).
-- No Mocking framework.
+<br/>
+
+## Testing Principles
+- Black-box/ behavior-driven testing with `UI` as the sole SUT (very recommended [read](https://dagger.dev/hilt/testing-philosophy.html) and [talk](https://www.youtube.com/watch?v=EZ05e7EMOLM)).
+- No mocking framework!
+<br/>
 <br/>
 
 [<img align="left" width="100" height="100" src="assets/graphql.png">]()

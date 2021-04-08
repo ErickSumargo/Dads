@@ -1,7 +1,7 @@
 package com.bael.dads.feature.home.sheet.sharepreview
 
 import com.bael.dads.annotation.RenderWith
-import com.bael.dads.lib.domain.model.DadJoke
+import com.bael.dads.domain.home.model.DadJoke
 import com.bael.dads.lib.presentation.renderer.BaseRenderer
 
 /**

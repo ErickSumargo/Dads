@@ -1,5 +1,6 @@
 package com.bael.dads.lib.presentation.state
 
+import com.bael.dads.lib.presentation.store.Store
 import kotlinx.coroutines.flow.MutableStateFlow
 
 /**

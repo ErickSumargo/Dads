@@ -1,3 +1,0 @@
-dependencies {
-    implementation "androidx.test:runner:$deps.test"
-}

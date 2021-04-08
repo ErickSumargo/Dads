@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.work.Constraints
 import androidx.work.ExistingPeriodicWorkPolicy.KEEP
@@ -13,6 +14,13 @@ import androidx.work.NetworkType.CONNECTED
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.workDataOf
+import com.bael.dads.domain.common.exception.NoNetworkException
+import com.bael.dads.domain.common.response.Response
+import com.bael.dads.domain.common.response.Response.Empty
+import com.bael.dads.domain.common.response.Response.Error
+import com.bael.dads.domain.common.response.Response.Loading
+import com.bael.dads.domain.common.response.Response.Success
+import com.bael.dads.domain.home.model.DadJoke
 import com.bael.dads.feature.home.R
 import com.bael.dads.feature.home.adapter.DadJokeFeedAdapter
 import com.bael.dads.feature.home.adapter.diffcallback.DadJokeDiffCallback
@@ -21,13 +29,6 @@ import com.bael.dads.feature.home.databinding.ScreenFeedBinding
 import com.bael.dads.feature.home.databinding.ScreenFeedBinding.inflate
 import com.bael.dads.feature.home.worker.FetchDadJokeFeedWorker
 import com.bael.dads.feature.home.worker.FetchDadJokeFeedWorker.Companion.INPUT_CURSOR_ID
-import com.bael.dads.lib.data.exception.NoNetworkException
-import com.bael.dads.lib.data.response.Response
-import com.bael.dads.lib.data.response.Response.Empty
-import com.bael.dads.lib.data.response.Response.Error
-import com.bael.dads.lib.data.response.Response.Loading
-import com.bael.dads.lib.data.response.Response.Success
-import com.bael.dads.lib.domain.model.DadJoke
 import com.bael.dads.lib.presentation.ext.readText
 import com.bael.dads.lib.presentation.fragment.BaseFragment
 import com.bael.dads.lib.presentation.widget.animation.error
@@ -51,10 +52,12 @@ import com.bael.dads.lib.presentation.R as RPresentation
 
 @AndroidEntryPoint
 internal class UI :
-    BaseFragment<ScreenFeedBinding, Renderer, ViewModel>(),
+    BaseFragment<ScreenFeedBinding, Renderer, Event, ViewModel>(),
     Renderer {
     @Inject
     lateinit var workManager: WorkManager
+
+    override val viewModel: ViewModel by viewModels()
 
     private val adapter: ConcatAdapter by lazy {
         ConcatAdapter()
@@ -251,8 +254,11 @@ internal class UI :
         )
     }
 
+    override suspend fun action(event: Event) {}
+
     private companion object {
         const val STACK_LIMIT: Int = 3
+
         const val LOAD_FEED_LIMIT: Int = 10
     }
 }

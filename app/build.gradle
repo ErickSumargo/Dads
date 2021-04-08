@@ -77,23 +77,34 @@ deps.forEach { dep ->
     apply from: "$rootDir/deps/${dep}.gradle"
 }
 
-def modules = [
-    "feature_home",
-    "lib_api",
-    "lib_api_test",
-    "lib_data",
+def features = [
+    "feature_home"
+]
+
+def domains = [
+    "domain_common",
+    "domain_home"
+]
+
+def libs = [
     "lib_database",
-    "lib_database_test",
-    "lib_domain",
     "lib_preference",
     "lib_presentation",
-    "lib_presentation_test",
+    "lib_remote",
     "lib_threading",
     "lib_worker"
 ]
 
 dependencies {
-    modules.forEach { module ->
-        implementation project(":$module")
+    features.forEach { feature ->
+        implementation project(":$feature")
+    }
+
+    domains.forEach { domain ->
+        implementation project(":$domain")
+    }
+
+    libs.forEach { lib ->
+        implementation project(":$lib")
     }
 }
