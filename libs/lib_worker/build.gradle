@@ -1,21 +1,13 @@
 apply from: "$rootDir/libs/lib.gradle"
 
-def plugins = [
-    "kotlin-kapt",
-    "dagger.hilt.android.plugin"
-]
+dependencies {
+    // hilt
+    implementation "androidx.hilt:hilt-navigation-fragment:$deps.hilt"
+    implementation "androidx.hilt:hilt-work:$deps.hilt"
 
-plugins.forEach { plugin ->
-    apply plugin: plugin
-}
+    // startup
+    implementation "androidx.startup:startup-runtime:$deps.startup"
 
-def deps = [
-    "dagger",
-    "hilt",
-    "startup",
-    "work"
-]
-
-deps.forEach { dep ->
-    apply from: "$rootDir/deps/${dep}.gradle"
+    // work
+    implementation "androidx.work:work-runtime-ktx:$deps.work"
 }

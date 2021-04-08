@@ -1,7 +1,0 @@
-dependencies {
-    implementation "com.google.dagger:hilt-android:$deps.dagger"
-    implementation "com.google.dagger:hilt-android-testing:$deps.dagger"
-
-    kapt "com.google.dagger:hilt-android-compiler:$deps.dagger"
-    kaptAndroidTest "com.google.dagger:hilt-android-compiler:$deps.dagger"
-}

@@ -1,6 +1,0 @@
-dependencies {
-    implementation "androidx.hilt:hilt-navigation-fragment:$deps.hilt"
-    implementation "androidx.hilt:hilt-work:$deps.hilt"
-
-    kapt "androidx.hilt:hilt-compiler:$deps.hilt"
-}

@@ -1,51 +1,42 @@
 apply from: "$rootDir/libs/lib.gradle"
 
-def plugins = [
-    "kotlin-kapt",
-    "dagger.hilt.android.plugin"
-]
-
-plugins.forEach { plugin ->
-    apply plugin: plugin
-}
-
 android {
     buildFeatures {
         viewBinding = true
     }
 }
 
-def deps = [
-    "constraintlayout",
-    "coroutines",
-    "dagger",
-    "fragment",
-    "hilt",
-    "lifecycle",
-    "lottie",
-    "material",
-    "recyclerview",
-    "viewpager2"
-]
+dependencies {
+    // constraintlayout
+    implementation "androidx.constraintlayout:constraintlayout:$deps.constraintlayout"
 
-deps.forEach { dep ->
-    apply from: "$rootDir/deps/${dep}.gradle"
+    // fragment
+    implementation "androidx.fragment:fragment-ktx:$deps.fragment"
+
+    // lifecycle
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$deps.lifecycle"
+
+    // lottie
+    implementation "com.airbnb.android:lottie:$deps.lottie"
+
+    // material
+    implementation "com.google.android.material:material:$deps.material"
+
+    // navigation
+    implementation "androidx.navigation:navigation-fragment-ktx:$deps.navigation"
+    implementation "androidx.navigation:navigation-ui-ktx:$deps.navigation"
+
+    // recyclerview
+    implementation "androidx.recyclerview:recyclerview:$deps.recyclerview"
+
+    // viewpager2
+    implementation "androidx.viewpager2:viewpager2:$deps.viewpager2"
 }
 
-def domains = [
-    "domain_common"
-]
-
-def libs = [
-    "lib_threading"
-]
-
 dependencies {
-    domains.forEach { domain ->
-        implementation project(":$domain")
-    }
+    // domains
+    implementation project(":domain_common")
 
-    libs.forEach { lib ->
-        implementation project(":$lib")
-    }
+    // libs
+    implementation project(":lib_threading")
 }

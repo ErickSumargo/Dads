@@ -1,7 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    apply from: "$rootDir/deps/version.gradle"
+    apply from: "$rootDir/version.gradle"
 
     repositories {
         google()

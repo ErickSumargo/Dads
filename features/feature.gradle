@@ -69,36 +69,40 @@ android {
     }
 }
 
-def deps = [
-    "annotation",
-    "dagger",
-    "fragment",
-    "hilt",
-    "navigation",
-    "processor",
-    "truth"
-]
+dependencies {
+    // annotation
+    implementation project(":annotation")
 
-deps.forEach { dep ->
-    apply from: "$rootDir/deps/${dep}.gradle"
+    // dagger
+    implementation "com.google.dagger:hilt-android:$deps.dagger"
+
+    kapt "com.google.dagger:hilt-android-compiler:$deps.dagger"
+    kaptAndroidTest "com.google.dagger:hilt-android-compiler:$deps.dagger"
+
+    // fragment
+    implementation "androidx.fragment:fragment-ktx:$deps.fragment"
+
+    // hilt
+    implementation "androidx.hilt:hilt-navigation-fragment:$deps.hilt"
+    implementation "androidx.hilt:hilt-work:$deps.hilt"
+
+    kapt "androidx.hilt:hilt-compiler:$deps.hilt"
+
+    // navigation
+    implementation "androidx.navigation:navigation-fragment-ktx:$deps.navigation"
+    implementation "androidx.navigation:navigation-ui-ktx:$deps.navigation"
+
+    // processor
+    kapt project(":processor")
+
+    // truth
+    androidTestImplementation "com.google.truth:truth:$deps.truth"
 }
-
-def libs = [
-    "lib_presentation",
-    "lib_threading"
-]
-
-def testLibs = [
-    "lib_presentation_test"
-]
 
 dependencies {
-    libs.forEach { lib ->
-        implementation project(":$lib")
-    }
+    // libs
+    implementation project(":lib_presentation")
+    implementation project(":lib_threading")
 
-    testLibs.forEach { testLib ->
-        androidTestImplementation project(":$testLib")
-    }
+    androidTestImplementation project(":lib_presentation_test")
 }
-

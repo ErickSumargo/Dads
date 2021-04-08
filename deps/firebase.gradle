@@ -1,6 +1,0 @@
-dependencies {
-    implementation platform("com.google.firebase:firebase-bom:$deps.bom")
-
-    implementation "com.google.firebase:firebase-analytics-ktx"
-    implementation "com.google.firebase:firebase-crashlytics-ktx"
-}
