@@ -1,7 +1,5 @@
 package com.bael.dads.feature.home.di.module.sheet
 
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import com.bael.dads.feature.home.sheet.sharepreview.DefaultRendererInitializer
 import com.bael.dads.feature.home.sheet.sharepreview.Renderer
 import com.bael.dads.feature.home.sheet.sharepreview.State
@@ -32,11 +30,6 @@ internal interface SharePreviewSheetModule {
         @Provides
         fun provideState(): State {
             return State(dadJoke = null)
-        }
-
-        @Provides
-        fun Fragment.provideViewModel(): Lazy<ViewModel> {
-            return viewModels()
         }
     }
 }

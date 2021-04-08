@@ -1,4 +1,0 @@
-dependencies {
-    testImplementation "app.cash.turbine:turbine:$deps.turbine"
-    androidTestImplementation "app.cash.turbine:turbine:$deps.turbine"
-}

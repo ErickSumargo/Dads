@@ -6,21 +6,22 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.fragment.app.viewModels
+import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.lifecycle.lifecycleScope
 import com.airbnb.lottie.LottieDrawable.INFINITE
+import com.bael.dads.domain.common.response.Response
+import com.bael.dads.domain.common.response.Response.Empty
+import com.bael.dads.domain.common.response.Response.Error
+import com.bael.dads.domain.common.response.Response.Loading
+import com.bael.dads.domain.common.response.Response.Success
+import com.bael.dads.domain.home.model.DadJoke
 import com.bael.dads.feature.home.R
 import com.bael.dads.feature.home.adapter.SeenDadJokeAdapter
 import com.bael.dads.feature.home.adapter.diffcallback.DadJokeDiffCallback
 import com.bael.dads.feature.home.databinding.ScreenSeenBinding
 import com.bael.dads.feature.home.databinding.ScreenSeenBinding.inflate
-import com.bael.dads.feature.home.screen.home.HomePresenter
-import com.bael.dads.lib.data.ext.invoke
-import com.bael.dads.lib.data.response.Response
-import com.bael.dads.lib.data.response.Response.Empty
-import com.bael.dads.lib.data.response.Response.Error
-import com.bael.dads.lib.data.response.Response.Loading
-import com.bael.dads.lib.data.response.Response.Success
-import com.bael.dads.lib.domain.model.DadJoke
+import com.bael.dads.feature.home.screen.home.Presenter
 import com.bael.dads.lib.presentation.ext.readDrawable
 import com.bael.dads.lib.presentation.ext.readText
 import com.bael.dads.lib.presentation.fragment.BaseFragment
@@ -28,7 +29,6 @@ import com.bael.dads.lib.presentation.widget.animation.empty
 import com.bael.dads.lib.presentation.widget.animation.loading
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
-import javax.inject.Inject
 import com.bael.dads.feature.home.sheet.detail.UI as DetailSheet
 
 /**
@@ -37,10 +37,11 @@ import com.bael.dads.feature.home.sheet.detail.UI as DetailSheet
 
 @AndroidEntryPoint
 internal class UI :
-    BaseFragment<ScreenSeenBinding, Renderer, ViewModel>(),
+    BaseFragment<ScreenSeenBinding, Renderer, Event, ViewModel>(),
     Renderer {
-    @Inject
-    lateinit var homePresenter: @JvmSuppressWildcards Lazy<HomePresenter>
+    override val viewModel: ViewModel by viewModels()
+
+    private val homePresenter: Presenter by hiltNavGraphViewModels(R.id.navGraph)
 
     private val adapter: SeenDadJokeAdapter by lazy {
         SeenDadJokeAdapter(
@@ -51,7 +52,7 @@ internal class UI :
             },
             onReachEndOfItemsListener = { dadJoke ->
                 viewModel.loadSeenDadJoke(
-                    term = homePresenter().queryFlow.value,
+                    term = homePresenter.queryFlow.value,
                     cursor = dadJoke,
                     limit = LOAD_SEEN_LIMIT,
                     favoredOnly = viewModel.isFavoriteFilterActivated()
@@ -75,13 +76,15 @@ internal class UI :
         observeSearchQuery()
     }
 
+    override suspend fun action(event: Event) {}
+
     private fun setupView() {
         viewBinding.refreshLayout.also { layout ->
             layout.setOnRefreshListener {
                 layout.isRefreshing = false
 
                 viewModel.loadSeenDadJoke(
-                    term = homePresenter().queryFlow.value,
+                    term = homePresenter.queryFlow.value,
                     cursor = null,
                     limit = LOAD_SEEN_LIMIT,
                     favoredOnly = viewModel.isFavoriteFilterActivated()
@@ -124,7 +127,7 @@ internal class UI :
 
     private fun observeSearchQuery() {
         lifecycleScope.launchWhenResumed {
-            homePresenter().queryFlow
+            homePresenter.queryFlow
                 .collect { query ->
                     viewModel.loadSeenDadJoke(
                         term = query,
@@ -162,7 +165,7 @@ internal class UI :
                     isActivated = !isFavoriteFilterActivated
                 )
                 viewModel.loadSeenDadJoke(
-                    term = homePresenter().queryFlow.value,
+                    term = homePresenter.queryFlow.value,
                     cursor = null,
                     limit = LOAD_SEEN_LIMIT,
                     favoredOnly = !isFavoriteFilterActivated

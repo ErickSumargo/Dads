@@ -1,7 +1,5 @@
 package com.bael.dads.feature.home.di.module.sheet
 
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import com.bael.dads.feature.home.sheet.settings.DefaultRendererInitializer
 import com.bael.dads.feature.home.sheet.settings.Renderer
 import com.bael.dads.feature.home.sheet.settings.State
@@ -32,11 +30,6 @@ internal interface SettingsSheetModule {
         @Provides
         fun provideState(): State {
             return State()
-        }
-
-        @Provides
-        fun Fragment.provideViewModel(): Lazy<ViewModel> {
-            return viewModels()
         }
     }
 }

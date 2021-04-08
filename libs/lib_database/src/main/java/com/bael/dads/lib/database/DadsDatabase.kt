@@ -11,4 +11,6 @@ interface DadsDatabase {
     val dadJoke: DadJokeDao
 
     val remoteMeta: RemoteMetaDao
+
+    fun closeConnection()
 }

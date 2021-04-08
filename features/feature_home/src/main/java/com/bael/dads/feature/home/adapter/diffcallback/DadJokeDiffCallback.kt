@@ -1,7 +1,7 @@
 package com.bael.dads.feature.home.adapter.diffcallback
 
 import androidx.recyclerview.widget.DiffUtil.ItemCallback
-import com.bael.dads.lib.domain.model.DadJoke
+import com.bael.dads.domain.home.model.DadJoke
 
 /**
  * Created by ErickSumargo on 01/01/21.

@@ -6,7 +6,9 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.lifecycle.lifecycleScope
+import com.bael.dads.feature.home.R
 import com.bael.dads.feature.home.databinding.ScreenHomeBinding
 import com.bael.dads.feature.home.databinding.ScreenHomeBinding.inflate
 import com.bael.dads.lib.presentation.ext.hideSoftKeyboard
@@ -32,13 +34,15 @@ import com.bael.dads.feature.home.sheet.settings.UI as SettingsSheet
 
 @AndroidEntryPoint
 internal class UI :
-    BaseFragment<ScreenHomeBinding, Renderer, ViewModel>(),
+    BaseFragment<ScreenHomeBinding, Renderer, Event, ViewModel>(),
     Renderer {
     @Inject
     lateinit var pagerScreens: @JvmSuppressWildcards List<() -> Fragment>
 
     @Inject
     lateinit var tabsData: @JvmSuppressWildcards List<BottomTab>
+
+    override val viewModel: ViewModel by hiltNavGraphViewModels(R.id.navGraph)
 
     override fun createView(
         inflater: LayoutInflater,
@@ -50,6 +54,8 @@ internal class UI :
     override suspend fun onViewLoaded(savedInstanceState: Bundle?) {
         setupView()
     }
+
+    override suspend fun action(event: Event) {}
 
     private fun setupView() {
         val bottomTabAdapter = BottomTabAdapter(

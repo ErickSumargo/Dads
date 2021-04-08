@@ -1,10 +1,8 @@
 package com.bael.dads.feature.home.di.module.screen
 
 import androidx.fragment.app.Fragment
-import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import com.bael.dads.feature.home.R
 import com.bael.dads.feature.home.screen.home.DefaultRendererInitializer
-import com.bael.dads.feature.home.screen.home.HomePresenter
 import com.bael.dads.feature.home.screen.home.Renderer
 import com.bael.dads.feature.home.screen.home.State
 import com.bael.dads.feature.home.screen.home.ViewModel
@@ -39,16 +37,6 @@ internal interface HomeScreenModule {
         @Provides
         fun provideState(): State {
             return State(query = "")
-        }
-
-        @Provides
-        fun Fragment.provideViewModel(): Lazy<ViewModel> {
-            return hiltNavGraphViewModels(navGraphId = R.id.navGraph)
-        }
-
-        @Provides
-        fun provideHomePresenter(viewModel: Lazy<ViewModel>): Lazy<HomePresenter> {
-            return viewModel
         }
 
         @Provides

@@ -1,7 +1,7 @@
 package com.bael.dads.feature.home.adapter.cell
 
 import com.bael.dads.feature.home.databinding.CellFeedBinding
-import com.bael.dads.lib.domain.model.DadJoke
+import com.bael.dads.domain.home.model.DadJoke
 import com.bael.dads.lib.presentation.ext.toRichText
 import com.bael.dads.lib.presentation.widget.recyclerview.adapter.cell.BaseCell
 

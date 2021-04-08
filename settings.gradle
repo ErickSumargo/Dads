@@ -1,29 +1,49 @@
+include ":app"
 rootProject.name = "Dads"
 
-def modules = [
-    "app",
-    "annotation",
-    "processor",
-    "feature_home",
-    "lib_api",
-    "lib_api_test",
-    "lib_data",
+def features = [
+    "feature_home"
+]
+
+def domains = [
+    "domain_common",
+    "domain_home"
+]
+
+def libs = [
     "lib_database",
     "lib_database_test",
-    "lib_domain",
     "lib_preference",
+    "lib_preference_test",
     "lib_presentation",
     "lib_presentation_test",
+    "lib_remote",
+    "lib_remote_test",
     "lib_threading",
+    "lib_threading_test",
     "lib_worker"
 ]
 
-modules.forEach { module ->
-    include ":$module"
+def others = [
+    "annotation",
+    "processor"
+]
 
-    if (module.contains("feature")) {
-        project(":$module").projectDir = new File("features/$module")
-    } else if (module.contains("lib")) {
-        project(":$module").projectDir = new File("libs/$module")
-    }
+features.forEach { feature ->
+    include ":$feature"
+    project(":$feature").projectDir = new File("features/$feature")
+}
+
+domains.forEach { domain ->
+    include ":$domain"
+    project(":$domain").projectDir = new File("domains/$domain")
+}
+
+libs.forEach { lib ->
+    include ":$lib"
+    project(":$lib").projectDir = new File("libs/$lib")
+}
+
+others.forEach { other ->
+    include ":$other"
 }

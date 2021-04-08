@@ -12,7 +12,7 @@ import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import androidx.core.app.NotificationCompat.Builder
 import androidx.core.app.NotificationManagerCompat.IMPORTANCE_LOW
 import com.bael.dads.feature.home.R
-import com.bael.dads.lib.domain.model.DadJoke
+import com.bael.dads.domain.home.model.DadJoke
 import com.bael.dads.lib.presentation.notification.NotificationConfiguration
 import java.lang.Class.forName
 

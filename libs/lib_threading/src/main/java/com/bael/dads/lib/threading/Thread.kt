@@ -12,4 +12,6 @@ interface Thread {
     val default: CoroutineDispatcher
 
     val io: CoroutineDispatcher
+
+    fun reset()
 }

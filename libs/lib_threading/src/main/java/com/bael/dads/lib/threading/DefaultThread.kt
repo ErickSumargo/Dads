@@ -10,7 +10,7 @@ import javax.inject.Inject
  * Created by ErickSumargo on 01/01/21.
  */
 
-internal class DefaultThread @Inject constructor() : Thread {
+class DefaultThread @Inject constructor() : Thread {
     override val main: CoroutineDispatcher
         get() = Main
 
@@ -19,4 +19,6 @@ internal class DefaultThread @Inject constructor() : Thread {
 
     override val io: CoroutineDispatcher
         get() = IO
+
+    override fun reset() {}
 }

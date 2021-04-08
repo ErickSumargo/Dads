@@ -76,31 +76,29 @@ def deps = [
     "hilt",
     "navigation",
     "processor",
-    "truth",
-    "turbine"
+    "truth"
 ]
 
 deps.forEach { dep ->
     apply from: "$rootDir/deps/${dep}.gradle"
 }
 
-def modules = [
+def libs = [
     "lib_presentation",
     "lib_threading"
 ]
 
-def testModules = [
+def testLibs = [
     "lib_presentation_test"
 ]
 
 dependencies {
-    modules.forEach { module ->
-        implementation project(":$module")
+    libs.forEach { lib ->
+        implementation project(":$lib")
     }
 
-    testModules.forEach { module ->
-        testImplementation project(":$module")
-        androidTestImplementation project(":$module")
+    testLibs.forEach { testLib ->
+        androidTestImplementation project(":$testLib")
     }
 }
 

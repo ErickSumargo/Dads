@@ -15,19 +15,19 @@ import javax.inject.Inject
 internal class ViewModel @Inject constructor(
     initState: State,
     savedStateHandle: SavedStateHandle
-) : BaseViewModel<State>(initState, savedStateHandle),
-    HomePresenter {
+) : BaseViewModel<State, Event>(initState, savedStateHandle),
+    Presenter {
     override val queryFlow: MutableStateFlow<String> = MutableStateFlow(state.query)
 
     fun submitQuery(query: String) {
         queryFlow.value = query
-        intentQuery(query)
+        renderQuery(query)
     }
 
-    private fun intentQuery(query: String) {
-        val sideEffect = state.reduce {
+    private fun renderQuery(query: String) {
+        val newState = state.reduce {
             copy(query = query)
         }
-        intent(sideEffect)
+        render(newState)
     }
 }

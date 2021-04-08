@@ -1,8 +1,8 @@
 package com.bael.dads.feature.home.screen.seen
 
 import com.bael.dads.annotation.RenderWith
-import com.bael.dads.lib.data.response.Response
-import com.bael.dads.lib.domain.model.DadJoke
+import com.bael.dads.domain.common.response.Response
+import com.bael.dads.domain.home.model.DadJoke
 import com.bael.dads.lib.presentation.renderer.BaseRenderer
 
 /**

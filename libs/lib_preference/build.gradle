@@ -18,12 +18,12 @@ deps.forEach { dep ->
     apply from: "$rootDir/deps/${dep}.gradle"
 }
 
-def modules = [
+def libs = [
     "lib_threading"
 ]
 
 dependencies {
-    modules.forEach { module ->
-        implementation project(":$module")
+    libs.forEach { lib ->
+        implementation project(":$lib")
     }
 }

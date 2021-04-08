@@ -1,7 +1,5 @@
 package com.bael.dads.feature.home.di.module.screen
 
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import com.bael.dads.feature.home.screen.feed.DefaultRendererInitializer
 import com.bael.dads.feature.home.screen.feed.Renderer
 import com.bael.dads.feature.home.screen.feed.State
@@ -32,11 +30,6 @@ internal interface FeedScreenModule {
         @Provides
         fun provideState(): State {
             return State(responses = listOf())
-        }
-
-        @Provides
-        fun Fragment.provideViewModel(): Lazy<ViewModel> {
-            return viewModels()
         }
     }
 }

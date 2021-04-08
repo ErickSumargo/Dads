@@ -1,0 +1,45 @@
+def plugins = [
+    "com.android.library",
+    "kotlin-android"
+]
+
+plugins.forEach { plugin ->
+    apply plugin: plugin
+}
+
+android {
+    compileSdkVersion sdk.compile
+
+    buildTypes {
+        debug {
+            testCoverageEnabled true
+        }
+    }
+
+    defaultConfig {
+        minSdkVersion sdk.min
+        targetSdkVersion sdk.target
+
+        consumerProguardFiles "proguard-rules.pro"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        freeCompilerArgs = [
+            "-Xallow-result-return-type",
+            "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
+            "-Xopt-in=kotlinx.coroutines.FlowPreview",
+            "-Xopt-in=kotlinx.coroutines.InternalCoroutinesApi"
+        ]
+
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+
+    lintOptions {
+        error("VisibleForTests")
+    }
+}

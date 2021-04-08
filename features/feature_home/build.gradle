@@ -12,27 +12,33 @@ deps.forEach { dep ->
     apply from: "$rootDir/deps/${dep}.gradle"
 }
 
-def modules = [
-    "lib_data",
-    "lib_domain",
+def domains = [
+    "domain_common",
+    "domain_home"
+]
+
+def libs = [
     "lib_preference",
     "lib_worker"
 ]
 
-def testModules = [
-    "lib_api",
-    "lib_api_test",
+def testLibs = [
     "lib_database",
-    "lib_database_test"
+    "lib_database_test",
+    "lib_remote",
+    "lib_remote_test"
 ]
 
 dependencies {
-    modules.forEach { module ->
-        implementation project(":$module")
+    domains.forEach { domain ->
+        implementation project(":$domain")
     }
 
-    testModules.forEach { module ->
-        testImplementation project(":$module")
-        androidTestImplementation project(":$module")
+    libs.forEach { lib ->
+        implementation project(":$lib")
+    }
+
+    testLibs.forEach { testLib ->
+        androidTestImplementation project(":$testLib")
     }
 }
