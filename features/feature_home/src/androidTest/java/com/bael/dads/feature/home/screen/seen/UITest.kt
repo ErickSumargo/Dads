@@ -51,6 +51,16 @@ internal class UITest : BaseFragmentTest() {
                         seen = true,
                         createdAt = 0L,
                         updatedAt = 0L
+                    ),
+                    DadJoke(
+                        id = 2,
+                        jokeId = "2",
+                        setup = "Setup 2",
+                        punchline = "Punchline 2",
+                        favored = false,
+                        seen = true,
+                        createdAt = 0L,
+                        updatedAt = 0L
                     )
                 )
             )
@@ -60,6 +70,8 @@ internal class UITest : BaseFragmentTest() {
 
             // then
             isDisplayed(text = "Setup 1")
+
+            isDisplayed(text = "Setup 2")
         }
     }
 
