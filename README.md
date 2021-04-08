@@ -94,10 +94,10 @@ Jokes are requested from proprietary GraphQL service, the [Dads-Engine](https://
 * Since this project employs GraphQL stack, you need to download the [schema](https://www.apollographql.com/docs/tutorial/schema/) first:
     * Go to hosted [GraphQL Playground](https://dads-engine.herokuapp.com/graphql),
     * Open tab `SCHEMA` at the right side. `DOWNLOAD` it,
-    * Put the `schema.json` in directory: `libs/lib_api/src/main/graphql/com/bael/dads/lib/api/`,
+    * Put the `schema.json` in directory: `libs/lib_remote/src/main/graphql/com/bael/dads/lib/remote/`,
     * Or you can run this command as alternative.
         ```
-        ./gradlew downloadApolloSchema --endpoint="https://dads-engine.herokuapp.com" --schema="libs/lib_api/src/main/graphql/com/bael/dads/lib/api/schema.json"
+        ./gradlew downloadApolloSchema --endpoint="https://dads-engine.herokuapp.com" --schema="libs/lib_remote/src/main/graphql/com/bael/dads/lib/remote/schema.json"
         ```
 * Set `DADS_JWT` key in `gradle.properties` file (either in your user home directory or in the project's root folder) with the shared key (see **Contributing** section 👇).
 * Have fun!
