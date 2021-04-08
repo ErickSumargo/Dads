@@ -16,6 +16,16 @@ jobs:
           FIREBASE_SECRET: ${{ secrets.FIREBASE_SECRET }}
       - name: Setup GraphQL
         run: ./gradlew downloadApolloSchema --endpoint="https://dads-engine.herokuapp.com" --schema="libs/lib_remote/src/main/graphql/com/bael/dads/lib/remote/schema.json"
+      - name: Cache Firebase setup
+        uses: actions/cache@v2
+        with:
+          path: app
+          key: ${{ hashFiles('app/google-services.enc') }}
+      - name: Cache GraphQL setup
+        uses: actions/cache@v2
+        with:
+          path: libs/lib_remote/src/main/graphql/com/bael/dads/lib/remote
+          key: ${{ github.sha }}
   build:
     runs-on: macos-latest
     needs: initialize
