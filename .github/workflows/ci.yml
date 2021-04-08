@@ -6,7 +6,7 @@ on:
       - main
 jobs:
   initialize:
-    runs-on: macos-latest
+    runs-on: macos-11.0
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -27,7 +27,7 @@ jobs:
       - name: Setup GraphQL
         run: ./gradlew downloadApolloSchema --endpoint="https://dads-engine.herokuapp.com" --schema="libs/lib_remote/src/main/graphql/com/bael/dads/lib/remote/schema.json"
   build:
-    runs-on: macos-latest
+    runs-on: macos-11.0
     needs: initialize
     steps:
       - name: Checkout repository
@@ -45,7 +45,7 @@ jobs:
       - name: Build application
         run: ./gradlew assembleDebug --stacktrace
   test:
-    runs-on: macos-latest
+    runs-on: macos-11.0
     needs: build
     steps:
       - name: Checkout repository
