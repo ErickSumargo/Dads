@@ -101,7 +101,7 @@ Jokes are requested from proprietary GraphQL service, the [Dads-Engine](https://
         ```
         ./gradlew downloadApolloSchema --endpoint="https://dads-engine.herokuapp.com" --schema="libs/lib_remote/src/main/graphql/com/bael/dads/lib/remote/schema.json"
         ```
-* Set `DADS_JWT` key in `gradle.properties` file (either in your user home directory or in the project's root folder) with the shared key (see **Contributing** section 👇).
+* Set `DADS_JWT` key in `gradle.properties` file (either in your user home directory or in the project's root folder) with the shared key (see **Contributing** section 👇) or you may leave it as is.
 * Have fun!
 
 ## Contributing

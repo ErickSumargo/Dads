@@ -34,7 +34,6 @@ object DatabaseModule {
         @DatabaseNameQualifier databaseName: String
     ): DadsDatabase {
         return databaseBuilder(context, DadsRoomDatabase::class.java, databaseName)
-            .createFromAsset(databaseName)
             .build()
     }
 }
