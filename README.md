@@ -71,6 +71,8 @@ Dads adopts [MVVM](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93view
 <br/>
 <br/>
 Moreover, view components are rendered based on their related changed states only performed by diff-state engine, so the render operation is done more **efficiently**.
+<br/>
+<br/>
 [<img src="assets/architecture.png">]()
 
 ## Design Principles
