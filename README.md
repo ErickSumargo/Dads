@@ -1,5 +1,5 @@
 [<img src="assets/logo.png" width="120" height="120">]()
-[<img align="right" src="assets/playstore.png" width="180" height="75">](https://play.google.com/store/apps/details?id=com.bael.dads)
+[<img align="right" src="assets/playstore.png" width="200" height="80">](https://play.google.com/store/apps/details?id=com.bael.dads)
 
 [![CI](https://github.com/ErickSumargo/Dads/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/ErickSumargo/Dads/actions/workflows/ci.yml)
 [![codecov](https://codecov.io/gh/ErickSumargo/Dads/branch/main/graph/badge.svg?token=T2CU8YFDCO)](https://codecov.io/gh/ErickSumargo/Dads)
@@ -13,27 +13,27 @@
 - Feed walks you through the latest dad jokes,
 - Browse back seen jokes & share your favorite ones,
 - Notification to remind you up with latest available jokes,
-- Light/Dark theme based on preference.
+- Light/ Dark theme based on preference.
 
 ## Stacks
 #### Foundation
-- [App Startup](https://developer.android.com/topic/libraries/app-startup) - Managing single [ContentProvider](https://developer.android.com/reference/android/content/ContentProvider) only at a time.
+- [App Startup](https://developer.android.com/topic/libraries/app-startup) - Orchestrating single [ContentProvider](https://developer.android.com/reference/android/content/ContentProvider) at startup.
 - [Coroutines](https://developer.android.com/kotlin/coroutines) - Performing asynchronous code with sequential manner.
 - [Dagger Hilt](https://developer.android.com/training/dependency-injection/hilt-android) - The DI framework w/ Jetpack integration.
 - [DataStore](https://developer.android.com/topic/libraries/architecture/datastore) - Preferences in nutshell but with steroid.
 - [Flow](https://developer.android.com/kotlin/flow) - Reactive streams based on coroutines, just like Rx. But simpler.
-- [Fragment](https://developer.android.com/guide/fragments) - The UI screen.
+- [Fragment](https://developer.android.com/guide/fragments) - The UI host.
 - [JavaPoet](https://github.com/square/javapoet) - Personal diff-state engine printer.
-- [Lifecycle](https://developer.android.com/topic/libraries/architecture/coroutines) - Coroutines respects over Android's component lifecycle.
+- [Lifecycle](https://developer.android.com/topic/libraries/architecture/coroutines) - Coroutines teams up with Android's component lifecycle.
 - [Navigation component](https://developer.android.com/guide/navigation/navigation-getting-started) - The key player for adopting single-activity architecture with ease.
 - [Room](https://developer.android.com/training/data-storage/room) - ORM for SQLite database. Also, try out its integration with [Database Inspector](https://developer.android.com/studio/inspect/database).   
 - [View Binding](https://developer.android.com/topic/libraries/view-binding) - Providing safe access to view. 
-- [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - The presenter with its semi data persistence behavior.
+- [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - Presenter with its semi data persistence behavior.
 - [WorkManager](https://developer.android.com/topic/libraries/architecture/workmanager) - Background job scheduler. You should also try out its integration with [WorkManager Inspector](https://developer.android.com/studio/preview/features#workmanager-inspector).
 
 #### UI
 - [BottomSheetDialogFragment](https://developer.android.com/reference/com/google/android/material/bottomsheet/BottomSheetDialogFragment) - As the name suggests.
-- [ConcatAdapter](https://developer.android.com/reference/androidx/recyclerview/widget/ConcatAdapter) - Helping me group `ViewHolder` based on types.
+- [ConcatAdapter](https://developer.android.com/reference/androidx/recyclerview/widget/ConcatAdapter) - Helping me group `ViewHolder` based on types in isolation.
 - [ConstraintLayout](https://developer.android.com/reference/androidx/constraintlayout/widget/ConstraintLayout) - Helping me manage positioning & alignment with ease. 
 - [Lottie](https://airbnb.design/lottie) - Providing animation asset.
 - [Material Components](https://github.com/material-components/material-components-android) - Helping me present Material Design.
@@ -48,10 +48,11 @@ Processor for `RenderWith` annotation. Diff-state engine generator for rendering
 
 #### Remote
 - [Apollo GraphQL](https://www.apollographql.com) - Client for requesting GraphQL API.
-- [OkHttp](https://square.github.io/okhttp) - Request interceptor. Pipeline before remote API call.
+- [OkHttp](https://square.github.io/okhttp) - Request interceptors. Pipeline before remote API call.
 
 #### Testing
-- [Hilt Testing](https://developer.android.com/training/dependency-injection/hilt-testing) - Swapping production dependencies with test doubles. 
+- [Espresso](https://developer.android.com/training/testing/espresso) - Android UI tests.
+- [Hilt Testing](https://developer.android.com/training/dependency-injection/hilt-testing) - For swapping production dependencies with test doubles. 
 - [Truth](https://truth.dev) - Assertion framework in tests by Google.
 
 #### Health
@@ -61,7 +62,7 @@ Processor for `RenderWith` annotation. Diff-state engine generator for rendering
 <br/>
 
 ## MAD Scorecard
-[<img src="assets/mad_scorecard.png">](https://madscorecard.withgoogle.com/scorecards/3887241481/)
+[<img src="assets/mad_scorecard.png">](https://madscorecard.withgoogle.com/scorecards/966921635/)
 <br/>
 <br/>
 
@@ -76,7 +77,6 @@ Moreover, view components are rendered based on their related changed states onl
 - [Elegant Objects (EO)](https://www.elegantobjects.org/).
 - [O.L.I.D](https://en.wikipedia.org/wiki/SOLID), where's the [S?](https://www.yegor256.com/2017/12/19/srp-is-hoax.html)
 - [The Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html).
-<br/>
 
 ## Testing Principles
 - Black-box/ behavior-driven testing with `UI` as the sole SUT (very recommended [read](https://dagger.dev/hilt/testing-philosophy.html) and [talk](https://www.youtube.com/watch?v=EZ05e7EMOLM)).

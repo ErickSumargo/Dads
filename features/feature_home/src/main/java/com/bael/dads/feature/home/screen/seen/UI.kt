@@ -41,7 +41,7 @@ internal class UI :
     Renderer {
     override val viewModel: ViewModel by viewModels()
 
-    private val homeViewModel: HomeViewModel by hiltNavGraphViewModels(R.id.navGraph)
+    private val homeViewModel: HomeViewModel by hiltNavGraphViewModels(navGraphId = R.id.navGraph)
 
     private val adapter: SeenDadJokeAdapter by lazy {
         SeenDadJokeAdapter(

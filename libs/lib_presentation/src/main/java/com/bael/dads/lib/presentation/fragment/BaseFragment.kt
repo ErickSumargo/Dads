@@ -45,11 +45,20 @@ abstract class BaseFragment<VB : ViewBinding, R, E, VM : BaseViewModel<*, E>> : 
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        _viewBinding = createView(inflater, container)
+        return _viewBinding?.root
+    }
+
+    abstract fun createView(inflater: LayoutInflater, container: ViewGroup?): VB
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         initRenderer()
         observeEvent()
 
-        _viewBinding = createView(inflater, container)
-        return _viewBinding?.root
+        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+            onViewLoaded(savedInstanceState)
+        }
     }
 
     private fun initRenderer() {
@@ -67,15 +76,6 @@ abstract class BaseFragment<VB : ViewBinding, R, E, VM : BaseViewModel<*, E>> : 
             )
             .onEach(::action)
             .launchIn(scope = viewLifecycleOwner.lifecycleScope)
-    }
-
-    abstract fun createView(inflater: LayoutInflater, container: ViewGroup?): VB
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
-            onViewLoaded(savedInstanceState)
-        }
     }
 
     abstract suspend fun onViewLoaded(savedInstanceState: Bundle?)

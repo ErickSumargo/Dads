@@ -42,7 +42,7 @@ internal class UI :
     @Inject
     lateinit var tabsData: @JvmSuppressWildcards List<BottomTab>
 
-    override val viewModel: ViewModel by hiltNavGraphViewModels(R.id.navGraph)
+    override val viewModel: ViewModel by hiltNavGraphViewModels(navGraphId = R.id.navGraph)
 
     override fun createView(
         inflater: LayoutInflater,

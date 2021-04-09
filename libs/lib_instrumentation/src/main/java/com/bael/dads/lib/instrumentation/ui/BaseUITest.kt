@@ -24,7 +24,11 @@ abstract class BaseUITest {
     }
 
     fun isDisplayed(id: Int, text: String) {
-        onView(allOf(withId(id), withText(text)))
-            .check(matches(isDisplayed()))
+        onView(
+            allOf(
+                withId(id),
+                withText(text)
+            )
+        ).check(matches(isDisplayed()))
     }
 }
