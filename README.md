@@ -79,10 +79,11 @@ Moreover, view components are rendered based on their related changed states onl
 - [Elegant Objects (EO)](https://www.elegantobjects.org/).
 - [O.L.I.D](https://en.wikipedia.org/wiki/SOLID), where's the [S?](https://www.yegor256.com/2017/12/19/srp-is-hoax.html)
 - [The Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html).
+- [Cursor-based pagination](https://uxdesign.cc/why-facebook-says-cursor-pagination-is-the-greatest-d6b98d86b6c0?gi=dd3f1a307f7e) over offset-based.
 
 ## Testing Principles
 - Black-box/ behavior-driven testing with `UI` as the sole SUT (very recommended [read](https://dagger.dev/hilt/testing-philosophy.html) and [talk](https://www.youtube.com/watch?v=EZ05e7EMOLM)).
-- No mocking framework!
+- No mocking framework! Only fake type as test double, if required.
 <br/>
 <br/>
 

@@ -8,12 +8,9 @@ import com.bael.dads.lib.instrumentation.ui.BaseUITest
 import com.bael.dads.lib.presentation.fragment.BaseFragment
 import com.bael.dads.lib.threading.Thread
 import dagger.hilt.android.testing.HiltAndroidRule
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.TestCoroutineScope
-import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runBlockingTest
-import kotlinx.coroutines.test.setMain
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -39,8 +36,6 @@ abstract class BaseFragmentTest : BaseUITest() {
     @Before
     internal fun setup() {
         hiltRule.inject()
-        Dispatchers.setMain(dispatcher = thread.main)
-
         setupTest()
     }
 
@@ -61,9 +56,7 @@ abstract class BaseFragmentTest : BaseUITest() {
 
     @After
     internal fun tearDown() {
-        Dispatchers.resetMain()
         thread.reset()
-
         clearTest()
     }
 
