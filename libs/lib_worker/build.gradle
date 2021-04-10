@@ -2,7 +2,6 @@ apply from: "$rootDir/libs/lib.gradle"
 
 dependencies {
     // hilt
-    implementation "androidx.hilt:hilt-navigation-fragment:$deps.hilt"
     implementation "androidx.hilt:hilt-work:$deps.hilt"
 
     // startup
