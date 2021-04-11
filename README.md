@@ -108,6 +108,9 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHAiOiJEYWRzISIsInR5cGUiOiJVc2VyIn0.46o
 ```
 * Have fun!
 
+## Caveat
+After went through **How to run** section but you still get a "Service issue" state, hit `TRY AGAIN?` a couple of times until success. That's because I host data to the server with basic free plan - potato spec, well, it's just for research purpose anyway 😂. 
+
 ## Contributing
 [Let's get in touch](https://twitter.com/SumargoErick) if you're interested in contributing. Fork it, submit your PR.<br/>
 Also feel free to open new issue, request features, or any kind of your support (join [**stargazers** ⭐](https://github.com/ErickSumargo/Dads/stargazers)️ | treat me [**coffee**](https://www.buymeacoffee.com/ErickSumargo) 😁).
