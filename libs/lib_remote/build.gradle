@@ -16,6 +16,10 @@ apollo {
     generateKotlinModels.set(true)
 }
 
+secrets {
+    propertiesFileName "keys.properties"
+}
+
 dependencies {
     // graphql
     implementation "com.apollographql.apollo:apollo-runtime:$deps.graphql"
