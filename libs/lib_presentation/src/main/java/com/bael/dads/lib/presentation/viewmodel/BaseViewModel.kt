@@ -7,7 +7,8 @@ import com.bael.dads.lib.presentation.state.StateStore
 import com.bael.dads.lib.presentation.store.Store
 import com.bael.dads.lib.threading.Thread
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
@@ -35,10 +36,10 @@ abstract class BaseViewModel<S, E>(
         get() = stateStore.stateFlow.onEach(::saveState)
 
     internal val eventFlow: Flow<E>
-        get() = eventStore.stateFlow.filter { event -> event != null }
+        get() = eventStore.stateFlow.filterNotNull()
 
     protected val state: S
-        get() = stateStore.stateFlow.value
+        get() = (stateStore.stateFlow as StateFlow).value
 
     private fun restoreState(): S? {
         return savedStateHandle.get(key)

@@ -1,3 +1,7 @@
+plugins {
+    id "com.google.secrets_gradle_plugin" version "0.6"
+}
+
 apply from: "$rootDir/libs/lib.gradle"
 
 def plugins = [
@@ -6,18 +10,6 @@ def plugins = [
 
 plugins.forEach { plugin ->
     apply plugin: plugin
-}
-
-android {
-    buildTypes {
-        debug {
-            buildConfigField "String", "JWT", DADS_JWT
-        }
-
-        release {
-            buildConfigField "String", "JWT", DADS_JWT
-        }
-    }
 }
 
 apollo {

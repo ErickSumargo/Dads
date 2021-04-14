@@ -1,13 +1,13 @@
 package com.bael.dads.lib.presentation.store
 
-import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.Flow
 
 /**
  * Created by ErickSumargo on 01/01/21.
  */
 
 internal interface Store<S> {
-    val stateFlow: StateFlow<S>
+    val stateFlow: Flow<S>
 
     fun process(state: S)
 }
