@@ -53,6 +53,7 @@ class JacocoTestReportPlugin : Plugin<Project> {
                 "outputs/code_coverage/debugAndroidTest/connected/**/*.ec"
             )
 
+            val javaSrc: MutableList<String> = mutableListOf()
             val kotlinSrc: MutableList<String> = mutableListOf()
 
             val javaClasses: MutableList<FileTree> = mutableListOf()
@@ -60,6 +61,7 @@ class JacocoTestReportPlugin : Plugin<Project> {
             val execFiles: MutableList<FileTree> = mutableListOf()
 
             project.rootProject.subprojects.forEach { subProject ->
+                javaSrc.add("${subProject.projectDir}/src/main/java")
                 kotlinSrc.add("${subProject.projectDir}/src/main/kotlin")
 
                 javaClasses.add(
@@ -88,7 +90,7 @@ class JacocoTestReportPlugin : Plugin<Project> {
             }
 
             sourceDirectories.setFrom(
-                project.files(kotlinSrc)
+                project.files(javaSrc, kotlinSrc)
             )
 
             classDirectories.setFrom(
