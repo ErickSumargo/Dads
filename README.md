@@ -41,9 +41,9 @@
 - [ViewPager2](https://developer.android.com/reference/androidx/viewpager2/widget/ViewPager2) - Personal option over `RecyclerView` when dealing view snapping experience.
 
 #### Internal
-- [LiveListAdapter](libs/lib_presentation/src/main/java/com/bael/dads/lib/presentation/widget/recyclerview/adapter/LiveListAdapter.kt) <br/>
+- [LiveListAdapter](libs/lib_presentation/src/main/kotlin/com/bael/dads/lib/presentation/widget/recyclerview/adapter/LiveListAdapter.kt) <br/>
 ListAdapter w/ every visible cell (`ViewHolder`) is reactive. Cell acts like observer of data they hold, so it will auto-refresh if their related data is updated.<br/>
-- [RenderExecutor Processor](processor/src/main/java/com/bael/dads/processor) <br/>
+- [RenderExecutor Processor](processor/src/main/kotlin/com/bael/dads/processor) <br/>
 Processor for `RenderWith` annotation. Diff-state engine generator for rendering view component.
 
 #### Remote
