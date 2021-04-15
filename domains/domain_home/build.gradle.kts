@@ -1,12 +1,12 @@
-apply {
-    from("$rootDir/domains/domain.gradle.kts")
+plugins {
+    id("domain")
 }
 
 dependencies {
-    // domains
+    // Domain
     "implementation"(project(":domain_common"))
 
-    // libs
+    // Lib
     "implementation"(project(":lib_database"))
     "implementation"(project(":lib_remote"))
 }

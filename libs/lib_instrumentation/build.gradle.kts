@@ -1,5 +1,5 @@
-apply {
-    from("$rootDir/libs/lib.gradle.kts")
+plugins {
+    id("library")
 }
 
 dependencies {
@@ -19,7 +19,7 @@ dependencies {
 }
 
 dependencies {
-    // libs
+    // Lib
     implementation(project(":lib_presentation"))
     implementation(project(":lib_threading"))
 }

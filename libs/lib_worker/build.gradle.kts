@@ -1,5 +1,5 @@
-apply {
-    from("$rootDir/libs/lib.gradle.kts")
+plugins {
+    id("library")
 }
 
 dependencies {

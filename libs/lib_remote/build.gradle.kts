@@ -1,25 +1,15 @@
-apply {
-    from("$rootDir/libs/lib.gradle.kts")
-}
-
 plugins {
+    id("library")
     id("com.apollographql.apollo")
-}
-
-android {
-    buildTypes {
-        getByName("debug") {
-            buildConfigField("String", "JWT", "DADS_JWT")
-        }
-
-        getByName("release") {
-            buildConfigField("String", "JWT", "DADS_JWT")
-        }
-    }
+    id("com.google.secrets_gradle_plugin") version "0.6"
 }
 
 apollo {
     generateKotlinModels.set(true)
+}
+
+secrets {
+    propertiesFileName "keys.properties"
 }
 
 dependencies {
@@ -27,11 +17,11 @@ dependencies {
     implementation(Library.apollo)
     implementation(Library.apolloCoroutines)
 
-    // SquareUp
+    // Square
     implementation(Library.okhttp3Logging)
 }
 
 dependencies {
-    // domains
+    // Domain
     implementation(project(":domain_common"))
 }

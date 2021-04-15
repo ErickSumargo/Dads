@@ -1,13 +1,13 @@
-apply {
-    from("$rootDir/libs/lib.gradle.kts")
+plugins {
+    id("library")
 }
 
 android {
     defaultConfig {
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments = mapOf(
-                    "room.schemaLocation" to "$projectDir/schemas",
+                arguments += mapOf(
+                    "room.schemaLocation" to "${project.projectDir}/schemas",
                     "room.incremental" to "true",
                     "room.expandProjection" to "true"
                 )

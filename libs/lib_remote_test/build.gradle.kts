@@ -1,5 +1,5 @@
-apply {
-    from("$rootDir/libs/lib.gradle.kts")
+plugins {
+    id("library")
 }
 
 dependencies {
@@ -8,9 +8,9 @@ dependencies {
 }
 
 dependencies {
-    // domains
+    // Domain
     implementation(project(":domain_common"))
 
-    // libs
+    // Lib
     implementation(project(":lib_remote"))
 }

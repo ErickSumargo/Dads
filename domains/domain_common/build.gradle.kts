@@ -1,3 +1,3 @@
-apply {
-    from("$rootDir/domains/domain.gradle.kts")
+plugins {
+    id("domain")
 }

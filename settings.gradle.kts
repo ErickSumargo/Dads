@@ -1,4 +1,3 @@
-include(":app")
 rootProject.name = "Dads"
 
 val features: List<String> = listOf(
@@ -29,21 +28,23 @@ val internals: List<String> = listOf(
     "processor"
 )
 
+include(":app")
+
 features.forEach { feature ->
-//    include(":$feature")
-//    project(":$feature").projectDir = File("features/$feature")
+    include(":$feature")
+    project(":$feature").projectDir = File("features/$feature")
 }
 
 domains.forEach { domain ->
-//    include(":$domain")
-//    project(":$domain").projectDir = File("domains/$domain")
+    include(":$domain")
+    project(":$domain").projectDir = File("domains/$domain")
 }
 
 libs.forEach { lib ->
-//    include(":$lib")
-//    project(":$lib").projectDir = File("libs/$lib")
+    include(":$lib")
+    project(":$lib").projectDir = File("libs/$lib")
 }
 
 internals.forEach { internal ->
-//    include(":$internal")
+    include(":$internal")
 }

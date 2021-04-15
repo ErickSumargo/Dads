@@ -12,7 +12,7 @@ dependencies {
     // JavaX
     implementation(Library.inject)
 
-    // SquareUp
+    // Square
     implementation(Library.javaPoet)
 }
 

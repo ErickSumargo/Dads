@@ -1,5 +1,5 @@
-apply {
-    from("$rootDir/features/feature.gradle.kts")
+plugins {
+    id("feature")
 }
 
 dependencies {
@@ -14,11 +14,11 @@ dependencies {
 }
 
 dependencies {
-    // domains
+    // Domain
     implementation(project(":domain_common"))
     implementation(project(":domain_home"))
 
-    // libs
+    // Lib
     implementation(project(":lib_preference"))
     implementation(project(":lib_worker"))
 

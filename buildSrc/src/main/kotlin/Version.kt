@@ -67,7 +67,7 @@ object Version {
 
     const val kotlin: String = "1.4.0"
 
-    // SquareUp
+    // Square
     const val javaPoet: String = "1.13.0"
 
     const val leakCanary: String = "2.5"

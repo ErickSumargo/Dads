@@ -88,8 +88,11 @@ object Library {
     val autoService: String
         get() = "com.google.auto.service:auto-service:${Version.autoService}"
 
+    val analytics: String
+        get() = "com.google.firebase:firebase-analytics-ktx"
+
     val crashlytics: String
-        get() = "com.google.firebase:firebase-crashlytics-ktx:${Version.crashlytics}"
+        get() = "com.google.firebase:firebase-crashlytics-ktx"
 
     val dagger: String
         get() = "com.google.dagger:hilt-android:${Version.dagger}"
@@ -101,7 +104,7 @@ object Library {
         get() = "com.google.dagger:hilt-android-testing:${Version.dagger}"
 
     val firebaseBom: String
-        get() = "com.google.firebase:firebase-bom::${Version.firebaseBom}"
+        get() = "com.google.firebase:firebase-bom:${Version.firebaseBom}"
 
     val material: String
         get() = "com.google.android.material:material:${Version.material}"
@@ -120,7 +123,7 @@ object Library {
     val coroutinesTest: String
         get() = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Version.coroutines}"
 
-    // SquareUp
+    // Square
     val javaPoet: String
         get() = "com.squareup:javapoet:${Version.javaPoet}"
 

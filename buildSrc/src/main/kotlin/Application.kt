@@ -9,7 +9,7 @@ object Application {
 
     val versionName: String = "1.1"
 
-    val compileSdk: String = "30"
+    val compileSdk: Int = 30
 
     val targetSdk: Int = 30
 
