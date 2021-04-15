@@ -102,7 +102,7 @@ class FeaturePlugin : Plugin<Project> {
     private fun applyKaptExtension(project: Project) {
         val extension = project.extensions.getByName("kapt") as? KaptExtension ?: return
         extension.apply {
-            correctErrorTypes = false
+            correctErrorTypes = true
         }
     }
 
