@@ -9,7 +9,7 @@ apollo {
 }
 
 secrets {
-    propertiesFileName "keys.properties"
+    propertiesFileName = "keys.properties"
 }
 
 dependencies {

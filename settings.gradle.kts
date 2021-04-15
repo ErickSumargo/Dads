@@ -1,12 +1,12 @@
 rootProject.name = "Dads"
 
-val features: List<String> = listOf(
-    "feature_home"
-)
-
 val domains: List<String> = listOf(
     "domain_common",
     "domain_home"
+)
+
+val features: List<String> = listOf(
+    "feature_home"
 )
 
 val libs: List<String> = listOf(
@@ -30,14 +30,14 @@ val internals: List<String> = listOf(
 
 include(":app")
 
-features.forEach { feature ->
-    include(":$feature")
-    project(":$feature").projectDir = File("features/$feature")
-}
-
 domains.forEach { domain ->
     include(":$domain")
     project(":$domain").projectDir = File("domains/$domain")
+}
+
+features.forEach { feature ->
+    include(":$feature")
+    project(":$feature").projectDir = File("features/$feature")
 }
 
 libs.forEach { lib ->

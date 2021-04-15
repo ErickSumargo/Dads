@@ -20,9 +20,9 @@ class FeaturePlugin : Plugin<Project> {
 
     override fun apply(project: Project) {
         applyPlugins(project)
+        applyFeatureExtension(project)
         applyHiltExtension(project)
         applyKaptExtension(project)
-        applyFeatureExtension(project)
 
         importExternalLibs(project)
         importInternalModules(project)
@@ -33,20 +33,6 @@ class FeaturePlugin : Plugin<Project> {
         project.plugins.apply("dagger.hilt.android.plugin")
         project.plugins.apply("kotlin-android")
         project.plugins.apply("kotlin-kapt")
-    }
-
-    private fun applyHiltExtension(project: Project) {
-        val extension = project.extensions.getByName("hilt") as? HiltExtension ?: return
-        extension.apply {
-            enableExperimentalClasspathAggregation = true
-        }
-    }
-
-    private fun applyKaptExtension(project: Project) {
-        val extension = project.extensions.getByName("kapt") as? KaptExtension ?: return
-        extension.apply {
-            correctErrorTypes = false
-        }
     }
 
     private fun applyFeatureExtension(project: Project) {
@@ -103,6 +89,20 @@ class FeaturePlugin : Plugin<Project> {
                 exclude("META-INF/LGPL2.1")
                 exclude("META-INF/*.kotlin_module")
             }
+        }
+    }
+
+    private fun applyHiltExtension(project: Project) {
+        val extension = project.extensions.getByName("hilt") as? HiltExtension ?: return
+        extension.apply {
+            enableExperimentalClasspathAggregation = true
+        }
+    }
+
+    private fun applyKaptExtension(project: Project) {
+        val extension = project.extensions.getByName("kapt") as? KaptExtension ?: return
+        extension.apply {
+            correctErrorTypes = false
         }
     }
 
