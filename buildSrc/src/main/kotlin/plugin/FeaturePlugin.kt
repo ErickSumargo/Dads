@@ -7,8 +7,10 @@ import dagger.hilt.android.plugin.HiltExtension
 import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.project
+import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.plugin.KaptExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
@@ -33,6 +35,8 @@ class FeaturePlugin : Plugin<Project> {
         project.plugins.apply("dagger.hilt.android.plugin")
         project.plugins.apply("kotlin-android")
         project.plugins.apply("kotlin-kapt")
+
+        project.plugins.apply(JacocoTestReportPlugin::class)
     }
 
     private fun applyFeatureExtension(project: Project) {
@@ -65,7 +69,7 @@ class FeaturePlugin : Plugin<Project> {
                 targetCompatibility = JavaVersion.VERSION_1_8
             }
 
-            project.tasks.withType(KotlinCompile::class.java).configureEach {
+            project.tasks.withType<KotlinCompile>().configureEach {
                 kotlinOptions {
                     freeCompilerArgs = listOf(
                         "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
