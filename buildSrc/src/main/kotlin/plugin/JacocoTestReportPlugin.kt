@@ -65,25 +65,19 @@ class JacocoTestReportPlugin : Plugin<Project> {
                 kotlinSrc.add("${subProject.projectDir}/src/main/kotlin")
 
                 javaClasses.add(
-                    project.fileTree(
-                        "${subProject.buildDir}/intermediates/javac/debug"
-                    ) {
+                    project.fileTree("${subProject.buildDir}/intermediates/javac/debug") {
                         setExcludes(fileFilters)
                     }
                 )
 
                 kotlinClasses.add(
-                    project.fileTree(
-                        "${subProject.buildDir}/tmp/kotlin-classes/debug"
-                    ) {
+                    project.fileTree("${subProject.buildDir}/tmp/kotlin-classes/debug") {
                         setExcludes(fileFilters)
                     }
                 )
 
                 execFiles.add(
-                    project.fileTree(
-                        "${subProject.buildDir}"
-                    ) {
+                    project.fileTree("${subProject.buildDir}") {
                         setIncludes(execFileFilters)
                     }
                 )

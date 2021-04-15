@@ -1,15 +1,15 @@
 rootProject.name = "Dads"
 
-val domains: List<String> = listOf(
+val domains = listOf(
     "domain_common",
     "domain_home"
 )
 
-val features: List<String> = listOf(
+val features = listOf(
     "feature_home"
 )
 
-val libs: List<String> = listOf(
+val libs = listOf(
     "lib_database",
     "lib_database_test",
     "lib_instrumentation",
@@ -23,7 +23,7 @@ val libs: List<String> = listOf(
     "lib_worker"
 )
 
-val internals: List<String> = listOf(
+val internals = listOf(
     "annotation",
     "processor"
 )
