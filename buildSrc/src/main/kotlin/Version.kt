@@ -57,6 +57,8 @@ object Version {
 
     const val material: String = "1.2.1"
 
+    const val secrets: String = "0.6"
+
     const val truth: String = "1.1.2"
 
     // JavaX

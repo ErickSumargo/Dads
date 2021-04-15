@@ -60,6 +60,16 @@ class FeaturePlugin : Plugin<Project> {
                 }
             }
 
+            sourceSets {
+                getByName("main").java {
+                    srcDirs("src/main/kotlin")
+                }
+
+                getByName("androidTest").java {
+                    srcDirs("src/androidTest/kotlin")
+                }
+            }
+
             buildFeatures.apply {
                 viewBinding = true
             }

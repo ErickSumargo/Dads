@@ -75,6 +75,16 @@ class ApplicationPlugin : Plugin<Project> {
                 }
             }
 
+            sourceSets {
+                getByName("main").java {
+                    srcDir("src/main/kotlin")
+                }
+
+                getByName("debug").java {
+                    srcDir("src/debug/kotlin")
+                }
+            }
+
             buildFeatures.apply {
                 viewBinding = true
             }

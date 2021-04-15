@@ -54,14 +54,12 @@ class JacocoTestReportPlugin : Plugin<Project> {
             )
 
             val kotlinSrc: MutableList<String> = mutableListOf()
-            val javaSrc: MutableList<String> = mutableListOf()
 
             val javaClasses: MutableList<FileTree> = mutableListOf()
             val kotlinClasses: MutableList<FileTree> = mutableListOf()
             val execFiles: MutableList<FileTree> = mutableListOf()
 
             project.rootProject.subprojects.forEach { subProject ->
-                javaSrc.add("${subProject.projectDir}/src/main/java")
                 kotlinSrc.add("${subProject.projectDir}/src/main/kotlin")
 
                 javaClasses.add(
@@ -90,7 +88,7 @@ class JacocoTestReportPlugin : Plugin<Project> {
             }
 
             sourceDirectories.setFrom(
-                project.files(javaSrc, kotlinSrc)
+                project.files(kotlinSrc)
             )
 
             classDirectories.setFrom(

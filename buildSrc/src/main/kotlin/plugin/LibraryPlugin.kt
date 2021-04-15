@@ -48,6 +48,12 @@ class LibraryPlugin : Plugin<Project> {
                 }
             }
 
+            sourceSets {
+                getByName("main").java {
+                    srcDirs("src/main/kotlin")
+                }
+            }
+
             compileOptions {
                 sourceCompatibility = JavaVersion.VERSION_1_8
                 targetCompatibility = JavaVersion.VERSION_1_8

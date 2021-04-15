@@ -1,7 +1,7 @@
 plugins {
     id("library")
     id("com.apollographql.apollo")
-    id("com.google.secrets_gradle_plugin") version "0.6"
+    id("com.google.secrets_gradle_plugin") version Version.secrets
 }
 
 apollo {
