@@ -34,6 +34,7 @@ dependencies {
     implementation("com.apollographql.apollo:apollo-gradle-plugin:2.4.5")
 
     implementation(kotlin("gradle-plugin", "1.4.0"))
+    implementation(kotlin("stdlib", "1.3.72"))
 }
 
 repositories {
