@@ -67,7 +67,7 @@ object Version {
     // KotlinX
     const val coroutines: String = "1.4.2"
 
-    const val kotlin: String = "1.4.0"
+    const val kotlin: String = "1.4.32"
 
     // Square
     const val javaPoet: String = "1.13.0"
