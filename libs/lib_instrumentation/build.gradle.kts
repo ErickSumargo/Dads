@@ -20,6 +20,7 @@ dependencies {
 
 dependencies {
     // Lib
+    implementation(project(":lib_navigation"))
     implementation(project(":lib_presentation"))
     implementation(project(":lib_threading"))
 }
