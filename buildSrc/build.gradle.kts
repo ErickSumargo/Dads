@@ -26,14 +26,22 @@ gradlePlugin {
     }
 }
 
-dependencies {
-    implementation("com.android.tools.build:gradle:4.1.1")
-    implementation("com.google.dagger:hilt-android-gradle-plugin:2.31-alpha")
-    implementation("com.google.gms:google-services:4.3.5")
-    implementation("com.google.firebase:firebase-crashlytics-gradle:2.5.0")
-    implementation("com.apollographql.apollo:apollo-gradle-plugin:2.4.5")
+kotlin {
+    sourceSets.getByName("main").kotlin.srcDir("buildSrc/src/main/kotlin")
+}
 
-    implementation(kotlin("gradle-plugin", "1.4.0"))
+dependencies {
+    // Apollo
+    implementation(Plugin.apollo)
+
+    // Google
+    implementation(Plugin.crashlytics)
+    implementation(Plugin.dagger)
+    implementation(Plugin.gms)
+    implementation(Plugin.gradle)
+
+    // KotlinX
+    implementation(Plugin.kotlin)
 }
 
 repositories {
