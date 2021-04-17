@@ -9,6 +9,7 @@ import com.bael.dads.domain.common.response.Response.Success
 import com.bael.dads.domain.home.model.DadJoke
 import com.bael.dads.domain.home.usecase.LoadDadJokeFeedUseCase
 import com.bael.dads.domain.home.usecase.LoadDadJokeUseCase
+import com.bael.dads.lib.navigation.HomeNavigation
 import com.bael.dads.lib.preference.Preference
 import com.bael.dads.lib.presentation.notification.NotificationPublisher
 import com.bael.dads.lib.worker.BaseWorker
@@ -28,7 +29,8 @@ internal class FetchDadJokeFeedWorker @AssistedInject constructor(
     private val loadDadJokeUseCase: LoadDadJokeUseCase,
     private val loadDadJokeFeedUseCase: LoadDadJokeFeedUseCase,
     private val preference: Preference,
-    private val notificationPublisher: NotificationPublisher
+    private val notificationPublisher: NotificationPublisher,
+    private val homeNavigation: HomeNavigation
 ) : BaseWorker(appContext, params) {
 
     override suspend fun doWork(): Result {
@@ -63,7 +65,7 @@ internal class FetchDadJokeFeedWorker @AssistedInject constructor(
         )
         if (!isNewFeedReminderEnabled) return
 
-        val notification = NewFeedReminderNotification(context, dadJokes)
+        val notification = NewFeedReminderNotification(context, dadJokes, homeNavigation)
         notificationPublisher.publish(notification)
     }
 

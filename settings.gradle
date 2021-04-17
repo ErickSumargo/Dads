@@ -14,6 +14,7 @@ def libs = [
     "lib_database",
     "lib_database_test",
     "lib_instrumentation",
+    "lib_navigation",
     "lib_preference",
     "lib_preference_test",
     "lib_presentation",

@@ -108,6 +108,7 @@ dependencies {
 
     // libs
     implementation project(":lib_database")
+    implementation project(":lib_navigation")
     implementation project(":lib_preference")
     implementation project(":lib_presentation")
     implementation project(":lib_remote")
