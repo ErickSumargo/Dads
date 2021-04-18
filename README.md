@@ -4,6 +4,7 @@
 [![CI](https://github.com/ErickSumargo/Dads/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/ErickSumargo/Dads/actions/workflows/ci.yml)
 [![codecov](https://codecov.io/gh/ErickSumargo/Dads/branch/main/graph/badge.svg?token=T2CU8YFDCO)](https://codecov.io/gh/ErickSumargo/Dads)
 [![Fossa Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FErickSumargo%2FDads.svg?type=small)](https://app.fossa.com/projects/git%2Bgithub.com%2FErickSumargo%2FDads/refs/branch/main)
+[![Android Weekly](https://androidweekly.net/issues/issue-462/badge)](https://androidweekly.net/issues/issue-462)
 
 **Just an app with lame dad jokes content to fill up your day.**
 
