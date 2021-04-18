@@ -7,7 +7,12 @@ import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
+import org.gradle.kotlin.dsl.getValue
+import org.gradle.kotlin.dsl.getting
+import org.gradle.kotlin.dsl.invoke
+import org.gradle.kotlin.dsl.project
 import org.gradle.kotlin.dsl.withType
+import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 /**
@@ -18,16 +23,42 @@ class DomainPlugin : Plugin<Project> {
 
     override fun apply(project: Project) {
         applyPlugins(project)
+        applyKotlinMultiplatformExtension(project)
         applyLibraryExtension(project)
-
-        importExternalLibs(project)
     }
 
     private fun applyPlugins(project: Project) {
+        project.plugins.apply("kotlin-multiplatform")
+        project.plugins.apply("kotlin-kapt")
+
         project.plugins.apply("com.android.library")
         project.plugins.apply("dagger.hilt.android.plugin")
-        project.plugins.apply("kotlin-android")
-        project.plugins.apply("kotlin-kapt")
+    }
+
+    private fun applyKotlinMultiplatformExtension(project: Project) {
+        val extension = project.extensions.getByName("kotlin")
+                as? KotlinMultiplatformExtension ?: return
+        extension.apply {
+            android()
+
+            sourceSets {
+                val commonMain by getting {
+                    dependencies {
+                        // KotlinX
+                        implementation(Library.coroutines)
+                    }
+                }
+
+                val androidMain by getting {
+                    dependencies {
+                        // Google
+                        implementation(Library.dagger)
+
+//                        "kapt"(Library.daggerCompiler)
+                    }
+                }
+            }
+        }
     }
 
     private fun applyLibraryExtension(project: Project) {
@@ -43,14 +74,20 @@ class DomainPlugin : Plugin<Project> {
             }
 
             buildTypes {
-                getByName("debug") {
+                named("debug") {
                     isTestCoverageEnabled = true
                 }
             }
 
             sourceSets {
-                getByName("main").java {
-                    srcDirs("src/main/kotlin")
+                named("main") {
+                    manifest {
+                        srcFile("src/androidMain/AndroidManifest.xml")
+                    }
+
+                    java {
+                        srcDirs("src/main/kotlin")
+                    }
                 }
             }
 
@@ -75,18 +112,17 @@ class DomainPlugin : Plugin<Project> {
             lintOptions {
                 error("VisibleForTests")
             }
+
+            packagingOptions {
+                exclude("DebugProbesKt.bin")
+            }
         }
     }
 
-    private fun importExternalLibs(project: Project) {
+    private fun importInternalModules(project: Project) {
         project.dependencies {
             // Google
-            add("implementation", Library.dagger)
-
             add("kapt", Library.daggerCompiler)
-
-            // KotlinX
-            add("implementation", Library.coroutines)
         }
     }
 }

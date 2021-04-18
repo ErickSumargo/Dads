@@ -50,7 +50,7 @@ class ApplicationPlugin : Plugin<Project> {
             }
 
             buildTypes {
-                getByName("debug") {
+                named("debug") {
                     applicationIdSuffix = ".debug"
                     versionNameSuffix = "-debug"
 
@@ -63,7 +63,7 @@ class ApplicationPlugin : Plugin<Project> {
                     )
                 }
 
-                getByName("release") {
+                named("release") {
                     isDebuggable = false
                     isMinifyEnabled = true
                     isShrinkResources = true
@@ -76,12 +76,16 @@ class ApplicationPlugin : Plugin<Project> {
             }
 
             sourceSets {
-                getByName("main").java {
-                    srcDir("src/main/kotlin")
+                named("main") {
+                    java {
+                        srcDir("src/main/kotlin")
+                    }
                 }
 
-                getByName("debug").java {
-                    srcDir("src/debug/kotlin")
+                named("debug") {
+                    java {
+                        srcDir("src/debug/kotlin")
+                    }
                 }
             }
 

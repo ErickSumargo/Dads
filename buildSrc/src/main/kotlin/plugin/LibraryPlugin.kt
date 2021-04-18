@@ -43,14 +43,16 @@ class LibraryPlugin : Plugin<Project> {
             }
 
             buildTypes {
-                getByName("debug") {
+                named("debug") {
                     isTestCoverageEnabled = true
                 }
             }
 
             sourceSets {
-                getByName("main").java {
-                    srcDirs("src/main/kotlin")
+                named("main") {
+                    java {
+                        srcDirs("src/main/kotlin")
+                    }
                 }
             }
 
@@ -86,7 +88,7 @@ class LibraryPlugin : Plugin<Project> {
             add("kapt", Library.daggerCompiler)
 
             // KotlinX
-            add("implementation", Library.coroutines)
+            add("implementation", Library.coroutinesAndroid)
         }
     }
 }

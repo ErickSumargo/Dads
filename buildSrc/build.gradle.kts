@@ -1,5 +1,6 @@
 plugins {
     `kotlin-dsl`
+
 }
 
 gradlePlugin {
@@ -27,7 +28,11 @@ gradlePlugin {
 }
 
 kotlin {
-    sourceSets.getByName("main").kotlin.srcDir("buildSrc/src/main/kotlin")
+    sourceSets {
+        named("main") {
+            kotlin.srcDir("buildSrc/src/main/kotlin")
+        }
+    }
 }
 
 dependencies {

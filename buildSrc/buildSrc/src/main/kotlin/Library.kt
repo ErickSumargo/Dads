@@ -118,6 +118,9 @@ object Library {
 
     // KotlinX
     val coroutines: String
+        get() = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Version.coroutines}"
+
+    val coroutinesAndroid: String
         get() = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Version.coroutines}"
 
     val coroutinesTest: String

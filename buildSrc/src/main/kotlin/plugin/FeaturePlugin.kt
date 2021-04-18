@@ -55,18 +55,22 @@ class FeaturePlugin : Plugin<Project> {
             }
 
             buildTypes {
-                getByName("debug") {
+                named("debug") {
                     isTestCoverageEnabled = true
                 }
             }
 
             sourceSets {
-                getByName("main").java {
-                    srcDirs("src/main/kotlin")
+                named("main") {
+                    java {
+                        srcDirs("src/main/kotlin")
+                    }
                 }
 
-                getByName("androidTest").java {
-                    srcDirs("src/androidTest/kotlin")
+                named("androidTest") {
+                    java {
+                        srcDirs("src/androidTest/kotlin")
+                    }
                 }
             }
 
