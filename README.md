@@ -86,7 +86,6 @@ Moreover, view components are rendered based on their related changed states onl
 - Black-box/ behavior-driven testing with `UI` as the sole SUT (very recommended [read](https://dagger.dev/hilt/testing-philosophy.html) and [talk](https://www.youtube.com/watch?v=EZ05e7EMOLM)).
 - No mocking framework! Only fake type as test double, if required.
 <br/>
-<br/>
 
 [<img align="left" width="100" height="100" src="assets/graphql.png">]()
 ## GraphQL Engine

@@ -27,7 +27,13 @@ gradlePlugin {
 }
 
 kotlin {
-    sourceSets.getByName("main").kotlin.srcDir("buildSrc/src/main/kotlin")
+    sourceSets {
+        named("main") {
+            kotlin.apply {
+                srcDir("buildSrc/src/main/kotlin")
+            }
+        }
+    }
 }
 
 dependencies {
