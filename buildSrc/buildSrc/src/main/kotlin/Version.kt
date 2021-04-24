@@ -67,6 +67,8 @@ object Version {
     // KotlinX
     const val coroutines: String = "1.4.2"
 
+    const val serialization: String = "1.1.0"
+
     const val kotlin: String = "1.4.0"
 
     // Square

@@ -26,16 +26,17 @@ class DomainPlugin : Plugin<Project> {
         applyKotlinMultiplatformExtension(project)
         applyLibraryExtension(project)
 
-        importExternalLibs(project)
+        // importExternalLibs(project)
     }
 
     private fun applyPlugins(project: Project) {
         project.plugins.apply {
             apply("com.android.library")
-            apply("dagger.hilt.android.plugin")
-            apply("kotlin-android")
-            apply("kotlin-kapt")
+//            apply("dagger.hilt.android.plugin")
+//            apply("kotlin-android")
+//            apply("kotlin-kapt")
             apply("kotlin-multiplatform")
+            apply("kotlinx-serialization")
         }
     }
 
@@ -56,7 +57,9 @@ class DomainPlugin : Plugin<Project> {
                 val androidMain by getting {
                     dependencies {
                         // Google
-                        implementation(Library.dagger)
+//                        implementation(Library.dagger)
+//
+//                        "kapt"(Library.daggerCompiler)
                     }
                 }
             }

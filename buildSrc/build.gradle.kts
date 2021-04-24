@@ -48,6 +48,7 @@ dependencies {
 
     // KotlinX
     implementation(Plugin.kotlin)
+    implementation(Plugin.serialization)
 }
 
 repositories {

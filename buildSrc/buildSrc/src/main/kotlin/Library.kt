@@ -126,6 +126,9 @@ object Library {
     val coroutinesTest: String
         get() = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Version.coroutines}"
 
+    val serialization: String
+        get() = "org.jetbrains.kotlinx:kotlinx-serialization-json:${Version.serialization}"
+
     // Square
     val javaPoet: String
         get() = "com.squareup:javapoet:${Version.javaPoet}"
