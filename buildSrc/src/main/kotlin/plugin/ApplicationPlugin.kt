@@ -1,3 +1,5 @@
+@file:Suppress("UnstableApiUsage")
+
 package plugin
 
 import Application
@@ -17,23 +19,27 @@ class ApplicationPlugin : Plugin<Project> {
 
     override fun apply(project: Project) {
         applyPlugins(project)
-        applyAndroidExtension(project)
+
+        applyAppExtension(project)
 
         importExternalLibs(project)
         importInternalModules(project)
     }
 
     private fun applyPlugins(project: Project) {
-        project.plugins.apply("com.android.application")
-        project.plugins.apply("com.google.gms.google-services")
-        project.plugins.apply("com.google.firebase.crashlytics")
-        project.plugins.apply("dagger.hilt.android.plugin")
-        project.plugins.apply("kotlin-android")
-        project.plugins.apply("kotlin-kapt")
+        project.plugins.apply {
+            apply("com.android.application")
+            apply("com.google.gms.google-services")
+            apply("com.google.firebase.crashlytics")
+            apply("dagger.hilt.android.plugin")
+            apply("kotlin-android")
+            apply("kotlin-kapt")
+        }
     }
 
-    private fun applyAndroidExtension(project: Project) {
-        val extension = project.extensions.getByName("android") as? AppExtension ?: return
+    private fun applyAppExtension(project: Project) {
+        val extension = project.extensions.getByName("android")
+                as? AppExtension ?: return
         extension.apply {
             compileSdkVersion(Application.compileSdk)
 

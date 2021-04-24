@@ -18,20 +18,24 @@ class LibraryPlugin : Plugin<Project> {
 
     override fun apply(project: Project) {
         applyPlugins(project)
+
         applyLibraryExtension(project)
 
         importExternalLibs(project)
     }
 
     private fun applyPlugins(project: Project) {
-        project.plugins.apply("com.android.library")
-        project.plugins.apply("dagger.hilt.android.plugin")
-        project.plugins.apply("kotlin-android")
-        project.plugins.apply("kotlin-kapt")
+        project.plugins.apply {
+            apply("com.android.library")
+            apply("dagger.hilt.android.plugin")
+            apply("kotlin-android")
+            apply("kotlin-kapt")
+        }
     }
 
     private fun applyLibraryExtension(project: Project) {
-        val extension = project.extensions.getByName("android") as? LibraryExtension ?: return
+        val extension = project.extensions.getByName("android")
+                as? LibraryExtension ?: return
         extension.apply {
             compileSdkVersion(Application.compileSdk)
 
@@ -69,7 +73,6 @@ class LibraryPlugin : Plugin<Project> {
                         "-Xopt-in=kotlinx.coroutines.FlowPreview",
                         "-Xopt-in=kotlinx.coroutines.InternalCoroutinesApi"
                     )
-
                     jvmTarget = "${JavaVersion.VERSION_1_8}"
                 }
             }

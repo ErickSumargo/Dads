@@ -10,7 +10,6 @@ import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.getValue
 import org.gradle.kotlin.dsl.getting
 import org.gradle.kotlin.dsl.invoke
-import org.gradle.kotlin.dsl.project
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
@@ -23,16 +22,21 @@ class DomainPlugin : Plugin<Project> {
 
     override fun apply(project: Project) {
         applyPlugins(project)
+
         applyKotlinMultiplatformExtension(project)
         applyLibraryExtension(project)
+
+        importExternalLibs(project)
     }
 
     private fun applyPlugins(project: Project) {
-        project.plugins.apply("kotlin-multiplatform")
-        project.plugins.apply("kotlin-kapt")
-
-        project.plugins.apply("com.android.library")
-        project.plugins.apply("dagger.hilt.android.plugin")
+        project.plugins.apply {
+            apply("com.android.library")
+            apply("dagger.hilt.android.plugin")
+            apply("kotlin-android")
+            apply("kotlin-kapt")
+            apply("kotlin-multiplatform")
+        }
     }
 
     private fun applyKotlinMultiplatformExtension(project: Project) {
@@ -53,8 +57,6 @@ class DomainPlugin : Plugin<Project> {
                     dependencies {
                         // Google
                         implementation(Library.dagger)
-
-//                        "kapt"(Library.daggerCompiler)
                     }
                 }
             }
@@ -62,7 +64,8 @@ class DomainPlugin : Plugin<Project> {
     }
 
     private fun applyLibraryExtension(project: Project) {
-        val extension = project.extensions.getByName("android") as? LibraryExtension ?: return
+        val extension = project.extensions.getByName("android")
+                as? LibraryExtension ?: return
         extension.apply {
             compileSdkVersion(Application.compileSdk)
 
@@ -104,7 +107,6 @@ class DomainPlugin : Plugin<Project> {
                         "-Xopt-in=kotlinx.coroutines.FlowPreview",
                         "-Xopt-in=kotlinx.coroutines.InternalCoroutinesApi"
                     )
-
                     jvmTarget = "${JavaVersion.VERSION_1_8}"
                 }
             }
@@ -119,7 +121,7 @@ class DomainPlugin : Plugin<Project> {
         }
     }
 
-    private fun importInternalModules(project: Project) {
+    private fun importExternalLibs(project: Project) {
         project.dependencies {
             // Google
             add("kapt", Library.daggerCompiler)

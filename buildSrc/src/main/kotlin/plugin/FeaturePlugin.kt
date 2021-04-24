@@ -1,3 +1,5 @@
+@file:Suppress("UnstableApiUsage")
+
 package plugin
 
 import Application
@@ -22,6 +24,7 @@ class FeaturePlugin : Plugin<Project> {
 
     override fun apply(project: Project) {
         applyPlugins(project)
+
         applyFeatureExtension(project)
         applyHiltExtension(project)
         applyKaptExtension(project)
@@ -31,16 +34,19 @@ class FeaturePlugin : Plugin<Project> {
     }
 
     private fun applyPlugins(project: Project) {
-        project.plugins.apply("com.android.library")
-        project.plugins.apply("dagger.hilt.android.plugin")
-        project.plugins.apply("kotlin-android")
-        project.plugins.apply("kotlin-kapt")
+        project.plugins.apply {
+            apply("com.android.library")
+            apply("dagger.hilt.android.plugin")
+            apply("kotlin-android")
+            apply("kotlin-kapt")
 
-        project.plugins.apply(JacocoTestReportPlugin::class)
+            apply(JacocoTestReportPlugin::class)
+        }
     }
 
     private fun applyFeatureExtension(project: Project) {
-        val extension = project.extensions.getByName("android") as? LibraryExtension ?: return
+        val extension = project.extensions.getByName("android")
+                as? LibraryExtension ?: return
         extension.apply {
             compileSdkVersion(Application.compileSdk)
 
@@ -91,7 +97,6 @@ class FeaturePlugin : Plugin<Project> {
                         "-Xopt-in=kotlinx.coroutines.InternalCoroutinesApi",
                         "-Xopt-in=kotlin.time.ExperimentalTime"
                     )
-
                     jvmTarget = "${JavaVersion.VERSION_1_8}"
                 }
             }
@@ -111,14 +116,16 @@ class FeaturePlugin : Plugin<Project> {
     }
 
     private fun applyHiltExtension(project: Project) {
-        val extension = project.extensions.getByName("hilt") as? HiltExtension ?: return
+        val extension = project.extensions.getByName("hilt")
+                as? HiltExtension ?: return
         extension.apply {
             enableExperimentalClasspathAggregation = true
         }
     }
 
     private fun applyKaptExtension(project: Project) {
-        val extension = project.extensions.getByName("kapt") as? KaptExtension ?: return
+        val extension = project.extensions.getByName("kapt")
+                as? KaptExtension ?: return
         extension.apply {
             correctErrorTypes = true
         }

@@ -4,6 +4,7 @@
 [![CI](https://github.com/ErickSumargo/Dads/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/ErickSumargo/Dads/actions/workflows/ci.yml)
 [![codecov](https://codecov.io/gh/ErickSumargo/Dads/branch/main/graph/badge.svg?token=T2CU8YFDCO)](https://codecov.io/gh/ErickSumargo/Dads)
 [![Fossa Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FErickSumargo%2FDads.svg?type=small)](https://app.fossa.com/projects/git%2Bgithub.com%2FErickSumargo%2FDads/refs/branch/main)
+[![Android Weekly](https://androidweekly.net/issues/issue-462/badge)](https://androidweekly.net/issues/issue-462)
 
 **Just an app with lame dad jokes content to fill up your day.**
 
@@ -84,7 +85,6 @@ Moreover, view components are rendered based on their related changed states onl
 ## Testing Principles
 - Black-box/ behavior-driven testing with `UI` as the sole SUT (very recommended [read](https://dagger.dev/hilt/testing-philosophy.html) and [talk](https://www.youtube.com/watch?v=EZ05e7EMOLM)).
 - No mocking framework! Only fake type as test double, if required.
-<br/>
 <br/>
 
 [<img align="left" width="100" height="100" src="assets/graphql.png">]()
