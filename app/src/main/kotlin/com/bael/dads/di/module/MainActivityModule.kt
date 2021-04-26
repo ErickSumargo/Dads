@@ -9,13 +9,17 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
+/**
+ * Created by stef_ang on 24/04/21.
+ */
+
 @Module
 @InstallIn(SingletonComponent::class)
 class MainActivityModule {
 
     @Provides
     @Singleton
-    @ActivityNameQualifier(ACTIVITY_MAIN)
+    @ActivityNameQualifier(name = ACTIVITY_MAIN)
     fun provideMainActivityName(): String {
         return MainActivity::class.java.name
     }
