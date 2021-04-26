@@ -5,8 +5,8 @@ import com.bael.dads.lib.presentation.di.ActivityNameQualifier
 import com.bael.dads.lib.presentation.di.ActivityNameQualifier.Companion.ACTIVITY_MAIN
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import dagger.hilt.testing.TestInstallIn
 import javax.inject.Singleton
 
 /**
@@ -14,10 +14,7 @@ import javax.inject.Singleton
  */
 
 @Module
-@TestInstallIn(
-    components = [SingletonComponent::class],
-    replaces = []
-)
+@InstallIn(SingletonComponent::class)
 class MainTestActivityModule {
 
     @Provides
