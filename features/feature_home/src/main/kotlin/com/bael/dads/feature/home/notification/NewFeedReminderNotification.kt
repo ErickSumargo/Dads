@@ -11,18 +11,24 @@ import android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK
 import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import androidx.core.app.NotificationCompat.Builder
 import androidx.core.app.NotificationManagerCompat.IMPORTANCE_LOW
-import com.bael.dads.feature.home.R
 import com.bael.dads.domain.home.model.DadJoke
+import com.bael.dads.feature.home.R
+import com.bael.dads.lib.presentation.di.ActivityNameQualifier
+import com.bael.dads.lib.presentation.di.ActivityNameQualifier.Companion.ACTIVITY_MAIN
 import com.bael.dads.lib.presentation.notification.NotificationConfiguration
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedInject
+import dagger.hilt.android.qualifiers.ApplicationContext
 import java.lang.Class.forName
 
 /**
  * Created by ErickSumargo on 01/01/21.
  */
 
-internal class NewFeedReminderNotification(
-    private val context: Context,
-    private val dadJokes: List<DadJoke>
+internal class NewFeedReminderNotification @AssistedInject constructor(
+    @ApplicationContext private val context: Context,
+    @ActivityNameQualifier(name = ACTIVITY_MAIN) private val mainActivityName: String,
+    @Assisted private val dadJokes: List<DadJoke>
 ) : NotificationConfiguration {
     override val id: Int
         get() = NEW_FEED_REMINDER_NOTIFICATION_ID
@@ -36,7 +42,7 @@ internal class NewFeedReminderNotification(
     override fun createTemplate(templateBuilder: Builder): Notification {
         val intent = Intent(
             context,
-            forName("com.bael.dads.activity.MainActivity")
+            forName(mainActivityName)
         ).also { intent ->
             intent.flags = FLAG_ACTIVITY_CLEAR_TASK or FLAG_ACTIVITY_NEW_TASK
         }
