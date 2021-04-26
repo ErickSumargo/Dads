@@ -20,7 +20,7 @@ class MainTestActivityModule {
     @Provides
     @Singleton
     @ActivityNameQualifier(name = ACTIVITY_MAIN)
-    fun provideMainActivityName(): String {
+    fun provideMainTestActivityName(): String {
         return MainTestActivity::class.java.name
     }
 }
