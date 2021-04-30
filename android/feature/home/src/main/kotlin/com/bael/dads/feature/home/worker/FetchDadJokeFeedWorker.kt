@@ -7,7 +7,7 @@ import androidx.work.WorkerParameters
 import com.bael.dads.domain.home.model.DadJoke
 import com.bael.dads.domain.home.usecase.LoadDadJokeFeedUseCase
 import com.bael.dads.domain.home.usecase.LoadDadJokeUseCase
-import com.bael.dads.feature.home.notification.NewFeedReminderNotification
+import com.bael.dads.feature.home.notification.factory.NewFeedReminderNotificationFactory
 import com.bael.dads.library.preference.Preference
 import com.bael.dads.library.presentation.notification.NotificationPublisher
 import com.bael.dads.library.worker.BaseWorker
@@ -28,7 +28,8 @@ internal class FetchDadJokeFeedWorker @AssistedInject constructor(
     private val loadDadJokeUseCase: LoadDadJokeUseCase,
     private val loadDadJokeFeedUseCase: LoadDadJokeFeedUseCase,
     private val preference: Preference,
-    private val notificationPublisher: NotificationPublisher
+    private val notificationPublisher: NotificationPublisher,
+    private val newFeedReminderNotificationFactory: NewFeedReminderNotificationFactory
 ) : BaseWorker(appContext, params) {
 
     override suspend fun doWork(): Result {
@@ -46,24 +47,21 @@ internal class FetchDadJokeFeedWorker @AssistedInject constructor(
             .filter { response ->
                 response is Success
             }.collect { response ->
-                pushNotification(
-                    context = applicationContext,
-                    dadJokes = (response as Success).data
-                )
+                pushNotification(dadJokes = (response as Success).data)
                 cancelWork()
             }
 
         return retry()
     }
 
-    private suspend fun pushNotification(context: Context, dadJokes: List<DadJoke>) {
+    private suspend fun pushNotification(dadJokes: List<DadJoke>) {
         val isNewFeedReminderEnabled = preference.read(
             key = NEW_FEED_REMINDER_PREFERENCE,
             defaultValue = true
         )
         if (!isNewFeedReminderEnabled) return
 
-        val notification = NewFeedReminderNotification(context, dadJokes)
+        val notification = newFeedReminderNotificationFactory.create(dadJokes)
         notificationPublisher.publish(notification)
     }
 
