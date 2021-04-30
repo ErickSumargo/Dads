@@ -1,6 +1,12 @@
-import Library.Airbnb
-import Library.AndroidX
-import Library.Google
+import Library.Airbnb.lottie
+import Library.AndroidX.constraintLayout
+import Library.AndroidX.fragment
+import Library.AndroidX.lifecycle
+import Library.AndroidX.navigationFragment
+import Library.AndroidX.navigationUi
+import Library.AndroidX.recyclerView
+import Library.AndroidX.viewPager2
+import Library.Google.material
 
 plugins {
     id("androidLibrary")
@@ -14,19 +20,19 @@ android {
 
 dependencies {
     // AndroidX
-    implementation(AndroidX.constraintLayout)
-    implementation(AndroidX.fragment)
-    implementation(AndroidX.lifecycle)
-    implementation(AndroidX.navigationFragment)
-    implementation(AndroidX.navigationUi)
-    implementation(AndroidX.recyclerView)
-    implementation(AndroidX.viewPager2)
+    implementation(constraintLayout)
+    implementation(fragment)
+    implementation(lifecycle)
+    implementation(navigationFragment)
+    implementation(navigationUi)
+    implementation(recyclerView)
+    implementation(viewPager2)
 
     // Airbnb
-    implementation(Airbnb.lottie)
+    implementation(lottie)
 
     // Google
-    implementation(Google.material)
+    implementation(material)
 }
 
 dependencies {

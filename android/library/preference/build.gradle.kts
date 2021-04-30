@@ -1,4 +1,4 @@
-import Library.AndroidX
+import Library.AndroidX.dataStore
 
 plugins {
     id("androidLibrary")
@@ -6,7 +6,7 @@ plugins {
 
 dependencies {
     // AndroidX
-    implementation(AndroidX.dataStore)
+    implementation(dataStore)
 }
 
 dependencies {

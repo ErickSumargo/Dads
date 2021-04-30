@@ -27,7 +27,7 @@
 - [JavaPoet](https://github.com/square/javapoet) - Personal diff-state engine printer.
 - [Lifecycle](https://developer.android.com/topic/libraries/architecture/coroutines) - Coroutines teams up with Android's component lifecycle.
 - [Navigation component](https://developer.android.com/guide/navigation/navigation-getting-started) - The key player for adopting single-activity architecture with ease.
-- [Room](https://developer.android.com/training/data-storage/room) - ORM for SQLite database. Also, try out its integration with [Database Inspector](https://developer.android.com/studio/inspect/database).   
+- [SQLDelight](https://github.com/cashapp/sqldelight) - ORM for SQLite database, Multiplatform. Also, try out its integration with [Database Inspector](https://developer.android.com/studio/inspect/database).   
 - [View Binding](https://developer.android.com/topic/libraries/view-binding) - Providing safe access to view. 
 - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - Presenter with its semi data persistence behavior.
 - [WorkManager](https://developer.android.com/topic/libraries/architecture/workmanager) - Background job scheduler. You should also try out its integration with [WorkManager Inspector](https://developer.android.com/studio/preview/features#workmanager-inspector).
@@ -61,9 +61,20 @@ Processor for `RenderWith` annotation. Diff-state engine generator for rendering
 * [LeakCanary](https://square.github.io/leakcanary) (Debug) - Memory leak detector.
 * [StrictMode](https://developer.android.com/reference/android/os/StrictMode) (Debug) - Tool for checking if any *should-be-background* operation is done on main thread.
 <br/>
+<br/>
 
 ## MAD Scorecard
 [<img src="assets/mad_scorecard.png">](https://madscorecard.withgoogle.com/scorecards/966921635/)
+<br/>
+<br/>
+
+[<img align="left" width=50% src="assets/kmm.png">]()
+# Supports
+Dads is ready to support multiplatform with the Clean Architecture concept for project structure (`data`-`domain`-`presentation`). 
+<br/>
+<br/>
+
+JVM, JS, or Native, He is just waiting your implementation of presentation part!
 <br/>
 <br/>
 

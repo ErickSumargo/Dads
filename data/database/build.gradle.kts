@@ -32,5 +32,6 @@ kotlin {
 sqldelight {
     database("DadsDatabase") {
         packageName = "${Application.id}.data.database"
+        schemaOutputDirectory = file("schemas")
     }
 }
