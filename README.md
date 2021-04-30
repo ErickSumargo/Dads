@@ -61,10 +61,10 @@ Processor for `RenderWith` annotation. Diff-state engine generator for rendering
 * [LeakCanary](https://square.github.io/leakcanary) (Debug) - Memory leak detector.
 * [StrictMode](https://developer.android.com/reference/android/os/StrictMode) (Debug) - Tool for checking if any *should-be-background* operation is done on main thread.
 <br/>
-<br/>
 
 ## MAD Scorecard
 [<img src="assets/mad_scorecard.png">](https://madscorecard.withgoogle.com/scorecards/966921635/)
+<br/>
 <br/>
 <br/>
 
@@ -72,9 +72,9 @@ Processor for `RenderWith` annotation. Diff-state engine generator for rendering
 # Supports
 Dads is ready to support multiplatform with the Clean Architecture concept for project structure (`data`-`domain`-`presentation`). 
 <br/>
-<br/>
 
-JVM, JS, or Native, He is just waiting your implementation of presentation part!
+**JVM**, **JS**, or **Native**, He is just waiting your implementation of presentation part!
+<br/>
 <br/>
 <br/>
 
