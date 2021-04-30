@@ -1,50 +1,74 @@
 rootProject.name = "Dads"
 
-val domains = listOf(
-    "domain_common",
-    "domain_home"
-)
-
-val features = listOf(
-    "feature_home"
-)
-
-val libs = listOf(
-    "lib_database",
-    "lib_database_test",
-    "lib_instrumentation",
-    "lib_preference",
-    "lib_preference_test",
-    "lib_presentation",
-    "lib_remote",
-    "lib_remote_test",
-    "lib_threading",
-    "lib_threading_test",
-    "lib_worker"
-)
-
-val internals = listOf(
-    "annotation",
-    "processor"
-)
-
-include(":app")
-
-domains.forEach { domain ->
-    include(":$domain")
-    project(":$domain").projectDir = File("domains/$domain")
+SharedProject(settings).also { project ->
+    project.importModules()
 }
 
-features.forEach { feature ->
-    include(":$feature")
-    project(":$feature").projectDir = File("features/$feature")
+DataProject(settings).also { project ->
+    project.importModules()
 }
 
-libs.forEach { lib ->
-    include(":$lib")
-    project(":$lib").projectDir = File("libs/$lib")
+DomainProject(settings).also { project ->
+    project.importModules()
 }
 
-internals.forEach { internal ->
-    include(":$internal")
+AndroidPlatformProject(settings).also { project ->
+    project.importModules()
+}
+
+class SharedProject(settings: Settings) : Settings by settings {
+
+    fun importModules() {
+        include(":shared")
+    }
+}
+
+class DataProject(settings: Settings) : Settings by settings {
+
+    fun importModules() {
+        include(":data:database")
+        include(":data:database_test")
+        include(":data:remote")
+        include(":data:remote_test")
+    }
+}
+
+class DomainProject(settings: Settings) : Settings by settings {
+
+    fun importModules() {
+        include(":domain:home")
+    }
+}
+
+class AndroidPlatformProject(settings: Settings) : Settings by settings {
+
+    fun importModules() {
+        importAppModules()
+        importInternalModules()
+        importFeatureModules()
+        importLibraryModules()
+    }
+
+    private fun importAppModules() {
+        include(":android:app")
+    }
+
+    private fun importInternalModules() {
+        include(":android:annotation")
+        include(":android:processor")
+    }
+
+    private fun importFeatureModules() {
+        include(":android:feature:home")
+    }
+
+    private fun importLibraryModules() {
+        include(":android:library:instrumentation")
+        include(":android:library:preference")
+        include(":android:library:preference_test")
+        include(":android:library:presentation")
+        include(":android:library:threading")
+        include(":android:library:threading_test")
+        include(":android:library:worker")
+    }
 }

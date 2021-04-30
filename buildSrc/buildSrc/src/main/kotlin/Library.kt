@@ -1,135 +1,177 @@
+import Version.Airbnb.lottie as lottieVersion
+import Version.AndroidX.appCompat as appCompatVersion
+import Version.AndroidX.archTesting as archTestingVersion
+import Version.AndroidX.constraintLayout as constraintLayoutVersion
+import Version.AndroidX.dataStore as dataStoreVersion
+import Version.AndroidX.espresso as espressoVersion
+import Version.AndroidX.fragment as fragmentVersion
+import Version.AndroidX.hilt as hiltVersion
+import Version.AndroidX.lifecycle as lifecycleVersion
+import Version.AndroidX.navigation as navigationVersion
+import Version.AndroidX.recyclerView as recyclerViewVersion
+import Version.AndroidX.runner as runnerVersion
+import Version.AndroidX.startup as startupVersion
+import Version.AndroidX.swipeRefreshLayout as swipeRefreshLayoutVersion
+import Version.AndroidX.viewPager2 as viewPager2Version
+import Version.AndroidX.work as workVersion
+import Version.Apollo.apollo as apolloVersion
+import Version.Google.autoService as autoServiceVersion
+import Version.Google.dagger as daggerVersion
+import Version.Google.firebaseBom as firebaseBomVersion
+import Version.Google.material as materialVersion
+import Version.Google.truth as truthVersion
+import Version.JavaX.annotation as annotationVersion
+import Version.JavaX.inject as injectVersion
+import Version.KotlinX.coroutines as coroutinesVersion
+import Version.KotlinX.dateTime as dateTimeVersion
+import Version.KotlinX.serialization as serializationVersion
+import Version.Square.javaPoet as javaPoetVersion
+import Version.Square.leakCanary as leakCanaryVersion
+import Version.Square.sqlDelight as sqlDelightVersion
+
 /**
  * Created by ErickSumargo on 15/04/21.
  */
 
 object Library {
-    // AndroidX
-    val appCompat: String
-        get() = "androidx.appcompat:appcompat:${Version.appCompat}"
 
-    val archTesting: String
-        get() = "androidx.arch.core:core-testing:${Version.archTesting}"
+    object AndroidX {
+        val appCompat: String
+            get() = "androidx.appcompat:appcompat:$appCompatVersion"
 
-    val constraintLayout: String
-        get() = "androidx.constraintlayout:constraintlayout:${Version.constraintLayout}"
+        val archTesting: String
+            get() = "androidx.arch.core:core-testing:$archTestingVersion"
 
-    val dataStore: String
-        get() = "androidx.datastore:datastore-preferences:${Version.dataStore}"
+        val constraintLayout: String
+            get() = "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
 
-    val espresso: String
-        get() = "androidx.test.espresso:espresso-core:${Version.espresso}"
+        val dataStore: String
+            get() = "androidx.datastore:datastore-preferences:$dataStoreVersion"
 
-    val fragmentKtx: String
-        get() = "androidx.fragment:fragment-ktx:${Version.fragment}"
+        val espresso: String
+            get() = "androidx.test.espresso:espresso-core:$espressoVersion"
 
-    val fragmentTesting: String
-        get() = "androidx.fragment:fragment-testing:${Version.fragment}"
+        val fragment: String
+            get() = "androidx.fragment:fragment-ktx:$fragmentVersion"
 
-    val hiltCompiler: String
-        get() = "androidx.hilt:hilt-compiler:${Version.hilt}"
+        val fragmentTesting: String
+            get() = "androidx.fragment:fragment-testing:$fragmentVersion"
 
-    val hiltNavigation: String
-        get() = "androidx.hilt:hilt-navigation-fragment:${Version.hilt}"
+        val hiltCompiler: String
+            get() = "androidx.hilt:hilt-compiler:$hiltVersion"
 
-    val hiltWork: String
-        get() = "androidx.hilt:hilt-work:${Version.hilt}"
+        val hiltNavigation: String
+            get() = "androidx.hilt:hilt-navigation-fragment:$hiltVersion"
 
-    val lifecycle: String
-        get() = "androidx.lifecycle:lifecycle-runtime-ktx:${Version.lifecycle}"
+        val hiltWork: String
+            get() = "androidx.hilt:hilt-work:$hiltVersion"
 
-    val navigationFragment: String
-        get() = "androidx.navigation:navigation-fragment-ktx:${Version.navigation}"
+        val lifecycle: String
+            get() = "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion"
 
-    val navigationTesting: String
-        get() = "androidx.navigation:navigation-testing:${Version.navigation}"
+        val navigationFragment: String
+            get() = "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
 
-    val navigationUi: String
-        get() = "androidx.navigation:navigation-ui-ktx:${Version.navigation}"
+        val navigationTesting: String
+            get() = "androidx.navigation:navigation-testing:$navigationVersion"
 
-    val recyclerView: String
-        get() = "androidx.recyclerview:recyclerview:${Version.recyclerView}"
+        val navigationUi: String
+            get() = "androidx.navigation:navigation-ui-ktx:$navigationVersion"
 
-    val room: String
-        get() = "androidx.room:room-runtime:${Version.room}"
+        val recyclerView: String
+            get() = "androidx.recyclerview:recyclerview:$recyclerViewVersion"
 
-    val roomCompiler: String
-        get() = "androidx.room:room-compiler:${Version.room}"
+        val runner: String
+            get() = "androidx.test:runner:$runnerVersion"
 
-    val roomKtx: String
-        get() = "androidx.room:room-ktx:${Version.room}"
+        val startup: String
+            get() = "androidx.startup:startup-runtime:$startupVersion"
 
-    val runner: String
-        get() = "androidx.test:runner:${Version.runner}"
+        val swipeRefreshLayout: String
+            get() = "androidx.swiperefreshlayout:swiperefreshlayout:$swipeRefreshLayoutVersion"
 
-    val startup: String
-        get() = "androidx.startup:startup-runtime:${Version.startup}"
+        val viewPager2: String
+            get() = "androidx.viewpager2:viewpager2:$viewPager2Version"
 
-    val swipeRefreshLayout: String
-        get() = "androidx.swiperefreshlayout:swiperefreshlayout:${Version.swipeRefreshLayout}"
+        val work: String
+            get() = "androidx.work:work-runtime-ktx:$workVersion"
+    }
 
-    val viewPager2: String
-        get() = "androidx.viewpager2:viewpager2:${Version.viewPager2}"
+    object Airbnb {
+        val lottie: String
+            get() = "com.airbnb.android:lottie:$lottieVersion"
+    }
 
-    val work: String
-        get() = "androidx.work:work-runtime-ktx:${Version.work}"
+    object Apollo {
+        val apolloKotlin: String
+            get() = "com.apollographql.apollo:apollo-runtime-kotlin:$apolloVersion"
+    }
 
-    // Airbnb
-    val lottie: String
-        get() = "com.airbnb.android:lottie:${Version.lottie}"
+    object Google {
+        val autoService: String
+            get() = "com.google.auto.service:auto-service:$autoServiceVersion"
 
-    // Apollo
-    val apollo: String
-        get() = "com.apollographql.apollo:apollo-runtime:${Version.apollo}"
+        val dagger: String
+            get() = "com.google.dagger:hilt-android:$daggerVersion"
 
-    val apolloCoroutines: String
-        get() = "com.apollographql.apollo:apollo-coroutines-support:${Version.apollo}"
+        val daggerCompiler: String
+            get() = "com.google.dagger:hilt-android-compiler:$daggerVersion"
 
-    // Google
-    val autoService: String
-        get() = "com.google.auto.service:auto-service:${Version.autoService}"
+        val daggerTesting: String
+            get() = "com.google.dagger:hilt-android-testing:$daggerVersion"
 
-    val analytics: String
-        get() = "com.google.firebase:firebase-analytics-ktx"
+        val firebaseAnalytics: String
+            get() = "com.google.firebase:firebase-analytics-ktx"
 
-    val crashlytics: String
-        get() = "com.google.firebase:firebase-crashlytics-ktx"
+        val firebaseBom: String
+            get() = "com.google.firebase:firebase-bom:$firebaseBomVersion"
 
-    val dagger: String
-        get() = "com.google.dagger:hilt-android:${Version.dagger}"
+        val firebaseCrashlytics: String
+            get() = "com.google.firebase:firebase-crashlytics-ktx"
 
-    val daggerCompiler: String
-        get() = "com.google.dagger:hilt-android-compiler:${Version.dagger}"
+        val material: String
+            get() = "com.google.android.material:material:$materialVersion"
 
-    val daggerTesting: String
-        get() = "com.google.dagger:hilt-android-testing:${Version.dagger}"
+        val truth: String
+            get() = "com.google.truth:truth:$truthVersion"
+    }
 
-    val firebaseBom: String
-        get() = "com.google.firebase:firebase-bom:${Version.firebaseBom}"
+    object JavaX {
+        val annotation: String
+            get() = "javax.annotation:javax.annotation-api:$annotationVersion"
 
-    val material: String
-        get() = "com.google.android.material:material:${Version.material}"
+        val inject: String
+            get() = "javax.inject:javax.inject:$injectVersion"
+    }
 
-    val truth: String
-        get() = "com.google.truth:truth:${Version.truth}"
+    object KotlinX {
+        val coroutines: String
+            get() = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
 
-    // JavaX
-    val inject: String
-        get() = "javax.inject:javax.inject:${Version.inject}"
+        val coroutinesAndroid: String
+            get() = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
 
-    // KotlinX
-    val coroutines: String
-        get() = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Version.coroutines}"
+        val coroutinesTest: String
+            get() = "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion"
 
-    val coroutinesTest: String
-        get() = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Version.coroutines}"
+        val dateTime: String
+            get() = "org.jetbrains.kotlinx:kotlinx-datetime:$dateTimeVersion"
 
-    // Square
-    val javaPoet: String
-        get() = "com.squareup:javapoet:${Version.javaPoet}"
+        val serialization: String
+            get() = "org.jetbrains.kotlinx:kotlinx-serialization-json:$serializationVersion"
+    }
 
-    val leakCanary: String
-        get() = "com.squareup.leakcanary:leakcanary-android:${Version.leakCanary}"
+    object Square {
+        val javaPoet: String
+            get() = "com.squareup:javapoet:$javaPoetVersion"
 
-    val okhttp3Logging: String
-        get() = "com.squareup.okhttp3:logging-interceptor:${Version.okhttp3Logging}"
+        val leakCanary: String
+            get() = "com.squareup.leakcanary:leakcanary-android:$leakCanaryVersion"
+
+        val sqlDelightAndroidDriver: String
+            get() = "com.squareup.sqldelight:android-driver:$sqlDelightVersion"
+
+        val sqlDelightCoroutines: String
+            get() = "com.squareup.sqldelight:coroutines-extensions:$sqlDelightVersion"
+    }
 }

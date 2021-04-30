@@ -27,7 +27,7 @@
 - [JavaPoet](https://github.com/square/javapoet) - Personal diff-state engine printer.
 - [Lifecycle](https://developer.android.com/topic/libraries/architecture/coroutines) - Coroutines teams up with Android's component lifecycle.
 - [Navigation component](https://developer.android.com/guide/navigation/navigation-getting-started) - The key player for adopting single-activity architecture with ease.
-- [Room](https://developer.android.com/training/data-storage/room) - ORM for SQLite database. Also, try out its integration with [Database Inspector](https://developer.android.com/studio/inspect/database).   
+- [SQLDelight](https://github.com/cashapp/sqldelight) - ORM for SQLite database, Multiplatform. Also, try out its integration with [Database Inspector](https://developer.android.com/studio/inspect/database).   
 - [View Binding](https://developer.android.com/topic/libraries/view-binding) - Providing safe access to view. 
 - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - Presenter with its semi data persistence behavior.
 - [WorkManager](https://developer.android.com/topic/libraries/architecture/workmanager) - Background job scheduler. You should also try out its integration with [WorkManager Inspector](https://developer.android.com/studio/preview/features#workmanager-inspector).
@@ -42,9 +42,9 @@
 - [ViewPager2](https://developer.android.com/reference/androidx/viewpager2/widget/ViewPager2) - Personal option over `RecyclerView` when dealing view snapping experience.
 
 #### Internal
-- [LiveListAdapter](libs/lib_presentation/src/main/kotlin/com/bael/dads/lib/presentation/widget/recyclerview/adapter/LiveListAdapter.kt) <br/>
+- [LiveListAdapter](android/library/presentation/src/main/kotlin/com/bael/dads/library/presentation/widget/recyclerview/adapter/LiveListAdapter.kt) <br/>
 ListAdapter w/ every visible cell (`ViewHolder`) is reactive. Cell acts like observer of data they hold, so it will auto-refresh if their related data is updated.<br/>
-- [RenderExecutor Processor](processor/src/main/kotlin/com/bael/dads/processor) <br/>
+- [RenderExecutor Processor](android/processor/src/main/kotlin/com/bael/dads/processor) <br/>
 Processor for `RenderWith` annotation. Diff-state engine generator for rendering view component.
 
 #### Remote
@@ -61,9 +61,20 @@ Processor for `RenderWith` annotation. Diff-state engine generator for rendering
 * [LeakCanary](https://square.github.io/leakcanary) (Debug) - Memory leak detector.
 * [StrictMode](https://developer.android.com/reference/android/os/StrictMode) (Debug) - Tool for checking if any *should-be-background* operation is done on main thread.
 <br/>
+<br/>
 
 ## MAD Scorecard
 [<img src="assets/mad_scorecard.png">](https://madscorecard.withgoogle.com/scorecards/966921635/)
+<br/>
+<br/>
+
+[<img align="left" width=50% src="assets/kmm.png">]()
+# Supports
+Dads is ready to support multiplatform with the Clean Architecture concept for project structure (`data`-`domain`-`presentation`). 
+<br/>
+<br/>
+
+JVM, JS, or Native, He is just waiting your implementation of presentation part!
 <br/>
 <br/>
 
@@ -97,10 +108,10 @@ Jokes are requested from proprietary GraphQL service, the [Dads-Engine](https://
 * Since this project employs GraphQL stack, you need to download the [schema](https://www.apollographql.com/docs/tutorial/schema/) first:
     * Go to hosted [GraphQL Playground](https://dads-engine.herokuapp.com/graphql),
     * Open tab `SCHEMA` at the right side. `DOWNLOAD` it,
-    * Put the `schema.json` in directory: `libs/lib_remote/src/main/graphql/com/bael/dads/lib/remote/`,
+    * Put the `schema.json` in directory: `data/remote/src/commonMain/graphql/com/bael/dads/data/remote/`,
     * Or you can run this command as alternative.
         ```
-        ./gradlew downloadApolloSchema --endpoint="https://dads-engine.herokuapp.com" --schema="libs/lib_remote/src/main/graphql/com/bael/dads/lib/remote/schema.json"
+        ./gradlew downloadApolloSchema --endpoint="https://dads-engine.herokuapp.com" --schema="data/remote/src/commonMain/graphql/com/bael/dads/data/remote/schema.json"
         ```
 * Set `JWT` key in `keys.properties` file (located in project root folder):
 ```

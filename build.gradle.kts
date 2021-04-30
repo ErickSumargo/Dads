@@ -4,6 +4,10 @@ allprojects {
     repositories {
         google()
         mavenCentral()
+        maven {
+            setUrl("https://www.jetbrains.com/intellij-repository/releases")
+            setUrl("https://jetbrains.bintray.com/intellij-third-party-dependencies")
+        }
     }
 }
 

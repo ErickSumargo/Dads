@@ -1,0 +1,11 @@
+CREATE TABLE remoteMeta (
+  id INTEGER AS Int PRIMARY KEY AUTOINCREMENT,
+  cursor TEXT
+);
+
+loadRemoteMeta:
+SELECT * FROM remoteMeta ORDER BY id DESC LIMIT 1;
+
+insertRemoteMeta:
+INSERT INTO remoteMeta (cursor)
+VALUES (?);
