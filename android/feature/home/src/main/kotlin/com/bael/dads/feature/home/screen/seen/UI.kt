@@ -21,6 +21,7 @@ import com.bael.dads.library.presentation.ext.readText
 import com.bael.dads.library.presentation.fragment.BaseFragment
 import com.bael.dads.library.presentation.widget.animation.empty
 import com.bael.dads.library.presentation.widget.animation.loading
+import com.bael.dads.shared.extension.serialize
 import com.bael.dads.shared.response.Response
 import com.bael.dads.shared.response.Response.Empty
 import com.bael.dads.shared.response.Response.Error
@@ -247,7 +248,7 @@ internal class UI :
 
     private fun showDetailSheet(dadJoke: DadJoke) {
         DetailSheet().also { sheet ->
-            sheet.arguments = bundleOf("dadJoke" to dadJoke)
+            sheet.arguments = bundleOf("dadJoke" to dadJoke.serialize())
             sheet.onDismissListener = callback@{ _dadJoke ->
                 if (dadJoke == _dadJoke) return@callback
                 viewModel.favorDadJoke(dadJoke, favored = _dadJoke?.favored ?: false)

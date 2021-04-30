@@ -78,6 +78,8 @@ object Version {
         const val dateTime: String = "0.2.0"
 
         const val kotlin: String = "1.4.20"
+
+        const val serialization: String = "1.0.1"
     }
 
     object Square {

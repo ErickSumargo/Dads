@@ -6,6 +6,7 @@ import Library.Google.daggerCompiler
 import Library.JavaX.annotation
 import Library.KotlinX.coroutines
 import Library.KotlinX.dateTime
+import Library.KotlinX.serialization
 import com.android.build.gradle.LibraryExtension
 import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
@@ -37,6 +38,7 @@ open class SharedModulePlugin : Plugin<Project> {
         project.plugins.apply {
             apply("kotlin-multiplatform")
             apply("kotlin-kapt")
+            apply("kotlinx-serialization")
             apply("com.android.library")
             apply("dagger.hilt.android.plugin")
         }
@@ -65,6 +67,7 @@ open class SharedModulePlugin : Plugin<Project> {
                         // KotlinX
                         implementation(coroutines)
                         implementation(dateTime)
+                        implementation(serialization)
                     }
                 }
 

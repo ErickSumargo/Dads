@@ -5,6 +5,8 @@ import com.bael.dads.domain.home.model.DadJoke
 import com.bael.dads.library.instrumentation.sheet.BaseSheetTest
 import com.bael.dads.shared.time.DateTime.now
 import dagger.hilt.android.testing.HiltAndroidTest
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import org.junit.Test
 
 /**
@@ -30,7 +32,7 @@ internal class UITest : BaseSheetTest() {
             )
 
             // when
-            launch<UI>(args = bundleOf("dadJoke" to dadJoke))
+            launch<UI>(args = bundleOf("dadJoke" to Json.encodeToString(dadJoke)))
 
             // then
             isDisplayed(text = "Setup 1")

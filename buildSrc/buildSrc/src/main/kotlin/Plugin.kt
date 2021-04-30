@@ -36,6 +36,9 @@ object Plugin {
     object KotlinX {
         val kotlin: String
             get() = "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+
+        val serialization: String
+            get() = "org.jetbrains.kotlin:kotlin-serialization:$kotlinVersion"
     }
 
     object Square {

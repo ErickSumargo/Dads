@@ -10,6 +10,7 @@ import com.bael.dads.feature.home.databinding.SheetDetailBinding
 import com.bael.dads.feature.home.databinding.SheetDetailBinding.inflate
 import com.bael.dads.library.presentation.ext.toRichText
 import com.bael.dads.library.presentation.sheet.BaseSheet
+import com.bael.dads.shared.extension.serialize
 import dagger.hilt.android.AndroidEntryPoint
 import com.bael.dads.feature.home.sheet.sharepreview.UI as SharePreviewSheet
 
@@ -83,7 +84,7 @@ internal class UI :
 
     private fun showSharePreviewSheet(dadJoke: DadJoke) {
         SharePreviewSheet().also { sheet ->
-            sheet.arguments = bundleOf("dadJoke" to dadJoke)
+            sheet.arguments = bundleOf("dadJoke" to dadJoke.serialize())
             sheet.show(fragmentManager = activity?.supportFragmentManager)
         }
     }

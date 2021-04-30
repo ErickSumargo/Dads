@@ -13,6 +13,7 @@ import Library.Google.dagger
 import Library.Google.daggerCompiler
 import Library.Google.daggerTesting
 import Library.Google.truth
+import Library.KotlinX.serialization
 import com.android.build.gradle.LibraryExtension
 import dagger.hilt.android.plugin.HiltExtension
 import org.gradle.api.JavaVersion
@@ -51,6 +52,7 @@ class FeatureModulePlugin : Plugin<Project> {
             apply("dagger.hilt.android.plugin")
             apply("kotlin-android")
             apply("kotlin-kapt")
+            apply("kotlinx-serialization")
 
             apply(JacocoTestReportPlugin::class)
         }
@@ -163,6 +165,9 @@ class FeatureModulePlugin : Plugin<Project> {
             add("kaptAndroidTest", daggerCompiler)
 
             add("androidTestImplementation", truth)
+
+            // KotlinX
+            add("implementation", serialization)
         }
     }
 
