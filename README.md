@@ -42,9 +42,9 @@
 - [ViewPager2](https://developer.android.com/reference/androidx/viewpager2/widget/ViewPager2) - Personal option over `RecyclerView` when dealing view snapping experience.
 
 #### Internal
-- [LiveListAdapter](libs/lib_presentation/src/main/kotlin/com/bael/dads/lib/presentation/widget/recyclerview/adapter/LiveListAdapter.kt) <br/>
+- [LiveListAdapter](android/library/presentation/src/main/kotlin/com/bael/dads/library/presentation/widget/recyclerview/adapter/LiveListAdapter.kt) <br/>
 ListAdapter w/ every visible cell (`ViewHolder`) is reactive. Cell acts like observer of data they hold, so it will auto-refresh if their related data is updated.<br/>
-- [RenderExecutor Processor](processor/src/main/kotlin/com/bael/dads/processor) <br/>
+- [RenderExecutor Processor](android/processor/src/main/kotlin/com/bael/dads/processor) <br/>
 Processor for `RenderWith` annotation. Diff-state engine generator for rendering view component.
 
 #### Remote
@@ -97,10 +97,10 @@ Jokes are requested from proprietary GraphQL service, the [Dads-Engine](https://
 * Since this project employs GraphQL stack, you need to download the [schema](https://www.apollographql.com/docs/tutorial/schema/) first:
     * Go to hosted [GraphQL Playground](https://dads-engine.herokuapp.com/graphql),
     * Open tab `SCHEMA` at the right side. `DOWNLOAD` it,
-    * Put the `schema.json` in directory: `libs/lib_remote/src/main/graphql/com/bael/dads/lib/remote/`,
+    * Put the `schema.json` in directory: `data/remote/src/commonMain/graphql/com/bael/dads/data/remote/`,
     * Or you can run this command as alternative.
         ```
-        ./gradlew downloadApolloSchema --endpoint="https://dads-engine.herokuapp.com" --schema="libs/lib_remote/src/main/graphql/com/bael/dads/lib/remote/schema.json"
+        ./gradlew downloadApolloSchema --endpoint="https://dads-engine.herokuapp.com" --schema="data/remote/src/commonMain/graphql/com/bael/dads/data/remote/schema.json"
         ```
 * Set `JWT` key in `keys.properties` file (located in project root folder):
 ```

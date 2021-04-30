@@ -1,27 +1,45 @@
+import Plugin.Apollo.apollo
+import Plugin.Google.dagger
+import Plugin.Google.firebaseCrashlytics
+import Plugin.Google.gms
+import Plugin.Square.sqlDelight
+import Plugin.Android.gradle as androidGradle
+import Plugin.KotlinX.kotlin as kotlinGradle
+
 plugins {
     `kotlin-dsl`
 }
 
 gradlePlugin {
     plugins {
-        register("app") {
-            id = "app"
-            implementationClass = "plugin.ApplicationPlugin"
+        register("shared") {
+            id = "shared"
+            implementationClass = "plugin.shared.SharedModulePlugin"
+        }
+
+        register("data") {
+            id = "data"
+            implementationClass = "plugin.shared.DataModulePlugin"
         }
 
         register("domain") {
             id = "domain"
-            implementationClass = "plugin.DomainPlugin"
+            implementationClass = "plugin.shared.DomainModulePlugin"
         }
 
-        register("feature") {
-            id = "feature"
-            implementationClass = "plugin.FeaturePlugin"
+        register("androidApp") {
+            id = "androidApp"
+            implementationClass = "plugin.android.AppModulePlugin"
         }
 
-        register("library") {
-            id = "library"
-            implementationClass = "plugin.LibraryPlugin"
+        register("androidFeature") {
+            id = "androidFeature"
+            implementationClass = "plugin.android.FeatureModulePlugin"
+        }
+
+        register("androidLibrary") {
+            id = "androidLibrary"
+            implementationClass = "plugin.android.LibraryModulePlugin"
         }
     }
 }
@@ -37,21 +55,29 @@ kotlin {
 }
 
 dependencies {
+    // Android
+    implementation(androidGradle)
+
     // Apollo
-    implementation(Plugin.apollo)
+    implementation(apollo)
 
     // Google
-    implementation(Plugin.crashlytics)
-    implementation(Plugin.dagger)
-    implementation(Plugin.gms)
-    implementation(Plugin.gradle)
+    implementation(firebaseCrashlytics)
+    implementation(dagger)
+    implementation(gms)
 
     // KotlinX
-    implementation(Plugin.kotlin)
-    implementation(Plugin.serialization)
+    implementation(kotlinGradle)
+
+    // Square
+    implementation(sqlDelight)
 }
 
 repositories {
     google()
     mavenCentral()
+    maven {
+        setUrl("https://www.jetbrains.com/intellij-repository/releases")
+        setUrl("https://jetbrains.bintray.com/intellij-third-party-dependencies")
+    }
 }

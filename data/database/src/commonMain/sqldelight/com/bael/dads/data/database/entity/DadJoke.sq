@@ -1,0 +1,41 @@
+CREATE TABLE dadJoke (
+  id INTEGER AS Int PRIMARY KEY AUTOINCREMENT,
+  jokeId TEXT NOT NULL,
+  setup TEXT NOT NULL,
+  punchline TEXT NOT NULL,
+  favored INTEGER AS Boolean NOT NULL,
+  seen INTEGER AS Boolean NOT NULL,
+  createdAt INTEGER NOT NULL,
+  updatedAt INTEGER NOT NULL
+);
+
+insertDadJoke:
+INSERT INTO dadJoke (jokeId, setup, punchline, favored, seen, createdAt, updatedAt)
+VALUES (?, ?, ?, ?, ?, ?, ?);
+
+loadDadJokeFeed:
+SELECT * FROM dadJoke WHERE id > :id AND seen == 0 LIMIT :limit;
+
+loadSeenDadJoke:
+SELECT * FROM dadJoke WHERE id < :cursor AND setup LIKE '%' || :term || '%' AND seen ORDER BY id DESC LIMIT :limit;
+
+loadFavoredDadJoke:
+SELECT * FROM dadJoke WHERE updatedAt < :updatedAt AND setup LIKE '%' || :term || '%' AND favored ORDER BY updatedAt DESC LIMIT :limit;
+
+loadDadJoke:
+SELECT * FROM dadJoke WHERE id = :id;
+
+loadLatestDadJoke:
+SELECT * FROM dadJoke ORDER BY id DESC LIMIT 1;
+
+observeDadJoke:
+SELECT * FROM dadJoke WHERE id = :id;
+
+setDadJokeSeen:
+UPDATE dadJoke SET seen = 1, updatedAt = :updatedAt WHERE id = :id;
+
+favorDadJoke:
+UPDATE dadJoke SET favored = :favored, updatedAt = :updatedAt WHERE id = :id;
+
+deleteAllDadJokes:
+DELETE FROM dadJoke;

@@ -11,11 +11,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
       - name: Setup GraphQL
-        run: ./gradlew downloadApolloSchema --endpoint="https://dads-engine.herokuapp.com" --schema="libs/lib_remote/src/main/graphql/com/bael/dads/lib/remote/schema.json"
+        run: ./gradlew downloadApolloSchema --endpoint="https://dads-engine.herokuapp.com" --schema="data/remote/src/commonMain/graphql/com/bael/dads/data/remote/schema.json"
       - name: Cache GraphQL setup
         uses: actions/cache@v2
         with:
-          path: libs/lib_remote/src/main/graphql/com/bael/dads/lib/remote
+          path: data/remote/src/commonMain/graphql/com/bael/dads/data/remote
           key: ${{ github.sha }}
   build:
     runs-on: macos-latest
@@ -26,7 +26,7 @@ jobs:
       - name: Cache GraphQL setup
         uses: actions/cache@v2
         with:
-          path: libs/lib_remote/src/main/graphql/com/bael/dads/lib/remote
+          path: data/remote/src/commonMain/graphql/com/bael/dads/data/remote
           key: ${{ github.sha }}
       - name: Build application
         run: ./gradlew assembleDebug --stacktrace
@@ -39,7 +39,7 @@ jobs:
       - name: Cache GraphQL setup
         uses: actions/cache@v2
         with:
-          path: libs/lib_remote/src/main/graphql/com/bael/dads/lib/remote
+          path: data/remote/src/commonMain/graphql/com/bael/dads/data/remote
           key: ${{ github.sha }}
       - name: Test application
         uses: reactivecircus/android-emulator-runner@v2
