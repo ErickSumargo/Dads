@@ -8,7 +8,6 @@ import Library.Apollo.apolloKotlin
 import Library.Google.dagger
 import Library.Google.daggerCompiler
 import Library.Google.firebaseBom
-import Library.KotlinX.serialization
 import Library.Square.leakCanary
 import Library.Google.firebaseAnalytics as analytics
 import Library.Google.firebaseCrashlytics as crashlytics
@@ -38,9 +37,6 @@ dependencies {
     implementation(platform(firebaseBom))
     implementation(analytics)
     implementation(crashlytics)
-
-    // KotlinX
-    implementation(serialization)
 
     // Square
     debugImplementation(leakCanary)

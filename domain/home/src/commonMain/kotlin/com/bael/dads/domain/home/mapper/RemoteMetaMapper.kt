@@ -12,7 +12,7 @@ internal class RemoteMetaMapper : Mapper<DadJokesResponse, RemoteMeta> {
 
     override fun map(data: DadJokesResponse): RemoteMeta {
         return RemoteMeta(
-            id = 0,
+            id = 0, // to be overridden by auto-increment key
             cursor = data.cursor
         )
     }
