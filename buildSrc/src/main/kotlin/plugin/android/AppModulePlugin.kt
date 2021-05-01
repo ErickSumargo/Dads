@@ -28,7 +28,6 @@ class AppModulePlugin : Plugin<Project> {
             apply("dagger.hilt.android.plugin")
             apply("kotlin-android")
             apply("kotlin-kapt")
-            apply("kotlinx-serialization")
         }
     }
 

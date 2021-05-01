@@ -4,7 +4,6 @@ import Application
 import Library.Google.dagger
 import Library.Google.daggerCompiler
 import Library.KotlinX.coroutinesAndroid
-import Library.KotlinX.serialization
 import com.android.build.gradle.LibraryExtension
 import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
@@ -35,7 +34,6 @@ class LibraryModulePlugin : Plugin<Project> {
             apply("dagger.hilt.android.plugin")
             apply("kotlin-android")
             apply("kotlin-kapt")
-            apply("kotlinx-serialization")
         }
     }
 
@@ -99,7 +97,6 @@ class LibraryModulePlugin : Plugin<Project> {
 
             // KotlinX
             add("implementation", coroutinesAndroid)
-            add("implementation", serialization)
         }
     }
 }

@@ -4,7 +4,6 @@ import androidx.lifecycle.SavedStateHandle
 import com.bael.dads.domain.home.model.DadJoke
 import com.bael.dads.library.presentation.ext.reduce
 import com.bael.dads.library.presentation.viewmodel.BaseViewModel
-import com.bael.dads.shared.extension.deserialize
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -22,7 +21,7 @@ internal class ViewModel @Inject constructor(
 
     fun receiveDadJoke() {
         val newState = state.reduce {
-            copy(dadJoke = savedStateHandle.get<String>("dadJoke")?.deserialize())
+            copy(dadJoke = savedStateHandle.get("dadJoke"))
         }
         render(newState)
     }

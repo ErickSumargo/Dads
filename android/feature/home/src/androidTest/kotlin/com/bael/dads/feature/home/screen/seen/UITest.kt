@@ -5,6 +5,7 @@ import com.bael.dads.data.database.repository.DadJokeRepository
 import com.bael.dads.feature.home.R
 import com.bael.dads.library.instrumentation.fragment.BaseFragmentTest
 import com.bael.dads.library.presentation.ext.readText
+import com.bael.dads.shared.time.DateTime.now
 import dagger.hilt.android.testing.HiltAndroidTest
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
@@ -45,8 +46,8 @@ internal class UITest : BaseFragmentTest() {
                         punchline = "Punchline 1",
                         favored = false,
                         seen = true,
-                        createdAt = 0L,
-                        updatedAt = 0L
+                        createdAt = now,
+                        updatedAt = now
                     ),
                     DadJoke(
                         id = 2,
@@ -55,8 +56,8 @@ internal class UITest : BaseFragmentTest() {
                         punchline = "Punchline 2",
                         favored = false,
                         seen = true,
-                        createdAt = 0L,
-                        updatedAt = 0L
+                        createdAt = now,
+                        updatedAt = now
                     )
                 )
             )

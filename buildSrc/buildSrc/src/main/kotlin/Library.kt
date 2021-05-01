@@ -24,7 +24,6 @@ import Version.JavaX.annotation as annotationVersion
 import Version.JavaX.inject as injectVersion
 import Version.KotlinX.coroutines as coroutinesVersion
 import Version.KotlinX.dateTime as dateTimeVersion
-import Version.KotlinX.serialization as serializationVersion
 import Version.Square.javaPoet as javaPoetVersion
 import Version.Square.leakCanary as leakCanaryVersion
 import Version.Square.sqlDelight as sqlDelightVersion
@@ -156,9 +155,6 @@ object Library {
 
         val dateTime: String
             get() = "org.jetbrains.kotlinx:kotlinx-datetime:$dateTimeVersion"
-
-        val serialization: String
-            get() = "org.jetbrains.kotlinx:kotlinx-serialization-json:$serializationVersion"
     }
 
     object Square {

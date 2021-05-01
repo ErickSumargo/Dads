@@ -13,7 +13,7 @@ internal class DadJokeRemoteMapper : Mapper<DadJokeRemote, DadJokeDB> {
 
     override fun map(data: DadJokeRemote): DadJokeDB {
         return DadJokeDB(
-            id = 0,
+            id = 0, // to be overridden by auto-increment key
             jokeId = data.id,
             setup = data.setup,
             punchline = data.punchline,

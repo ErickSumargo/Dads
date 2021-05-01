@@ -2,7 +2,6 @@ import Plugin.Apollo.apollo
 import Plugin.Google.dagger
 import Plugin.Google.firebaseCrashlytics
 import Plugin.Google.gms
-import Plugin.KotlinX.serialization
 import Plugin.Square.sqlDelight
 import Plugin.Android.gradle as androidGradle
 import Plugin.KotlinX.kotlin as kotlinGradle
@@ -69,7 +68,6 @@ dependencies {
 
     // KotlinX
     implementation(kotlinGradle)
-    implementation(serialization)
 
     // Square
     implementation(sqlDelight)

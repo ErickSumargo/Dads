@@ -34,7 +34,6 @@ import com.bael.dads.library.presentation.widget.recyclerview.adapter.data.Respo
 import com.bael.dads.library.presentation.widget.recyclerview.adapter.data.ResponseState.AnimationProperty
 import com.bael.dads.library.presentation.widget.viewpager.transformer.StackTransformer
 import com.bael.dads.shared.exception.NoNetworkException
-import com.bael.dads.shared.extension.serialize
 import com.bael.dads.shared.response.Response
 import com.bael.dads.shared.response.Response.Empty
 import com.bael.dads.shared.response.Response.Error
@@ -224,7 +223,7 @@ internal class UI :
 
     private fun shareDadJoke(dadJoke: DadJoke) {
         SharePreviewSheet().also { sheet ->
-            sheet.arguments = bundleOf("dadJoke" to dadJoke.serialize())
+            sheet.arguments = bundleOf("dadJoke" to dadJoke)
             sheet.show(fragmentManager = activity?.supportFragmentManager)
         }
     }
