@@ -43,7 +43,7 @@ internal class DefaultDadJokeRepository(database: DadsDatabase) :
     }
 
     override suspend fun loadFavoredDadJoke(term: String, cursor: Long, limit: Int): List<DadJoke> {
-        return dadJokeQueries.loadFavoredDadJoke(updatedAt = now, term, limit.toLong())
+        return dadJokeQueries.loadFavoredDadJoke(updatedAt = cursor, term, limit.toLong())
             .executeAsList()
     }
 
