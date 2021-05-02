@@ -63,7 +63,7 @@ Processor for `RenderWith` annotation. Diff-state engine generator for rendering
 <br/>
 
 ## MAD Scorecard
-[<img src="assets/mad_scorecard.png">](https://madscorecard.withgoogle.com/scorecards/966921635/)
+[<img src="assets/mad_scorecard.png">](https://madscorecard.withgoogle.com/scorecards/553365585/)
 <br/>
 <br/>
 <br/>
