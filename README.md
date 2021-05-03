@@ -21,11 +21,11 @@
 - [App Startup](https://developer.android.com/topic/libraries/app-startup) - Orchestrating single [ContentProvider](https://developer.android.com/reference/android/content/ContentProvider) at startup.
 - [Coroutines](https://developer.android.com/kotlin/coroutines) - Performing asynchronous code with sequential manner.
 - [Dagger Hilt](https://developer.android.com/training/dependency-injection/hilt-android) - The DI framework w/ Jetpack integration.
-- [DataStore](https://developer.android.com/topic/libraries/architecture/datastore) - Preferences in nutshell but with steroid.
+- [DataStore](https://developer.android.com/topic/libraries/architecture/datastore) - Preferences in nutshell with coroutines support.
 - [Flow](https://developer.android.com/kotlin/flow) - Reactive streams based on coroutines, just like Rx. But simpler.
 - [Fragment](https://developer.android.com/guide/fragments) - The UI host.
 - [JavaPoet](https://github.com/square/javapoet) - Personal diff-state engine printer.
-- [Lifecycle](https://developer.android.com/topic/libraries/architecture/coroutines) - Coroutines teams up with Android's component lifecycle.
+- [Lifecycle](https://developer.android.com/topic/libraries/architecture/coroutines) - Android's component lifecycle teams up with coroutines.
 - [Navigation component](https://developer.android.com/guide/navigation/navigation-getting-started) - The key player for adopting single-activity architecture with ease.
 - [SQLDelight](https://github.com/cashapp/sqldelight) - ORM for SQLite database, Multiplatform. Also, try out its integration with [Database Inspector](https://developer.android.com/studio/inspect/database).   
 - [View Binding](https://developer.android.com/topic/libraries/view-binding) - Providing safe access to view. 
@@ -39,7 +39,7 @@
 - [Lottie](https://airbnb.design/lottie) - Providing animation asset.
 - [Material Components](https://github.com/material-components/material-components-android) - Helping me present Material Design.
 - [MotionLayout](https://developer.android.com/reference/androidx/constraintlayout/motion/widget/MotionLayout) - Animating view has never been easier.
-- [ViewPager2](https://developer.android.com/reference/androidx/viewpager2/widget/ViewPager2) - Personal option over `RecyclerView` when dealing view snapping experience.
+- [ViewPager2](https://developer.android.com/reference/androidx/viewpager2/widget/ViewPager2) - Personal option over `RecyclerView` when dealing snapping UX.
 
 #### Internal
 - [LiveListAdapter](android/library/presentation/src/main/kotlin/com/bael/dads/library/presentation/widget/recyclerview/adapter/LiveListAdapter.kt) <br/>
@@ -48,8 +48,7 @@ ListAdapter w/ every visible cell (`ViewHolder`) is reactive. Cell acts like obs
 Processor for `RenderWith` annotation. Diff-state engine generator for rendering view component.
 
 #### Remote
-- [Apollo GraphQL](https://www.apollographql.com) - Client for requesting GraphQL API.
-- [OkHttp](https://square.github.io/okhttp) - Request interceptors. Pipeline before remote API call.
+- [Apollo GraphQL](https://www.apollographql.com) - Client for requesting GraphQL API, Multiplatform.
 
 #### Testing
 - [Espresso](https://developer.android.com/training/testing/espresso) - Android UI tests.
@@ -74,7 +73,6 @@ Dads is ready to support multiplatform with the Clean Architecture concept for p
 <br/>
 
 **JVM**, **JS**, or **Native**, He is just waiting your implementation of presentation part!
-<br/>
 <br/>
 <br/>
 
@@ -123,8 +121,8 @@ JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHAiOiJEYWRzISIsInR5cGUiOiJVc2VyIn0
 After went through **How to run** section but you still get a "Service issue" state, hit `TRY AGAIN?` a couple of times until success. That's because I host data to the server with basic free plan - potato spec, well, it's just for research purpose anyway 😂. 
 
 ## Contributing
-[Let's get in touch](https://twitter.com/SumargoErick) if you're interested in contributing. Fork it, submit your PR.<br/>
-Also feel free to open new issue, request features, or any kind of your support (join [**stargazers** ⭐](https://github.com/ErickSumargo/Dads/stargazers)️ | treat me [**coffee**](https://www.buymeacoffee.com/ErickSumargo) 😁).
+[Let's get in touch](https://twitter.com/SumargoErick) if you're interested in contributing. Explain what's the [**issue**](https://github.com/ErickSumargo/Dads/issues), submit your PR via **Fork**.<br/>
+Also feel free to request features, or any kind of your support (join [**stargazers** ⭐](https://github.com/ErickSumargo/Dads/stargazers)️ | treat me [**coffee**](https://www.buymeacoffee.com/ErickSumargo) 😁).
 
 Those wonder what's next, check out my planned Roadmap by [**GitHub project board**](https://github.com/ErickSumargo/Dads/projects/1). 
 
