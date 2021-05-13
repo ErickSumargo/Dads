@@ -2,6 +2,7 @@ import Library.Airbnb.lottie
 import Library.AndroidX.constraintLayout
 import Library.AndroidX.fragment
 import Library.AndroidX.lifecycle
+import Library.AndroidX.lifecycleViewModelSavedState
 import Library.AndroidX.navigationFragment
 import Library.AndroidX.navigationUi
 import Library.AndroidX.recyclerView
@@ -23,6 +24,7 @@ dependencies {
     implementation(constraintLayout)
     implementation(fragment)
     implementation(lifecycle)
+    implementation(lifecycleViewModelSavedState)
     implementation(navigationFragment)
     implementation(navigationUi)
     implementation(recyclerView)
