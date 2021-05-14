@@ -1,6 +1,7 @@
 package com.bael.dads.feature.home.sheet.detail
 
 import android.content.DialogInterface
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
@@ -34,7 +35,7 @@ internal class UI :
         return inflate(inflater, container, false)
     }
 
-    override suspend fun onViewLoaded() {
+    override suspend fun onViewLoaded(savedInstanceState: Bundle?) {
         viewModel.receiveDadJoke()
     }
 

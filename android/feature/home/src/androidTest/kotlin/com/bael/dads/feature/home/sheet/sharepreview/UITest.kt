@@ -2,6 +2,7 @@ package com.bael.dads.feature.home.sheet.sharepreview
 
 import androidx.core.os.bundleOf
 import com.bael.dads.domain.home.model.DadJoke
+import com.bael.dads.library.instrumentation.matcher.MatcherParams
 import com.bael.dads.library.instrumentation.sheet.BaseSheetTest
 import com.bael.dads.shared.time.DateTime.now
 import dagger.hilt.android.testing.HiltAndroidTest
@@ -17,7 +18,7 @@ internal class UITest : BaseSheetTest() {
     override fun setupTest() {}
 
     @Test
-    fun assertShareMaterialShouldDisplay() {
+    fun whenSheetDisplayed_shareMaterialShouldShow() {
         runTest {
             // given
             val dadJoke = DadJoke(
@@ -33,9 +34,16 @@ internal class UITest : BaseSheetTest() {
             launch<UI>(args = bundleOf("dadJoke" to dadJoke))
 
             // then
-            isDisplayed(text = "Setup 1")
-
-            isDisplayed(text = "Punchline 1")
+            assertViewDisplayed(
+                params = MatcherParams(
+                    text = "Setup 1"
+                )
+            )
+            assertViewDisplayed(
+                params = MatcherParams(
+                    text = "Punchline 1"
+                )
+            )
         }
     }
 

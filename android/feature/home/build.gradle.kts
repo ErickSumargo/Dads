@@ -35,5 +35,7 @@ dependencies {
 
     // Library
     implementation(project(":android:library:preference"))
+    androidTestImplementation(project(":android:library:preference_test"))
+
     implementation(project(":android:library:worker"))
 }

@@ -2,6 +2,7 @@ package com.bael.dads.feature.home.screen.home
 
 import com.bael.dads.feature.home.R
 import com.bael.dads.library.instrumentation.fragment.BaseFragmentTest
+import com.bael.dads.library.instrumentation.matcher.MatcherParams
 import com.bael.dads.library.presentation.ext.readText
 import dagger.hilt.android.testing.HiltAndroidTest
 import org.junit.Test
@@ -16,19 +17,32 @@ internal class UITest : BaseFragmentTest() {
     override fun setupTest() {}
 
     @Test
-    fun verifyViewsShownProperly() {
+    fun whenScreenDisplayed_contentShouldShow() {
         runTest {
             // when
             launch<UI>(graphResId = R.navigation.nav_graph)
 
             // then
-            isDisplayed(id = R.id.logoIcon)
-
-            isDisplayed(id = R.id.settingsIcon)
-
-            isDisplayed(text = context.readText(R.string.feed))
-
-            isDisplayed(text = context.readText(R.string.seen))
+            assertViewDisplayed(
+                params = MatcherParams(
+                    id = R.id.logoIcon
+                )
+            )
+            assertViewDisplayed(
+                params = MatcherParams(
+                    id = R.id.settingsIcon
+                )
+            )
+            assertViewDisplayed(
+                params = MatcherParams(
+                    text = context.readText(R.string.feed)
+                )
+            )
+            assertViewDisplayed(
+                params = MatcherParams(
+                    text = context.readText(R.string.seen)
+                )
+            )
         }
     }
 
