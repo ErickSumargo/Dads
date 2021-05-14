@@ -4,6 +4,7 @@ import com.bael.dads.data.database.entity.DadJoke
 import com.bael.dads.data.database.repository.DadJokeRepository
 import com.bael.dads.feature.home.R
 import com.bael.dads.library.instrumentation.fragment.BaseFragmentTest
+import com.bael.dads.library.instrumentation.matcher.MatcherParams
 import com.bael.dads.library.presentation.ext.readText
 import com.bael.dads.shared.time.DateTime.now
 import dagger.hilt.android.testing.HiltAndroidTest
@@ -29,7 +30,11 @@ internal class UITest : BaseFragmentTest() {
             launch<UI>(graphResId = R.navigation.nav_graph)
 
             // then
-            isDisplayed(text = context.readText(R.string.no_data_description))
+            assertViewDisplayed(
+                params = MatcherParams(
+                    text = context.readText(R.string.no_data_description)
+                )
+            )
         }
     }
 
@@ -66,9 +71,16 @@ internal class UITest : BaseFragmentTest() {
             launch<UI>(graphResId = R.navigation.nav_graph)
 
             // then
-            isDisplayed(text = "Setup 1")
-
-            isDisplayed(text = "Setup 2")
+            assertViewDisplayed(
+                params = MatcherParams(
+                    text = "Setup 1"
+                )
+            )
+            assertViewDisplayed(
+                params = MatcherParams(
+                    text = "Setup 2"
+                )
+            )
         }
     }
 

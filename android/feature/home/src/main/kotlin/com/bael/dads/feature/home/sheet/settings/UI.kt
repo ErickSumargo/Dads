@@ -1,5 +1,6 @@
 package com.bael.dads.feature.home.sheet.settings
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -42,7 +43,7 @@ internal class UI :
         return inflate(inflater, container, false)
     }
 
-    override suspend fun onViewLoaded() {
+    override suspend fun onViewLoaded(savedInstanceState: Bundle?) {
         setupView()
     }
 
@@ -133,7 +134,7 @@ internal class UI :
         }
     }
 
-    private companion object {
+    internal companion object {
         const val NEW_FEED_REMINDER_PREFERENCE: String = "new_feed_reminder"
 
         const val NIGHT_THEME_PREFERENCE: String = "night_theme"

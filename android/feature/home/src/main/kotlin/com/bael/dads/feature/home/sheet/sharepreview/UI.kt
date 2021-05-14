@@ -12,6 +12,7 @@ import android.graphics.Bitmap.Config.ARGB_8888
 import android.graphics.Bitmap.createBitmap
 import android.graphics.Canvas
 import android.net.Uri
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -48,7 +49,7 @@ internal class UI :
         return inflate(inflater, container, false)
     }
 
-    override suspend fun onViewLoaded() {
+    override suspend fun onViewLoaded(savedInstanceState: Bundle?) {
         viewModel.receiveDadJoke()
     }
 

@@ -58,28 +58,8 @@ abstract class BaseSheet<VB : ViewBinding, R, E, VM : BaseViewModel<*, E>> :
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        initRenderer()
-        observeEvent()
-
         _viewBinding = createView(inflater, container)
         return _viewBinding?.root
-    }
-
-    private fun initRenderer() {
-        rendererInitializer.init(
-            renderer = this as R,
-            viewModel = viewModel
-        )
-    }
-
-    private fun observeEvent() {
-        viewModel.eventFlow
-            .flowWithLifecycle(
-                lifecycle = viewLifecycleOwner.lifecycle,
-                minActiveState = RESUMED
-            )
-            .onEach(::action)
-            .launchIn(scope = viewLifecycleOwner.lifecycleScope)
     }
 
     abstract fun createView(inflater: LayoutInflater, container: ViewGroup?): VB
@@ -113,12 +93,32 @@ abstract class BaseSheet<VB : ViewBinding, R, E, VM : BaseViewModel<*, E>> :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initRenderer()
+        observeEvent()
+
         viewLifecycleOwner.lifecycleScope.launchWhenResumed {
-            onViewLoaded()
+            onViewLoaded(savedInstanceState)
         }
     }
 
-    abstract suspend fun onViewLoaded()
+    private fun initRenderer() {
+        rendererInitializer.init(
+            renderer = this as R,
+            viewModel = viewModel
+        )
+    }
+
+    private fun observeEvent() {
+        viewModel.eventFlow
+            .flowWithLifecycle(
+                lifecycle = viewLifecycleOwner.lifecycle,
+                minActiveState = RESUMED
+            )
+            .onEach(::action)
+            .launchIn(scope = viewLifecycleOwner.lifecycleScope)
+    }
+
+    abstract suspend fun onViewLoaded(savedInstanceState: Bundle?)
 
     abstract suspend fun action(event: E)
 
