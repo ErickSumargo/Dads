@@ -81,8 +81,8 @@ internal class UI :
                     resource = noInternet,
                     playLoop = true
                 ),
-                description = readText(RPresentation.string.no_internet_description),
-                actionText = readText(RPresentation.string.try_again)
+                description = readText(resId = RPresentation.string.no_internet_description),
+                actionText = readText(resId = RPresentation.string.try_again)
             ),
             onClickActionListener = {
                 val cursor = feedAdapter.lastItem()
@@ -98,8 +98,8 @@ internal class UI :
                     resource = error,
                     playLoop = false
                 ),
-                description = readText(RPresentation.string.server_error_description),
-                actionText = "${readText(RPresentation.string.try_again)}?"
+                description = readText(resId = RPresentation.string.server_error_description),
+                actionText = "${readText(resId = RPresentation.string.try_again)}?"
             ),
             onClickActionListener = {
                 val cursor = feedAdapter.lastItem()

@@ -15,7 +15,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class MainTestActivityModule {
+internal class MainTestActivityModule {
 
     @Provides
     @Singleton

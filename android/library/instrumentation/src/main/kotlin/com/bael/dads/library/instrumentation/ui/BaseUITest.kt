@@ -11,7 +11,11 @@ import androidx.test.espresso.matcher.ViewMatchers.isNotChecked
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withParent
 import androidx.test.espresso.matcher.ViewMatchers.withText
+import androidx.test.platform.app.InstrumentationRegistry.getInstrumentation
+import androidx.test.uiautomator.By.text
+import androidx.test.uiautomator.UiDevice
 import com.bael.dads.library.instrumentation.matcher.MatcherParams
+import com.google.common.truth.Truth.assertThat
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers.allOf
 
@@ -29,6 +33,14 @@ abstract class BaseUITest {
     fun assertSwitchChecked(params: MatcherParams, checked: Boolean) {
         val matcher = selectMatcher(params) ?: return
         onView(matcher).check(matches(isChecked().takeIf { checked } ?: isNotChecked()))
+    }
+
+    fun assertNotificationDisplayed(title: String, description: String) {
+        val uiDevice = UiDevice.getInstance(getInstrumentation())
+        uiDevice.openNotification()
+
+        assertThat(uiDevice.findObject(text(title))).isNotNull()
+        assertThat(uiDevice.findObject(text(description))).isNotNull()
     }
 
     fun clickView(params: MatcherParams) {

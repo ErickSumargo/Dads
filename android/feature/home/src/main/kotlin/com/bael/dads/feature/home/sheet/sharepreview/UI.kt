@@ -77,7 +77,16 @@ internal class UI :
     }
 
     private fun shareDadJoke(view: View, dadJoke: DadJoke) {
-        lifecycleScope.launch(context = thread.io) {
+        viewLifecycleOwner.lifecycleScope.launch {
+            val data = createShareData(view, dadJoke)
+            val intent = createChooser(data, null)
+
+            startActivityForResult(intent, SHARE_INTENT_REQUEST_CODE)
+        }
+    }
+
+    private suspend fun createShareData(view: View, dadJoke: DadJoke): Intent {
+        return withContext(context = thread.default) {
             val uri = uriFromViewData(view, dadJoke)
             val data = Intent().apply {
                 data = uri
@@ -87,36 +96,36 @@ internal class UI :
                 putExtra(EXTRA_TITLE, "Dads")
                 putExtra(EXTRA_STREAM, uri)
             }
+            data
+        }
+    }
 
-            withContext(context = thread.main) {
-                val intent = createChooser(data, null)
-                startActivityForResult(intent, SHARE_INTENT_REQUEST_CODE)
+    private suspend fun uriFromViewData(view: View, dadJoke: DadJoke): Uri {
+        return withContext(context = thread.io) {
+            val bitmap = bitmapFromView(view)
+
+            val folder = File(context?.cacheDir, "images")
+            folder.mkdirs()
+
+            val file = File(folder, "image_${dadJoke.id}.png")
+            FileOutputStream(file).use { stream ->
+                bitmap.compress(PNG, 100, stream)
+                stream.flush()
             }
+
+            val uri = getUriForFile(requireContext(), "${context?.packageName}.provider", file)
+            uri
         }
     }
 
-    private fun uriFromViewData(view: View, dadJoke: DadJoke): Uri {
-        val bitmap = bitmapFromView(view)
+    private suspend fun bitmapFromView(view: View): Bitmap {
+        return withContext(context = thread.io) {
+            val bitmap = createBitmap(view.width, view.height, ARGB_8888)
+            val canvas = Canvas(bitmap)
 
-        val folder = File(context?.cacheDir, "images")
-        folder.mkdirs()
-
-        val file = File(folder, "image_${dadJoke.id}.png")
-        FileOutputStream(file).use { stream ->
-            bitmap.compress(PNG, 100, stream)
-            stream.flush()
+            view.draw(canvas)
+            bitmap
         }
-
-        return getUriForFile(requireContext(), "${context?.packageName}.provider", file)
-    }
-
-    private fun bitmapFromView(view: View): Bitmap {
-        val bitmap = createBitmap(view.width, view.height, ARGB_8888)
-        val canvas = Canvas(bitmap)
-
-        view.draw(canvas)
-
-        return bitmap
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

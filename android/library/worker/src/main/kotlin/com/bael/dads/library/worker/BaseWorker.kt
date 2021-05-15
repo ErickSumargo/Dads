@@ -15,7 +15,7 @@ abstract class BaseWorker constructor(
     params: WorkerParameters
 ) : CoroutineWorker(appContext, params) {
     @Inject
-    internal lateinit var workManager: WorkManager
+    lateinit var workManager: WorkManager
 
     protected fun cancelWork() {
         workManager.cancelWorkById(id)

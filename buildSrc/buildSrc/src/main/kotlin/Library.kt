@@ -12,6 +12,7 @@ import Version.AndroidX.recyclerView as recyclerViewVersion
 import Version.AndroidX.runner as runnerVersion
 import Version.AndroidX.startup as startupVersion
 import Version.AndroidX.swipeRefreshLayout as swipeRefreshLayoutVersion
+import Version.AndroidX.uiAutomator as uiAutomatorVersion
 import Version.AndroidX.viewPager2 as viewPager2Version
 import Version.AndroidX.work as workVersion
 import Version.Apollo.apollo as apolloVersion
@@ -92,11 +93,17 @@ object Library {
         val swipeRefreshLayout: String
             get() = "androidx.swiperefreshlayout:swiperefreshlayout:$swipeRefreshLayoutVersion"
 
+        val uiAutomator: String
+            get() = "androidx.test.uiautomator:uiautomator:$uiAutomatorVersion"
+
         val viewPager2: String
             get() = "androidx.viewpager2:viewpager2:$viewPager2Version"
 
         val work: String
             get() = "androidx.work:work-runtime-ktx:$workVersion"
+
+        val workTesting: String
+            get() = "androidx.work:work-testing:$workVersion"
     }
 
     object Airbnb {

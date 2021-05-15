@@ -16,6 +16,6 @@ fun Fragment.readDrawable(@DrawableRes resId: Int): Drawable {
     return requireContext().readDrawable(resId)
 }
 
-fun Fragment.readText(@StringRes resId: Int): String {
-    return requireContext().readText(resId)
+fun Fragment.readText(@StringRes resId: Int, vararg formatArgs: Any): String {
+    return requireContext().readText(resId, formatArgs)
 }

@@ -35,12 +35,12 @@ internal class UITest : BaseFragmentTest() {
             )
             assertViewDisplayed(
                 params = MatcherParams(
-                    text = context.readText(R.string.feed)
+                    text = context.readText(resId = R.string.feed)
                 )
             )
             assertViewDisplayed(
                 params = MatcherParams(
-                    text = context.readText(R.string.seen)
+                    text = context.readText(resId = R.string.seen)
                 )
             )
         }

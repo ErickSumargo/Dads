@@ -35,6 +35,8 @@ object Version {
 
         const val swipeRefreshLayout: String = "1.2.0-alpha01"
 
+        const val uiAutomator: String = "2.2.0"
+
         const val viewPager2: String = "1.1.0-alpha01"
 
         const val work: String = "2.5.0"

@@ -13,6 +13,6 @@ fun Context.readDrawable(@DrawableRes resId: Int): Drawable {
     return drawable(resId)
 }
 
-fun Context.readText(@StringRes resId: Int): String {
-    return getString(resId)
+fun Context.readText(@StringRes resId: Int, vararg formatArgs: Any): String {
+    return getString(resId, *formatArgs)
 }
