@@ -3,6 +3,7 @@ package com.bael.dads.feature.home.worker
 import android.content.Context
 import androidx.hilt.work.HiltWorker
 import androidx.work.ListenableWorker.Result.retry
+import androidx.work.ListenableWorker.Result.success
 import androidx.work.WorkerParameters
 import com.bael.dads.domain.home.model.DadJoke
 import com.bael.dads.domain.home.usecase.LoadDadJokeFeedUseCase
@@ -14,8 +15,9 @@ import com.bael.dads.library.worker.BaseWorker
 import com.bael.dads.shared.response.Response.Success
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.firstOrNull
+import kotlinx.coroutines.flow.map
 
 /**
  * Created by ErickSumargo on 01/01/21.
@@ -34,23 +36,26 @@ internal class FetchDadJokeFeedWorker @AssistedInject constructor(
 
     override suspend fun doWork(): Result {
         val id = inputData.getInt(INPUT_CURSOR_ID, 0)
-        var cursor: DadJoke? = null
-
-        loadDadJokeUseCase(id)
+        val cursor = loadDadJokeUseCase(id)
             .filter { response ->
                 response is Success
-            }.collect { response ->
-                cursor = (response as Success).data
-            }
+            }.map { response ->
+                (response as Success).data
+            }.firstOrNull()
 
-        loadDadJokeFeedUseCase(cursor, limit = 10)
+        val dadJokes = loadDadJokeFeedUseCase(cursor, limit = 10)
             .filter { response ->
                 response is Success
-            }.collect { response ->
-                pushNotification(dadJokes = (response as Success).data)
-                cancelWork()
-            }
+            }.map { response ->
+                (response as Success).data
+            }.firstOrNull().orEmpty()
 
+        if (dadJokes.isNotEmpty()) {
+            pushNotification(dadJokes)
+
+            cancelWork()
+            return success()
+        }
         return retry()
     }
 

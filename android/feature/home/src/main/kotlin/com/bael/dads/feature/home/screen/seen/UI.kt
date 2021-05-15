@@ -242,7 +242,9 @@ internal class UI :
 
     private fun showActivatedFavoriteFilterMessage(isFavoriteFilterActivated: Boolean) {
         if (!isFavoriteFilterActivated) return
-        showMessage(message = readText(resId = R.string.favorite_filter_description))
+
+        val message = readText(resId = R.string.favorite_filter_description)
+        showMessage(message)
     }
 
     private fun showDetailSheet(dadJoke: DadJoke) {

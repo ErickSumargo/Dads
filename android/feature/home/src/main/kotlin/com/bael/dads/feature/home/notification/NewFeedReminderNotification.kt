@@ -15,6 +15,7 @@ import com.bael.dads.domain.home.model.DadJoke
 import com.bael.dads.feature.home.R
 import com.bael.dads.library.presentation.di.qualifier.ActivityNameQualifier
 import com.bael.dads.library.presentation.di.qualifier.ActivityNameQualifier.Companion.ACTIVITY_MAIN
+import com.bael.dads.library.presentation.ext.readText
 import com.bael.dads.library.presentation.notification.NotificationConfiguration
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
@@ -34,7 +35,7 @@ internal class NewFeedReminderNotification @AssistedInject constructor(
         get() = NEW_FEED_REMINDER_NOTIFICATION_ID
 
     override val category: String
-        get() = context.getString(R.string.new_feed_reminder)
+        get() = context.readText(resId = R.string.new_feed_reminder)
 
     override val importance: Int
         get() = IMPORTANCE_LOW
@@ -56,10 +57,10 @@ internal class NewFeedReminderNotification @AssistedInject constructor(
 
         return templateBuilder
             .setSmallIcon(R.drawable.ic_logo)
-            .setContentTitle(context.getString(R.string.new_feed_notification_title))
+            .setContentTitle(context.readText(resId = R.string.new_feed_notification_title))
             .setContentText(
-                context.getString(
-                    R.string.new_feed_notification_description,
+                context.readText(
+                    resId = R.string.new_feed_notification_description,
                     "${"+9".takeIf { dadJokes.size > 9 } ?: dadJokes.size}"
                 )
             )
