@@ -11,6 +11,7 @@ import Library.Google.firebaseBom
 import Library.Square.leakCanary
 import Library.Google.firebaseAnalytics as analytics
 import Library.Google.firebaseCrashlytics as crashlytics
+import Library.Google.firebaseDatabase as database
 
 plugins {
     id("androidApp")
@@ -37,6 +38,7 @@ dependencies {
     implementation(platform(firebaseBom))
     implementation(analytics)
     implementation(crashlytics)
+    implementation(database)
 
     // Square
     debugImplementation(leakCanary)

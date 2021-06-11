@@ -1,14 +1,11 @@
 package com.bael.dads.data.database.di.module
 
-import android.content.Context
-import com.bael.dads.data.database.DadsDatabase
-import com.bael.dads.data.database.constant.Database.name
-import com.bael.dads.data.database.constant.Database.schema
-import com.squareup.sqldelight.android.AndroidSqliteDriver
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
@@ -22,8 +19,11 @@ object DatabaseModule {
 
     @Provides
     @Singleton
-    fun provideDadsDatabase(@ApplicationContext context: Context): DadsDatabase {
-        val driver = AndroidSqliteDriver(schema, context, name)
-        return DadsDatabase(driver)
+    fun provideDadsDatabase(): DatabaseReference {
+        val database = Firebase.database(url = "https://dads-dc254-default-rtdb.firebaseio.com")
+        database.setPersistenceEnabled(true)
+        database.reference.keepSynced(true)
+
+        return database.reference
     }
 }

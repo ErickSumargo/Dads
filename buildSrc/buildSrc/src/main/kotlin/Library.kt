@@ -138,6 +138,9 @@ object Library {
         val firebaseCrashlytics: String
             get() = "com.google.firebase:firebase-crashlytics-ktx"
 
+        val firebaseDatabase: String
+            get() = "com.google.firebase:firebase-database-ktx"
+
         val material: String
             get() = "com.google.android.material:material:$materialVersion"
 

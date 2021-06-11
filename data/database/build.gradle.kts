@@ -1,19 +1,13 @@
-import Library.Square.sqlDelightAndroidDriver
-import Library.Square.sqlDelightCoroutines
+import Library.Google.firebaseBom
+import Library.Google.firebaseDatabase as database
 
 plugins {
     id("data")
-    id("com.squareup.sqldelight")
 }
 
 kotlin {
     sourceSets {
         val commonMain by getting {
-            dependencies {
-                // Square
-                implementation(sqlDelightCoroutines)
-            }
-
             dependencies {
                 // Shared
                 implementation(project(":shared"))
@@ -22,16 +16,10 @@ kotlin {
 
         val androidMain by getting {
             dependencies {
-                // Square
-                implementation(sqlDelightAndroidDriver)
+                // Google
+                implementation(project.dependencies.platform(firebaseBom))
+                implementation(database)
             }
         }
-    }
-}
-
-sqldelight {
-    database("DadsDatabase") {
-        packageName = "${Application.id}.data.database"
-        schemaOutputDirectory = file("schemas")
     }
 }

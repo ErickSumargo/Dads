@@ -1,10 +1,10 @@
 package com.bael.dads.data.database.di.module.repository
 
-import com.bael.dads.data.database.DadsDatabase
 import com.bael.dads.data.database.repository.DadJokeRepository
 import com.bael.dads.data.database.repository.DefaultDadJokeRepository
 import com.bael.dads.data.database.repository.DefaultRemoteMetaRepository
 import com.bael.dads.data.database.repository.RemoteMetaRepository
+import com.google.firebase.database.DatabaseReference
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,13 +21,13 @@ internal object RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideDadJokeRepository(database: DadsDatabase): DadJokeRepository {
+    fun provideDadJokeRepository(database: DatabaseReference): DadJokeRepository {
         return DefaultDadJokeRepository(database)
     }
 
     @Provides
     @Singleton
-    fun provideRemoteMetaRepository(database: DadsDatabase): RemoteMetaRepository {
+    fun provideRemoteMetaRepository(database: DatabaseReference): RemoteMetaRepository {
         return DefaultRemoteMetaRepository(database)
     }
 }
