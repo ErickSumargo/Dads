@@ -15,12 +15,12 @@ internal class DefaultRemoteMetaRepository(
 
     override suspend fun loadRemoteMeta(): RemoteMeta? {
         return suspendCoroutine { continuation ->
-            database.child("remoteMeta")
-                .limitToFirst(1)
-                .get()
+            database.child("remoteMeta").get()
                 .addOnSuccessListener { dataSnapshot ->
                     continuation.resume(
-                        dataSnapshot.getValue(RemoteMeta::class.java)
+                        dataSnapshot.children.map { child ->
+                            child.getValue(RemoteMeta::class.java)
+                        }.firstOrNull()
                     )
                 }
         }

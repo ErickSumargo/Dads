@@ -5,6 +5,6 @@ package com.bael.dads.data.database.entity
  */
 
 data class RemoteMeta(
-    val id: Int = 0,
+    val id: Int = 1,
     val cursor: String? = null
 )
