@@ -26,7 +26,6 @@ import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
-import com.bael.dads.feature.home.sheet.settings.UI as SettingsSheet
 
 /**
  * Created by ErickSumargo on 01/01/21.
@@ -193,8 +192,7 @@ internal class UI :
     }
 
     private fun showSettingsSheet() {
-        SettingsSheet().also { sheet ->
-            sheet.show(fragmentManager = activity?.supportFragmentManager)
-        }
+        val direction = UIDirections.showSettingsSheet()
+        navigate(direction)
     }
 }

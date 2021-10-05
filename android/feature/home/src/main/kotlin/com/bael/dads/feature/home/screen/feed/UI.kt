@@ -5,7 +5,6 @@ package com.bael.dads.feature.home.screen.feed
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.work.Constraints
@@ -42,7 +41,6 @@ import com.bael.dads.shared.response.Response.Success
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.concurrent.TimeUnit.MINUTES
 import javax.inject.Inject
-import com.bael.dads.feature.home.sheet.sharepreview.UI as SharePreviewSheet
 import com.bael.dads.feature.home.worker.FetchDadJokeFeedWorker.Companion.TAG as FetchDadJokeFeedWorkerTag
 import com.bael.dads.library.presentation.R as RPresentation
 
@@ -222,10 +220,8 @@ internal class UI :
     }
 
     private fun shareDadJoke(dadJoke: DadJoke) {
-        SharePreviewSheet().also { sheet ->
-            sheet.arguments = bundleOf("dadJoke" to dadJoke)
-            sheet.show(fragmentManager = activity?.supportFragmentManager)
-        }
+        val direction = UIDirections.showSharePreviewSheet(dadJoke)
+        navigate(direction)
     }
 
     private fun startFetchDadJokeFeedWorker() {

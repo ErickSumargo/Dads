@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
+import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.lifecycle.lifecycleScope
@@ -29,7 +29,6 @@ import com.bael.dads.shared.response.Response.Success
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import com.bael.dads.feature.home.screen.home.ViewModel as HomeViewModel
-import com.bael.dads.feature.home.sheet.detail.UI as DetailSheet
 
 /**
  * Created by ErickSumargo on 01/01/21.
@@ -248,14 +247,14 @@ internal class UI :
     }
 
     private fun showDetailSheet(dadJoke: DadJoke) {
-        DetailSheet().also { sheet ->
-            sheet.arguments = bundleOf("dadJoke" to dadJoke)
-            sheet.onDismissListener = callback@{ _dadJoke ->
-                if (dadJoke == _dadJoke) return@callback
-                viewModel.favorDadJoke(dadJoke, favored = _dadJoke?.favored ?: false)
-            }
+        val direction = UIDirections.showDetailSheet(dadJoke)
+        navigate(direction)
 
-            sheet.show(fragmentManager = activity?.supportFragmentManager)
+        setFragmentResultListener(requestKey = "detailSheet") callback@{ _, data ->
+            val newDadJoke = data["dadJoke"] as? DadJoke
+
+            if (dadJoke == newDadJoke) return@callback
+            viewModel.favorDadJoke(dadJoke, favored = newDadJoke?.favored ?: false)
         }
     }
 

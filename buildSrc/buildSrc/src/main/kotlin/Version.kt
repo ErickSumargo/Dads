@@ -19,7 +19,7 @@ object Version {
 
         const val espresso: String = "3.1.0"
 
-        const val fragment: String = "1.2.5"
+        const val fragment: String = "1.3.6"
 
         const val hilt: String = "1.0.0-alpha03"
 

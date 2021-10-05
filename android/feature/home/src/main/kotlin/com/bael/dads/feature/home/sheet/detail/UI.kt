@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import com.bael.dads.domain.home.model.DadJoke
 import com.bael.dads.feature.home.databinding.SheetDetailBinding
@@ -12,7 +13,6 @@ import com.bael.dads.feature.home.databinding.SheetDetailBinding.inflate
 import com.bael.dads.library.presentation.ext.toRichText
 import com.bael.dads.library.presentation.sheet.BaseSheet
 import dagger.hilt.android.AndroidEntryPoint
-import com.bael.dads.feature.home.sheet.sharepreview.UI as SharePreviewSheet
 
 /**
  * Created by ErickSumargo on 01/01/21.
@@ -22,8 +22,6 @@ import com.bael.dads.feature.home.sheet.sharepreview.UI as SharePreviewSheet
 internal class UI :
     BaseSheet<SheetDetailBinding, Renderer, Event, ViewModel>(),
     Renderer {
-    var onDismissListener: ((DadJoke?) -> Unit)? = null
-
     override val fullHeight: Boolean = true
 
     override val viewModel: ViewModel by viewModels()
@@ -83,14 +81,15 @@ internal class UI :
     }
 
     private fun showSharePreviewSheet(dadJoke: DadJoke) {
-        SharePreviewSheet().also { sheet ->
-            sheet.arguments = bundleOf("dadJoke" to dadJoke)
-            sheet.show(fragmentManager = activity?.supportFragmentManager)
-        }
+        val direction = UIDirections.showSharePreviewSheet(dadJoke)
+        navigate(direction)
     }
 
     override fun onDismiss(dialog: DialogInterface) {
-        onDismissListener?.invoke(viewModel.dadJoke)
+        setFragmentResult(
+            requestKey = "detailSheet",
+            result = bundleOf("dadJoke" to viewModel.dadJoke)
+        )
         super.onDismiss(dialog)
     }
 }

@@ -11,10 +11,11 @@ import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.FrameLayout
-import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle.State.RESUMED
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavDirections
+import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
 import com.bael.dads.library.presentation.ext.screenHeight
 import com.bael.dads.library.presentation.renderer.RendererInitializer
@@ -122,9 +123,8 @@ abstract class BaseSheet<VB : ViewBinding, R, E, VM : BaseViewModel<*, E>> :
 
     abstract suspend fun action(event: E)
 
-    fun show(fragmentManager: FragmentManager?) {
-        fragmentManager ?: return
-        show(fragmentManager, key)
+    protected fun navigate(direction: NavDirections) {
+        findNavController().navigate(direction)
     }
 
     override fun getTheme(): Int {

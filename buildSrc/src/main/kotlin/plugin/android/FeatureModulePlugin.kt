@@ -51,6 +51,7 @@ class FeatureModulePlugin : Plugin<Project> {
             apply("dagger.hilt.android.plugin")
             apply("kotlin-android")
             apply("kotlin-kapt")
+            apply("androidx.navigation.safeargs.kotlin")
 
             apply(JacocoTestReportPlugin::class)
         }

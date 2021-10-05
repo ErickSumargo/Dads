@@ -1,3 +1,4 @@
+import Plugin.AndroidX.navigationSafeArgs
 import Plugin.Apollo.apollo
 import Plugin.Google.dagger
 import Plugin.Google.firebaseCrashlytics
@@ -57,6 +58,9 @@ kotlin {
 dependencies {
     // Android
     implementation(androidGradle)
+
+    // AndroidX
+    implementation(navigationSafeArgs)
 
     // Apollo
     implementation(apollo)

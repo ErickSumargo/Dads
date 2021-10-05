@@ -1,4 +1,5 @@
 import Version.Android.gradle as androidGradleVersion
+import Version.AndroidX.navigation as navigationVersion
 import Version.Apollo.apollo as apolloVersion
 import Version.Google.dagger as daggerVersion
 import Version.Google.firebaseCrashlytics as firebaseCrashlyticsVersion
@@ -15,6 +16,11 @@ object Plugin {
     object Android {
         val gradle: String
             get() = "com.android.tools.build:gradle:$androidGradleVersion"
+    }
+
+    object AndroidX {
+        val navigationSafeArgs: String
+            get() = "androidx.navigation:navigation-safe-args-gradle-plugin:$navigationVersion"
     }
 
     object Apollo {

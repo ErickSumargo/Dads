@@ -8,16 +8,65 @@
     <fragment
         android:id="@+id/homeScreen"
         android:name="com.bael.dads.feature.home.screen.home.UI"
-        tools:layout="@layout/screen_home" />
+        tools:layout="@layout/screen_home">
+
+        <action
+            android:id="@+id/showSettingsSheet"
+            app:destination="@id/settingsSheet" />
+
+    </fragment>
 
     <fragment
         android:id="@+id/feedScreen"
         android:name="com.bael.dads.feature.home.screen.feed.UI"
-        tools:layout="@layout/screen_feed" />
+        tools:layout="@layout/screen_feed">
+
+        <action
+            android:id="@+id/showSharePreviewSheet"
+            app:destination="@id/sharePreviewSheet" />
+
+    </fragment>
 
     <fragment
         android:id="@+id/seenScreen"
         android:name="com.bael.dads.feature.home.screen.seen.UI"
-        tools:layout="@layout/screen_seen" />
+        tools:layout="@layout/screen_seen">
+
+        <action
+            android:id="@+id/showDetailSheet"
+            app:destination="@id/detailSheet" />
+
+    </fragment>
+
+    <dialog
+        android:id="@+id/settingsSheet"
+        android:name="com.bael.dads.feature.home.sheet.settings.UI"
+        tools:layout="@layout/sheet_settings" />
+
+    <dialog
+        android:id="@+id/detailSheet"
+        android:name="com.bael.dads.feature.home.sheet.detail.UI"
+        tools:layout="@layout/sheet_detail">
+
+        <argument
+            android:name="dadJoke"
+            app:argType="com.bael.dads.domain.home.model.DadJoke" />
+
+        <action
+            android:id="@+id/showSharePreviewSheet"
+            app:destination="@id/sharePreviewSheet" />
+
+    </dialog>
+
+    <dialog
+        android:id="@+id/sharePreviewSheet"
+        android:name="com.bael.dads.feature.home.sheet.sharepreview.UI"
+        tools:layout="@layout/sheet_share_preview">
+
+        <argument
+            android:name="dadJoke"
+            app:argType="com.bael.dads.domain.home.model.DadJoke" />
+
+    </dialog>
 
 </navigation>
