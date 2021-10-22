@@ -90,7 +90,7 @@ class AppModulePlugin : Plugin<Project> {
                 }
             }
 
-            buildFeatures {
+            buildFeatures.apply {
                 compose = true
                 viewBinding = true
             }
