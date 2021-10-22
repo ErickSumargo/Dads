@@ -7,6 +7,7 @@ import com.android.build.gradle.AppExtension
 import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import Version.AndroidX.compose as composeVersion
 
 /**
  * Created by ErickSumargo on 15/04/21.
@@ -89,13 +90,18 @@ class AppModulePlugin : Plugin<Project> {
                 }
             }
 
-            buildFeatures.apply {
+            buildFeatures {
+                compose = true
                 viewBinding = true
             }
 
             compileOptions {
                 sourceCompatibility = JavaVersion.VERSION_1_8
                 targetCompatibility = JavaVersion.VERSION_1_8
+            }
+
+            composeOptions {
+                kotlinCompilerExtensionVersion = composeVersion
             }
 
             lintOptions {

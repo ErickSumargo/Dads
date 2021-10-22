@@ -3,6 +3,8 @@
 package plugin.android
 
 import Application
+import Library.AndroidX.composeMaterial
+import Library.AndroidX.composeUiTooling
 import Library.AndroidX.fragment
 import Library.AndroidX.hiltCompiler
 import Library.AndroidX.hiltNavigation
@@ -25,6 +27,7 @@ import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.plugin.KaptExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import plugin.test.JacocoTestReportPlugin
+import Version.AndroidX.compose as composeVersion
 
 /**
  * Created by ErickSumargo on 15/04/21.
@@ -92,13 +95,18 @@ class FeatureModulePlugin : Plugin<Project> {
                 }
             }
 
-            buildFeatures.apply {
+            buildFeatures {
+                compose = true
                 viewBinding = true
             }
 
             compileOptions {
                 sourceCompatibility = JavaVersion.VERSION_1_8
                 targetCompatibility = JavaVersion.VERSION_1_8
+            }
+
+            composeOptions {
+                kotlinCompilerExtensionVersion = composeVersion
             }
 
             lintOptions {
@@ -147,6 +155,9 @@ class FeatureModulePlugin : Plugin<Project> {
     private fun importExternalLibs(project: Project) {
         project.dependencies {
             // AndroidX
+            add("implementation", composeMaterial)
+            add("implementation", composeUiTooling)
+
             add("implementation", fragment)
 
             add("implementation", hiltNavigation)

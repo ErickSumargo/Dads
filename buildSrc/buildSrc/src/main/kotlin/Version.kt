@@ -5,13 +5,15 @@
 object Version {
 
     object Android {
-        const val gradle: String = "4.1.1"
+        const val gradle: String = "7.0.0"
     }
 
     object AndroidX {
         const val appCompat: String = "1.1.0"
 
         const val archTesting: String = "2.1.0"
+
+        const val compose: String = "1.0.1"
 
         const val constraintLayout: String = "2.1.0-alpha2"
 
@@ -21,7 +23,7 @@ object Version {
 
         const val fragment: String = "1.2.5"
 
-        const val hilt: String = "1.0.0-alpha03"
+        const val hilt: String = "1.0.0"
 
         const val lifecycle: String = "2.4.0-alpha01"
 
@@ -53,11 +55,11 @@ object Version {
     object Google {
         const val autoService: String = "1.0-rc7"
 
-        const val dagger: String = "2.31-alpha"
+        const val dagger: String = "2.39.1"
 
         const val firebaseBom: String = "26.5.0"
 
-        const val firebaseCrashlytics: String = "2.5.0"
+        const val firebaseCrashlytics: String = "2.7.1"
 
         const val gms: String = "4.3.5"
 
@@ -79,7 +81,7 @@ object Version {
 
         const val dateTime: String = "0.2.0"
 
-        const val kotlin: String = "1.4.20"
+        const val kotlin: String = "1.5.21"
     }
 
     object Square {

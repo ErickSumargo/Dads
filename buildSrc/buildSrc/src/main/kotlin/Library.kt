@@ -1,6 +1,7 @@
 import Version.Airbnb.lottie as lottieVersion
 import Version.AndroidX.appCompat as appCompatVersion
 import Version.AndroidX.archTesting as archTestingVersion
+import Version.AndroidX.compose as composeVersion
 import Version.AndroidX.constraintLayout as constraintLayoutVersion
 import Version.AndroidX.dataStore as dataStoreVersion
 import Version.AndroidX.espresso as espressoVersion
@@ -36,11 +37,20 @@ import Version.Square.sqlDelight as sqlDelightVersion
 object Library {
 
     object AndroidX {
+        val activityCompose: String
+            get() = "androidx.activity:activity-compose:$composeVersion"
+
         val appCompat: String
             get() = "androidx.appcompat:appcompat:$appCompatVersion"
 
         val archTesting: String
             get() = "androidx.arch.core:core-testing:$archTestingVersion"
+
+        val composeMaterial: String
+            get() = "androidx.compose.material:material:$composeVersion"
+
+        val composeUiTooling: String
+            get() = "androidx.compose.ui:ui-tooling:$composeVersion"
 
         val constraintLayout: String
             get() = "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"

@@ -1,3 +1,4 @@
+import Library.AndroidX.activityCompose
 import Library.AndroidX.hiltCompiler
 import Library.AndroidX.hiltNavigation
 import Library.AndroidX.hiltWork
@@ -18,6 +19,8 @@ plugins {
 
 dependencies {
     // AndroidX
+    implementation(activityCompose)
+
     implementation(hiltNavigation)
     implementation(hiltWork)
     kapt(hiltCompiler)
