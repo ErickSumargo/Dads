@@ -27,7 +27,7 @@ object Version {
 
         const val lifecycle: String = "2.4.0-alpha01"
 
-        const val navigation: String = "2.3.0"
+        const val navigation: String = "2.4.0-alpha10"
 
         const val recyclerView: String = "1.2.0-beta01"
 

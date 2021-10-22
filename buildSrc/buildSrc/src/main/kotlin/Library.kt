@@ -82,6 +82,9 @@ object Library {
         val lifecycleViewModelSavedState: String
             get() = "androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycleVersion"
 
+        val navigationCompose: String
+            get() = "androidx.navigation:navigation-compose:$navigationVersion"
+
         val navigationFragment: String
             get() = "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
 

@@ -2,6 +2,7 @@ import Library.AndroidX.activityCompose
 import Library.AndroidX.hiltCompiler
 import Library.AndroidX.hiltNavigation
 import Library.AndroidX.hiltWork
+import Library.AndroidX.navigationCompose
 import Library.AndroidX.navigationFragment
 import Library.AndroidX.navigationUi
 import Library.AndroidX.work
@@ -25,6 +26,7 @@ dependencies {
     implementation(hiltWork)
     kapt(hiltCompiler)
 
+    implementation(navigationCompose)
     implementation(navigationFragment)
     implementation(navigationUi)
 
