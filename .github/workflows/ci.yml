@@ -10,6 +10,10 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+      - name: Setup JDK
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
       - name: Setup GraphQL
         run: ./gradlew downloadApolloSchema --endpoint="https://dads-engine.herokuapp.com" --schema="data/remote/src/commonMain/graphql/com/bael/dads/data/remote/schema.json"
       - name: Cache GraphQL setup
