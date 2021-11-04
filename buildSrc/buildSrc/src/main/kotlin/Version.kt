@@ -78,8 +78,6 @@ object Version {
 
     object JavaX {
         const val annotation: String = "1.3.2"
-
-        const val inject: String = "1"
     }
 
     object KotlinX {

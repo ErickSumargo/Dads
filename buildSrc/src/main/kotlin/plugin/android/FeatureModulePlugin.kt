@@ -181,10 +181,6 @@ class FeatureModulePlugin : Plugin<Project> {
 
     private fun importInternalModules(project: Project) {
         project.dependencies {
-            // Internal
-            add("implementation", project(":android:annotation"))
-            add("kapt", project(":android:processor"))
-
             // Library
             add("implementation", project(":android:library:presentation"))
             add("implementation", project(":android:library:threading"))

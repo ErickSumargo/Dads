@@ -26,7 +26,6 @@ import Version.Google.firebaseBom as firebaseBomVersion
 import Version.Google.material as materialVersion
 import Version.Google.truth as truthVersion
 import Version.JavaX.annotation as annotationVersion
-import Version.JavaX.inject as injectVersion
 import Version.KotlinX.coroutines as coroutinesVersion
 import Version.KotlinX.dateTime as dateTimeVersion
 import Version.Square.javaPoet as javaPoetVersion
@@ -176,9 +175,6 @@ object Library {
     object JavaX {
         val annotation: String
             get() = "javax.annotation:javax.annotation-api:$annotationVersion"
-
-        val inject: String
-            get() = "javax.inject:javax.inject:$injectVersion"
     }
 
     object KotlinX {

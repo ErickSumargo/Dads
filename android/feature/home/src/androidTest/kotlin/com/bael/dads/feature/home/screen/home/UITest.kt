@@ -1,9 +1,7 @@
 package com.bael.dads.feature.home.screen.home
 
 import com.bael.dads.feature.home.R
-import com.bael.dads.library.instrumentation.fragment.BaseFragmentTest
 import com.bael.dads.library.instrumentation.matcher.MatcherParams
-import com.bael.dads.library.presentation.ext.readText
 import dagger.hilt.android.testing.HiltAndroidTest
 import org.junit.Test
 

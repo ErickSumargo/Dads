@@ -3,9 +3,7 @@ package com.bael.dads.feature.home.screen.seen
 import com.bael.dads.data.database.entity.DadJoke
 import com.bael.dads.data.database.repository.DadJokeRepository
 import com.bael.dads.feature.home.R
-import com.bael.dads.library.instrumentation.fragment.BaseFragmentTest
 import com.bael.dads.library.instrumentation.matcher.MatcherParams
-import com.bael.dads.library.presentation.ext.readText
 import com.bael.dads.shared.time.DateTime.now
 import dagger.hilt.android.testing.HiltAndroidTest
 import kotlinx.coroutines.runBlocking

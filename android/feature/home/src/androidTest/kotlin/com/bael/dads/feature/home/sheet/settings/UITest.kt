@@ -4,9 +4,7 @@ import com.bael.dads.feature.home.R
 import com.bael.dads.feature.home.sheet.settings.UI.Companion.NEW_FEED_REMINDER_PREFERENCE
 import com.bael.dads.feature.home.sheet.settings.UI.Companion.NIGHT_THEME_PREFERENCE
 import com.bael.dads.library.instrumentation.matcher.MatcherParams
-import com.bael.dads.library.instrumentation.sheet.BaseSheetTest
 import com.bael.dads.library.preference.Preference
-import com.bael.dads.library.presentation.ext.readText
 import com.google.common.truth.Truth.assertThat
 import dagger.hilt.android.testing.HiltAndroidTest
 import org.junit.Test
