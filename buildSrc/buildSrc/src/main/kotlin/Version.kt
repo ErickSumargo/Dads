@@ -13,9 +13,11 @@ object Version {
 
         const val archTesting: String = "2.1.0"
 
-        const val compose: String = "1.0.1"
+        const val compose: String = "1.1.0-beta02"
 
         const val constraintLayout: String = "2.1.0-alpha2"
+
+        const val constraintLayoutCompose: String = "1.0.0-beta02"
 
         const val dataStore: String = "1.0.0-alpha08"
 
@@ -27,7 +29,7 @@ object Version {
 
         const val lifecycle: String = "2.4.0-alpha01"
 
-        const val navigation: String = "2.4.0-alpha10"
+        const val navigation: String = "2.4.0-beta01"
 
         const val recyclerView: String = "1.2.0-beta01"
 
@@ -46,6 +48,8 @@ object Version {
 
     object Airbnb {
         const val lottie: String = "3.6.0"
+
+        const val lottieCompose: String = "4.0.0"
     }
 
     object Apollo {
@@ -53,6 +57,8 @@ object Version {
     }
 
     object Google {
+        const val accompanist: String = "0.20.0"
+
         const val autoService: String = "1.0-rc7"
 
         const val dagger: String = "2.39.1"
@@ -81,7 +87,7 @@ object Version {
 
         const val dateTime: String = "0.2.0"
 
-        const val kotlin: String = "1.5.21"
+        const val kotlin: String = "1.5.31"
     }
 
     object Square {

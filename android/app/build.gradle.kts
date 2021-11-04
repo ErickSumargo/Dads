@@ -1,4 +1,6 @@
 import Library.AndroidX.activityCompose
+import Library.AndroidX.composeMaterial
+import Library.AndroidX.composeUiTooling
 import Library.AndroidX.hiltCompiler
 import Library.AndroidX.hiltNavigation
 import Library.AndroidX.hiltWork
@@ -7,6 +9,7 @@ import Library.AndroidX.navigationFragment
 import Library.AndroidX.navigationUi
 import Library.AndroidX.work
 import Library.Apollo.apolloKotlin
+import Library.Google.accompanistPager
 import Library.Google.dagger
 import Library.Google.daggerCompiler
 import Library.Google.firebaseBom
@@ -20,7 +23,11 @@ plugins {
 
 dependencies {
     // AndroidX
+    implementation(accompanistPager)
     implementation(activityCompose)
+
+    implementation(composeMaterial)
+    implementation(composeUiTooling)
 
     implementation(hiltNavigation)
     implementation(hiltWork)

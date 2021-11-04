@@ -1,8 +1,10 @@
 import Version.Airbnb.lottie as lottieVersion
+import Version.Airbnb.lottieCompose as lottieComposeVersion
 import Version.AndroidX.appCompat as appCompatVersion
 import Version.AndroidX.archTesting as archTestingVersion
 import Version.AndroidX.compose as composeVersion
 import Version.AndroidX.constraintLayout as constraintLayoutVersion
+import Version.AndroidX.constraintLayoutCompose as constraintLayoutComposeVersion
 import Version.AndroidX.dataStore as dataStoreVersion
 import Version.AndroidX.espresso as espressoVersion
 import Version.AndroidX.fragment as fragmentVersion
@@ -17,6 +19,7 @@ import Version.AndroidX.uiAutomator as uiAutomatorVersion
 import Version.AndroidX.viewPager2 as viewPager2Version
 import Version.AndroidX.work as workVersion
 import Version.Apollo.apollo as apolloVersion
+import Version.Google.accompanist as accompanistVersion
 import Version.Google.autoService as autoServiceVersion
 import Version.Google.dagger as daggerVersion
 import Version.Google.firebaseBom as firebaseBomVersion
@@ -54,6 +57,9 @@ object Library {
 
         val constraintLayout: String
             get() = "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
+
+        val constraintLayoutCompose: String
+            get() = "androidx.constraintlayout:constraintlayout-compose:$constraintLayoutComposeVersion"
 
         val dataStore: String
             get() = "androidx.datastore:datastore-preferences:$dataStoreVersion"
@@ -122,6 +128,9 @@ object Library {
     object Airbnb {
         val lottie: String
             get() = "com.airbnb.android:lottie:$lottieVersion"
+
+        val lottieCompose: String
+            get() = "com.airbnb.android:lottie-compose:$lottieComposeVersion"
     }
 
     object Apollo {
@@ -130,6 +139,12 @@ object Library {
     }
 
     object Google {
+        val accompanistPager: String
+            get() = "com.google.accompanist:accompanist-pager:$accompanistVersion"
+
+        val accompanistSwipeRefresh: String
+            get() = "com.google.accompanist:accompanist-swiperefresh:$accompanistVersion"
+
         val autoService: String
             get() = "com.google.auto.service:auto-service:$autoServiceVersion"
 

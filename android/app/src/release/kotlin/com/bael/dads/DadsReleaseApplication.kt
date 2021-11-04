@@ -7,4 +7,4 @@ import dagger.hilt.android.HiltAndroidApp
  */
 
 @HiltAndroidApp
-internal class DadsReleaseApplication : DadsApplication()
+internal class DadsAndroidReleaseApplication : DadsAndroidApplication()
