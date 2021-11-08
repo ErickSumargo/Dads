@@ -37,7 +37,6 @@ class FeatureModulePlugin : Plugin<Project> {
         applyPlugins(project)
 
         applyFeatureExtension(project)
-        applyHiltExtension(project)
 
         configureKotlinCompiler(project)
 
@@ -110,20 +109,6 @@ class FeatureModulePlugin : Plugin<Project> {
 
                 error("VisibleForTests")
             }
-
-            packagingOptions {
-                exclude("META-INF/AL2.0")
-                exclude("META-INF/LGPL2.1")
-                exclude("META-INF/*.kotlin_module")
-            }
-        }
-    }
-
-    private fun applyHiltExtension(project: Project) {
-        val extension = project.extensions.getByName("hilt")
-                as? HiltExtension ?: return
-        extension.apply {
-            enableExperimentalClasspathAggregation = true
         }
     }
 

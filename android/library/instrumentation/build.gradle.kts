@@ -29,7 +29,6 @@ dependencies {
 
 dependencies {
     // Library
-    implementation(project(":android:library:presentation"))
     implementation(project(":android:library:threading"))
     implementation(project(":android:library:worker"))
 }

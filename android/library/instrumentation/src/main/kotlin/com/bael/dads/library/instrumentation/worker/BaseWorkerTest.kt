@@ -6,7 +6,6 @@ import androidx.work.Data
 import androidx.work.WorkManager
 import androidx.work.WorkerFactory
 import androidx.work.testing.TestListenableWorkerBuilder
-import com.bael.dads.library.instrumentation.ui.BaseUITest
 import com.bael.dads.library.threading.Thread
 import com.bael.dads.library.worker.BaseWorker
 import dagger.hilt.android.testing.HiltAndroidRule
@@ -22,7 +21,7 @@ import javax.inject.Inject
  * Created by ErickSumargo on 15/05/21.
  */
 
-abstract class BaseWorkerTest<WF : WorkerFactory> : BaseUITest() {
+abstract class BaseWorkerTest<WF : WorkerFactory> {
     @get:Rule
     internal val hiltRule: HiltAndroidRule = HiltAndroidRule(this)
 
