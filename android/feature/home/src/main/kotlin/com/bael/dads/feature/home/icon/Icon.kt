@@ -52,7 +52,7 @@ internal class HomeIconImpl : HomeIcon {
 
     override val search: Painter
         @Composable
-        get() = painterResource(id = R.drawable.ic_seen)
+        get() = painterResource(id = R.drawable.ic_search)
 
     override val seen: Painter
         @Composable

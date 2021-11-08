@@ -1,59 +1,89 @@
 package com.bael.dads.feature.home.screen.feed
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateMapOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import com.bael.dads.domain.home.model.DadJoke
-import com.bael.dads.library.presentation.state.BaseState
+import com.bael.dads.shared.exception.NoNetworkException
 import com.bael.dads.shared.response.Response
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.PagerState
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
 /**
  * Created by ErickSumargo on 01/11/21.
  */
 
-internal data class State(
-    val responses: List<Response<List<DadJoke>>>
-) : BaseState()
-
 @ExperimentalPagerApi
 @Composable
 internal fun rememberFeedState(
     pagerState: PagerState,
+    viewModel: FeedViewModel,
     coroutineScope: CoroutineScope
 ) = remember {
-    FeedState(pagerState, coroutineScope)
+    FeedState(pagerState, viewModel, coroutineScope)
 }
 
 @ExperimentalPagerApi
 internal class FeedState(
     val pagerState: PagerState,
+    private val viewModel: FeedViewModel,
     private val coroutineScope: CoroutineScope
 ) {
-    var content = mutableStateListOf(
-        FeedContent.Post(
-            dadJoke = DadJoke(
-                id = 1,
-                setup = "Setup 1",
-                punchline = "Punchline",
-                favored = false,
-                seen = false,
-                updatedAt = 0
-            )
-        ),
-        FeedContent.NewFeedReminder,
-        FeedContent.ServerError,
-        FeedContent.NoNetwork,
-        FeedContent.Loading
-    )
+    var feed: List<Feed> by mutableStateOf(listOf())
         private set
+
+    val cursor: Feed.Post?
+        get() = feed.lastOrNull { it is Feed.Post } as? Feed.Post
 
     private val expandedPosts = mutableStateMapOf<DadJoke, Boolean>()
 
     private val likePosts = mutableStateMapOf<DadJoke, Boolean>()
+
+    init {
+        observeFeed()
+    }
+
+    private fun observeFeed() {
+        viewModel.feed
+            .filter { it.isNotEmpty() }
+            .onEach(::updateFeed)
+            .flowOn(context = viewModel.thread.default)
+            .launchIn(scope = coroutineScope)
+    }
+
+    private fun updateFeed(responses: List<Response<List<DadJoke>>>) {
+        feed = responses.flatMap { response ->
+            when (response) {
+                is Response.Loading -> {
+                    listOf(Feed.Loading)
+                }
+                is Response.Error -> {
+                    when (response.error) {
+                        is NoNetworkException -> listOf(Feed.NoNetwork)
+                        else -> listOf(Feed.ServerError)
+                    }
+                }
+                is Response.Empty -> {
+                    listOf(Feed.NewFeedReminder)
+                }
+                is Response.Success -> {
+                    response.data.map(Feed::Post)
+                }
+            }
+        }
+    }
+
+    fun loadFeed(cursor: DadJoke?, limit: Int) {
+        viewModel.loadDadJokeFeed(cursor, limit)
+    }
 
     fun expandPost(dadJoke: DadJoke, expanded: Boolean) {
         expandedPosts[dadJoke] = expanded
@@ -63,23 +93,35 @@ internal class FeedState(
         return expandedPosts[dadJoke] ?: false
     }
 
+    fun setPostSeen(page: Int) {
+        if (page !in feed.indices) return
+        val prevPost = feed[page] as? Feed.Post ?: return
+
+        viewModel.setDadJokeSeen(dadJoke = prevPost.dadJoke)
+    }
+
     fun likePost(dadJoke: DadJoke, isLike: Boolean) {
         likePosts[dadJoke] = isLike
+        viewModel.likeDadJoke(dadJoke, isLike)
     }
 
     fun isLikePost(dadJoke: DadJoke): Boolean {
         return likePosts.getOrPut(dadJoke, { dadJoke.favored })
     }
+
+    fun scheduleFeedWorker(cursor: DadJoke?) {
+        viewModel.scheduleFeedWorker(cursor)
+    }
 }
 
-sealed class FeedContent {
-    object Loading : FeedContent()
+internal sealed class Feed {
+    object Loading : Feed()
 
-    object NoNetwork : FeedContent()
+    object NoNetwork : Feed()
 
-    object ServerError : FeedContent()
+    object ServerError : Feed()
 
-    object NewFeedReminder : FeedContent()
+    object NewFeedReminder : Feed()
 
-    data class Post(val dadJoke: DadJoke) : FeedContent()
+    data class Post(val dadJoke: DadJoke) : Feed()
 }

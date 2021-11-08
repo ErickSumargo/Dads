@@ -8,6 +8,7 @@ import Library.AndroidX.composeUiTooling
 import Library.AndroidX.fragment
 import Library.AndroidX.hiltCompiler
 import Library.AndroidX.hiltNavigation
+import Library.AndroidX.hiltNavigationCompose
 import Library.AndroidX.hiltWork
 import Library.AndroidX.navigationCompose
 import Library.AndroidX.navigationFragment
@@ -98,7 +99,6 @@ class FeatureModulePlugin : Plugin<Project> {
 
             buildFeatures {
                 compose = true
-                viewBinding = true
             }
 
             compileOptions {
@@ -162,6 +162,7 @@ class FeatureModulePlugin : Plugin<Project> {
             add("implementation", fragment)
 
             add("implementation", hiltNavigation)
+            add("implementation", hiltNavigationCompose)
             add("implementation", hiltWork)
             add("kapt", hiltCompiler)
 

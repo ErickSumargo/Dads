@@ -10,13 +10,13 @@
         <item name="colorOnBackground">@color/grayLighter</item>
         <item name="colorControlNormal">@color/dark</item>
 
-        <!-- Window system -->
-        <item name="android:statusBarColor">@color/white</item>
-        <item name="android:navigationBarColor">@color/white</item>
-        <item name="android:windowBackground">@color/white</item>
+<!--        &lt;!&ndash; Window system &ndash;&gt;-->
+<!--        <item name="android:statusBarColor">@color/white</item>-->
+<!--        <item name="android:navigationBarColor">@color/white</item>-->
+<!--        <item name="android:windowBackground">@color/white</item>-->
 
-        <item name="android:windowLightStatusBar">true</item>
-        <item name="android:windowLightNavigationBar" tools:targetApi="27">true</item>
+<!--        <item name="android:windowLightStatusBar">true</item>-->
+<!--        <item name="android:windowLightNavigationBar" tools:targetApi="27">true</item>-->
 
         <!-- Text system -->
         <item name="android:textColorPrimary">@color/dark</item>

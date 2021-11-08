@@ -1,67 +1,82 @@
 package com.bael.dads
 
 import android.app.Application
-import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO
-import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES
-import androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.ModalBottomSheetLayout
+import androidx.compose.material.ModalBottomSheetValue
 import androidx.compose.material.Text
+import androidx.compose.material.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.bael.dads.library.preference.Preference
-import com.bael.dads.theme.Theme
-import kotlinx.coroutines.runBlocking
-import javax.inject.Inject
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.rememberNavController
+import com.bael.dads.feature.home.navigation.homeNavigation
+import com.bael.dads.library.presentation.color.Night
+import com.bael.dads.theme.DadsTheme
+import com.google.accompanist.insets.ProvideWindowInsets
+import com.google.accompanist.insets.systemBarsPadding
+import com.google.accompanist.pager.ExperimentalPagerApi
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 /**
  * Created by ErickSumargo on 01/01/21.
  */
 
+abstract class DadsAndroidApplication : Application()
+
+@ExperimentalAnimationApi
+@ExperimentalFoundationApi
 @ExperimentalMaterialApi
+@ExperimentalPagerApi
 @Composable
-fun DadsApplication(appState: DadsState, content: @Composable () -> Unit) {
-    Theme {
-        ModalBottomSheetLayout(
-            sheetContent = {
-                if (appState.sheetContent == null) {
-                    Text("Empty")
-                } else {
-                    appState.sheetContent!!()
-                }
-            },
-            sheetState = appState.bottomSheetState,
-            sheetShape = RoundedCornerShape(
-                topStart = 16.dp,
-                topEnd = 16.dp
-            ),
-        ) {
-            content()
-        }
-    }
-}
+fun DadsApplication(isNightTheme: Boolean) {
+    val systemUiController = rememberSystemUiController()
 
-abstract class DadsAndroidApplication : Application() {
-    @Inject
-    lateinit var preference: Preference
-
-    override fun onCreate() {
-        super.onCreate()
-        setTheme()
+    SideEffect {
+        systemUiController.setSystemBarsColor(
+            color = Color.Transparent,
+            darkIcons = !isNightTheme
+        )
     }
 
-    private fun setTheme() {
-        runBlocking {
-            val isNightTheme = preference.read(
-                key = NIGHT_THEME_PREFERENCE,
-                defaultValue = false
+    DadsTheme(darkTheme = isNightTheme) {
+        ProvideWindowInsets {
+            val appState = rememberDadsState(
+                bottomSheetState = rememberModalBottomSheetState(initialValue = ModalBottomSheetValue.Hidden),
+                navController = rememberNavController(),
+                coroutineScope = rememberCoroutineScope()
             )
-            setDefaultNightMode(MODE_NIGHT_YES.takeIf { isNightTheme } ?: MODE_NIGHT_NO)
-        }
-    }
 
-    private companion object {
-        const val NIGHT_THEME_PREFERENCE: String = "night_theme"
+            ModalBottomSheetLayout(
+                sheetContent = {
+                    if (appState.sheetContent == null) {
+                        Text("Empty")
+                    } else {
+                        appState.sheetContent!!()
+                    }
+                },
+                modifier = Modifier.systemBarsPadding(),
+                sheetState = appState.bottomSheetState,
+                sheetShape = RoundedCornerShape(
+                    topStart = 16.dp,
+                    topEnd = 16.dp
+                ),
+                sheetElevation = 0.dp,
+            ) {
+                NavHost(
+                    navController = appState.navController,
+                    startDestination = "home"
+                ) {
+                    homeNavigation(sheetContent = { appState.showBottomSheet(it) })
+                }
+            }
+        }
     }
 }

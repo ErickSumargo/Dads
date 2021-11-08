@@ -5,7 +5,9 @@ import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color.Companion.White
+import com.bael.dads.library.presentation.color.DarkNight
 import com.bael.dads.library.presentation.color.Night
+import com.bael.dads.library.presentation.color.Ruby
 import com.bael.dads.library.presentation.color.Teal
 import com.bael.dads.library.presentation.font.Typography
 
@@ -29,16 +31,16 @@ private val DarkPalette = darkColors(
     primaryVariant = Teal,
     secondary = Teal,
     secondaryVariant = Teal,
-    background = Night,
+    background = DarkNight,
     surface = Night,
     onBackground = White,
     onSurface = White
 )
 
 @Composable
-internal fun Theme(content: @Composable () -> Unit) {
+internal fun DadsTheme(darkTheme: Boolean, content: @Composable () -> Unit) {
     MaterialTheme(
-        colors = LightPalette,
+        colors = DarkPalette.takeIf { darkTheme } ?: LightPalette,
         typography = Typography,
         content = content
     )

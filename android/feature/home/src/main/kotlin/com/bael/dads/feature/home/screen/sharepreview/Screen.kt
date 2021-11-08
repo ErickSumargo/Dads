@@ -19,6 +19,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.DpSize
@@ -27,6 +28,7 @@ import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.bael.dads.domain.home.model.DadJoke
 import com.bael.dads.feature.home.component.Notch
+import com.bael.dads.feature.home.component.captureBitmap
 import com.bael.dads.feature.home.local.icon
 import com.bael.dads.feature.home.local.locale
 import com.bael.dads.library.presentation.color.Silver
@@ -36,7 +38,9 @@ import com.bael.dads.library.presentation.color.Silver
  */
 
 @Composable
-fun SharePreviewScreen(uiState: SharePreviewState) {
+internal fun SharePreviewScreen(uiState: SharePreviewState) {
+    val context = LocalContext.current
+
     Column(
         modifier = Modifier
             .padding(all = 16.dp)
@@ -63,10 +67,23 @@ fun SharePreviewScreen(uiState: SharePreviewState) {
         )
         Spacer(modifier = Modifier.height(24.dp))
 
-        DadJoke(dadJoke = uiState.dadJoke)
+        val snapshot = captureBitmap(context) {
+            DadJoke(
+                dadJoke = uiState.dadJoke,
+                modifier = Modifier.padding(all = 4.dp)
+            )
+        }
         Spacer(modifier = Modifier.height(24.dp))
 
-        Share(onClick = {})
+        Share(
+            onClick = {
+                uiState.share(
+                    context,
+                    fileName = "image_${uiState.dadJoke.id}.png",
+                    bitmap = snapshot()
+                )
+            }
+        )
         Spacer(modifier = Modifier.height(8.dp))
     }
 }

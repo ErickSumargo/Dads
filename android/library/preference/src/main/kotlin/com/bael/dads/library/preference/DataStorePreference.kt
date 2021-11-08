@@ -15,7 +15,9 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import com.bael.dads.library.threading.Thread
 import dagger.hilt.android.qualifiers.ApplicationContext
-import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
@@ -31,21 +33,21 @@ class DataStorePreference @Inject constructor(
         name = context.packageName
     )
 
-    override suspend fun <T> read(key: String, defaultValue: T): T {
-        return withContext(context = thread.io) {
-            val preferencesKey = when (defaultValue) {
-                is Int -> intPreferencesKey(key)
-                is Double -> doublePreferencesKey(key)
-                is String -> stringPreferencesKey(key)
-                is Boolean -> booleanPreferencesKey(key)
-                is Float -> floatPreferencesKey(key)
-                is Long -> longPreferencesKey(key)
-                else -> stringPreferencesKey(key)
-            }
-            val preferences = context.dataStore.data.first()
+    override fun <T> read(key: String, defaultValue: T): Flow<T> {
+        return context.dataStore.data
+            .map { preferences ->
+                val preferencesKey = when (defaultValue) {
+                    is Int -> intPreferencesKey(key)
+                    is Double -> doublePreferencesKey(key)
+                    is String -> stringPreferencesKey(key)
+                    is Boolean -> booleanPreferencesKey(key)
+                    is Float -> floatPreferencesKey(key)
+                    is Long -> longPreferencesKey(key)
+                    else -> stringPreferencesKey(key)
+                }
 
-            preferences[preferencesKey] as? T ?: defaultValue
-        }
+                preferences[preferencesKey] as? T ?: defaultValue
+            }.flowOn(context = thread.io)
     }
 
     override suspend fun <T> write(key: String, value: T) {

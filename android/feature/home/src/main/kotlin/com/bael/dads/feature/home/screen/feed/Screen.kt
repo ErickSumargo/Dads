@@ -30,9 +30,13 @@ import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -47,17 +51,21 @@ import com.bael.dads.feature.home.component.ServerError
 import com.bael.dads.feature.home.local.animation
 import com.bael.dads.feature.home.local.icon
 import com.bael.dads.feature.home.local.locale
-import com.bael.dads.feature.home.screen.feed.FeedState
 import com.bael.dads.feature.home.screen.sharepreview.SharePreviewRoute
 import com.bael.dads.library.presentation.color.Ruby
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
+import com.google.accompanist.pager.PagerState
 import com.google.accompanist.pager.calculateCurrentOffsetForPage
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.flow.fold
 import kotlin.math.absoluteValue
 
 /**
  * Created by ErickSumargo on 01/11/21.
  */
+
+private const val FEED_LIMIT = 10
 
 @ExperimentalAnimationApi
 @ExperimentalPagerApi
@@ -66,32 +74,51 @@ internal fun FeedScreen(
     uiState: FeedState,
     sheetContent: (@Composable () -> Unit) -> Unit
 ) {
+    println("${System.currentTimeMillis()}: Feed")
+    SideEffect {
+        println("${System.currentTimeMillis()}: Feed -> SideEffect")
+    }
+
     HorizontalPager(
-        count = uiState.content.size,
+        count = uiState.feed.size,
         state = uiState.pagerState,
+//        key = { uiState.feed[it].hashCode() },
         contentPadding = PaddingValues(
             horizontal = 48.dp,
             vertical = 24.dp
         ),
     ) { page ->
-        when (val item = uiState.content[page]) {
-            is FeedContent.Loading -> {
+        when (val item = uiState.feed[page]) {
+            is Feed.Loading -> {
                 Loading()
             }
-            is FeedContent.NoNetwork -> {
-                NoNetwork(modifier = Modifier.padding(horizontal = 8.dp)) {
-
-                }
+            is Feed.NoNetwork -> {
+                NoNetwork(
+                    modifier = Modifier.padding(horizontal = 8.dp),
+                    onClick = {
+                        uiState.loadFeed(
+                            cursor = uiState.cursor?.dadJoke,
+                            limit = FEED_LIMIT
+                        )
+                    }
+                )
             }
-            is FeedContent.ServerError -> {
-                ServerError(modifier = Modifier.padding(horizontal = 8.dp)) {
-
-                }
+            is Feed.ServerError -> {
+                ServerError(
+                    modifier = Modifier.padding(horizontal = 8.dp),
+                    onClick = {
+                        uiState.loadFeed(
+                            cursor = uiState.cursor?.dadJoke,
+                            limit = FEED_LIMIT
+                        )
+                    }
+                )
             }
-            is FeedContent.NewFeedReminder -> {
+            is Feed.NewFeedReminder -> {
+                uiState.scheduleFeedWorker(cursor = uiState.cursor?.dadJoke)
                 NewFeedReminder(modifier = Modifier.padding(horizontal = 8.dp))
             }
-            is FeedContent.Post -> {
+            is Feed.Post -> {
                 Post(
                     dadJoke = item.dadJoke,
                     isExpanded = uiState.isPostExpanded(dadJoke = item.dadJoke),
@@ -122,6 +149,43 @@ internal fun FeedScreen(
                 )
             }
         }
+    }
+
+    // Initial Load
+    LaunchedEffect(key1 = Unit) {
+        uiState.loadFeed(
+            cursor = null,
+            limit = FEED_LIMIT
+        )
+    }
+
+    OnPageSnapListener(
+        pagerState = uiState.pagerState,
+        callback = { prevPage, nextPage ->
+            uiState.setPostSeen(prevPage)
+
+            if (nextPage == uiState.feed.size - 1) {
+                uiState.loadFeed(
+                    cursor = uiState.cursor?.dadJoke,
+                    limit = FEED_LIMIT
+                )
+            }
+        }
+    )
+}
+
+@ExperimentalPagerApi
+@Composable
+private fun OnPageSnapListener(
+    pagerState: PagerState,
+    callback: (Int, Int) -> Unit
+) {
+    LaunchedEffect(key1 = pagerState) {
+        snapshotFlow { pagerState.currentPage }
+            .fold(initial = -1) { current, next ->
+                callback(current, next)
+                next
+            }
     }
 }
 

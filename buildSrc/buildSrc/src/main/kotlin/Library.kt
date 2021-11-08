@@ -3,6 +3,7 @@ import Version.Airbnb.lottieCompose as lottieComposeVersion
 import Version.AndroidX.appCompat as appCompatVersion
 import Version.AndroidX.archTesting as archTestingVersion
 import Version.AndroidX.compose as composeVersion
+import Version.AndroidX.hiltNavigationCompose as hiltNavigationComposeVersion
 import Version.AndroidX.constraintLayout as constraintLayoutVersion
 import Version.AndroidX.constraintLayoutCompose as constraintLayoutComposeVersion
 import Version.AndroidX.dataStore as dataStoreVersion
@@ -20,7 +21,6 @@ import Version.AndroidX.viewPager2 as viewPager2Version
 import Version.AndroidX.work as workVersion
 import Version.Apollo.apollo as apolloVersion
 import Version.Google.accompanist as accompanistVersion
-import Version.Google.autoService as autoServiceVersion
 import Version.Google.dagger as daggerVersion
 import Version.Google.firebaseBom as firebaseBomVersion
 import Version.Google.material as materialVersion
@@ -28,7 +28,6 @@ import Version.Google.truth as truthVersion
 import Version.JavaX.annotation as annotationVersion
 import Version.KotlinX.coroutines as coroutinesVersion
 import Version.KotlinX.dateTime as dateTimeVersion
-import Version.Square.javaPoet as javaPoetVersion
 import Version.Square.leakCanary as leakCanaryVersion
 import Version.Square.sqlDelight as sqlDelightVersion
 
@@ -77,6 +76,9 @@ object Library {
 
         val hiltNavigation: String
             get() = "androidx.hilt:hilt-navigation-fragment:$hiltVersion"
+
+        val hiltNavigationCompose: String
+            get() = "androidx.hilt:hilt-navigation-compose:$hiltNavigationComposeVersion"
 
         val hiltWork: String
             get() = "androidx.hilt:hilt-work:$hiltVersion"
@@ -138,14 +140,17 @@ object Library {
     }
 
     object Google {
+        val accompanistInsets: String
+            get() = "com.google.accompanist:accompanist-insets:$accompanistVersion"
+
         val accompanistPager: String
             get() = "com.google.accompanist:accompanist-pager:$accompanistVersion"
 
         val accompanistSwipeRefresh: String
             get() = "com.google.accompanist:accompanist-swiperefresh:$accompanistVersion"
 
-        val autoService: String
-            get() = "com.google.auto.service:auto-service:$autoServiceVersion"
+        val accompanistSystemUiController: String
+            get() = "com.google.accompanist:accompanist-systemuicontroller:$accompanistVersion"
 
         val dagger: String
             get() = "com.google.dagger:hilt-android:$daggerVersion"
@@ -192,9 +197,6 @@ object Library {
     }
 
     object Square {
-        val javaPoet: String
-            get() = "com.squareup:javapoet:$javaPoetVersion"
-
         val leakCanary: String
             get() = "com.squareup.leakcanary:leakcanary-android:$leakCanaryVersion"
 

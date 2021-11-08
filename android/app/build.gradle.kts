@@ -9,7 +9,9 @@ import Library.AndroidX.navigationFragment
 import Library.AndroidX.navigationUi
 import Library.AndroidX.work
 import Library.Apollo.apolloKotlin
+import Library.Google.accompanistInsets
 import Library.Google.accompanistPager
+import Library.Google.accompanistSystemUiController
 import Library.Google.dagger
 import Library.Google.daggerCompiler
 import Library.Google.firebaseBom
@@ -23,7 +25,9 @@ plugins {
 
 dependencies {
     // AndroidX
+    implementation(accompanistInsets)
     implementation(accompanistPager)
+    implementation(accompanistSystemUiController)
     implementation(activityCompose)
 
     implementation(composeMaterial)

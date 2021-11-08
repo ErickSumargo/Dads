@@ -44,7 +44,7 @@ internal fun SettingsScreen(uiState: SettingsState) {
         PreferenceGroup(name = locale.notification) {
             Preference(
                 description = locale.newFeedReminder,
-                isActive = uiState.isNewFeedReminderActive,
+                isActive = uiState.isNewFeedReminderEnabled,
                 onCheckedChange = uiState::updateNewFeedReminderActive
             )
         }
@@ -53,7 +53,7 @@ internal fun SettingsScreen(uiState: SettingsState) {
         PreferenceGroup(name = locale.theme) {
             Preference(
                 description = locale.nightMode,
-                isActive = uiState.isNightModeActive,
+                isActive = uiState.isNightThemeEnabled,
                 onCheckedChange = uiState::updateNightThemeActive
             )
         }

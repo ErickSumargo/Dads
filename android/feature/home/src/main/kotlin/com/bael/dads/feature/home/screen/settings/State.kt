@@ -5,29 +5,61 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import com.bael.dads.library.presentation.state.BaseState
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 
 /**
  * Created by ErickSumargo on 01/11/21.
  */
 
-internal class State : BaseState()
-
 @Composable
-internal fun rememberSettingsState() = remember { SettingsState() }
+internal fun rememberSettingsState(
+    viewModel: SettingsViewModel,
+    coroutineScope: CoroutineScope,
+) = remember { SettingsState(viewModel, coroutineScope) }
 
-internal class SettingsState {
-    var isNewFeedReminderActive: Boolean by mutableStateOf(true)
+internal class SettingsState(
+    private val viewModel: SettingsViewModel,
+    private val coroutineScope: CoroutineScope
+) {
+    var isNewFeedReminderEnabled: Boolean by mutableStateOf(false)
         private set
 
-    var isNightModeActive: Boolean by mutableStateOf(false)
+    var isNightThemeEnabled: Boolean by mutableStateOf(false)
         private set
 
-    fun updateNewFeedReminderActive(isActive: Boolean) {
-        isNewFeedReminderActive = isActive
+    init {
+        observeNewFeedReminderPreference()
+        observeNightThemePreference()
     }
 
-    fun updateNightThemeActive(isActive: Boolean) {
-        isNightModeActive = isActive
+    private fun observeNewFeedReminderPreference() {
+        viewModel.isNewFeedReminderEnabled
+            .onEach { isEnabled ->
+                isNewFeedReminderEnabled = isEnabled
+            }
+            .launchIn(scope = coroutineScope)
+    }
+
+    private fun observeNightThemePreference() {
+        viewModel.isNightThemeEnabled
+            .onEach { isEnabled ->
+                isNightThemeEnabled = isEnabled
+            }
+            .launchIn(scope = coroutineScope)
+    }
+
+    fun updateNewFeedReminderActive(isEnabled: Boolean) {
+        coroutineScope.launch {
+            viewModel.updateNewFeedReminderPreference(isEnabled)
+        }
+    }
+
+    fun updateNightThemeActive(isEnabled: Boolean) {
+        coroutineScope.launch {
+            viewModel.updateNightThemePreference(isEnabled)
+        }
     }
 }

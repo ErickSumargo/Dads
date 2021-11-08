@@ -27,6 +27,8 @@ object Version {
 
         const val hilt: String = "1.0.0"
 
+        const val hiltNavigationCompose: String = "1.0.0-alpha03"
+
         const val lifecycle: String = "2.4.0-alpha01"
 
         const val navigation: String = "2.4.0-beta01"
@@ -59,8 +61,6 @@ object Version {
     object Google {
         const val accompanist: String = "0.20.0"
 
-        const val autoService: String = "1.0-rc7"
-
         const val dagger: String = "2.39.1"
 
         const val firebaseBom: String = "26.5.0"
@@ -89,8 +89,6 @@ object Version {
     }
 
     object Square {
-        const val javaPoet: String = "1.13.0"
-
         const val leakCanary: String = "2.5"
 
         const val sqlDelight: String = "1.4.4"

@@ -92,7 +92,6 @@ class AppModulePlugin : Plugin<Project> {
 
             buildFeatures.apply {
                 compose = true
-                viewBinding = true
             }
 
             compileOptions {

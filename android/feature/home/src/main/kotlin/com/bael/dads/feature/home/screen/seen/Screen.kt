@@ -38,9 +38,10 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.derivedStateOf
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -57,10 +58,15 @@ import com.bael.dads.feature.home.screen.sharepreview.SharePreviewRoute
 import com.bael.dads.library.presentation.color.Ruby
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.SwipeRefreshIndicator
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.distinctUntilChanged
 
 /**
  * Created by ErickSumargo on 01/11/21.
  */
+
+private const val SEEN_LIMIT = 20
 
 @ExperimentalAnimationApi
 @ExperimentalFoundationApi
@@ -70,6 +76,11 @@ internal fun SeenScreen(
     uiState: SeenState,
     sheetContent: (@Composable () -> Unit) -> Unit
 ) {
+    println("${System.currentTimeMillis()}: Seen")
+    SideEffect {
+        println("${System.currentTimeMillis()}: Seen -> SideEffect")
+    }
+
     Scaffold(
         scaffoldState = uiState.scaffoldState,
         bottomBar = {
@@ -87,6 +98,12 @@ internal fun SeenScreen(
                 isActive = uiState.isFavoriteActive,
                 onClick = { isActive ->
                     uiState.activateFilter(isActive)
+                    uiState.loadSeen(
+                        term = searchQuery,
+                        cursor = null,
+                        limit = SEEN_LIMIT,
+                        favoredOnly = isActive
+                    )
 
                     if (!isActive) return@FavoriteFilter
                     uiState.showMessage(message)
@@ -96,7 +113,16 @@ internal fun SeenScreen(
     ) {
         SwipeRefresh(
             state = uiState.swipeRefreshState,
-            onRefresh = uiState::loadMore,
+            onRefresh = {
+                uiState.swipeRefreshState.isRefreshing = true
+
+                uiState.loadSeen(
+                    term = searchQuery,
+                    cursor = null,
+                    limit = SEEN_LIMIT,
+                    favoredOnly = uiState.isFavoriteActive
+                )
+            },
             indicator = { state, trigger ->
                 SwipeRefreshIndicator(
                     state = state,
@@ -107,7 +133,7 @@ internal fun SeenScreen(
             }
         ) {
             when {
-                uiState.content.isEmpty() -> {
+                uiState.seen.isEmpty() && !uiState.isRefreshing -> {
                     Empty(
                         modifier = Modifier
                             .fillMaxSize()
@@ -124,7 +150,7 @@ internal fun SeenScreen(
                         verticalArrangement = Arrangement.spacedBy(space = 16.dp),
                         horizontalArrangement = Arrangement.spacedBy(space = 16.dp)
                     ) {
-                        items(items = uiState.content) { dadJoke ->
+                        items(items = uiState.seen) { dadJoke ->
                             Seen(
                                 dadJoke = dadJoke,
                                 isExpanded = uiState.isPostExpanded(dadJoke),
@@ -143,28 +169,51 @@ internal fun SeenScreen(
                         }
                     }
 
-                    onLoadMoreListener(
+                    OnLoadMoreListener(
+                        key = searchQuery,
                         lazyListState = uiState.lazyListState,
-                        callback = uiState::loadMore
+                        callback = {
+                            uiState.loadSeen(
+                                term = searchQuery,
+                                cursor = uiState.cursor,
+                                limit = SEEN_LIMIT,
+                                favoredOnly = uiState.isFavoriteActive
+                            )
+                        }
                     )
                 }
             }
         }
+
+        // Initial Load
+        LaunchedEffect(key1 = searchQuery) {
+            uiState.swipeRefreshState.isRefreshing = true
+
+            uiState.loadSeen(
+                term = searchQuery,
+                cursor = null,
+                limit = SEEN_LIMIT,
+                favoredOnly = uiState.isFavoriteActive
+            )
+        }
     }
 }
 
-private fun onLoadMoreListener(
+@Composable
+private fun OnLoadMoreListener(
+    key: Any,
     lazyListState: LazyListState,
     callback: () -> Unit
 ) {
-    val isEndOfItems by derivedStateOf {
-        val layoutInfo = lazyListState.layoutInfo
-        layoutInfo.visibleItemsInfo.lastOrNull()?.index == layoutInfo.totalItemsCount - 1
+    LaunchedEffect(key1 = key) {
+        snapshotFlow {
+            val layoutInfo = lazyListState.layoutInfo
+            layoutInfo.visibleItemsInfo.lastOrNull()?.index == layoutInfo.totalItemsCount - 1
+        }
+            .collect { isEndOfItems ->
+                if (isEndOfItems) callback()
+            }
     }
-
-    println("${System.currentTimeMillis()}: $isEndOfItems")
-    if (!isEndOfItems) return
-    callback()
 }
 
 @Composable

@@ -6,7 +6,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
-import com.bael.dads.library.presentation.state.BaseState
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.PagerState
 import kotlinx.coroutines.CoroutineScope
@@ -16,10 +15,6 @@ import kotlinx.coroutines.launch
 /**
  * Created by ErickSumargo on 01/11/21.
  */
-
-internal data class State(
-    val query: String
-) : BaseState()
 
 @ExperimentalPagerApi
 @Composable

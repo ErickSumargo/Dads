@@ -6,16 +6,20 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.ModalBottomSheetValue
-import androidx.compose.material.rememberModalBottomSheetState
-import androidx.compose.runtime.rememberCoroutineScope
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.rememberNavController
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import androidx.core.view.WindowCompat
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import com.bael.dads.DadsApplication
-import com.bael.dads.feature.home.navigation.homeNavigation
-import com.bael.dads.rememberDadsState
+import com.bael.dads.library.preference.Preference
 import com.google.accompanist.pager.ExperimentalPagerApi
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
+import javax.inject.Inject
 
 /**
  * Created by ErickSumargo on 01/01/21.
@@ -23,6 +27,10 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 internal class MainActivity : AppCompatActivity() {
+    @Inject
+    lateinit var preference: Preference
+
+    private var isNightThemeEnabled by mutableStateOf(false)
 
     @ExperimentalAnimationApi
     @ExperimentalFoundationApi
@@ -30,21 +38,26 @@ internal class MainActivity : AppCompatActivity() {
     @ExperimentalPagerApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
-            val appState = rememberDadsState(
-                bottomSheetState = rememberModalBottomSheetState(initialValue = ModalBottomSheetValue.Hidden),
-                navController = rememberNavController(),
-                coroutineScope = rememberCoroutineScope()
-            )
+        observeNightThemePreference()
 
-            DadsApplication(appState) {
-                NavHost(
-                    navController = appState.navController,
-                    startDestination = "home"
-                ) {
-                    homeNavigation(sheetContent = { appState.showBottomSheet(it) })
-                }
-            }
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+
+        setContent {
+            DadsApplication(isNightTheme = isNightThemeEnabled)
         }
+    }
+
+    private fun observeNightThemePreference() {
+        preference.read(
+            key = NIGHT_THEME_PREFERENCE,
+            defaultValue = false
+        )
+            .flowWithLifecycle(lifecycle, minActiveState = Lifecycle.State.RESUMED)
+            .onEach { isEnabled -> isNightThemeEnabled = isEnabled }
+            .launchIn(scope = lifecycleScope)
+    }
+
+    private companion object {
+        const val NIGHT_THEME_PREFERENCE = "night_theme"
     }
 }

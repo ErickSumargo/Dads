@@ -6,6 +6,7 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 
 /**
@@ -23,6 +24,7 @@ internal fun SeenRoute(
         swipeRefreshState = rememberSwipeRefreshState(isRefreshing = false),
         scaffoldState = rememberScaffoldState(),
         lazyListState = rememberLazyListState(),
+        viewModel = hiltViewModel(),
         coroutineScope = rememberCoroutineScope()
     )
     SeenScreen(searchQuery, uiState, sheetContent)

@@ -8,7 +8,9 @@ import androidx.compose.ui.graphics.Color
 
 val Silver = Color(0XFFD6D6D6)
 
-val Night = Color(0xFF404552)
+val Night = Color(0xFF515868)
+
+val DarkNight = Color(0xFF404552)
 
 val Teal = Color(0xFF01AAC8)
 
