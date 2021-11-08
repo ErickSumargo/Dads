@@ -14,4 +14,4 @@ private val ProductSans = FontFamily(
     Font(R.font.product_sans, weight = FontWeight.Normal)
 )
 
-val Typography = Typography(defaultFontFamily = ProductSans)
+val DadsTypography = Typography(defaultFontFamily = ProductSans)

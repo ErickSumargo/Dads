@@ -1,5 +1,8 @@
 package com.bael.dads.feature.home.screen.feed
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.work.Constraints
@@ -22,12 +25,9 @@ import com.bael.dads.shared.response.Response.Loading
 import com.bael.dads.shared.response.Response.Success
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.flow.update
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 import com.bael.dads.feature.home.worker.FetchDadJokeFeedWorker.Companion.TAG as FetchDadJokeFeedWorkerTag
@@ -44,11 +44,8 @@ internal class FeedViewModel @Inject constructor(
     private val setDadJokeSeenUseCase: SetDadJokeSeenUseCase,
     private val favorDadJokeUseCase: FavorDadJokeUseCase
 ) : ViewModel() {
-    private val _feed: MutableStateFlow<List<Response<List<DadJoke>>>> =
-        MutableStateFlow(listOf())
-
-    val feed: StateFlow<List<Response<List<DadJoke>>>>
-        get() = _feed
+    var feed: List<Response<List<DadJoke>>> by mutableStateOf(listOf())
+        private set
 
     private var loadDadJokeFeedJob: Job? = null
 
@@ -100,13 +97,11 @@ internal class FeedViewModel @Inject constructor(
     }
 
     private fun mapResponse(response: Response<List<DadJoke>>) {
-        _feed.update { feed ->
-            when (response) {
-                is Loading -> feed.dropLastWhile { it is Error || it is Empty }
-                is Error -> feed.dropLastWhile { it is Loading }
-                is Empty -> feed.dropLastWhile { it is Loading }
-                is Success -> feed.dropLastWhile { it is Loading }
-            } + response
-        }
+        feed = when (response) {
+            is Loading -> feed.dropLastWhile { it is Error || it is Empty }
+            is Error -> feed.dropLastWhile { it is Loading }
+            is Empty -> feed.dropLastWhile { it is Loading }
+            is Success -> feed.dropLastWhile { it is Loading }
+        } + response
     }
 }

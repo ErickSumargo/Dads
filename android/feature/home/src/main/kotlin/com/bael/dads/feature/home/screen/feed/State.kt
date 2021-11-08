@@ -6,6 +6,7 @@ import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshotFlow
 import com.bael.dads.domain.home.model.DadJoke
 import com.bael.dads.shared.exception.NoNetworkException
 import com.bael.dads.shared.response.Response
@@ -13,9 +14,10 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.PagerState
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.filter
-import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.withContext
 
 /**
  * Created by ErickSumargo on 01/11/21.
@@ -52,30 +54,32 @@ internal class FeedState(
     }
 
     private fun observeFeed() {
-        viewModel.feed
+        snapshotFlow { viewModel.feed }
             .filter { it.isNotEmpty() }
-            .onEach(::updateFeed)
-            .flowOn(context = viewModel.thread.default)
+            .map(::mapFeed)
+            .onEach { feed = it }
             .launchIn(scope = coroutineScope)
     }
 
-    private fun updateFeed(responses: List<Response<List<DadJoke>>>) {
-        feed = responses.flatMap { response ->
-            when (response) {
-                is Response.Loading -> {
-                    listOf(Feed.Loading)
-                }
-                is Response.Error -> {
-                    when (response.error) {
-                        is NoNetworkException -> listOf(Feed.NoNetwork)
-                        else -> listOf(Feed.ServerError)
+    private suspend fun mapFeed(responses: List<Response<List<DadJoke>>>): List<Feed> {
+        return withContext(context = viewModel.thread.default) {
+            responses.flatMap { response ->
+                when (response) {
+                    is Response.Loading -> {
+                        listOf(Feed.Loading)
                     }
-                }
-                is Response.Empty -> {
-                    listOf(Feed.NewFeedReminder)
-                }
-                is Response.Success -> {
-                    response.data.map(Feed::Post)
+                    is Response.Error -> {
+                        when (response.error) {
+                            is NoNetworkException -> listOf(Feed.NoNetwork)
+                            else -> listOf(Feed.ServerError)
+                        }
+                    }
+                    is Response.Empty -> {
+                        listOf(Feed.NewFeedReminder)
+                    }
+                    is Response.Success -> {
+                        response.data.map(Feed::Post)
+                    }
                 }
             }
         }

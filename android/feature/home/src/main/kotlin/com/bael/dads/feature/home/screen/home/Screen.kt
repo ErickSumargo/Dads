@@ -44,7 +44,6 @@ import com.bael.dads.feature.home.local.locale
 import com.bael.dads.feature.home.screen.feed.FeedRoute
 import com.bael.dads.feature.home.screen.seen.SeenRoute
 import com.bael.dads.feature.home.screen.settings.SettingsRoute
-import com.bael.dads.library.presentation.color.Teal
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.PagerState
@@ -244,6 +243,7 @@ private fun BottomTabBar(
         ) {
             tabsAttr.forEachIndexed { index, tabAttr ->
                 BottomTab(
+                    color = MaterialTheme.colors.primary,
                     selected = pagerState.currentPage == index,
                     tabAttr = tabAttr,
                     onClick = { onSelect(index) }
@@ -257,6 +257,7 @@ private fun BottomTabBar(
 @Composable
 private fun BottomTab(
     modifier: Modifier = Modifier,
+    color: Color,
     selected: Boolean,
     tabAttr: TabAttr,
     onClick: () -> Unit
@@ -271,9 +272,9 @@ private fun BottomTab(
             transitionSpec = { applyTabTransition(selected = targetState) }
         ) { isSelected ->
             if (isSelected) {
-                SelectedTab(tabAttr)
+                SelectedTab(tabAttr, color)
             } else {
-                NormalTab(tabAttr)
+                NormalTab(tabAttr, color)
             }
         }
     }
@@ -293,6 +294,7 @@ private fun applyTabTransition(selected: Boolean): ContentTransform {
 @Composable
 private fun SelectedTab(
     tabAttr: TabAttr,
+    color: Color,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -307,7 +309,7 @@ private fun SelectedTab(
 
         Canvas(modifier = Modifier.padding(all = 12.dp)) {
             drawCircle(
-                color = Teal,
+                color = color,
                 radius = 8f
             )
         }
@@ -317,6 +319,7 @@ private fun SelectedTab(
 @Composable
 private fun NormalTab(
     tabAttr: TabAttr,
+    color: Color,
     modifier: Modifier = Modifier
 ) {
     Icon(
@@ -325,6 +328,6 @@ private fun NormalTab(
         modifier = modifier
             .alpha(0.8f)
             .size(28.dp),
-        tint = MaterialTheme.colors.primary
+        tint = color
     )
 }

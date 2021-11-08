@@ -20,7 +20,7 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import com.bael.dads.feature.home.component.Notch
 import com.bael.dads.feature.home.local.locale
-import com.bael.dads.library.presentation.color.Silver
+import com.bael.dads.library.presentation.local.color
 
 /**
  * Created by ErickSumargo on 01/11/21.
@@ -36,7 +36,7 @@ internal fun SettingsScreen(uiState: SettingsState) {
             Notch(
                 size = DpSize(width = 24.dp, height = 4.dp),
                 cornerRadius = 4.dp,
-                color = Silver
+                color = color.silver
             )
         }
         Spacer(modifier = Modifier.height(20.dp))

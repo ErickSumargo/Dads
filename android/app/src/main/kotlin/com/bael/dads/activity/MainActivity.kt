@@ -39,8 +39,7 @@ internal class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         observeNightThemePreference()
-
-        WindowCompat.setDecorFitsSystemWindows(window, false)
+        applyWindowInsets()
 
         setContent {
             DadsApplication(isNightTheme = isNightThemeEnabled)
@@ -55,6 +54,10 @@ internal class MainActivity : AppCompatActivity() {
             .flowWithLifecycle(lifecycle, minActiveState = Lifecycle.State.RESUMED)
             .onEach { isEnabled -> isNightThemeEnabled = isEnabled }
             .launchIn(scope = lifecycleScope)
+    }
+
+    private fun applyWindowInsets() {
+        WindowCompat.setDecorFitsSystemWindows(window, false)
     }
 
     private companion object {

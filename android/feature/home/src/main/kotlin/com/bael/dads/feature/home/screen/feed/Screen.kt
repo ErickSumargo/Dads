@@ -36,13 +36,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import com.bael.dads.domain.home.model.DadJoke
+import com.bael.dads.library.presentation.local.color
 import com.bael.dads.feature.home.component.Animation
 import com.bael.dads.feature.home.component.EmptyState
 import com.bael.dads.feature.home.component.Loading
@@ -52,12 +52,10 @@ import com.bael.dads.feature.home.local.animation
 import com.bael.dads.feature.home.local.icon
 import com.bael.dads.feature.home.local.locale
 import com.bael.dads.feature.home.screen.sharepreview.SharePreviewRoute
-import com.bael.dads.library.presentation.color.Ruby
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.PagerState
 import com.google.accompanist.pager.calculateCurrentOffsetForPage
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.fold
 import kotlin.math.absoluteValue
 
@@ -369,7 +367,7 @@ private fun ActionFooter(
                     Icon(
                         painter = icon.like,
                         contentDescription = "Icon ${locale.like}",
-                        tint = Ruby,
+                        tint = color.ruby,
                     )
                 }
             } else {

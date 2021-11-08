@@ -55,7 +55,7 @@ import com.bael.dads.feature.home.local.animation
 import com.bael.dads.feature.home.local.icon
 import com.bael.dads.feature.home.local.locale
 import com.bael.dads.feature.home.screen.sharepreview.SharePreviewRoute
-import com.bael.dads.library.presentation.color.Ruby
+import com.bael.dads.library.presentation.local.color
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.SwipeRefreshIndicator
 import kotlinx.coroutines.CoroutineScope
@@ -413,7 +413,7 @@ private fun ActionFooter(
                     Icon(
                         painter = icon.like,
                         contentDescription = "Icon ${locale.like}",
-                        tint = Ruby,
+                        tint = color.ruby,
                     )
                 }
             } else {
