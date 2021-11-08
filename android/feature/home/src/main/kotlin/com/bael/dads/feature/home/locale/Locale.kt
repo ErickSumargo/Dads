@@ -113,7 +113,7 @@ internal class HomeLocaleImpl : HomeLocale {
 
     override val noNetworkDescription: String
         @Composable
-        get() = stringResource(id = R.string.no_internet_description)
+        get() = stringResource(id = R.string.no_network_description)
 
     override val notification: String
         @Composable

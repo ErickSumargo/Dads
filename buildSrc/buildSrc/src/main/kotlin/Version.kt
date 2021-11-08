@@ -15,15 +15,9 @@ object Version {
 
         const val compose: String = "1.1.0-beta02"
 
-        const val constraintLayout: String = "2.1.0-alpha2"
-
         const val constraintLayoutCompose: String = "1.0.0-beta02"
 
         const val dataStore: String = "1.0.0-alpha08"
-
-        const val espresso: String = "3.1.0"
-
-        const val fragment: String = "1.2.5"
 
         const val hilt: String = "1.0.0"
 
@@ -33,24 +27,16 @@ object Version {
 
         const val navigation: String = "2.4.0-beta01"
 
-        const val recyclerView: String = "1.2.0-beta01"
-
         const val runner: String = "1.1.0"
 
         const val startup: String = "1.0.0"
 
-        const val swipeRefreshLayout: String = "1.2.0-alpha01"
-
         const val uiAutomator: String = "2.2.0"
-
-        const val viewPager2: String = "1.1.0-alpha01"
 
         const val work: String = "2.5.0"
     }
 
     object Airbnb {
-        const val lottie: String = "3.6.0"
-
         const val lottieCompose: String = "4.0.0"
     }
 
@@ -68,8 +54,6 @@ object Version {
         const val firebaseCrashlytics: String = "2.7.1"
 
         const val gms: String = "4.3.5"
-
-        const val material: String = "1.2.1"
 
         const val secrets: String = "0.6"
 

@@ -1,29 +1,21 @@
-import Version.Airbnb.lottie as lottieVersion
 import Version.Airbnb.lottieCompose as lottieComposeVersion
 import Version.AndroidX.appCompat as appCompatVersion
 import Version.AndroidX.archTesting as archTestingVersion
 import Version.AndroidX.compose as composeVersion
-import Version.AndroidX.hiltNavigationCompose as hiltNavigationComposeVersion
-import Version.AndroidX.constraintLayout as constraintLayoutVersion
 import Version.AndroidX.constraintLayoutCompose as constraintLayoutComposeVersion
 import Version.AndroidX.dataStore as dataStoreVersion
-import Version.AndroidX.espresso as espressoVersion
-import Version.AndroidX.fragment as fragmentVersion
 import Version.AndroidX.hilt as hiltVersion
+import Version.AndroidX.hiltNavigationCompose as hiltNavigationComposeVersion
 import Version.AndroidX.lifecycle as lifecycleVersion
 import Version.AndroidX.navigation as navigationVersion
-import Version.AndroidX.recyclerView as recyclerViewVersion
 import Version.AndroidX.runner as runnerVersion
 import Version.AndroidX.startup as startupVersion
-import Version.AndroidX.swipeRefreshLayout as swipeRefreshLayoutVersion
 import Version.AndroidX.uiAutomator as uiAutomatorVersion
-import Version.AndroidX.viewPager2 as viewPager2Version
 import Version.AndroidX.work as workVersion
 import Version.Apollo.apollo as apolloVersion
 import Version.Google.accompanist as accompanistVersion
 import Version.Google.dagger as daggerVersion
 import Version.Google.firebaseBom as firebaseBomVersion
-import Version.Google.material as materialVersion
 import Version.Google.truth as truthVersion
 import Version.JavaX.annotation as annotationVersion
 import Version.KotlinX.coroutines as coroutinesVersion
@@ -53,29 +45,14 @@ object Library {
         val composeUiTooling: String
             get() = "androidx.compose.ui:ui-tooling:$composeVersion"
 
-        val constraintLayout: String
-            get() = "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
-
         val constraintLayoutCompose: String
             get() = "androidx.constraintlayout:constraintlayout-compose:$constraintLayoutComposeVersion"
 
         val dataStore: String
             get() = "androidx.datastore:datastore-preferences:$dataStoreVersion"
 
-        val espresso: String
-            get() = "androidx.test.espresso:espresso-core:$espressoVersion"
-
-        val fragment: String
-            get() = "androidx.fragment:fragment-ktx:$fragmentVersion"
-
-        val fragmentTesting: String
-            get() = "androidx.fragment:fragment-testing:$fragmentVersion"
-
         val hiltCompiler: String
             get() = "androidx.hilt:hilt-compiler:$hiltVersion"
-
-        val hiltNavigation: String
-            get() = "androidx.hilt:hilt-navigation-fragment:$hiltVersion"
 
         val hiltNavigationCompose: String
             get() = "androidx.hilt:hilt-navigation-compose:$hiltNavigationComposeVersion"
@@ -86,23 +63,8 @@ object Library {
         val lifecycle: String
             get() = "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion"
 
-        val lifecycleViewModelSavedState: String
-            get() = "androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycleVersion"
-
         val navigationCompose: String
             get() = "androidx.navigation:navigation-compose:$navigationVersion"
-
-        val navigationFragment: String
-            get() = "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
-
-        val navigationTesting: String
-            get() = "androidx.navigation:navigation-testing:$navigationVersion"
-
-        val navigationUi: String
-            get() = "androidx.navigation:navigation-ui-ktx:$navigationVersion"
-
-        val recyclerView: String
-            get() = "androidx.recyclerview:recyclerview:$recyclerViewVersion"
 
         val runner: String
             get() = "androidx.test:runner:$runnerVersion"
@@ -110,14 +72,8 @@ object Library {
         val startup: String
             get() = "androidx.startup:startup-runtime:$startupVersion"
 
-        val swipeRefreshLayout: String
-            get() = "androidx.swiperefreshlayout:swiperefreshlayout:$swipeRefreshLayoutVersion"
-
         val uiAutomator: String
             get() = "androidx.test.uiautomator:uiautomator:$uiAutomatorVersion"
-
-        val viewPager2: String
-            get() = "androidx.viewpager2:viewpager2:$viewPager2Version"
 
         val work: String
             get() = "androidx.work:work-runtime-ktx:$workVersion"
@@ -127,9 +83,6 @@ object Library {
     }
 
     object Airbnb {
-        val lottie: String
-            get() = "com.airbnb.android:lottie:$lottieVersion"
-
         val lottieCompose: String
             get() = "com.airbnb.android:lottie-compose:$lottieComposeVersion"
     }
@@ -169,9 +122,6 @@ object Library {
 
         val firebaseCrashlytics: String
             get() = "com.google.firebase:firebase-crashlytics-ktx"
-
-        val material: String
-            get() = "com.google.android.material:material:$materialVersion"
 
         val truth: String
             get() = "com.google.truth:truth:$truthVersion"

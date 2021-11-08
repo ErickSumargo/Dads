@@ -1,9 +1,5 @@
-import Library.Airbnb.lottie
 import Library.Airbnb.lottieCompose
-import Library.AndroidX.constraintLayout
 import Library.AndroidX.constraintLayoutCompose
-import Library.AndroidX.swipeRefreshLayout
-import Library.AndroidX.viewPager2
 import Library.AndroidX.work
 import Library.Google.accompanistPager
 import Library.Google.accompanistSwipeRefresh
@@ -17,15 +13,11 @@ dependencies {
     implementation(accompanistPager)
     implementation(accompanistSwipeRefresh)
 
-    implementation(constraintLayout)
     implementation(constraintLayoutCompose)
 
-    implementation(swipeRefreshLayout)
-    implementation(viewPager2)
     implementation(work)
 
     // Airbnb
-    implementation(lottie)
     implementation(lottieCompose)
 }
 

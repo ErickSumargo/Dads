@@ -1,12 +1,11 @@
 import Library.AndroidX.activityCompose
+import Library.AndroidX.appCompat
 import Library.AndroidX.composeMaterial
 import Library.AndroidX.composeUiTooling
 import Library.AndroidX.hiltCompiler
-import Library.AndroidX.hiltNavigation
 import Library.AndroidX.hiltWork
+import Library.AndroidX.lifecycle
 import Library.AndroidX.navigationCompose
-import Library.AndroidX.navigationFragment
-import Library.AndroidX.navigationUi
 import Library.AndroidX.work
 import Library.Apollo.apolloKotlin
 import Library.Google.accompanistInsets
@@ -30,16 +29,16 @@ dependencies {
     implementation(accompanistSystemUiController)
     implementation(activityCompose)
 
+    implementation(appCompat)
+
     implementation(composeMaterial)
     implementation(composeUiTooling)
 
-    implementation(hiltNavigation)
     implementation(hiltWork)
     kapt(hiltCompiler)
 
+    implementation(lifecycle)
     implementation(navigationCompose)
-    implementation(navigationFragment)
-    implementation(navigationUi)
 
     implementation(work)
 

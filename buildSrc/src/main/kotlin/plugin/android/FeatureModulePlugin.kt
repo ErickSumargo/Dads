@@ -5,14 +5,11 @@ package plugin.android
 import Application
 import Library.AndroidX.composeMaterial
 import Library.AndroidX.composeUiTooling
-import Library.AndroidX.fragment
 import Library.AndroidX.hiltCompiler
-import Library.AndroidX.hiltNavigation
 import Library.AndroidX.hiltNavigationCompose
 import Library.AndroidX.hiltWork
+import Library.AndroidX.lifecycle
 import Library.AndroidX.navigationCompose
-import Library.AndroidX.navigationFragment
-import Library.AndroidX.navigationUi
 import Library.Google.dagger
 import Library.Google.daggerCompiler
 import Library.Google.daggerTesting
@@ -26,7 +23,6 @@ import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.project
 import org.gradle.kotlin.dsl.withType
-import org.jetbrains.kotlin.gradle.plugin.KaptExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import plugin.test.JacocoTestReportPlugin
 import Version.AndroidX.compose as composeVersion
@@ -42,7 +38,6 @@ class FeatureModulePlugin : Plugin<Project> {
 
         applyFeatureExtension(project)
         applyHiltExtension(project)
-        applyKaptExtension(project)
 
         configureKotlinCompiler(project)
 
@@ -132,14 +127,6 @@ class FeatureModulePlugin : Plugin<Project> {
         }
     }
 
-    private fun applyKaptExtension(project: Project) {
-        val extension = project.extensions.getByName("kapt")
-                as? KaptExtension ?: return
-        extension.apply {
-            correctErrorTypes = true
-        }
-    }
-
     private fun configureKotlinCompiler(project: Project) {
         project.tasks.withType<KotlinCompile> {
             kotlinOptions {
@@ -159,16 +146,12 @@ class FeatureModulePlugin : Plugin<Project> {
             add("implementation", composeMaterial)
             add("implementation", composeUiTooling)
 
-            add("implementation", fragment)
-
-            add("implementation", hiltNavigation)
             add("implementation", hiltNavigationCompose)
             add("implementation", hiltWork)
             add("kapt", hiltCompiler)
 
+            add("implementation", lifecycle)
             add("implementation", navigationCompose)
-            add("implementation", navigationFragment)
-            add("implementation", navigationUi)
 
             // Google
             add("implementation", dagger)

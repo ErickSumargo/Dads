@@ -27,6 +27,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
@@ -53,8 +54,9 @@ internal class FeedViewModel @Inject constructor(
         loadDadJokeFeedJob?.cancel()
         loadDadJokeFeedJob = loadDadJokeFeedUseCase(cursor, limit)
             .flowOn(context = thread.io)
-            .onEach(::mapResponse)
+            .map(::mapResponse)
             .flowOn(context = thread.default)
+            .onEach { feed = it }
             .launchIn(scope = viewModelScope)
     }
 
@@ -96,8 +98,8 @@ internal class FeedViewModel @Inject constructor(
         )
     }
 
-    private fun mapResponse(response: Response<List<DadJoke>>) {
-        feed = when (response) {
+    private fun mapResponse(response: Response<List<DadJoke>>): List<Response<List<DadJoke>>> {
+        return when (response) {
             is Loading -> feed.dropLastWhile { it is Error || it is Empty }
             is Error -> feed.dropLastWhile { it is Loading }
             is Empty -> feed.dropLastWhile { it is Loading }
