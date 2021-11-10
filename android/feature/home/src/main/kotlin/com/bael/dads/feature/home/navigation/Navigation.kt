@@ -17,8 +17,8 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 @ExperimentalFoundationApi
 @ExperimentalPagerApi
 fun NavGraphBuilder.homeNavigation(sheetContent: (@Composable () -> Unit) -> Unit) {
-    navigation(startDestination = "main", route = "home") {
-        composable(route = "main") {
+    navigation(startDestination = "/", route = "home") {
+        composable(route = "/") {
             HomeRoute(sheetContent)
         }
     }

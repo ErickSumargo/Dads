@@ -4,6 +4,7 @@ package com.bael.dads.library.preference.test
 
 import com.bael.dads.library.preference.Preference
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 /**
@@ -14,7 +15,7 @@ internal class FakePreference @Inject constructor() : Preference {
     private val container: MutableMap<String, Any> = HashMap()
 
     override fun <T> read(key: String, defaultValue: T): Flow<T> {
-        return container[key] as T ?: defaultValue
+        return flow {  }
     }
 
     override suspend fun <T> write(key: String, value: T) {

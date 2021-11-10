@@ -4,6 +4,7 @@ package plugin.android
 
 import Application
 import Library.AndroidX.composeMaterial
+import Library.AndroidX.composeUiTest
 import Library.AndroidX.composeUiTooling
 import Library.AndroidX.hiltCompiler
 import Library.AndroidX.hiltNavigationCompose
@@ -15,7 +16,6 @@ import Library.Google.daggerCompiler
 import Library.Google.daggerTesting
 import Library.Google.truth
 import com.android.build.gradle.LibraryExtension
-import dagger.hilt.android.plugin.HiltExtension
 import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -137,6 +137,8 @@ class FeatureModulePlugin : Plugin<Project> {
 
             add("implementation", lifecycle)
             add("implementation", navigationCompose)
+
+            add("androidTestImplementation", composeUiTest)
 
             // Google
             add("implementation", dagger)

@@ -42,6 +42,9 @@ object Library {
         val composeMaterial: String
             get() = "androidx.compose.material:material:$composeVersion"
 
+        val composeUiTest: String
+            get() = "androidx.compose.ui:ui-test-junit4:$composeVersion"
+
         val composeUiTooling: String
             get() = "androidx.compose.ui:ui-tooling:$composeVersion"
 
