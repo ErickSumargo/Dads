@@ -11,7 +11,7 @@ import dagger.hilt.android.HiltAndroidApp
  */
 
 @HiltAndroidApp
-internal class DadsDebugApplication : DadsApplication() {
+internal class DadsAndroidDebugApplication : DadsAndroidApplication() {
 
     override fun onCreate() {
         super.onCreate()

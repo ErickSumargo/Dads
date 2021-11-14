@@ -3,12 +3,15 @@
 package plugin.android
 
 import Application
-import Library.AndroidX.fragment
+import Library.AndroidX.composeMaterial
+import Library.AndroidX.composeUiTest
+import Library.AndroidX.composeUiTooling
 import Library.AndroidX.hiltCompiler
-import Library.AndroidX.hiltNavigation
+import Library.AndroidX.hiltNavigationCompose
 import Library.AndroidX.hiltWork
-import Library.AndroidX.navigationFragment
-import Library.AndroidX.navigationUi
+import Library.AndroidX.lifecycle
+import Library.AndroidX.navigationCompose
+import Library.AndroidX.uiAutomator
 import Library.Google.dagger
 import Library.Google.daggerCompiler
 import Library.Google.daggerTesting
@@ -22,9 +25,9 @@ import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.project
 import org.gradle.kotlin.dsl.withType
-import org.jetbrains.kotlin.gradle.plugin.KaptExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import plugin.test.JacocoTestReportPlugin
+import Version.AndroidX.compose as composeVersion
 
 /**
  * Created by ErickSumargo on 15/04/21.
@@ -36,9 +39,8 @@ class FeatureModulePlugin : Plugin<Project> {
         applyPlugins(project)
 
         applyFeatureExtension(project)
-        applyHiltExtension(project)
-        applyKaptExtension(project)
 
+        applyHiltExtension(project)
         configureKotlinCompiler(project)
 
         importExternalLibs(project)
@@ -92,13 +94,17 @@ class FeatureModulePlugin : Plugin<Project> {
                 }
             }
 
-            buildFeatures.apply {
-                viewBinding = true
+            buildFeatures {
+                compose = true
             }
 
             compileOptions {
                 sourceCompatibility = JavaVersion.VERSION_1_8
                 targetCompatibility = JavaVersion.VERSION_1_8
+            }
+
+            composeOptions {
+                kotlinCompilerExtensionVersion = composeVersion
             }
 
             lintOptions {
@@ -123,14 +129,6 @@ class FeatureModulePlugin : Plugin<Project> {
         }
     }
 
-    private fun applyKaptExtension(project: Project) {
-        val extension = project.extensions.getByName("kapt")
-                as? KaptExtension ?: return
-        extension.apply {
-            correctErrorTypes = true
-        }
-    }
-
     private fun configureKotlinCompiler(project: Project) {
         project.tasks.withType<KotlinCompile> {
             kotlinOptions {
@@ -147,14 +145,18 @@ class FeatureModulePlugin : Plugin<Project> {
     private fun importExternalLibs(project: Project) {
         project.dependencies {
             // AndroidX
-            add("implementation", fragment)
+            add("implementation", composeMaterial)
+            add("implementation", composeUiTooling)
 
-            add("implementation", hiltNavigation)
+            add("implementation", hiltNavigationCompose)
             add("implementation", hiltWork)
             add("kapt", hiltCompiler)
 
-            add("implementation", navigationFragment)
-            add("implementation", navigationUi)
+            add("implementation", lifecycle)
+            add("implementation", navigationCompose)
+
+            add("androidTestImplementation", composeUiTest)
+            add("androidTestImplementation", uiAutomator)
 
             // Google
             add("implementation", dagger)
@@ -168,10 +170,6 @@ class FeatureModulePlugin : Plugin<Project> {
 
     private fun importInternalModules(project: Project) {
         project.dependencies {
-            // Internal
-            add("implementation", project(":android:annotation"))
-            add("kapt", project(":android:processor"))
-
             // Library
             add("implementation", project(":android:library:presentation"))
             add("implementation", project(":android:library:threading"))

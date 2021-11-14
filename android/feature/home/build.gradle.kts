@@ -1,8 +1,8 @@
-import Library.Airbnb.lottie
-import Library.AndroidX.constraintLayout
-import Library.AndroidX.swipeRefreshLayout
-import Library.AndroidX.viewPager2
+import Library.Airbnb.lottieCompose
+import Library.AndroidX.constraintLayoutCompose
 import Library.AndroidX.work
+import Library.Google.accompanistPager
+import Library.Google.accompanistSwipeRefresh
 
 plugins {
     id("androidFeature")
@@ -10,13 +10,15 @@ plugins {
 
 dependencies {
     // AndroidX
-    implementation(constraintLayout)
-    implementation(swipeRefreshLayout)
-    implementation(viewPager2)
+    implementation(accompanistPager)
+    implementation(accompanistSwipeRefresh)
+
+    implementation(constraintLayoutCompose)
+
     implementation(work)
 
     // Airbnb
-    implementation(lottie)
+    implementation(lottieCompose)
 }
 
 dependencies {

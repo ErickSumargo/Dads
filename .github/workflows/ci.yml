@@ -4,12 +4,20 @@ on:
   push:
     branches:
       - main
+concurrency:
+  group: ${{ github.head_ref }}
+  cancel-in-progress: true
 jobs:
   initialize:
     runs-on: macos-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+      - name: Setup JDK
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'temurin'
+          java-version: '11'
       - name: Setup GraphQL
         run: ./gradlew downloadApolloSchema --endpoint="https://dads-engine.herokuapp.com" --schema="data/remote/src/commonMain/graphql/com/bael/dads/data/remote/schema.json"
       - name: Cache GraphQL setup
@@ -23,6 +31,11 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+      - name: Setup JDK
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'temurin'
+          java-version: '11'
       - name: Cache GraphQL setup
         uses: actions/cache@v2
         with:
@@ -36,6 +49,11 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+      - name: Setup JDK
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'temurin'
+          java-version: '11'
       - name: Cache GraphQL setup
         uses: actions/cache@v2
         with:

@@ -16,6 +16,7 @@ import com.bael.dads.shared.response.Response.Success
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.map
 
@@ -63,7 +64,7 @@ internal class FetchDadJokeFeedWorker @AssistedInject constructor(
         val isNewFeedReminderEnabled = preference.read(
             key = NEW_FEED_REMINDER_PREFERENCE,
             defaultValue = true
-        )
+        ).first()
         if (!isNewFeedReminderEnabled) return
 
         val notification = newFeedReminderNotificationFactory.create(dadJokes)

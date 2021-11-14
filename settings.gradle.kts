@@ -44,18 +44,12 @@ class AndroidPlatformProject(settings: Settings) : Settings by settings {
 
     fun importModules() {
         importAppModules()
-        importInternalModules()
         importFeatureModules()
         importLibraryModules()
     }
 
     private fun importAppModules() {
         include(":android:app")
-    }
-
-    private fun importInternalModules() {
-        include(":android:annotation")
-        include(":android:processor")
     }
 
     private fun importFeatureModules() {

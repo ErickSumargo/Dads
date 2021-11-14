@@ -2,6 +2,6 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.MaterialComponents" />
+    <style name="AppTheme" parent="Theme.AppCompat" />
 
 </resources>
