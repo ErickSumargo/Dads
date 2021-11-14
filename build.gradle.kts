@@ -9,6 +9,16 @@ allprojects {
             setUrl("https://jetbrains.bintray.com/intellij-third-party-dependencies")
         }
     }
+
+    subprojects {
+        configurations.all {
+            resolutionStrategy.eachDependency {
+                if ("org.jacoco" == requested.group) {
+                    useVersion("0.8.7")
+                }
+            }
+        }
+    }
 }
 
 tasks.register("clean", Delete::class) {

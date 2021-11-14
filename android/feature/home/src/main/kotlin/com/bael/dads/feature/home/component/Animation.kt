@@ -8,6 +8,7 @@ import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
+import com.bael.dads.library.presentation.local.LocalAnimationLoop
 
 /**
  * Created by ErickSumargo on 01/11/21.
@@ -19,10 +20,11 @@ internal fun Animation(
     source: LottieCompositionSpec,
     loop: Int = LottieConstants.IterateForever
 ) {
+    val useAnimationLoop = LocalAnimationLoop.current
     val composition by rememberLottieComposition(spec = source)
     val animationState by animateLottieCompositionAsState(
         composition,
-        iterations = loop,
+        iterations = loop.takeIf { useAnimationLoop } ?: 1,
     )
 
     LottieAnimation(

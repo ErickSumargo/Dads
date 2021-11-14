@@ -1,6 +1,7 @@
 package com.bael.dads.library.presentation.local
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.staticCompositionLocalOf
 import com.bael.dads.library.presentation.color.DadsColor
 import com.bael.dads.library.presentation.color.DadsColorImpl
@@ -12,6 +13,8 @@ import com.bael.dads.library.presentation.color.DadsColorImpl
 internal val LocalDadsColor = staticCompositionLocalOf<DadsColor> {
     DadsColorImpl()
 }
+
+val LocalAnimationLoop = compositionLocalOf { true }
 
 val color: DadsColor
     @Composable

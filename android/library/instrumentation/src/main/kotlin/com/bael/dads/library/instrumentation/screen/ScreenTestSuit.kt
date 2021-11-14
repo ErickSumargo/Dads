@@ -8,6 +8,7 @@ import androidx.compose.material.ModalBottomSheetValue
 import androidx.compose.material.Text
 import androidx.compose.material.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.rememberCoroutineScope
@@ -20,6 +21,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.bael.dads.library.instrumentation.activity.MainTestActivity
+import com.bael.dads.library.presentation.local.LocalAnimationLoop
 import com.bael.dads.library.threading.Thread
 import dagger.hilt.android.testing.HiltAndroidRule
 import kotlinx.coroutines.launch
@@ -88,19 +90,21 @@ abstract class ScreenTestSuit(private val destination: String) {
                     },
                     sheetState = bottomSheetState,
                 ) {
-                    NavHost(
-                        navController = rememberNavController(),
-                        startDestination = destination,
-                        builder = {
-                            navigation(this@ScreenTestSuit.route) {
-                                sheetContent = it
+                    CompositionLocalProvider(LocalAnimationLoop provides false) {
+                        NavHost(
+                            navController = rememberNavController(),
+                            startDestination = destination,
+                            builder = {
+                                navigation(this@ScreenTestSuit.route) {
+                                    sheetContent = it
 
-                                coroutineScope.launch {
-                                    bottomSheetState.show()
+                                    coroutineScope.launch {
+                                        bottomSheetState.show()
+                                    }
                                 }
                             }
-                        }
-                    )
+                        )
+                    }
                 }
             }
 

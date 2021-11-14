@@ -14,7 +14,6 @@ import com.bael.dads.shared.response.Response.Empty
 import com.bael.dads.shared.response.Response.Error
 import com.bael.dads.shared.response.Response.Loading
 import com.bael.dads.shared.response.Response.Success
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flatMapLatest
@@ -39,24 +38,8 @@ internal class LoadDadJokeFeedInteractor(
     override fun invoke(cursor: DadJoke?, limit: Int): Flow<Response<List<DadJoke>>> {
         return flow {
             emit(Loading)
-            delay(1000)
 
             val dadJokes = loadDadJokeFeedDB(cursor, limit)
-//            val i = cursor?.id ?: 0
-//            val dadJokes = if (i > 5) {
-//                listOf()
-//            } else {
-//                (i + 1 until i + 4).map {
-//                    DadJoke(
-//                        id = it,
-//                        setup = "Setup $it",
-//                        punchline = "Punchline $it",
-//                        favored = false,
-//                        seen = false,
-//                        updatedAt = 0
-//                    )
-//                }
-//            }
             if (dadJokes.isEmpty()) {
                 emit(Empty)
             } else {

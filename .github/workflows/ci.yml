@@ -25,27 +25,27 @@ jobs:
         with:
           path: data/remote/src/commonMain/graphql/com/bael/dads/data/remote
           key: ${{ github.sha }}
-#  build:
-#    runs-on: macos-latest
-#    needs: initialize
-#    steps:
-#      - name: Checkout repository
-#        uses: actions/checkout@v2
-#      - name: Setup JDK
-#        uses: actions/setup-java@v2
-#        with:
-#          distribution: 'temurin'
-#          java-version: '11'
-#      - name: Cache GraphQL setup
-#        uses: actions/cache@v2
-#        with:
-#          path: data/remote/src/commonMain/graphql/com/bael/dads/data/remote
-#          key: ${{ github.sha }}
-#      - name: Build application
-#        run: ./gradlew assembleDebug --stacktrace
-  test:
+  build:
     runs-on: macos-latest
     needs: initialize
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Setup JDK
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'temurin'
+          java-version: '11'
+      - name: Cache GraphQL setup
+        uses: actions/cache@v2
+        with:
+          path: data/remote/src/commonMain/graphql/com/bael/dads/data/remote
+          key: ${{ github.sha }}
+      - name: Build application
+        run: ./gradlew assembleDebug --stacktrace
+  test:
+    runs-on: macos-latest
+    needs: build
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2

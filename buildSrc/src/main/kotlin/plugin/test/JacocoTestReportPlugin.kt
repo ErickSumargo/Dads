@@ -23,14 +23,6 @@ class JacocoTestReportPlugin : Plugin<Project> {
     }
 
     private fun register(project: Project) {
-        project.configurations.all {
-            resolutionStrategy.eachDependency {
-                if (requested.group == "org.jacoco") {
-                    useVersion("0.8.7")
-                }
-            }
-        }
-
         project.tasks.register<JacocoReport>("jacocoTestReport") {
             group = "Reporting"
             description = "Generate Jacoco coverage reports."
