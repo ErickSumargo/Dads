@@ -21,11 +21,3 @@ dependencies {
     implementation(composeMaterial)
     implementation(composeUiTooling)
 }
-
-dependencies {
-    // Shared
-    implementation(project(":shared"))
-
-    // Library
-    implementation(project(":android:library:threading"))
-}

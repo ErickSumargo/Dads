@@ -15,7 +15,9 @@ internal class FakePreference @Inject constructor() : Preference {
     private val container: MutableMap<String, Any> = HashMap()
 
     override fun <T> read(key: String, defaultValue: T): Flow<T> {
-        return flow {  }
+        return flow {
+            emit(container[key] as? T ?: defaultValue)
+        }
     }
 
     override suspend fun <T> write(key: String, value: T) {

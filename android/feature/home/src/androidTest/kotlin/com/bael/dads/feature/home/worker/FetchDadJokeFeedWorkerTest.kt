@@ -1,10 +1,15 @@
 package com.bael.dads.feature.home.worker
 
+import androidx.test.platform.app.InstrumentationRegistry.getInstrumentation
+import androidx.test.uiautomator.By.text
+import androidx.test.uiautomator.UiDevice
 import androidx.work.ListenableWorker.Result.retry
 import com.bael.dads.data.database.entity.DadJoke
 import com.bael.dads.data.database.repository.DadJokeRepository
+import com.bael.dads.feature.home.R
 import com.bael.dads.feature.home.worker.factory.FakeFetchDadJokeFeedWorkerFactory
-import com.bael.dads.library.instrumentation.worker.BaseWorkerTest
+import com.bael.dads.library.instrumentation.worker.WorkerTestSuit
+import com.bael.dads.library.presentation.ext.readText
 import com.bael.dads.shared.time.DateTime.now
 import com.google.common.truth.Truth.assertThat
 import dagger.hilt.android.testing.HiltAndroidTest
@@ -17,7 +22,7 @@ import javax.inject.Inject
  */
 
 @HiltAndroidTest
-internal class FetchDadJokeFeedWorkerTest : BaseWorkerTest<FakeFetchDadJokeFeedWorkerFactory>() {
+internal class FetchDadJokeFeedWorkerTest : WorkerTestSuit<FakeFetchDadJokeFeedWorkerFactory>() {
     @Inject
     lateinit var dadJokeRepository: DadJokeRepository
 
@@ -62,8 +67,22 @@ internal class FetchDadJokeFeedWorkerTest : BaseWorkerTest<FakeFetchDadJokeFeedW
             worker.doWork()
 
             // then
-            // TODO
+            assertNotificationDisplayed(
+                title = context.readText(resId = R.string.new_feed_notification_title),
+                description = context.readText(
+                    resId = R.string.new_feed_notification_description,
+                    "1"
+                )
+            )
         }
+    }
+
+    private fun assertNotificationDisplayed(title: String, description: String) {
+        val uiDevice = UiDevice.getInstance(getInstrumentation())
+        uiDevice.openNotification()
+
+        assertThat(uiDevice.findObject(text(title))).isNotNull()
+        assertThat(uiDevice.findObject(text(description))).isNotNull()
     }
 
     override fun clearTest() {

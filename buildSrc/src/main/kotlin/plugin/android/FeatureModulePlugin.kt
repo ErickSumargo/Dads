@@ -11,11 +11,13 @@ import Library.AndroidX.hiltNavigationCompose
 import Library.AndroidX.hiltWork
 import Library.AndroidX.lifecycle
 import Library.AndroidX.navigationCompose
+import Library.AndroidX.uiAutomator
 import Library.Google.dagger
 import Library.Google.daggerCompiler
 import Library.Google.daggerTesting
 import Library.Google.truth
 import com.android.build.gradle.LibraryExtension
+import dagger.hilt.android.plugin.HiltExtension
 import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -38,6 +40,7 @@ class FeatureModulePlugin : Plugin<Project> {
 
         applyFeatureExtension(project)
 
+        applyHiltExtension(project)
         configureKotlinCompiler(project)
 
         importExternalLibs(project)
@@ -109,6 +112,20 @@ class FeatureModulePlugin : Plugin<Project> {
 
                 error("VisibleForTests")
             }
+
+            packagingOptions {
+                exclude("META-INF/AL2.0")
+                exclude("META-INF/LGPL2.1")
+                exclude("META-INF/*.kotlin_module")
+            }
+        }
+    }
+
+    private fun applyHiltExtension(project: Project) {
+        val extension = project.extensions.getByName("hilt")
+                as? HiltExtension ?: return
+        extension.apply {
+            enableExperimentalClasspathAggregation = true
         }
     }
 
@@ -139,6 +156,7 @@ class FeatureModulePlugin : Plugin<Project> {
             add("implementation", navigationCompose)
 
             add("androidTestImplementation", composeUiTest)
+            add("androidTestImplementation", uiAutomator)
 
             // Google
             add("implementation", dagger)

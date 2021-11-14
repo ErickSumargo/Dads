@@ -1,9 +1,9 @@
 import Library.AndroidX.appCompat
 import Library.AndroidX.archTesting
+import Library.AndroidX.composeMaterial
 import Library.AndroidX.composeUiTest
 import Library.AndroidX.navigationCompose
 import Library.AndroidX.runner
-import Library.AndroidX.uiAutomator
 import Library.AndroidX.workTesting
 import Library.Google.daggerTesting
 import Library.Google.truth
@@ -29,9 +29,9 @@ dependencies {
     implementation(appCompat)
     implementation(archTesting)
     implementation(navigationCompose)
+    implementation(composeMaterial)
     implementation(composeUiTest)
     implementation(runner)
-    implementation(uiAutomator)
     implementation(workTesting)
 
     // Google

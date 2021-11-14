@@ -21,7 +21,7 @@ import javax.inject.Inject
  * Created by ErickSumargo on 15/05/21.
  */
 
-abstract class BaseWorkerTest<WF : WorkerFactory> {
+abstract class WorkerTestSuit<WF : WorkerFactory> {
     @get:Rule
     internal val hiltRule: HiltAndroidRule = HiltAndroidRule(this)
 
@@ -54,7 +54,7 @@ abstract class BaseWorkerTest<WF : WorkerFactory> {
         }
 
         return workerBuilder.build().apply {
-            workManager = this@BaseWorkerTest.workManager
+            workManager = this@WorkerTestSuit.workManager
         }
     }
 
