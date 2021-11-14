@@ -64,8 +64,6 @@ internal class ScreenTest : HomeScreenTest() {
             rule.onNodeWithText(
                 text = context.readText(resId = R.string.preview)
             ).assertExists()
-            rule.onNodeWithText(text = "Setup 1").assertExists()
-            rule.onNodeWithText(text = "Punchline 1").assertExists()
             rule.onNodeWithText(
                 text = context.readText(resId = R.string.share)
             ).assertExists()
