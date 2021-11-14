@@ -45,7 +45,7 @@ jobs:
 #        run: ./gradlew assembleDebug --stacktrace
   test:
     runs-on: macos-latest
-    needs: build
+    needs: initialize
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
